@@ -1,104 +1,104 @@
-# Teach Flow
+# Fluxo Teach
 
-Gathers design context for a project and writes two complementary files at the project root:
+Coleta contexto de design para um projeto e escreve dois arquivos complementares na raiz do projeto:
 
-- **PRODUCT.md** (strategic): root project file for register, target users, product purpose, brand personality, anti-references, strategic design principles. Answers "who/what/why".
-- **DESIGN.md** (visual): root project file for visual theme, color palette, typography, components, layout. Follows the [Google Stitch DESIGN.md format](https://stitch.withgoogle.com/docs/design-md/format/). Answers "how it looks".
+- **PRODUCT.md** (estratégico): arquivo raiz do projeto para registro, usuários-alvo, propósito do produto, personalidade da marca, anti-referências, princípios de design estratégicos. Responde "quem/o quê/por quê".
+- **DESIGN.md** (visual): arquivo raiz do projeto para tema visual, paleta de cores, tipografia, componentes, layout. Segue o [formato Google Stitch DESIGN.md](https://stitch.withgoogle.com/docs/design-md/format/). Responde "como fica".
 
-Every other impeccable command reads these files before doing any work.
+Todos os outros comandos impecables leem esses arquivos antes de fazer qualquer trabalho.
 
-## Step 1: Load current state
+## Passo 1: Carregar estado atual
 
-Run the shared loader first so you know what already exists:
+Execute o loader compartilhado primeiro para saber o que já existe:
 
 ```bash
 node {{scripts_path}}/load-context.mjs
 ```
 
-The output tells you whether PRODUCT.md and/or DESIGN.md already exist. If `migrated: true`, legacy `.impeccable.md` was auto-renamed to `PRODUCT.md`. Mention this once to the user.
+A saída informa se PRODUCT.md e/ou DESIGN.md já existem. Se `migrated: true`, o legado `.impeccable.md` foi automaticamente renomeado para `PRODUCT.md`. Mencione isso ao usuário uma vez.
 
-Decision tree:
-- **Neither file exists (empty project or no context yet)**: do Steps 2-4 (write PRODUCT.md), then decide on DESIGN.md based on whether there's code to analyze.
-- **PRODUCT.md exists, DESIGN.md missing**: skip to Step 5 and offer to run `/impeccable document` for DESIGN.md.
-- **PRODUCT.md exists but has no `## Register` section (legacy)**: add it. Infer a hypothesis from the codebase (see Step 2), confirm with the user, write the field.
-- **Both exist**: {{ask_instruction}} Ask which file to refresh. Skip the one the user doesn't want changed.
-- **Just DESIGN.md exists (unusual)**: do Steps 2-4 to produce PRODUCT.md.
+Árvore de decisão:
+- **Nenhum arquivo existe (projeto vazio ou sem contexto ainda)**: execute os Passos 2-4 (escreva PRODUCT.md), depois decida sobre DESIGN.md com base em se há código para analisar.
+- **PRODUCT.md existe, DESIGN.md ausente**: pule para o Passo 5 e ofereça executar `/impeccable document` para DESIGN.md.
+- **PRODUCT.md existe mas não tem a seção `## Register` (legado)**: adicione-a. Infira uma hipótese do codebase (veja Passo 2), confirme com o usuário, escreva o campo.
+- **Ambos existem**: {{ask_instruction}} Pergunte qual arquivo atualizar. Pule o que o usuário não quer alterado.
+- **Apenas DESIGN.md existe (incomum)**: execute os Passos 2-4 para produzir PRODUCT.md.
 
-Never silently overwrite an existing file. Always confirm first.
+Nunca sobrescreva silenciosamente um arquivo existente. Sempre confirme primeiro.
 
-If teach was invoked as a setup blocker by another command, such as `{{command_prefix}}impeccable craft landing page`, pause that command here. Complete teach, re-run the loader, then resume the original command with the freshly loaded context. For craft, resume into shape next; teach creates project context, but it is not a substitute for the task-specific shape interview and confirmed design brief.
+Se teach foi invocado como bloqueador de setup por outro comando, como `{{command_prefix}}impeccable craft landing page`, pause aquele comando aqui. Complete teach, re-execute o loader, então retome o comando original com o contexto recém-carregado. Para craft, retome em shape a seguir; teach cria contexto de projeto, mas não é substituto da entrevista de shape específica da tarefa e do brief de design confirmado.
 
-## Step 2: Explore the codebase
+## Passo 2: Explorar o codebase
 
-Before asking questions, thoroughly scan the project to discover what you can:
+Antes de fazer perguntas, escaneie minuciosamente o projeto para descobrir o que você puder:
 
-- **README and docs**: Project purpose, target audience, any stated goals
-- **Package.json / config files**: Tech stack, dependencies, existing design libraries
-- **Existing components**: Current design patterns, spacing, typography in use
-- **Brand assets**: Logos, favicons, color values already defined
-- **Design tokens / CSS variables**: Existing color palettes, font stacks, spacing scales
-- **Any style guides or brand documentation**
+- **README e docs**: Propósito do projeto, público-alvo, quaisquer objetivos declarados
+- **Package.json / arquivos de configuração**: Tech stack, dependências, bibliotecas de design existentes
+- **Componentes existentes**: Padrões de design atuais, espaçamento, tipografia em uso
+- **Assets de marca**: Logos, favicons, valores de cor já definidos
+- **Design tokens / variáveis CSS**: Paletas de cores existentes, font stacks, escalas de espaçamento
+- **Quaisquer guias de estilo ou documentação de marca**
 
-Also form a **register hypothesis** from what you find:
+Também forme uma **hipótese de registro** a partir do que encontrar:
 
-- Brand signals: `/`, `/about`, `/pricing`, `/blog/*`, `/docs/*`, hero sections, big typography, scroll-driven sections, landing-page-shaped content.
-- Product signals: `/app/*`, `/dashboard`, `/settings`, `/(auth)`, forms, data tables, side/top nav, app-shell components.
+- Sinais de brand: `/`, `/about`, `/pricing`, `/blog/*`, `/docs/*`, hero sections, tipografia grande, seções scroll-driven, conteúdo com formato de landing page.
+- Sinais de product: `/app/*`, `/dashboard`, `/settings`, `/(auth)`, formulários, tabelas de dados, navegação lateral/superior, componentes de app-shell.
 
-Register is a hypothesis at this point, not a decision; Step 3 confirms it.
+O registro é uma hipótese neste ponto, não uma decisão; o Passo 3 a confirma.
 
-Note what you've learned and what remains unclear. This exploration feeds both PRODUCT.md and DESIGN.md.
+Anote o que você aprendeu e o que permanece incerto. Esta exploração alimenta tanto PRODUCT.md quanto DESIGN.md.
 
-## Step 3: Ask strategic questions (for PRODUCT.md)
+## Passo 3: Fazer perguntas estratégicas (para PRODUCT.md)
 
-{{ask_instruction}} Ask only about what you couldn't infer from the codebase.
+{{ask_instruction}} Pergunte apenas sobre o que não pôde inferir do codebase.
 
-### Interview mode, not confirmation mode
+### Modo entrevista, não modo confirmação
 
-If the repo is empty or the user's brief is sparse, run a short interview before proposing PRODUCT.md. Do **not** turn a one-sentence request into a complete inferred PRODUCT.md and ask for blanket confirmation.
+Se o repositório está vazio ou o brief do usuário é esparso, execute uma breve entrevista antes de propor PRODUCT.md. **NÃO** transforme uma solicitação de uma frase em um PRODUCT.md inferido completo e peça confirmação genérica.
 
-- Use the harness's structured question tool when one exists. Otherwise, ask directly in chat and stop.
-- Ask **2-3 questions per round**, then wait for answers.
-- Use inferred answers as hypotheses or options, not as finished facts.
-- Complete at least one real user-answer round before drafting PRODUCT.md, unless every required answer is directly discoverable from repo docs.
-- Round 1 should establish register, users/purpose, and desired outcome.
-- Round 2 should establish brand personality or references, anti-references, and accessibility needs.
+- Use a ferramenta de perguntas estruturadas do harness quando ela existir. Caso contrário, pergunte diretamente no chat e pare.
+- Faça **2-3 perguntas por rodada**, depois aguarde as respostas.
+- Use respostas inferidas como hipóteses ou opções, não como fatos consumados.
+- Complete pelo menos uma rodada real de resposta do usuário antes de redigir PRODUCT.md, a menos que cada resposta necessária seja diretamente descoberta na documentação do repositório.
+- A Rodada 1 deve estabelecer registro, usuários/propósito e resultado desejado.
+- A Rodada 2 deve estabelecer personalidade da marca ou referências, anti-referências e necessidades de acessibilidade.
 
-### Minimum viable interview
+### Entrevista mínima viável
 
-Ask enough to complete PRODUCT.md. At minimum, cover register confirmation, users and purpose, brand personality, anti-references, and accessibility needs unless each answer is directly discoverable from repo context. After at least one interview round, you may propose inferred answers, but the user must confirm them before you write PRODUCT.md. Never synthesize PRODUCT.md from the original task prompt alone.
+Pergunte o suficiente para completar PRODUCT.md. No mínimo, cubra confirmação de registro, usuários e propósito, personalidade da marca, anti-referências e necessidades de acessibilidade, a menos que cada resposta seja diretamente descoberta no contexto do repositório. Após pelo menos uma rodada de entrevista, você pode propor respostas inferidas, mas o usuário deve confirmá-las antes que você escreva PRODUCT.md. Nunca sintetize PRODUCT.md apenas a partir do prompt da tarefa original.
 
-### Register (ask first; it shapes everything below)
+### Registro (pergunte primeiro; molda tudo abaixo)
 
-Every design task is either **brand** (marketing, landing, campaign, long-form content, portfolio: design IS the product) or **product** (app UI, admin, dashboards, tools: design SERVES the product).
+Toda tarefa de design é **brand** (marketing, landing, campanha, conteúdo de formato longo, portfólio: o design É o produto) ou **product** (UI de app, admin, dashboards, ferramentas: o design SERVE ao produto).
 
-If Step 2 produced a clear hypothesis, lead with it: *"From the codebase, this looks like a [brand / product] surface. Does that match your intent, or should we treat it differently?"*
+Se o Passo 2 produziu uma hipótese clara, lidere com ela: *"Pelo codebase, isso parece uma superfície de [brand / product]. Isso corresponde à sua intenção, ou devemos tratar diferentemente?"*
 
-If the signal is genuinely split (e.g. a product with a big marketing landing), {{ask_instruction}} Ask which register describes the **primary** surface. The register can be overridden per task later, but PRODUCT.md carries one default.
+Se o sinal é genuinamente dividido (ex.: um produto com uma grande landing de marketing), {{ask_instruction}} Pergunte qual registro descreve a superfície **primária**. O registro pode ser sobrescrito por tarefa depois, mas PRODUCT.md carrega um padrão.
 
-### Users & Purpose
-- Who uses this? What's their context when using it?
-- What job are they trying to get done?
-- For brand: what emotions should the interface evoke? (confidence, delight, calm, urgency)
-- For product: what workflow are they in? What's the primary task on any given screen?
+### Usuários e Propósito
+- Quem usa isso? Qual é o contexto ao usar?
+- Que tarefa estão tentando realizar?
+- Para brand: que emoções a interface deve evocar? (confiança, deleite, calma, urgência)
+- Para product: em que fluxo de trabalho estão? Qual é a tarefa primária em qualquer tela?
 
-### Brand & Personality
-- How would you describe the brand personality in 3 words?
-- Reference sites or apps that capture the right feel? What specifically about them?
-  - For brand, push for real-world references in the right lane (tech-minimal, editorial-magazine, consumer-warm, brutalist-grid, etc.), not generic "modern" adjectives.
-  - For product, push for category best-tool references (Linear, Figma, Notion, Raycast, Stripe).
-- What should this explicitly NOT look like? Any anti-references?
+### Marca e Personalidade
+- Como você descreveria a personalidade da marca em 3 palavras?
+- Sites ou apps de referência que capturam a sensação certa? O que especificamente sobre eles?
+  - Para brand, busque referências do mundo real no caminho certo (tech-minimal, editorial-magazine, consumer-warm, brutalist-grid, etc.), não adjetivos genéricos como "moderno".
+  - Para product, busque referências de melhor-ferramenta-da-categoria (Linear, Figma, Notion, Raycast, Stripe).
+- O que isso explicitamente NÃO deveria parecer? Alguma anti-referência?
 
-### Accessibility & Inclusion
-- Specific accessibility requirements? (WCAG level, known user needs)
-- Considerations for reduced motion, color blindness, or other accommodations?
+### Acessibilidade e Inclusão
+- Requisitos específicos de acessibilidade? (nível WCAG, necessidades conhecidas dos usuários)
+- Considerações para movimento reduzido, daltonismo ou outras acomodações?
 
-Skip questions where the answer is already clear. **Do NOT ask about colors, fonts, radii, or visual styling here.** Those belong in DESIGN.md, not PRODUCT.md.
+Pule perguntas cuja resposta já está clara. **NÃO pergunte sobre cores, fontes, raios ou estilo visual aqui.** Esses pertencem ao DESIGN.md, não ao PRODUCT.md.
 
-## Step 4: Write PRODUCT.md
+## Passo 4: Escrever PRODUCT.md
 
-Write PRODUCT.md only after the user has confirmed the strategic answers from Step 3. If an inferred answer is uncertain or unconfirmed, ask before writing.
+Escreva PRODUCT.md apenas após o usuário ter confirmado as respostas estratégicas do Passo 3. Se uma resposta inferida é incerta ou não confirmada, pergunte antes de escrever.
 
-Synthesize into a strategic document:
+Sintetize em um documento estratégico:
 
 ```markdown
 # Product
@@ -108,49 +108,49 @@ Synthesize into a strategic document:
 product
 
 ## Users
-[Who they are, their context, the job to be done]
+[Quem são, seu contexto, a tarefa a ser realizada]
 
 ## Product Purpose
-[What this product does, why it exists, what success looks like]
+[O que este produto faz, por que existe, como é o sucesso]
 
 ## Brand Personality
-[Voice, tone, 3-word personality, emotional goals]
+[Voz, tom, personalidade em 3 palavras, objetivos emocionais]
 
 ## Anti-references
-[What this should NOT look like. Specific bad-example sites or patterns to avoid.]
+[O que isso NÃO deveria parecer. Sites ou padrões de mau exemplo específicos a evitar.]
 
 ## Design Principles
-[3-5 strategic principles derived from the conversation. Principles like "practice what you preach", "show, don't tell", "expert confidence". NOT visual rules like "use OKLCH" or "magenta accent".]
+[3-5 princípios estratégicos derivados da conversa. Princípios como "pratique o que prega", "mostre, não conte", "confiança de especialista". NÃO regras visuais como "use OKLCH" ou "accent magenta".]
 
 ## Accessibility & Inclusion
-[WCAG level, known user needs, considerations]
+[Nível WCAG, necessidades conhecidas dos usuários, considerações]
 ```
 
-Register is either `brand` or `product` as a bare value. No prose, no commentary.
+O registro é `brand` ou `product` como um valor isolado. Sem prosa, sem comentários.
 
-Write to `PROJECT_ROOT/PRODUCT.md`. If `.impeccable.md` existed, the loader already renamed it; merge into that content rather than starting from scratch.
+Escreva em `PROJECT_ROOT/PRODUCT.md`. Se `.impeccable.md` existia, o loader já o renomeou; faça merge com aquele conteúdo em vez de começar do zero.
 
-## Step 5: Decide on DESIGN.md
+## Passo 5: Decidir sobre DESIGN.md
 
-Offer `/impeccable document` either way. Two paths:
+Ofereça `/impeccable document` de qualquer forma. Dois caminhos:
 
-- **Code exists** (CSS tokens, components, a running site): "I can generate a DESIGN.md that captures your visual system (colors, typography, components) so variants stay on-brand. Want to do that now?"
-- **Pre-implementation** (empty project): "I can seed a starter DESIGN.md from five quick questions about color strategy, type direction, motion energy, and references. You can re-run once there's code, to capture the real tokens. Want to do that now?"
+- **Código existe** (tokens CSS, componentes, um site rodando): "Posso gerar um DESIGN.md que captura seu sistema visual (cores, tipografia, componentes) para que variantes permaneçam on-brand. Quer fazer isso agora?"
+- **Pré-implementação** (projeto vazio): "Posso semear um DESIGN.md inicial com cinco perguntas rápidas sobre estratégia de cor, direção tipográfica, energia de movimento e referências. Você pode re-executar quando houver código, para capturar os tokens reais. Quer fazer isso agora?"
 
-If the user agrees, delegate to `/impeccable document` (it auto-detects scan vs seed). Load its reference and follow that flow.
+Se o usuário concordar, delegue para `/impeccable document` (ele auto-detecta scan vs seed). Carregue sua referência e siga aquele fluxo.
 
-If the user prefers to skip, mention they can run `/impeccable document` any time later.
+Se o usuário preferir pular, mencione que pode executar `/impeccable document` a qualquer momento depois.
 
-## Step 6: Confirm and wrap up
+## Passo 6: Confirmar e finalizar
 
-Summarize:
-- Register captured (brand / product)
-- What was written (PRODUCT.md, DESIGN.md, or both)
-- The 3-5 strategic principles from PRODUCT.md that will guide future work
-- If DESIGN.md is pending, remind the user how to generate it later
+Resuma:
+- Registro capturado (brand / product)
+- O que foi escrito (PRODUCT.md, DESIGN.md, ou ambos)
+- Os 3-5 princípios estratégicos de PRODUCT.md que guiarão trabalhos futuros
+- Se DESIGN.md está pendente, lembre o usuário como gerá-lo depois
 
-**Critical: re-run the loader to refresh session context.** After writing PRODUCT.md, run `node {{scripts_path}}/load-context.mjs` one final time and let its full JSON output land in conversation. This ensures subsequent commands in this session use the freshly-written PRODUCT.md, not a stale earlier version.
+**Crítico: re-execute o loader para atualizar o contexto da sessão.** Após escrever PRODUCT.md, execute `node {{scripts_path}}/load-context.mjs` uma última vez e deixe sua saída JSON completa pousar na conversa. Isso garante que comandos subsequentes nesta sessão usem o PRODUCT.md recém-escrito, não uma versão anterior desatualizada.
 
-If teach was invoked as a blocker by another impeccable command (e.g. the user ran `/impeccable polish` with no PRODUCT.md), resume that original task now with the fresh context.
+Se teach foi invocado como bloqueador por outro comando impecable (ex.: o usuário executou `/impeccable polish` sem PRODUCT.md), retome aquela tarefa original agora com o contexto atualizado.
 
-Optionally {{ask_instruction}} Ask whether they'd like a brief summary of PRODUCT.md appended to {{config_file}} for easier agent reference. If yes, append a short **Design Context** pointer section there.
+Opcionalmente {{ask_instruction}} Pergunte se gostariam de um breve resumo de PRODUCT.md anexado a {{config_file}} para referência mais fácil do agente. Se sim, anexe uma seção curta de ponteiro **Design Context** lá.

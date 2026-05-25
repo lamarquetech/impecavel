@@ -33,21 +33,21 @@ export const SKILL_CATEGORIES: Record<string, string> = {
 export const CATEGORY_ORDER = ['create', 'evaluate', 'refine', 'simplify', 'harden', 'system'];
 
 export const CATEGORY_LABELS: Record<string, string> = {
-  create: 'Create',
-  evaluate: 'Evaluate',
-  refine: 'Refine',
-  simplify: 'Simplify',
-  harden: 'Harden',
-  system: 'System',
+  create: 'Criar',
+  evaluate: 'Avaliar',
+  refine: 'Refinar',
+  simplify: 'Simplificar',
+  harden: 'Reforçar',
+  system: 'Sistema',
 };
 
 export const CATEGORY_DESCRIPTIONS: Record<string, string> = {
-  create: 'Build something new, from a blank page to a working feature.',
-  evaluate: 'Review what you have. Score it, critique it, find what to fix.',
-  refine: 'Improve one dimension at a time: type, layout, color, motion.',
-  simplify: 'Strip complexity. Remove what does not earn its place.',
-  harden: 'Make it production-ready. Edge cases, performance, polish.',
-  system: 'Setup and tooling. Design system work, extraction, organization.',
+  create: 'Construa algo novo, de uma página em branco a uma funcionalidade pronta.',
+  evaluate: 'Revise o que você tem. Avalie, critique, encontre o que corrigir.',
+  refine: 'Melhore uma dimensão por vez: tipo, layout, cor, movimento.',
+  simplify: 'Elimine complexidade. Remova o que não conquista seu lugar.',
+  harden: 'Torne pronto para produção. Casos extremos, performance, polimento.',
+  system: 'Configuração e ferramentas. Trabalho de design system, extração, organização.',
 };
 
 export const COMMAND_RELATIONSHIPS: Record<string, {

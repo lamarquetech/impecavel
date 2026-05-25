@@ -1,44 +1,44 @@
 ---
-tagline: "Ruthless subtraction. Strip designs to their essence."
+tagline: "Subtração implacável. Reduza designs à sua essência."
 ---
 
-## When to use it
+## Quando usar
 
-`/impeccable distill` removes what should not be there. Competing buttons, redundant information, decorative borders, three fonts where one works, six navigation items where three belong. Use it when an interface feels cluttered, busy, or like it is trying to do too much at once.
+`/impeccable distill` remove o que não deveria estar lá. Botões competindo, informação redundante, bordas decorativas, três fontes onde uma funciona, seis itens de navegação onde três pertencem. Use quando uma interface parece entulhada, ocupada, ou como se estivesse tentando fazer demais de uma vez.
 
-Reach for it after `/impeccable critique` flags "cognitive load" or "visual noise", or any time a page has grown by accretion and no one has done the editing.
+Use depois que `/impeccable critique` sinalizar "carga cognitiva" ou "ruído visual", ou qualquer hora que uma página cresceu por acréscimo e ninguém fez a edição.
 
-## How it works
+## Como funciona
 
-The skill starts from one question: what is the single job this interface is trying to do? Everything that does not help that job is on the chopping block.
+A skill parte de uma pergunta: qual é o único trabalho que esta interface está tentando fazer? Tudo que não ajuda esse trabalho está no bloco de corte.
 
-It works in two passes:
+Ela trabalha em duas passadas:
 
-1. **Assess the complexity sources**. Too many elements, excessive variation, information overload, visual noise, confusing hierarchy, feature creep. Name each one.
-2. **Edit ruthlessly**. Remove what is not essential. Combine what can be combined. Hide what can wait. Consolidate variation into a single treatment. Commit to a single visual language.
+1. **Avaliar as fontes de complexidade**. Elementos demais, variação excessiva, sobrecarga de informação, ruído visual, hierarquia confusa, feature creep. Nomear cada uma.
+2. **Editar implacavelmente**. Remover o que não é essencial. Combinar o que pode ser combinado. Esconder o que pode esperar. Consolidar variação em um único tratamento. Comprometer-se com uma única linguagem visual.
 
-The principle: every element on the page has to justify its existence. Fewer obstacles, not fewer features.
+O princípio: cada elemento na página precisa justificar sua existência. Menos obstáculos, não menos funcionalidades.
 
-## Try it
+## Experimente
 
 ```
 /impeccable distill this dashboard
 ```
 
-Before: four card styles, three button variants, two header treatments, a sidebar with 14 items grouped into 5 sections.
+Antes: quatro estilos de card, três variantes de botão, dois tratamentos de header, uma sidebar com 14 itens agrupados em 5 seções.
 
-After a `/distill` pass, typical changes:
+Depois de uma passada de `/distill`, mudanças típicas:
 
-- Collapse the four card styles into one
-- Pick one button variant, demote the others to text links
-- Unify the headers
-- Group the sidebar into 3 sections, not 5
-- Hide advanced options behind a disclosure
+- Colapsar os quatro estilos de card em um
+- Escolher uma variante de botão, rebaixar as outras para text links
+- Unificar os headers
+- Agrupar a sidebar em 3 seções, não 5
+- Esconder opções avançadas atrás de uma disclosure
 
-Fewer things. Each one clearer.
+Menos coisas. Cada uma mais clara.
 
-## Pitfalls
+## Armadilhas
 
-- **Confusing distill with delete.** Distill removes obstacles. It does not remove features users need. If a user relies on something daily, find a way to keep it quietly, not a way to cut it.
-- **Running it too early.** If the feature is still growing, distilling it now means distilling the same thing again next week. Wait until the shape is stable.
-- **Expecting it to replace hierarchy work.** Sometimes the right fix is not removing things, it is arranging them. Reach for `/impeccable layout` when the problem is layout, not quantity.
+- **Confundir distill com delete.** Distill remove obstáculos. Não remove funcionalidades que os usuários precisam. Se um usuário depende de algo diariamente, encontre uma forma de mantê-lo discretamente, não uma forma de cortá-lo.
+- **Executar muito cedo.** Se a funcionalidade ainda está crescendo, destilar agora significa destilar a mesma coisa de novo na semana que vem. Espere até que a forma esteja estável.
+- **Esperar que substitua trabalho de hierarquia.** Às vezes a correção certa não é remover coisas, é arranjá-las. Use `/impeccable layout` quando o problema é layout, não quantidade.

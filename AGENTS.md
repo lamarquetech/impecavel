@@ -1,69 +1,69 @@
-# Repository Guidelines
+# Diretrizes do Repositório
 
-## Skill bootstrap: skip the post-update-cleanup step
+## Bootstrap da skill: pule a etapa de post-update-cleanup
 
-If you load the Impeccable skill from `.agents/skills/impeccable/SKILL.md` (or any sibling harness directory under this repo), it begins with a `<post-update-cleanup>` block that runs `scripts/cleanup-deprecated.mjs` and then self-deletes. **Do not run it here, and do not delete the block.** This repo is the source of truth for the skill; cleanup-deprecated assumes a consumer project and would touch legitimate source files. The block is regenerated from `skill/SKILL.md` on every `bun run build`, so any deletion churns back. Skip it silently and proceed with the task.
+Se você carregar a skill Impeccable de `.agents/skills/impeccable/SKILL.md` (ou qualquer diretório de harness sibling neste repo), ela começa com um bloco `<post-update-cleanup>` que executa `scripts/cleanup-deprecated.mjs` e depois se auto-deleta. **Não o execute aqui, e não delete o bloco.** Este repo é a fonte de verdade da skill; cleanup-deprecated assume um projeto consumidor e tocaria em arquivos de origem legítimos. O bloco é regenerado a partir de `skill/SKILL.md` em cada `bun run build`, então qualquer exclusão volta a aparecer. Pule-o silenciosamente e prossiga com a tarefa.
 
-## Project Structure & Module Organization
+## Estrutura do Projeto e Organização de Módulos
 
-`source/` is the source of truth. Author skills in `skill/` and keep provider output in `dist/` generated, not hand-edited. Build logic lives in `scripts/`, with provider configs in `scripts/lib/transformers/`. Runtime detection code ships from `src/`. The website lives in `public/`, local API/dev serving lives in `server/`, and regression coverage lives in `tests/` with fixtures under `tests/fixtures/`.
+`source/` é a fonte de verdade. Autor skills em `skill/` e mantenha a saída de provedor em `dist/` gerada, não editada manualmente. A lógica de build está em `scripts/`, com configurações de provedor em `scripts/lib/transformers/`. Código de detecção em tempo de execução é distribuído a partir de `src/`. O site está em `public/`, API local/servidor de dev está em `server/`, e cobertura de regressão está em `tests/` com fixtures em `tests/fixtures/`.
 
-## Build, Test, and Development Commands
+## Comandos de Build, Teste e Desenvolvimento
 
-- `bun run dev` - start the local Bun server.
-- `bun run build` - regenerate `dist/`, derived site assets, and validation output.
-- `bun run rebuild` - clean and rebuild everything from scratch.
-- `bun test tests/build.test.js` - run a focused Bun test.
-- `bun run test` - run the full Bun + Node test suite.
-- `bun run test:live-e2e` - opt-in live-mode E2E against framework fixtures (~2 min; needs `npx playwright install chromium` once).
-- `bun run build:browser` / `bun run build:extension` - rebuild browser-specific bundles.
+- `bun run dev` - iniciar o servidor local Bun.
+- `bun run build` - regenerar `dist/`, ativos derivados do site e saída de validação.
+- `bun run rebuild` - limpar e reconstruir tudo do zero.
+- `bun test tests/build.test.js` - executar um teste Bun focado.
+- `bun run test` - executar a suite completa de testes Bun + Node.
+- `bun run test:live-e2e` - E2E de live-mode opt-in contra fixtures de framework (~2 min; precisa de `npx playwright install chromium` uma vez).
+- `bun run build:browser` / `bun run build:extension` - reconstruir bundles específicos de navegador.
 
-Run `bun run build` after changing anything in `source/`, transformer code, or user-facing counts.
+Execute `bun run build` após alterar qualquer coisa em `source/`, código de transformer, ou contagens visíveis ao usuário.
 
-## Sandbox gotchas for Codex agents
+## Pegadinhas do sandbox para agentes Codex
 
-Some repo workflows need to run outside the sandbox in the desktop app:
+Alguns fluxos de trabalho do repo precisam ser executados fora do sandbox no app desktop:
 
-- GitHub SSH operations that depend on the 1Password SSH agent, such as `gh pr checkout`, may fail in the sandbox with `sign_and_send_pubkey` or no 1Password approval prompt. Rerun them outside the sandbox instead of falling back to unrelated workarounds.
-- `bun run build` rewrites committed harness directories such as `.agents/skills/`. In the sandbox, Bun can hit filesystem errors while removing/recreating those trees (for example `EFAULT` on `.agents/skills`). Rerun the build outside the sandbox before treating it as a real build failure.
-- Puppeteer/headless-Chrome tests, especially `node --test tests/detect-antipatterns-browser.test.mjs` and the browser portion of `bun run test`, can hang in the sandbox while launching Chrome. Run them outside the sandbox for authoritative results.
-- The jsdom fixture suite is intentionally run with Node, not Bun: use `node --test tests/detect-antipatterns-fixtures.test.mjs` or the `bun run test` script. A direct `bun test tests/detect-antipatterns-fixtures.test.mjs` can time out and is not the supported signal.
+- Operações SSH do GitHub que dependem do agente SSH 1Password, como `gh pr checkout`, podem falhar no sandbox com `sign_and_send_pubkey` ou sem prompt de aprovação do 1Password. Execute-as fora do sandbox em vez de recorrer a soluções alternativas não relacionadas.
+- `bun run build` reescreve diretórios de harness comitados como `.agents/skills/`. No sandbox, o Bun pode encontrar erros de filesystem ao remover/recriar essas árvores (por exemplo `EFAULT` em `.agents/skills`). Execute o build fora do sandbox antes de tratar como uma falha real de build.
+- Testes Puppeteer/headless-Chrome, especialmente `node --test tests/detect-antipatterns-browser.test.mjs` e a porção de navegador de `bun run test`, podem travar no sandbox ao iniciar o Chrome. Execute-os fora do sandbox para resultados definitivos.
+- A suite de fixtures jsdom é intencionalmente executada com Node, não Bun: use `node --test tests/detect-antipatterns-fixtures.test.mjs` ou o script `bun run test`. Um `bun test tests/detect-antipatterns-fixtures.test.mjs` direto pode expirar e não é o sinal suportado.
 
-## Coding Style & Naming Conventions
+## Estilo de Codificação e Convenções de Nomenclatura
 
-Use ESM, semicolons, and the existing two-space indentation style in JS, HTML, and CSS. Prefer small, single-purpose modules over large abstractions. Keep filenames descriptive and lowercase with hyphens where needed; skill entrypoints stay as `SKILL.md`, helper scripts use `.js` or `.mjs`. In source frontmatter, use clear kebab-case names and concise descriptions. There is no dedicated formatter or linter configured here, so match surrounding code closely.
+Use ESM, ponto e vírgula, e o estilo de indentação de dois espaços existente em JS, HTML e CSS. Prefira módulos pequenos e de propósito único em vez de grandes abstrações. Mantenha nomes de arquivos descritivos e em minúsculas com hífens quando necessário; entrypoints de skills permanecem como `SKILL.md`, scripts auxiliares usam `.js` ou `.mjs`. No frontmatter de origem, use nomes claros em kebab-case e descrições concisas. Não há formatter ou linter dedicado configurado aqui, então corresponda de perto ao código circundante.
 
-## Testing Guidelines
+## Diretrizes de Teste
 
-Tests use Bun’s test runner plus Node’s built-in `--test`. Name tests `*.test.js` or `*.test.mjs` and place new fixtures near the behavior they cover, usually under `tests/fixtures/`. Prefer targeted test runs while iterating, then finish with `bun run test`. If you change generated outputs or provider transforms, verify both source parsing and at least one affected provider path in `dist/`.
+Os testes usam o runner de testes do Bun mais o `--test` nativo do Node. Nomeie testes como `*.test.js` ou `*.test.mjs` e coloque novos fixtures perto do comportamento que cobrem, geralmente em `tests/fixtures/`. Prefira execuções de teste direcionadas durante a iteração, depois finalize com `bun run test`. Se você alterar saídas geradas ou transforms de provedor, verifique tanto o parsing de origem quanto pelo menos um caminho de provedor afetado em `dist/`.
 
-For changes to `skill/scripts/live-*.{mjs,js}`, also run `bun run test:live-e2e` (kept out of the default suite because it does real `npm install` per fixture and boots framework dev servers). Scope to one fixture with `IMPECCABLE_E2E_ONLY=<fixture-name>` while iterating; pass `IMPECCABLE_E2E_DEBUG=1` for page-DOM and dev-server-log dumps on failure. Schema and authoring guide for new fixtures live in `tests/framework-fixtures/README.md`.
+Para mudanças em `skill/scripts/live-*.{mjs,js}`, execute também `bun run test:live-e2e` (mantido fora da suite padrão porque faz `npm install` real por fixture e inicializa dev servers de framework). Limite a uma fixture com `IMPECCABLE_E2E_ONLY=<fixture-name>` durante a iteração; passe `IMPECCABLE_E2E_DEBUG=1` para dumps de page-DOM e dev-server-log em caso de falha. Schema e guia de autoria para novas fixtures estão em `tests/framework-fixtures/README.md`.
 
-Set `IMPECCABLE_E2E_AGENT=llm` to swap the deterministic fake agent for an API-backed one (`tests/live-e2e/agents/llm-agent.mjs`). Claude Haiku 4.5 is the primary path whenever `ANTHROPIC_API_KEY` is set. DeepSeek V4 Flash is the secondary cheap fallback when only `DEEPSEEK_API_KEY` is set, and can be forced with `IMPECCABLE_E2E_LLM_PROVIDER=deepseek` or `bun run test:live-e2e -- --llm-provider=deepseek`; override either model via `IMPECCABLE_E2E_LLM_MODEL` or `--llm-model=<model>`. Tests skip cleanly when the selected provider key is unset. This path hits the API — use it for verification, not CI.
+Defina `IMPECCABLE_E2E_AGENT=llm` para trocar o agente fake determinístico por um com API (`tests/live-e2e/agents/llm-agent.mjs`). Claude Haiku 4.5 é o caminho primário sempre que `ANTHROPIC_API_KEY` está definido. DeepSeek V4 Flash é o fallback barato secundário quando apenas `DEEPSEEK_API_KEY` está definido, e pode ser forçado com `IMPECCABLE_E2E_LLM_PROVIDER=deepseek` ou `bun run test:live-e2e -- --llm-provider=deepseek`; sobrescreva qualquer modelo via `IMPECCABLE_E2E_LLM_MODEL` ou `--llm-model=<model>`. Os testes pulam de forma limpa quando a chave do provedor selecionado não está definida. Este caminho acessa a API — use para verificação, não para CI.
 
-## Anti-pattern detection rules
+## Regras de detecção de anti-patterns
 
-`cli/engine/detect-antipatterns.mjs` is the source of truth for the rule engine. It feeds the CLI, the site overlay (`cli/engine/detect-antipatterns-browser.js`, regenerated by `bun run build:browser`), the Chrome extension (`extension/detector/`, regenerated by `bun run build:extension`), and the homepage `DETECTION_COUNT` in `site/public/js/generated/counts.js` (regenerated by `bun run build`). After any rule change run all three builds plus `bun run test` so nothing drifts.
+`cli/engine/detect-antipatterns.mjs` é a fonte de verdade para o motor de regras. Ele alimenta o CLI, o overlay do site (`cli/engine/detect-antipatterns-browser.js`, regenerado por `bun run build:browser`), a extensão Chrome (`extension/detector/`, regenerada por `bun run build:extension`), e o `DETECTION_COUNT` da homepage em `site/public/js/generated/counts.js` (regenerado por `bun run build`). Após qualquer mudança de regra, execute os três builds mais `bun run test` para que nada se desvie.
 
-TDD order is non-negotiable:
+A ordem TDD é innegociável:
 
-1. Add a fixture at `tests/fixtures/antipatterns/{rule-id}.html` with two columns (should-flag / should-pass), each case identified by a unique heading. ≥4 flag cases and ≥5 false-positive shapes. **Use explicit pixel dimensions in CSS** — jsdom does no layout.
-2. Add a failing test in `tests/detect-antipatterns-fixtures.test.mjs` using the snippet-substring pattern (regex `/"([^"]+)"/` against `SHOULD_FLAG` / `SHOULD_PASS` lists).
-3. Add the rule entry to the `ANTIPATTERNS` array (`id`, `category` = `slop` or `quality`, `name`, `description`, optional `skillSection` / `skillGuideline`).
-4. Implement a pure `checkXxx(opts)` returning `[{ id, snippet }]` — no DOM access inside.
-5. Add two adapters that wrap the pure check: `checkElementXxxDOM(el)` for the browser (`getComputedStyle` + `getBoundingClientRect`) and `checkElementXxx(el, tag, window)` for jsdom (`parseFloat(style.width)` instead of layout). Wire **both** adapters into **both** element loops in `cli/engine/detect-antipatterns.mjs` (browser loop ~line 1837, jsdom loop in `detectHtml` ~line 2058). Forgetting one is the most common mistake.
-6. Verify on a live page at `http://localhost:3000/fixtures/antipatterns/{rule-id}.html` and on the homepage. The two adapter paths can disagree.
+1. Adicione uma fixture em `tests/fixtures/antipatterns/{rule-id}.html` com duas colunas (should-flag / should-pass), cada caso identificado por um heading único. ≥4 casos flag e ≥5 formas de falso-positivo. **Use dimensões de pixel explícitas no CSS** — jsdom não faz layout.
+2. Adicione um teste falhando em `tests/detect-antipatterns-fixtures.test.mjs` usando o padrão snippet-substring (regex `/"([^"]+)"/` contra listas `SHOULD_FLAG` / `SHOULD_PASS`).
+3. Adicione a entrada da regra ao array `ANTIPATTERNS` (`id`, `category` = `slop` ou `quality`, `name`, `description`, `skillSection` / `skillGuideline` opcional).
+4. Implemente uma `checkXxx(opts)` pura retornando `[{ id, snippet }]` — sem acesso a DOM dentro.
+5. Adicione dois adaptadores que envolvem a verificação pura: `checkElementXxxDOM(el)` para o navegador (`getComputedStyle` + `getBoundingClientRect`) e `checkElementXxx(el, tag, window)` para jsdom (`parseFloat(style.width)` em vez de layout). Conecte **ambos** os adaptadores em **ambos** os loops de elementos em `cli/engine/detect-antipatterns.mjs` (loop do navegador ~linha 1837, loop jsdom em `detectHtml` ~linha 2058). Esquecer um é o erro mais comum.
+6. Verifique em uma página ao vivo em `http://localhost:3000/fixtures/antipatterns/{rule-id}.html` e na homepage. Os dois caminhos de adaptador podem discordar.
 
-Conventions: wrap the identifying heading text in straight double quotes inside snippets so the fixture test can extract it. jsdom-specific helpers `resolveBackground()`, `resolveGradientStops()`, and `parseGradientColors()` exist because `background:` shorthand isn't decomposed and computed colors aren't normalized in jsdom — use them. Reference rules to copy from: `side-tab` (border), `low-contrast` (color+gradient), `icon-tile-stack` (sibling relationship), `flat-type-hierarchy` (page-level).
+Convenções: envolva o texto de heading identificador em aspas duplas retas dentro de snippets para que o teste de fixture possa extraí-lo. Helpers específicos do jsdom `resolveBackground()`, `resolveGradientStops()` e `parseGradientColors()` existem porque `background:` shorthand não é decomposto e cores computadas não são normalizadas no jsdom — use-os. Regras de referência para copiar: `side-tab` (borda), `low-contrast` (cor+gradiente), `icon-tile-stack` (relação entre siblings), `flat-type-hierarchy` (nível de página).
 
-## Commit & Pull Request Guidelines
+## Diretrizes de Commit e Pull Request
 
-Recent history favors short, imperative subjects such as `Fix: ...`, `Add ...`, `Improve ...`, or `Bump ...`. Keep commits focused and explain the user-facing impact when it is not obvious. PRs should summarize what changed, list validation performed, and call out regenerated artifacts like `dist/` or `build/`. Include screenshots for visible `site/` changes and mention affected providers when transform behavior changes.
+O histórico recente favorece subjects curtos e imperativos como `Fix: ...`, `Add ...`, `Improve ...`, ou `Bump ...`. Mantenha commits focados e explique o impacto visível ao usuário quando não for óbvio. PRs devem resumir o que mudou, listar a validação realizada e destacar artefatos regenerados como `dist/` ou `build/`. Inclua screenshots para mudanças visíveis em `site/` e mencione provedores afetados quando o comportamento de transform mudar.
 
 ## Releases
 
-Tags are per-component because the three components ship independently: `skill-v` (`.claude-plugin/plugin.json` + `.claude-plugin/marketplace.json`), `cli-v` (`package.json`), `ext-v` (`extension/manifest.json`). Flow: bump the relevant manifest, add a changelog entry to `site/pages/index.astro` (skill = bare `vX.Y.Z`; CLI = `CLI vX.Y.Z`; extension = `Extension vX.Y.Z` — the prefix is how `scripts/release.mjs` finds the right block), commit, push, then `bun run release:<skill|cli|ext>` (or `--dry-run` first). The script refuses on a dirty tree, an unpushed HEAD, a missing changelog entry, or stale build outputs; skill and extension reruns of `bun run build` / `bun run build:extension` must produce zero diff. Skill releases attach `dist/universal.zip`; extension releases attach `dist/extension.zip`. CLI ships to npm via a separate `npm publish`, and the extension zip uploads to the Chrome Web Store manually — both reminded at the end of the script. Fix already-shipped notes with `gh release edit <tag> --notes-file <md>`.
+As tags são por componente porque os três componentes são distribuídos independentemente: `skill-v` (`.claude-plugin/plugin.json` + `.claude-plugin/marketplace.json`), `cli-v` (`package.json`), `ext-v` (`extension/manifest.json`). Fluxo: bump o manifesto relevante, adicione uma entrada de changelog a `site/pages/index.astro` (skill = `vX.Y.Z` simples; CLI = `CLI vX.Y.Z`; extensão = `Extension vX.Y.Z` — o prefixo é como `scripts/release.mjs` encontra o bloco correto), commit, push, depois `bun run release:<skill|cli|ext>` (ou `--dry-run` primeiro). O script recusa em árvore suja, HEAD não enviado, entrada de changelog faltando, ou saídas de build desatualizadas; reexecuções de `bun run build` / `bun run build:extension` de skill e extensão devem produzir diff zero. Releases de skill anexam `dist/universal.zip`; releases de extensão anexam `dist/extension.zip`. O CLI é distribuído para npm via `npm publish` separado, e o zip da extensão é enviado ao Chrome Web Store manualmente — ambos lembrados no final do script. Corrija notas já distribuídas com `gh release edit <tag> --notes-file <md>`.
 
-## Contributor Notes
+## Notas para Contribuidores
 
-Do not edit generated provider files directly unless you are intentionally patching generated output as part of a build-system change. Prefer fixing the root source in `skill/`, `scripts/`, or `cli/`, then regenerate artifacts.
+Não edite arquivos de provedor gerados diretamente, a menos que esteja intencionalmente corrigindo saída gerada como parte de uma mudança no sistema de build. Prefira corrigir a fonte original em `skill/`, `scripts/` ou `cli/`, depois regenerar os artefatos.

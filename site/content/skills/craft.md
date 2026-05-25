@@ -1,5 +1,5 @@
 ---
-tagline: "Shape the design, then build it, all in one flow."
+tagline: "Molde o design e depois construa, tudo em um único fluxo."
 ---
 
 <div class="docs-viz-hero">
@@ -7,62 +7,62 @@ tagline: "Shape the design, then build it, all in one flow."
     <div class="docs-viz-flow-step">
       <span class="docs-viz-flow-num">01</span>
       <span class="docs-viz-flow-name">Shape</span>
-      <span class="docs-viz-flow-hint">Discovery interview. Purpose, users, constraints, direction.</span>
+      <span class="docs-viz-flow-hint">Entrevista de discovery. Propósito, usuários, restrições, direção.</span>
     </div>
     <div class="docs-viz-flow-step">
       <span class="docs-viz-flow-num">02</span>
       <span class="docs-viz-flow-name">Load references</span>
-      <span class="docs-viz-flow-hint">Spatial, typography, motion, color, interaction.</span>
+      <span class="docs-viz-flow-hint">Espacial, tipografia, motion, cor, interação.</span>
     </div>
     <div class="docs-viz-flow-step">
       <span class="docs-viz-flow-num">03</span>
       <span class="docs-viz-flow-name">Build</span>
-      <span class="docs-viz-flow-hint">Structure, hierarchy, type, color, states, motion, responsive.</span>
+      <span class="docs-viz-flow-hint">Estrutura, hierarquia, tipo, cor, estados, motion, responsivo.</span>
     </div>
     <div class="docs-viz-flow-step docs-viz-flow-step--accent">
       <span class="docs-viz-flow-num">04</span>
       <span class="docs-viz-flow-name">Iterate visually</span>
-      <span class="docs-viz-flow-hint">Check in browser, refine until it matches the brief.</span>
+      <span class="docs-viz-flow-hint">Verifique no navegador, refine até combinar com o brief.</span>
     </div>
   </div>
-  <p class="docs-viz-caption">Every phase is non-skippable. The discovery step is where most AI output fails: by the time code exists, the thinking is locked in.</p>
+  <p class="docs-viz-caption">Cada fase é obrigatória. A etapa de discovery é onde a maioria das saídas de IA falha: quando o código existe, o pensamento já está travado.</p>
 </div>
 
-## When to use it
+## Quando usar
 
-`/impeccable craft` is the end-to-end build command. Give it a feature description and it runs the whole pipeline: structured discovery, reference loading, implementation, visual iteration. Use it when you are starting a new feature from zero and want the whole workflow in one invocation.
+`/impeccable craft` é o comando de build de ponta a ponta. Dê uma descrição de funcionalidade e ele executa o pipeline inteiro: discovery estruturado, carregamento de referências, implementação, iteração visual. Use quando está começando uma nova funcionalidade do zero e quer o fluxo completo em uma única invocação.
 
-Reach for it when:
+Use quando:
 
-- **You are building a new feature and want the full flow.** You do not want to manage the steps yourself.
-- **You know what you are building but not how it should look.** The discovery phase forces the design thinking before implementation locks it in.
-- **You want visual iteration by default.** `craft` checks the result in a browser and refines until the polish is high, instead of shipping the first working version.
+- **Você está construindo uma nova funcionalidade e quer o fluxo completo.** Você não quer gerenciar os passos manualmente.
+- **Você sabe o que está construindo, mas não como deve parecer.** A fase de discovery força o pensamento de design antes que a implementação o trave.
+- **Você quer iteração visual por padrão.** `craft` verifica o resultado em um navegador e refina até que o polimento seja alto, em vez de entregar a primeira versão funcional.
 
-If you only want the thinking without the code, use `/impeccable shape` standalone. If you already have a clear vision and just want to build, call `/impeccable` directly with your feature description. `craft` sits in between: structured, complete, opinionated.
+Se você quer apenas o pensamento sem o código, use `/impeccable shape` standalone. Se você já tem uma visão clara e quer apenas construir, chame `/impeccable` diretamente com sua descrição de funcionalidade. `craft` fica no meio: estruturado, completo, opinativo.
 
-## How it works
+## Como funciona
 
-`craft` runs four phases in order:
+`craft` executa quatro fases em ordem:
 
-1. **Shape the design.** Runs `/impeccable shape` internally: a short discovery conversation about purpose, users, content, constraints, and goals. The output is a design brief you can read and push back on.
-2. **Load references.** Based on the brief, pulls in the right reference files (spatial, typography, motion, color, interaction, responsive, UX writing) so the model has the relevant principles loaded before it starts coding.
-3. **Build.** Implements the feature in a deliberate order: structure first, then spacing and hierarchy, then type and color, then states, then motion, then responsive. Every decision traces back to the brief.
-4. **Visual iteration.** Opens the result in a browser, checks it against the brief and the anti-pattern catalog, and refines until it matches the intent. This step is critical. The first working version is never the shipped version.
+1. **Molde o design.** Executa `/impeccable shape` internamente: uma breve conversa de discovery sobre propósito, usuários, conteúdo, restrições e objetivos. A saída é um brief de design que você pode ler e questionar.
+2. **Carregue referências.** Com base no brief, puxa os arquivos de referência corretos (espacial, tipografia, motion, cor, interação, responsivo, UX writing) para que o modelo tenha os princípios relevantes carregados antes de começar a codificar.
+3. **Construa.** Implementa a funcionalidade em uma ordem deliberada: estrutura primeiro, depois espaçamento e hierarquia, depois tipo e cor, depois estados, depois motion, depois responsivo. Cada decisão remete ao brief.
+4. **Iteração visual.** Abre o resultado em um navegador, verifica contra o brief e o catálogo de anti-patterns, e refine até que corresponda à intenção. Esta etapa é crítica. A primeira versão funcional nunca é a versão entregue.
 
-The discovery phase is non-skippable and that is the point. Most AI-generated UIs fail because nobody asked what the user was trying to accomplish before the model started writing JSX. `craft` inverts that.
+A fase de discovery é obrigatória e esse é o ponto. A maioria das UIs geradas por IA falha porque ninguém perguntou o que o usuário estava tentando realizar antes que o modelo começasse a escrever JSX. `craft` inverte isso.
 
-## Try it
+## Experimente
 
 ```
 /impeccable craft a pricing page for a developer tool
 ```
 
-Expect a 5 to 10 question discovery interview first. Questions about your audience, the product's personality, the emotional tone you want, anti-references, and constraints. Then a design brief. Then implementation, with the browser checked at each stage. Expect multiple iteration rounds in the visual polish phase.
+Espere uma entrevista de discovery de 5 a 10 perguntas primeiro. Perguntas sobre seu público, a personalidade do produto, o tom emocional desejado, anti-referências e restrições. Depois um brief de design. Depois implementação, com o navegador verificado em cada etapa. Espere múltiplas rodadas de iteração na fase de polimento visual.
 
-The whole run is longer than a typical command because it includes the thinking, the building, and the refining. That is the trade: more upfront structure, less cleanup afterwards.
+A execução inteira é mais longa que um comando típico porque inclui o pensamento, a construção e o refinamento. Esse é o compromisso: mais estrutura upfront, menos retrabalho depois.
 
-## Pitfalls
+## Armadilhas
 
-- **Using it for small changes.** `craft` is for new features, not touch-ups. For existing code, reach for `/impeccable polish`, `/impeccable critique`, or a specific refinement command instead.
-- **Rushing the discovery phase.** The interview feels slow compared to "just start coding". It is not. Answering the questions carefully produces a sharper brief, which produces a sharper build, which produces fewer rewrites.
-- **Skipping the visual iteration.** The phase exists for a reason. The gap between "technically works" and "feels right" is closed with visual polish, not code review. Let it run.
+- **Usar para mudanças pequenas.** `craft` é para novas funcionalidades, não retoques. Para código existente, use `/impeccable polish`, `/impeccable critique`, ou um comando de refinamento específico.
+- **Apressar a fase de discovery.** A entrevista parece lenta comparada com "começar a codificar logo". Não é. Responder as perguntas com cuidado produz um brief mais afiado, que produz um build mais afiado, que produz menos reescritas.
+- **Pular a iteração visual.** A fase existe por um motivo. A distância entre "tecnicamente funciona" e "parece certo" é fechada com polimento visual, não com code review. Deixe rodar.

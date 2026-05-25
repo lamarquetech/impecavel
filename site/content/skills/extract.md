@@ -1,5 +1,5 @@
 ---
-tagline: "Pull reusable components, tokens, and patterns into the design system."
+tagline: "Extraia componentes, tokens e padrões reutilizáveis para o design system."
 ---
 
 <div class="docs-viz-hero">
@@ -7,58 +7,58 @@ tagline: "Pull reusable components, tokens, and patterns into the design system.
     <div class="docs-viz-flow-step">
       <span class="docs-viz-flow-num">01</span>
       <span class="docs-viz-flow-name">Discover drift</span>
-      <span class="docs-viz-flow-hint">Repeated hex values, button variants, spacing scales, text styles.</span>
+      <span class="docs-viz-flow-hint">Valores hex repetidos, variantes de botão, escalas de espaçamento, estilos de texto.</span>
     </div>
     <div class="docs-viz-flow-step">
       <span class="docs-viz-flow-num">02</span>
       <span class="docs-viz-flow-name">Propose primitives</span>
-      <span class="docs-viz-flow-hint">Token names, component APIs with variant + size, text styles.</span>
+      <span class="docs-viz-flow-hint">Nomes de tokens, APIs de componentes com variant + size, estilos de texto.</span>
     </div>
     <div class="docs-viz-flow-step docs-viz-flow-step--accent">
       <span class="docs-viz-flow-num">03</span>
       <span class="docs-viz-flow-name">Migrate call sites</span>
-      <span class="docs-viz-flow-hint">Replace duplicated CSS with the new primitives. No orphan code left behind.</span>
+      <span class="docs-viz-flow-hint">Substituir CSS duplicado com as novas primitivas. Sem código órfão deixado para trás.</span>
     </div>
   </div>
-  <p class="docs-viz-caption">The skill only extracts what's used three or more times with the same intent. Two usages are not a pattern, and migration always happens in the same pass.</p>
+  <p class="docs-viz-caption">A skill só extrai o que é usado três ou mais vezes com a mesma intenção. Dois usos não são um padrão, e a migração sempre acontece na mesma passada.</p>
 </div>
 
-## When to use it
+## Quando usar
 
-`/impeccable extract` is for the moment your codebase has accidentally become a design system. Repeated button styles in 12 places. Three variants of the same card. Hex colors scattered throughout. Hand-rolled spacing that accidentally matches a scale. Reach for it when you want to consolidate this drift into reusable primitives.
+`/impeccable extract` é para o momento em que seu codebase acidentalmente se tornou um design system. Estilos de botão repetidos em 12 lugares. Três variantes do mesmo card. Cores hex espalhadas por todo lado. Espaçamento feito à mão que acidentalmente coincide com uma escala. Use quando quiser consolidar essa deriva em primitivas reutilizáveis.
 
-Use it after a product has shipped enough features to reveal the patterns. Premature extraction creates abstractions that do not match reality.
+Use depois que um produto já foi publicado com funcionalidades suficientes para revelar os padrões. Extração prematura cria abstrações que não correspondem à realidade.
 
-## How it works
+## Como funciona
 
-The skill discovers the design system structure first, then identifies extraction opportunities:
+A skill descobre a estrutura do design system primeiro, e então identifica oportunidades de extração:
 
-1. **Tokens**: find repeated literal values (colors, spacing, radii, shadows, font sizes). Propose token names, add to the token system, replace usages.
-2. **Components**: find UI patterns that repeat with minor variation (buttons, cards, inputs, modals). Extract into a single component with variants, migrate callers.
-3. **Composition patterns**: find layout or interaction patterns that repeat (form rows, toolbar groups, empty states). Extract into composition primitives.
-4. **Type styles**: find repeated font-size + weight + line-height combinations. Extract into text styles.
-5. **Animation patterns**: find repeated easing, duration, or keyframe combinations. Extract into motion tokens.
+1. **Tokens**: encontrar valores literais repetidos (cores, espaçamento, radii, sombras, font sizes). Propor nomes de tokens, adicionar ao sistema de tokens, substituir usos.
+2. **Componentes**: encontrar padrões de UI que se repetem com variação menor (botões, cards, inputs, modals). Extrair em um único componente com variantes, migrar callers.
+3. **Padrões de composição**: encontrar padrões de layout ou interação que se repetem (fileiras de formulário, grupos de toolbar, empty states). Extrair em primitivas de composição.
+4. **Estilos de texto**: encontrar combinações repetidas de font-size + weight + line-height. Extrair em estilos de texto.
+5. **Padrões de animação**: encontrar combinações repetidas de easing, duration ou keyframes. Extrair em motion tokens.
 
-The skill is cautious. It only extracts things used three or more times, with the same intent. It never extracts "because it might be reused later". Premature abstraction is worse than duplication.
+A skill é cautelosa. Ela só extrai coisas usadas três ou mais vezes, com a mesma intenção. Nunca extrai "porque pode ser reutilizado depois". Abstração prematura é pior que duplicação.
 
-## Try it
+## Experimente
 
 ```
 /impeccable extract the button styles
 ```
 
-Expected output:
+Saída esperada:
 
-- Found 14 button instances across 8 files
-- 4 distinct variants: primary (filled accent), secondary (bordered), ghost (text-only), destructive (filled red)
-- All 4 variants use the same size scale (small, default, large)
-- Extracted into `<Button variant="primary" size="default">` with token-driven styles
-- Migrated 14 call sites, removed ~180 lines of duplicated CSS
-- Added 3 missing tokens: `--button-radius`, `--button-padding-y`, `--button-padding-x`
+- Encontradas 14 instâncias de botão em 8 arquivos
+- 4 variantes distintas: primary (filled accent), secondary (bordered), ghost (text-only), destructive (filled red)
+- Todas as 4 variantes usam a mesma escala de tamanho (small, default, large)
+- Extraído em `<Button variant="primary" size="default">` com estilos baseados em tokens
+- Migrados 14 call sites, removidas ~180 linhas de CSS duplicado
+- Adicionados 3 tokens faltantes: `--button-radius`, `--button-padding-y`, `--button-padding-x`
 
-## Pitfalls
+## Armadilhas
 
-- **Extracting too early.** Two usages are not a pattern. Three might be. Wait until the pattern is obvious.
-- **Over-generalizing.** The extracted component should match the current use cases closely, not anticipate every possible future one. You can always add variants later.
-- **Forgetting the migration.** Extraction without migration leaves the old duplicated code around and creates a third way of doing the same thing. Always migrate in the same pass.
-- **Extracting things that differ in intent.** Two buttons that look similar but serve different purposes (primary action vs link styled as button) should probably stay separate.
+- **Extrair muito cedo.** Dois usos não são um padrão. Três podem ser. Espere até que o padrão seja óbvio.
+- **Generalizar demais.** O componente extraído deve corresponder de perto aos casos de uso atuais, não antecipar todos os possíveis futuros. Você sempre pode adicionar variantes depois.
+- **Esquecer a migração.** Extração sem migração deixa o código duplicado antigo por aí e cria uma terceira forma de fazer a mesma coisa. Sempre migre na mesma passada.
+- **Extrair coisas que diferem em intenção.** Dois botões que parecem similares mas servem propósitos diferentes (ação primária vs link estilizado como botão) provavelmente devem permanecer separados.

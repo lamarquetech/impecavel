@@ -113,8 +113,8 @@ function renderSettings() {
   settingsList.innerHTML = '';
 
   const categories = {
-    slop: { label: 'AI tells', items: [] },
-    quality: { label: 'Quality', items: [] },
+    slop: { label: 'Sinais de IA', items: [] },
+    quality: { label: 'Qualidade', items: [] },
   };
   for (const ap of allAntipatterns) {
     const cat = ap.category || 'quality';
@@ -209,7 +209,7 @@ btnSettings.addEventListener('click', () => {
 });
 
 function updateToggleButton() {
-  btnToggle.title = overlaysVisible ? 'Hide overlays' : 'Show overlays';
+  btnToggle.title = overlaysVisible ? 'Ocultar sobreposições' : 'Mostrar sobreposições';
   btnToggle.classList.toggle('inactive', !overlaysVisible);
 }
 
@@ -217,7 +217,7 @@ function showScanning() {
   container.innerHTML = `
     <div class="scanning-indicator">
       <div class="scanning-dot"></div>
-      Scanning page...
+      Escaneando página...
     </div>`;
 }
 
@@ -285,9 +285,9 @@ function getInspectedUrl() {
 }
 
 async function formatFindingsForCopy(findings) {
-  if (!findings.length) return 'Impeccable found no anti-patterns on this page.';
+  if (!findings.length) return 'Impeccable não encontrou antipadrões nesta página.';
   const url = await getInspectedUrl();
-  const lines = ['# Impeccable findings'];
+  const lines = ['# Resultados do Impeccable'];
   if (url) lines.push(`URL: ${url}`);
   lines.push('');
 
@@ -300,18 +300,18 @@ async function formatFindingsForCopy(findings) {
   }
 
   if (groups.slop.length) {
-    lines.push(`## AI tells (${groups.slop.length})`);
+    lines.push(`## Sinais de IA (${groups.slop.length})`);
     for (const f of groups.slop) {
-      const where = f.isPageLevel ? '_(page-level)_' : `\`${f.selector}\``;
+      const where = f.isPageLevel ? '_(nível de página)_' : `\`${f.selector}\``;
       lines.push(`- **${f.name}** at ${where}: ${f.detail}`);
     }
     lines.push('');
   }
 
   if (groups.quality.length) {
-    lines.push(`## Quality issues (${groups.quality.length})`);
+    lines.push(`## Problemas de qualidade (${groups.quality.length})`);
     for (const f of groups.quality) {
-      const where = f.isPageLevel ? '_(page-level)_' : `\`${f.selector}\``;
+      const where = f.isPageLevel ? '_(nível de página)_' : `\`${f.selector}\``;
       lines.push(`- **${f.name}** at ${where}: ${f.detail}`);
     }
     lines.push('');
@@ -320,26 +320,26 @@ async function formatFindingsForCopy(findings) {
   // Roll up suggested skills across all findings (most-relevant first)
   const skills = uniqueSkillsForFindings(findings);
   if (skills.length) {
-    lines.push(`Suggested Impeccable skills to fix: ${skills.join(', ')}`);
+    lines.push(`Habilidades sugeridas do Impeccable para corrigir: ${skills.join(', ')}`);
     lines.push('');
   }
 
   lines.push('---');
-  lines.push('Detected by [Impeccable](https://impeccable.style). Skills are suggestions, not required.');
+  lines.push('Detectado por [Impeccable](https://impeccable.style). Habilidades são sugestões, não obrigações.');
   return lines.join('\n');
 }
 
 async function formatSingleFindingForCopy(item, finding) {
   const url = await getInspectedUrl();
-  const where = item.isPageLevel ? '_(page-level)_' : `\`${item.selector}\``;
+  const where = item.isPageLevel ? '_(nível de página)_' : `\`${item.selector}\``;
   const lines = [`# Impeccable: ${finding.name}`];
   if (url) lines.push(`URL: ${url}`);
-  lines.push(`Element: ${where}`);
-  lines.push(`Detail: ${finding.detail}`);
+  lines.push(`Elemento: ${where}`);
+  lines.push(`Detalhe: ${finding.detail}`);
   lines.push('');
   lines.push(finding.description);
   lines.push('');
-  lines.push(`Suggested Impeccable skill(s) to fix: ${fixSkillFor(finding.type)}`);
+  lines.push(`Habilidades sugeridas do Impeccable para corrigir: ${fixSkillFor(finding.type)}`);
   return lines.join('\n');
 }
 
@@ -349,7 +349,7 @@ async function copyToClipboard(text, btn) {
     await navigator.clipboard.writeText(text);
     if (btn) {
       const orig = btn.title;
-      btn.title = 'Copied!';
+      btn.title = 'Copiado!';
       btn.classList.add('copied');
       setTimeout(() => {
         btn.title = orig;
@@ -428,7 +428,7 @@ function renderFindings(findings) {
 
   container.innerHTML = '';
 
-  const CATEGORY_LABELS = { slop: 'AI tells', quality: 'Quality issues' };
+  const CATEGORY_LABELS = { slop: 'Sinais de IA', quality: 'Problemas de qualidade' };
   for (const [catKey, groups] of Object.entries(categories)) {
     if (groups.size === 0) continue;
 
@@ -464,13 +464,13 @@ function renderFindings(findings) {
       const itemEl = document.createElement('div');
       itemEl.className = 'finding-item' + (item.isHidden ? ' is-hidden' : '');
       const tag = item.isPageLevel
-        ? '<span class="finding-tag tag-page">page</span>'
-        : item.isHidden ? '<span class="finding-tag tag-hidden" title="Element is currently hidden on the page">hidden</span>' : '';
+        ? '<span class="finding-tag tag-page">página</span>'
+        : item.isHidden ? '<span class="finding-tag tag-hidden" title="Elemento está oculto na página">oculto</span>' : '';
       itemEl.innerHTML = `
         ${tag}
         <div class="finding-row">
           <span class="finding-selector">${escapeHtml(item.selector)}</span>
-          <button class="finding-copy" title="Copy this finding">
+          <button class="finding-copy" title="Copiar este resultado">
             <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M11 1H3a2 2 0 0 0-2 2v10h2V3h8V1zm3 3H7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 11H7V6h7v9z" fill="currentColor"/></svg>
           </button>
         </div>

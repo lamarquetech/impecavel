@@ -1,46 +1,46 @@
-# Product
+# Produto
 
-## Register
+## Registro
 
-brand
+marca
 
-## Users
+## Usuários
 
-Designers, product managers, and engineers who use AI coding tools (Cursor, Claude Code, Gemini CLI, Codex CLI, and others) and want better design output from their AI. They land on the site from GitHub, social media, or word of mouth, already aware that AI-generated UIs have quality problems. They're looking for a practical solution, not education about the problem.
+Designers, gerentes de produto e engenheiros que usam ferramentas de codificação com IA (Cursor, Claude Code, Gemini CLI, Codex CLI, entre outras) e desejam uma saída de design melhor de sua IA. Eles chegam ao site pelo GitHub, redes sociais ou indicação, já cientes de que interfaces geradas por IA têm problemas de qualidade. Estão buscando uma solução prática, não educação sobre o problema.
 
-## Product Purpose
+## Propósito do Produto
 
-Impeccable gives builders a shared design vocabulary with their AI, delivered as a plug-and-play skill that works in every major AI coding harness. Success is measured in two ways: (1) the user can steer AI output with design precision instead of vague prose, and (2) the AI produces interfaces that pass professional design review, not "looks like an AI made it" output.
+Impeccable dá aos construtores um vocabulário de design compartilhado com sua IA, entregue como uma skill plug-and-play que funciona em todos os principais harnesses de codificação com IA. O sucesso é medido de duas formas: (1) o usuário pode direcionar a saída da IA com precisão de design em vez de prosa vaga, e (2) a IA produz interfaces que passam por revisão profissional de design, não saídas com cara de "parece que uma IA fez".
 
-## Brand Personality
+## Personalidade da Marca
 
-Expert, opinionated, refined. Impeccable speaks with an authoritative design voice: confident taste, editorial quality, zero hedging. It's the design director in the room who knows exactly what's wrong and how to fix it. The tone is **direct** (no "maybe consider"), **specific** (no "improve the vibe"), and **rooted in craft** (no hype, no hedging).
+Especialista, opinativa, refinada. Impeccable fala com uma voz de design autoritativa: gosto confiante, qualidade editorial, sem hesitação. É o diretor de design na sala que sabe exatamente o que está errado e como consertar. O tom é **direto** (nada de "talvez considere"), **específico** (nada de "melhore a vibe"), e **enraizado no ofício** (sem hype, sem hesitação).
 
-Three-word personality: **expert, decisive, editorial**.
+Personalidade em três palavras: **especialista, decisiva, editorial**.
 
-## Anti-references
+## Anti-referências
 
-The site and brand must be the antithesis of everything Impeccable critiques. Specifically, avoid:
+O site e a marca devem ser a antítese de tudo que Impeccable critica. Especificamente, evitar:
 
-- **Generic AI tool marketing**: dark mode with purple gradients, neon accents, glassmorphism, glowing particles, cyan-on-black.
-- **SaaS landing-page clichés**: hero-metric layouts, identical-card feature grids, sparkline decorations, "boost your productivity" copy.
-- **Hedging language**: "might", "could", "consider", "perhaps". Impeccable is opinionated — it picks a direction and commits.
-- **Educational framing**: this product is for people who already know they have a problem; we solve it, we don't teach it.
-- **Over-decoration**: every visual element must earn its place. No ornament for ornament's sake.
+- **Marketing genérico de ferramentas de IA**: modo escuro com gradientes roxos, acentos neon, glassmorphism, partículas brilhantes, ciano-sobre-preto.
+- **Clichês de landing pages SaaS**: layouts hero-métricos, grids de features com cards idênticos, decorações sparkline, textos do tipo "aumente sua produtividade".
+- **Linguagem hesitante**: "talvez", "poderia", "considere", "quem sabe". Impeccable é opinativo — escolhe uma direção e se compromete.
+- **Enquadramento educacional**: este produto é para pessoas que já sabem que têm um problema; nós o resolvemos, não o ensinamos.
+- **Excesso de decoração**: cada elemento visual deve justificar seu lugar. Nenhum ornamento por causa do ornamento.
 
-## Design Principles
+## Princípios de Design
 
-1. **Practice what you preach.** The site must pass its own anti-pattern tests with flying colors. If we ship anything we'd flag in an audit, we've lost.
-2. **Show, don't tell.** Demonstrate design quality through execution, not through words about design quality. The site IS the demo.
-3. **Expert confidence.** Direct, opinionated, decisive. No hedging. Every assertion should sound like it comes from someone who has seen a thousand interfaces and knows what works.
-4. **Editorial over marketing.** Feels like a design publication (Eye Magazine, It's Nice That, A List Apart) rather than a SaaS landing page. Long-form reading, considered typography, breathing room.
-5. **Purposeful restraint.** Every element earns its place. Nothing decorative without function. Nothing included because "landing pages usually have that".
+1. **Pratique o que prega.** O site deve passar em seus próprios testes de anti-pattern com distinção. Se enviarmos algo que nós mesmos sinalizaríamos em um audit, perdemos.
+2. **Mostre, não conte.** Demonstre qualidade de design através da execução, não através de palavras sobre qualidade de design. O site É a demo.
+3. **Confiança de especialista.** Direto, opinativo, decisivo. Sem hesitação. Cada afirmação deve soar como vindo de alguém que viu mil interfaces e sabe o que funciona.
+4. **Editorial sobre marketing.** Parece uma publicação de design (Eye Magazine, It's Nice That, A List Apart) em vez de uma landing page SaaS. Leitura longa, tipografia considerada, espaço para respirar.
+5. **Contenção intencional.** Cada elemento justifica seu lugar. Nada decorativo sem função. Nada incluído porque "landing pages geralmente têm isso".
 
-## Accessibility & Inclusion
+## Acessibilidade e Inclusão
 
-Baseline: WCAG 2.1 AA on all pages. Key commitments:
-- Color contrast ratios verified with actual contrast checks, not eyeballing.
-- All interactive elements keyboard-navigable with visible focus states.
-- `prefers-reduced-motion` respected for every animation.
-- Semantic HTML first, ARIA as a supplement, never as a workaround.
-- Copy readable at an 8th-grade level; jargon only when precisely needed (design terms like "OKLCH", "chroma" are acceptable because they're the actual vocabulary users are here to learn).
+Linha base: WCAG 2.1 AA em todas as páginas. Compromissos principais:
+- Taxas de contraste de cor verificadas com verificações reais de contraste, não a olho nu.
+- Todos os elementos interativos navegáveis por teclado com estados de foco visíveis.
+- `prefers-reduced-motion` respeitado em cada animação.
+- HTML semântico em primeiro lugar, ARIA como suplemento, nunca como alternativa.
+- Texto legível em nível de 8ª série; jargão apenas quando precisamente necessário (termos de design como "OKLCH", "chroma" são aceitáveis porque são o vocabulário real que os usuários estão aqui para aprender).

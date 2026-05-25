@@ -1,242 +1,242 @@
-Interactive live variant mode: select elements in the browser, pick a design action, and get AI-generated HTML+CSS variants hot-swapped via the dev server's HMR.
+Modo interativo de variantes ao vivo: selecione elementos no navegador, escolha uma ação de design, e receba variantes HTML+CSS geradas por IA trocadas a quente via HMR do dev server.
 
-## Prerequisites
+## Pré-requisitos
 
-A running dev server with hot module replacement (Vite, Next.js, Bun, etc.), OR a static HTML file open in the browser.
+Um dev server em execução com hot module replacement (Vite, Next.js, Bun, etc.), OU um arquivo HTML estático aberto no navegador.
 
-## The contract (read once)
+## O contrato (leia uma vez)
 
-Execute in order. No step skipped, no step reordered.
+Execute em ordem. Nenhum passo ignorado, nenhum passo reordenado.
 
-1. `live.mjs`: boot.
-2. Navigate to the URL that serves `pageFile` (infer from `package.json`, docs, terminal output, or an open tab). If you can't infer it confidently, tell the user once to open their dev/preview URL. Never use `serverPort` as that URL; it's the helper, not the app.
-3. Poll loop with the default long timeout (600000 ms). After every event or `--reply`, run `live-poll.mjs` again immediately. Never pass a short `--timeout=`.
-4. On `generate`: read screenshot if present; load the action's reference; plan three distinct directions; write all variants in one edit; `--reply done`; poll again.
-5. On `accept` / `discard`: the poll script runs `live-accept.mjs`, acknowledges the delivered event, and prints `_completionAck`. Plain accepts/discards are terminal immediately; carbonize accepts remain recoverable until you finish cleanup, run `live-complete.mjs --id EVENT_ID`, and only then poll again.
-6. If interrupted, run `live-status.mjs` or `live-resume.mjs` before guessing. The durable journal replays unacknowledged work after helper restart.
-7. On `exit`: run the cleanup at the bottom.
+1. `live.mjs`: inicialização.
+2. Navegue até a URL que serve `pageFile` (infira a partir de `package.json`, docs, saída do terminal, ou uma aba aberta). Se não conseguir inferir com confiança, diga ao usuário uma vez para abrir sua URL de dev/preview. Nunca use `serverPort` como essa URL; é o helper, não a aplicação.
+3. Loop de poll com o timeout longo padrão (600000 ms). Após cada evento ou `--reply`, execute `live-poll.mjs` novamente imediatamente. Nunca passe um `--timeout=` curto.
+4. No `generate`: leia o screenshot se presente; carregue a referência da ação; planeje três direções distintas; escreva todas as variantes em uma única edição; `--reply done`; faça poll novamente.
+5. No `accept` / `discard`: o script de poll executa `live-accept.mjs`, reconhece o evento entregue, e imprime `_completionAck`. Accepts/discards simples são terminais imediatamente; accepts com carbonize permanecem recuperáveis até você finalizar a limpeza, executar `live-complete.mjs --id EVENT_ID`, e só então fazer poll novamente.
+6. Se interrompido, execute `live-status.mjs` ou `live-resume.mjs` antes de adivinhar. O journal durável reproduz trabalho não reconhecido após reinicialização do helper.
+7. No `exit`: execute a limpeza no final.
 
-Harness policy:
-- **Claude Code**: run the poll as a **background task** (no short timeout). The harness notifies you when it completes, so the main conversation stays free. Do not block the shell.
-- **Cursor**: run the poll in the **foreground** (blocking shell; not a background terminal, not a subagent). Cursor background terminals and subagents do not reliably resume the chat with poll stdout.
-- **Codex**: run the poll in the **foreground** (blocking shell; not a background task, not a subagent). Codex background exec sessions do not reliably surface poll stdout back into the conversation at the moment events arrive, so a "fire-and-forget" background poll will stall live mode.
-- **Other harnesses**: foreground unless you know stdout reliably returns to this session.
+Política de harness:
+- **Claude Code**: execute o poll como uma **tarefa em background** (sem timeout curto). O harness notifica você quando ele completa, então a conversa principal fica livre. Não bloqueie o shell.
+- **Cursor**: execute o poll em **primeiro plano** (shell bloqueante; não um terminal em background, não um subagente). Terminais em background e subagentes do Cursor não retomam de forma confiável o chat com o stdout do poll.
+- **Codex**: execute o poll em **primeiro plano** (shell bloqueante; não uma tarefa em background, não um subagente). Sessões de execução em background do Codex não trazem de forma confiável o stdout do poll de volta para a conversa no momento em que os eventos chegam, então um poll em background "dispare-e-esqueça" vai travar o modo live.
+- **Outros harnesses**: primeiro plano a menos que você saiba que o stdout retorna de forma confiável a esta sessão.
 
-Chat is overhead. No recap, no tutorial output, no pasting PRODUCT / DESIGN bodies. Spend tokens on tools and edits; on failure, one or two short sentences.
+Chat é overhead. Sem recap, sem saída de tutorial, sem colar corpos de PRODUCT / DESIGN. Gaste tokens em ferramentas e edições; em caso de falha, uma ou duas frases curtas.
 
-## Start
+## Início
 
 ```bash
-node .claude/skills/impeccable/scripts/live.mjs
+node {{scripts_path}}/live.mjs
 ```
 
-Output JSON: `{ ok, serverPort, serverToken, pageFiles, hasProduct, product, productPath, hasDesign, design, designPath, migrated }`. `pageFiles` is the list of HTML entries the live script was injected into. Keep PRODUCT.md and DESIGN.md in mind for variant generation; **DESIGN.md wins on visual decisions; PRODUCT.md wins on strategic/voice decisions.** When DESIGN.md is missing, identity is **not** absent; extract it from CSS variables, computed styles, and sibling components on the page (see Step 4 Phase A). Identity preservation is the default; departure from existing identity requires an explicit trigger from PRODUCT.md anti-references or the user's freeform prompt. If `migrated: true`, the loader auto-renamed legacy `.impeccable.md` to `PRODUCT.md`; mention this once and suggest `/impeccable document` for the matching DESIGN.md.
+Saída JSON: `{ ok, serverPort, serverToken, pageFiles, hasProduct, product, productPath, hasDesign, design, designPath, migrated }`. `pageFiles` é a lista de entradas HTML nas quais o script live foi injetado. Mantenha PRODUCT.md e DESIGN.md em mente para geração de variantes; **DESIGN.md prevalece em decisões visuais; PRODUCT.md prevalece em decisões estratégicas/de voz.** Quando DESIGN.md está ausente, a identidade **não** está ausente; extraia-a de variáveis CSS, estilos computados, e componentes irmãos na página (veja Passo 4 Fase A). Preservação de identidade é o padrão; afastamento da identidade existente requer um gatilho explícito de anti-referências do PRODUCT.md ou do prompt livre do usuário. Se `migrated: true`, o loader renomeou automaticamente o legado `.impeccable.md` para `PRODUCT.md`; mencione isso uma vez e sugira `/impeccable document` para o DESIGN.md correspondente.
 
-`serverPort` and `serverToken` belong to the small **Impeccable live helper** HTTP server (serves `/live.js`, SSE, and `/poll`). That port is **not** your dev server and is usually not the URL you open to view the app. The browser page is whatever origin serves one of the `pageFiles` entries (Vite / Next / Bun / tunnel / LAN hostname).
+`serverPort` e `serverToken` pertencem ao pequeno servidor HTTP **Impeccable live helper** (serve `/live.js`, SSE, e `/poll`). Essa porta **não** é seu dev server e geralmente não é a URL que você abre para visualizar a aplicação. A página do navegador é qualquer origem que serve uma das entradas de `pageFiles` (Vite / Next / Bun / tunnel / hostname LAN).
 
-If output is `{ ok: false, error: "config_missing" | "config_invalid", path }`, this project hasn't been configured for live mode (or its config is stale). See **First-time setup** at the bottom.
+Se a saída for `{ ok: false, error: "config_missing" | "config_invalid", path }`, este projeto não foi configurado para o modo live (ou sua configuração está desatualizada). Veja **Configuração inicial** no final.
 
-## Poll loop
+## Loop de poll
 
 ```
 LOOP:
-  node .claude/skills/impeccable/scripts/live-poll.mjs   # default long timeout; no --timeout=
-  Read JSON; dispatch on "type"
+  node {{scripts_path}}/live-poll.mjs   # timeout longo padrão; sem --timeout=
+  Leia JSON; despache com base no "type"
 
-  "generate"  → Handle Generate; reply done; LOOP
-  "accept"    → Handle Accept; complete carbonize cleanup if required; LOOP
-  "discard"   → Handle Discard; LOOP
-  "prefetch"  → Handle Prefetch; LOOP
+  "generate"  → Trate Generate; reply done; LOOP
+  "accept"    → Trate Accept; complete limpeza de carbonize se necessário; LOOP
+  "discard"   → Trate Discard; LOOP
+  "prefetch"  → Trate Prefetch; LOOP
   "timeout"   → LOOP
-  "exit"      → break → Cleanup
+  "exit"      → break → Limpeza
 ```
 
-## Recovery commands
+## Comandos de recuperação
 
-The live helper persists an append-only journal under `.impeccable/live/sessions/`. Browser checkpoints are advisory but durable; the journal is canonical. This is local durable recovery state, not project source.
+O helper live persiste um journal append-only em `.impeccable/live/sessions/`. Checkpoints do navegador são consultivos mas duráveis; o journal é canônico. Este é estado local durável de recuperação, não fonte do projeto.
 
-Use these commands when the chat was interrupted, polling was missed, the helper restarted, or the browser reloaded:
+Use estes comandos quando o chat foi interrompido, o poll foi perdido, o helper reiniciou, ou o navegador recarregou:
 
 ```bash
-node .claude/skills/impeccable/scripts/live-status.mjs
-node .claude/skills/impeccable/scripts/live-resume.mjs --id SESSION_ID
-node .claude/skills/impeccable/scripts/live-complete.mjs --id SESSION_ID
+node {{scripts_path}}/live-status.mjs
+node {{scripts_path}}/live-resume.mjs --id SESSION_ID
+node {{scripts_path}}/live-complete.mjs --id SESSION_ID
 ```
 
-- `live-status.mjs` prints connected helper state, active durable sessions, and queued pending events. It works even when the helper is down by reading the journal directly.
-- `live-resume.mjs` prints the active snapshot, pending event, checkpoint phase, visible variant, parameter values, and the next safe agent action.
-- `live-complete.mjs` is the canonical manual final acknowledgement. Use it after carbonize/manual cleanup is verified and no further poll acknowledgement will happen automatically.
+- `live-status.mjs` imprime o estado do helper conectado, sessões duráveis ativas, e eventos pendentes na fila. Funciona mesmo quando o helper está inativo lendo o journal diretamente.
+- `live-resume.mjs` imprime o snapshot ativo, evento pendente, fase do checkpoint, variante visível, valores dos parâmetros, e a próxima ação segura do agente.
+- `live-complete.mjs` é o reconhecimento final manual canônico. Use-o após a limpeza de carbonize/manual ser verificada e nenhum outro reconhecimento de poll acontecerá automaticamente.
 
-Server restart rule: start `live-server.mjs` again, then poll. Startup requeues unacknowledged pending events from the journal, so do not ask the user to click Go again unless `live-resume.mjs` says no active session exists.
+Regra de reinicialização do servidor: inicie `live-server.mjs` novamente, depois faça poll. A inicialização reenfileira eventos pendentes não reconhecidos do journal, então não peça ao usuário para clicar Go novamente a menos que `live-resume.mjs` diga que não existe sessão ativa.
 
-## Handle `generate`
+## Tratar `generate`
 
-Event: `{id, action, freeformPrompt?, count, pageUrl, element, screenshotPath?, comments?, strokes?}`.
+Evento: `{id, action, freeformPrompt?, count, pageUrl, element, screenshotPath?, comments?, strokes?}`.
 
-Speed matters; the user is watching a spinner. Minimize tool calls by using the `wrap` helper and writing all variants in a single edit.
+Velocidade importa; o usuário está vendo um spinner. Minimize chamadas de ferramentas usando o helper `wrap` e escrevendo todas as variantes em uma única edição.
 
-### 1. Read the screenshot (if present)
+### 1. Leia o screenshot (se presente)
 
-`event.screenshotPath` is **only sent when the user placed at least one comment or stroke before Go.** When present, it's an absolute path to a PNG of the element as rendered with the annotations baked in. **Read it before planning**: annotations encode user intent not recoverable from `element.outerHTML` alone.
+`event.screenshotPath` é **enviado apenas quando o usuário colocou pelo menos um comentário ou traço antes de Go.** Quando presente, é um caminho absoluto para um PNG do elemento renderizado com as anotações incorporadas. **Leia antes de planejar**: anotações codificam intenção do usuário não recuperável apenas de `element.outerHTML`.
 
-When `screenshotPath` is absent, don't ask for one and don't go looking for the current rendering. The omission is deliberate: without annotations, a screenshot would anchor the model on the existing design and fight the three-distinct-directions brief. Work from `element.outerHTML`, the computed styles in `event.element`, and the freeform prompt if present.
+Quando `screenshotPath` está ausente, não peça um e não saia procurando a renderização atual. A omissão é deliberada: sem anotações, um screenshot ancoraria o modelo no design existente e lutaria contra o brief de três-direções-distintas. Trabalhe a partir de `element.outerHTML`, dos estilos computados em `event.element`, e do prompt livre se presente.
 
-`event.comments` and `event.strokes` carry structured metadata alongside the visual. Treat the screenshot as primary; use the structured data for specifics worth quoting (e.g. the exact text of a comment).
+`event.comments` e `event.strokes` carregam metadados estruturados junto com o visual. Trate o screenshot como primário; use os dados estruturados para específicos que valem a pena citar (ex.: o texto exato de um comentário).
 
-Reading annotations precisely:
+Lendo anotações com precisão:
 
-- **Comment position carries meaning.** Its `{x, y}` is element-local CSS px (same coord space as `element.boundingRect`). Find the child under that point and apply the comment text LOCALLY to that sub-element. A comment near the title is about the title, not a global description.
-- **Comments and strokes are independent annotations** unless clearly paired by overlap or tight proximity. Don't let the visual weight of a prominent stroke override the precise location of a textually-specific comment elsewhere.
-- **Strokes are gestures; read them by shape.** Closed loop = "this thing" (emphasis / focus); arrow = direction (move / point to); cross or slash = delete; free scribble = emphasis or delete depending on context. A loop around region X means "pay attention to X," not "only change pixels inside X."
-- **When a stroke's intent is ambiguous** (circle or arrow? emphasis or move?), state your reading in one sentence of rationale rather than silently guessing. If the uncertainty materially changes the brief, ask one short clarifying question before generating.
+- **A posição do comentário carrega significado.** Seu `{x, y}` está em CSS px local ao elemento (mesmo espaço de coordenadas que `element.boundingRect`). Encontre o filho sob aquele ponto e aplique o texto do comentário LOCALMENTE àquele sub-elemento. Um comentário perto do título é sobre o título, não uma descrição global.
+- **Comentários e traços são anotações independentes** a menos que estejam claramente pareados por sobreposição ou proximidade estreita. Não deixe o peso visual de um traço proeminente sobrescrever a localização precisa de um comentário textualmente específico em outro lugar.
+- **Traços são gestos; leia-os pela forma.** Loop fechado = "esta coisa" (ênfase / foco); seta = direção (mover / apontar para); cruz ou barra = excluir; rabisco livre = ênfase ou exclusão dependendo do contexto. Um loop ao redor da região X significa "preste atenção em X," não "mude apenas pixels dentro de X."
+- **Quando a intenção de um traço é ambígua** (círculo ou seta? ênfase ou mover?), declare sua leitura em uma frase de justificativa em vez de adivinhar silenciosamente. Se a incerteza muda materialmente o brief, faça uma pergunta curta de esclarecimento antes de gerar.
 
-### 2. Wrap the element
+### 2. Envolva o elemento
 
 ```bash
-node .claude/skills/impeccable/scripts/live-wrap.mjs --id EVENT_ID --count EVENT_COUNT --element-id "ELEMENT_ID" --classes "class1,class2" --tag "div" --text "TEXT_SNIPPET"
+node {{scripts_path}}/live-wrap.mjs --id EVENT_ID --count EVENT_COUNT --element-id "ELEMENT_ID" --classes "class1,class2" --tag "div" --text "TEXT_SNIPPET"
 ```
 
-Flag mapping. Keep them separate, don't collapse into `--query`:
+Mapeamento de flags. Mantenha-os separados, não colapse em `--query`:
 
 - `--element-id` ← `event.element.id`
-- `--classes` ← `event.element.classes` joined with commas
+- `--classes` ← `event.element.classes` unidos com vírgulas
 - `--tag` ← `event.element.tagName`
-- `--text` ← first ~80 chars of `event.element.textContent` (trim, single-line). **Pass this every call.** When the picked element shares classes + tag with sibling components (a list of `<Card>`s, repeating sections), this is what disambiguates which branch in source to wrap. Without it, wrap silently lands on the first match and may rewrite the wrong element.
+- `--text` ← primeiros ~80 caracteres de `event.element.textContent` (trim, linha única). **Passe isto em toda chamada.** Quando o elemento selecionado compartilha classes + tag com componentes irmãos (uma lista de `<Card>`s, seções repetidas), isto é o que desambigua qual ramificação no fonte envolver. Sem isso, wrap silenciosamente pousa na primeira correspondência e pode reescrever o elemento errado.
 
-The helper searches ID first, then classes, then tag + class combo. If `event.pageUrl` implies the file (e.g. `/` is usually `index.html`), pass `--file PATH` to skip the search. `--query` is a fallback for raw text search only; do not use it for normal element lookups.
+O helper busca por ID primeiro, depois classes, depois combinação tag + classe. Se `event.pageUrl` implica o arquivo (ex.: `/` é geralmente `index.html`), passe `--file PATH` para pular a busca. `--query` é um fallback para busca de texto bruto apenas; não o use para buscas normais de elementos.
 
-If `--text` matches multiple candidates equally well, wrap exits with `{ error: "element_ambiguous", candidates: [...] }` and `fallback: "agent-driven"`: read the candidate line ranges, decide which one matches the picked element from page context, and write the wrapper manually per the fallback flow.
+Se `--text` corresponde a múltiplos candidatos igualmente bem, wrap sai com `{ error: "element_ambiguous", candidates: [...] }` e `fallback: "agent-driven"`: leia os intervalos de linhas candidatos, decida qual corresponde ao elemento selecionado pelo contexto da página, e escreva o wrapper manualmente conforme o fluxo de fallback.
 
-Output on success: `{ file, insertLine, commentSyntax, styleMode, styleTag, cssSelectorPrefixExamples, cssAuthoring }`.
+Saída em caso de sucesso: `{ file, insertLine, commentSyntax, styleMode, styleTag, cssSelectorPrefixExamples, cssAuthoring }`.
 
-`styleMode` controls how preview CSS must be authored. Treat it as a detected capability mode, not a framework guess:
+`styleMode` controla como o CSS de preview deve ser autorado. Trate-o como um modo de capacidade detectado, não um palpite de framework:
 
-- `scoped`: use `@scope ([data-impeccable-variant="N"])` rules.
-- `astro-global-prefixed`: use explicit `[data-impeccable-variant="N"]` selector prefixes and the exact `styleTag` returned by the tool.
+- `scoped`: use regras `@scope ([data-impeccable-variant="N"])`.
+- `astro-global-prefixed`: use prefixos de seletor `[data-impeccable-variant="N"]` explícitos e a `styleTag` exata retornada pela ferramenta.
 
-Use `cssAuthoring` as the source of truth for the current file. It includes the exact `styleTag`, selector strategy, selector examples, requirements, and forbidden patterns. Do not apply a framework-specific exception unless the returned `styleMode` / `cssAuthoring.mode` says to.
+Use `cssAuthoring` como a fonte de verdade para o arquivo atual. Inclui a `styleTag` exata, estratégia de seletor, exemplos de seletor, requisitos, e padrões proibidos. Não aplique uma exceção específica de framework a menos que o `styleMode` / `cssAuthoring.mode` retornado diga para fazê-lo.
 
-**Fallback errors.** Wrap only writes into files it judges to be source (tracked by git, not marked GENERATED, not listed in config's `generatedFiles`). If it can't land on a source file, it errors without writing; accepting a variant into a generated file is silent data loss. Three shapes:
+**Erros de fallback.** Wrap apenas escreve em arquivos que julga ser fonte (rastreados por git, não marcados como GENERATED, não listados no `generatedFiles` da configuração). Se não puder pousar em um arquivo fonte, ele erroa sem escrever; aceitar uma variante em um arquivo gerado é perda silenciosa de dados. Três formatos:
 
-- `{ error: "file_is_generated", file, hint }`: user-supplied `--file` points at a generated file.
-- `{ error: "element_not_in_source", generatedMatch, hint }`: element exists only in a generated file (the next build would wipe any edits).
-- `{ error: "element_not_found", hint }`: element isn't in any project file; likely runtime-injected (JS component, dynamic render from data).
+- `{ error: "file_is_generated", file, hint }`: `--file` fornecido pelo usuário aponta para um arquivo gerado.
+- `{ error: "element_not_in_source", generatedMatch, hint }`: elemento existe apenas em um arquivo gerado (o próximo build apagaria quaisquer edições).
+- `{ error: "element_not_found", hint }`: elemento não está em nenhum arquivo do projeto; provavelmente injetado em runtime (componente JS, render dinâmico a partir de dados).
 
-All three carry `fallback: "agent-driven"`. Follow **Handle fallback** below.
+Todos os três carregam `fallback: "agent-driven"`. Siga **Tratar fallback** abaixo.
 
-### 3. Load the action's reference
+### 3. Carregue a referência da ação
 
-If `event.action` is `impeccable` (the default freeform action), use SKILL.md's shared laws plus the loaded register reference (`brand.md` or `product.md`). Do not load a sub-command reference. **Freeform is not a pass to skip parameters:** you still follow the composition budget and the freeform bias in **§7 Parameters** below. Sub-command files list MUST-have signature knobs; freeform has no such file, so sizing knobs from surface weight and primary axes is entirely on you.
+Se `event.action` é `impeccable` (a ação livre padrão), use as leis compartilhadas do SKILL.md mais a referência de registro carregada (`brand.md` ou `product.md`). Não carregue uma referência de sub-comando. **Freeform não é uma licença para pular parâmetros:** você ainda segue o orçamento de composição e o viés freeform no **§7 Parâmetros** abaixo. Arquivos de sub-comando listam knobs de assinatura OBRIGATÓRIOS; freeform não tem tal arquivo, então dimensionar knobs a partir do peso visual e eixos primários é inteiramente com você.
 
-Any other `event.action` (`bolder`, `quieter`, `distill`, `polish`, `typeset`, `colorize`, `layout`, `adapt`, `animate`, `delight`, `overdrive`): Read `reference/<action>.md` before planning. Each sub-command encodes a specific discipline; skipping its reference produces generic output. Those files may require specific params; layer them on top of the §7 budget, not instead of it.
+Qualquer outro `event.action` (`bolder`, `quieter`, `distill`, `polish`, `typeset`, `colorize`, `layout`, `adapt`, `animate`, `delight`, `overdrive`): Leia `reference/<action>.md` antes de planejar. Cada sub-comando codifica uma disciplina específica; pular sua referência produz saída genérica. Esses arquivos podem requerer parâmetros específicos; adicione-os sobre o orçamento do §7, não em vez dele.
 
-### 4. Plan three variants: identity first, then mode, then axes
+### 4. Planeje três variantes: identidade primeiro, depois modo, depois eixos
 
-The wrong frame for live mode is "show three different design directions." Live runs on an existing surface; the brand has already been chosen. The job is variation **within identity**, not selection between identities. Failure mode: three editorial-typographic variants on a brief that wasn't editorial. Bigger failure mode: three off-brand variants the user can't accept because they don't look like their product.
+O enquadramento errado para o modo live é "mostre três direções de design diferentes." Live roda em uma superfície existente; a marca já foi escolhida. O trabalho é variação **dentro da identidade**, não seleção entre identidades. Modo de falha: três variantes editorial-tipográficas em um brief que não era editorial. Modo de falha maior: três variantes fora da marca que o usuário não pode aceitar porque não parecem seu produto.
 
-Four phases. Do them in order.
+Quatro fases. Faça-as em ordem.
 
-#### Phase A: Extract the identity (non-skippable)
+#### Fase A: Extraia a identidade (não-pulável)
 
-The existing surface has an identity already. Read it before planning anything. Sources, in priority order:
+A superfície existente já tem uma identidade. Leia-a antes de planejar qualquer coisa. Fontes, em ordem de prioridade:
 
-1. **DESIGN.md** if loaded: read the visual system fields (palette, type pairing, motion, components). This is the authoritative answer.
-2. **CSS custom properties** in the page's stylesheets (`:root { --color-...; --font-...; ... }`): these are de-facto tokens.
-3. **Computed styles** on the picked element and its parent: colors, fonts, spacing scales, corner radii.
-4. **Sibling components on the page**: what visual rhetoric do existing components use? (Asymmetric or centered? Dense or airy? Bold or quiet?)
+1. **DESIGN.md** se carregado: leia os campos do sistema visual (palette, type pairing, motion, components). Esta é a resposta autoritativa.
+2. **CSS custom properties** nas stylesheets da página (`:root { --color-...; --font-...; ... }`): estes são tokens de facto.
+3. **Estilos computados** no elemento selecionado e seu pai: cores, fontes, escalas de espaçamento, raios de canto.
+4. **Componentes irmãos na página**: que retórica visual os componentes existentes usam? (Assimétrico ou centralizado? Denso ou arejado? Ousado ou silencioso?)
 
-Write down what you see in **one sentence**. The sentence describes the surface that's actually on screen; it is not aspirational, not opinionated, not edited toward what the brand "should" be. Capture, in roughly this order:
+Anote o que você vê em **uma frase**. A frase descreve a superfície que está realmente na tela; não é aspiracional, não é opinativa, não é editada em direção ao que a marca "deveria" ser. Capture, aproximadamente nesta ordem:
 
-- The dominant surface color and accent color, by hex or token name (use the actual values, not categories like "warm" or "neutral").
-- The type pairing: the actual font names loaded, primary first.
-- The layout topology: how the dominant elements are arranged (stacked / side-by-side / grid / asymmetric / overlay).
-- The surface treatment: corners, borders, shadows, density of decoration.
-- The voice tone you read off the copy itself, not off the aesthetic feel.
+- A cor de superfície dominante e a cor de destaque, por hex ou nome de token (use os valores reais, não categorias como "quente" ou "neutro").
+- O type pairing: os nomes reais das fontes carregadas, primária primeiro.
+- A topologia de layout: como os elementos dominantes estão arranjados (empilhado / lado a lado / grid / assimétrico / overlay).
+- O tratamento de superfície: cantos, bordas, sombras, densidade de decoração.
+- O tom de voz que você lê do copy em si, não da sensação estética.
 
-Be specific. "Modern" is not a color, "elegant" is not a type pairing, "clean" is not a layout. If you can't extract a real value for an axis, skip it rather than fabricate. The point is to record what is, not to describe what you wish it were.
+Seja específico. "Moderno" não é uma cor, "elegante" não é um type pairing, "limpo" não é um layout. Se você não consegue extrair um valor real para um eixo, pule-o em vez de fabricar. O ponto é registrar o que é, não descrever o que você gostaria que fosse.
 
-Do not include adjectives that name an aesthetic family ("editorial-leaning", "terminal-flavored", "brutalist"); those are conclusions, not data. They belong to Phase C lane selection in departure mode, not to identity description. Letting them sneak into Phase A is how the identity-lock collapses into a self-fulfilling prophecy.
+Não inclua adjetivos que nomeiam uma família estética ("tendência-editorial", "sabor-terminal", "brutalista"); estes são conclusões, não dados. Pertencem à seleção de faixa na Fase C em modo departure, não à descrição de identidade. Deixá-los se esgueirar na Fase A é como o bloqueio de identidade colapsa em uma profecia auto-realizável.
 
-This sentence is the **identity lock**. Every variant must be readable as the same brand if rendered side by side. Skipping this phase is the primary cause of off-brand variants. Absence of DESIGN.md is never an excuse; extract from CSS and computed styles instead.
+Esta frase é o **bloqueio de identidade**. Toda variante deve ser legível como a mesma marca se renderizada lado a lado. Pular esta fase é a causa principal de variantes fora da marca. Ausência de DESIGN.md nunca é uma desculpa; extraia de CSS e estilos computados em vez disso.
 
-#### Phase B: Pick mode (default vs departure)
+#### Fase B: Escolha o modo (padrão vs departure)
 
-**Default mode**: the existing identity is preserved. Variants vary expression axes within it. *This is the right mode for ~90% of live sessions.* The user picked an element on a real product they're shipping; they expect variants of *their* hero, not three different brands' heroes.
+**Modo padrão**: a identidade existente é preservada. Variantes variam eixos de expressão dentro dela. *Este é o modo certo para ~90% das sessões live.* O usuário selecionou um elemento em um produto real que está lançando; espera variantes do *seu* hero, não heros de três marcas diferentes.
 
-**Departure mode**: the existing identity is rejected. Variants propose alternatives consistent with PRODUCT.md voice. Trigger only when at least one is true:
+**Modo departure**: a identidade existente é rejeitada. Variantes propõem alternativas consistentes com a voz do PRODUCT.md. Acione apenas quando pelo menos um for verdadeiro:
 
-- PRODUCT.md anti-references explicitly call out the current surface ("the current `index.html` is itself an example"; "diffuse away from this"; "the page on screen is the failure"). Generic anti-references that describe what to avoid in general do **not** trigger departure mode; only ones that point at *this* surface specifically.
-- The user's freeform prompt explicitly asks for departure ("rebuild this from scratch", "what if it weren't editorial at all", "show me something completely different").
+- Anti-referências do PRODUCT.md explicitamente chamam a superfície atual ("o `index.html` atual é em si um exemplo"; "difunda-se disto"; "a página na tela é o fracasso"). Anti-referências genéricas que descrevem o que evitar em geral **não** acionam modo departure; apenas aquelas que apontam para *esta* superfície especificamente.
+- O prompt livre do usuário pede explicitamente departure ("reconstrua do zero", "e se não fosse editorial de jeito nenhum", "mostre-me algo completamente diferente").
 
-If you're unsure, you're in default mode. The cost of being wrong about default is "three on-brand variants with similar feel": recoverable, the user picks none. The cost of being wrong about departure is "three off-brand variants": unrecoverable, the user is annoyed.
+Se você está em dúvida, está em modo padrão. O custo de errar sobre o padrão é "três variantes na marca com sensação similar": recuperável, o usuário não escolhe nenhuma. O custo de errar sobre departure é "três variantes fora da marca": irrecuperável, o usuário fica irritado.
 
-#### Phase C: Plan three variants
+#### Fase C: Planeje três variantes
 
-**Default mode.** Each variant commits to a different **primary axis** of difference, while preserving the identity sentence. The six axes:
+**Modo padrão.** Cada variante se compromete com um **eixo primário** de diferença diferente, enquanto preserva a frase de identidade. Os seis eixos:
 
-1. **Hierarchy**: which element commands the eye?
-2. **Layout topology**: stacked / side-by-side / grid / asymmetric / overlay
-3. **Typographic system**: pairing logic, scale ratio, case/weight strategy *within the available faces*
-4. **Color strategy**: which existing palette role carries the surface (Restrained / Committed / Full palette / Drenched). Use the brand's existing palette tokens, not new colors.
-5. **Density**: minimal / comfortable / dense
-6. **Structural decomposition**: merge, split, progressive disclosure
+1. **Hierarquia**: qual elemento comanda o olhar?
+2. **Topologia de layout**: empilhado / lado a lado / grid / assimétrico / overlay
+3. **Sistema tipográfico**: lógica de pairing, razão de escala, estratégia de caixa/peso *dentro das fontes disponíveis*
+4. **Estratégia de cor**: qual papel da palette existente carrega a superfície (Contida / Comprometida / Palette completa / Encharcada). Use os tokens de palette existentes da marca, não cores novas.
+5. **Densidade**: mínima / confortável / densa
+6. **Decomposição estrutural**: mesclar, dividir, disclosure progressivo
 
-Three variants → three DIFFERENT axes. The trio reads as *the same brand at three angles*. Do not introduce new fonts, new palette hues, or new aesthetic-family signals; those belong to departure mode.
+Três variantes → três eixos DIFERENTES. O trio lê como *a mesma marca em três ângulos*. Não introduza fontes novas, matizes de palette novas, ou sinais de família estética nova; esses pertencem ao modo departure.
 
-**While planning each variant, also name its 2–3 parameter knobs** (per the §7 budget table). Parameters are part of the design, not a decoration added afterward. If the variant explores density, expose a density knob. If it explores color commitment, expose a color-amount range. Deciding "what's tunable" during planning produces better knobs than retrofitting them onto finished HTML.
+**Ao planejar cada variante, também nomeie seus 2–3 knobs de parâmetro** (conforme a tabela de orçamento do §7). Parâmetros são parte do design, não uma decoração adicionada depois. Se a variante explora densidade, exponha um knob de densidade. Se explora comprometimento de cor, exponha um range de color-amount. Decidir "o que é ajustável" durante o planejamento produz knobs melhores do que retroajustá-los no HTML finalizado.
 
-**Departure mode.** Each variant anchors to a different **aesthetic direction**, derived from the brand's stated voice and register in PRODUCT.md. Do NOT pick from a fixed catalog of lane categories. The right three directions for this brand are not the same as the right three for another brand, and picking from a list is itself the training-data reflex (the model selects "Swiss-grid, Terminal, Industrial-signage" every time because those are the furthest-from-editorial items in any enumerated list).
+**Modo departure.** Cada variante ancora em uma **direção estética** diferente, derivada da voz e registro declarados da marca no PRODUCT.md. NÃO escolha de um catálogo fixo de categorias de faixa. As três direções certas para esta marca não são as mesmas que as três certas para outra marca, e escolher de uma lista é em si o reflexo de dados de treinamento (o modelo seleciona "Swiss-grid, Terminal, Industrial-signage" toda vez porque são os itens mais distantes de editorial em qualquer lista enumerada).
 
-Instead, work from the brand:
+Em vez disso, trabalhe a partir da marca:
 
-1. Read PRODUCT.md's Brand Personality words. What physical, spatial, or material experiences would embody those words if design were not involved? (A personality described as "specific, earned, unmistakable" evokes a hand-stamped letter, a numbered print, a watchmaker's loupe. A personality described as "restless, loud, unfiltered" evokes a concert poster, a spray-painted wall, a megaphone.)
-2. From those physical experiences, derive three visual directions that are genuinely different from each other AND from the current surface you're departing.
-3. Avoid the **reflex-reject lanes** in [brand.md](brand.md). Don't trade one monoculture for another. If you find yourself reaching for "Swiss-grid" or "Terminal" or "Industrial-signage" by reflex, you are pattern-matching a catalog in your training data, not reading the brand. Start over from the personality words.
-4. Each direction must be expressible in one concrete sentence that names a real-world referent ("a museum exhibition label system for a contemporary art gallery" not "clean and minimal"). If your sentence contains only adjectives, it's not concrete enough.
-5. **While planning each direction, also name its 2–3 parameter knobs** (per the §7 budget table). The same principle as default mode: decide "what's tunable" during planning, not after writing the HTML. A departure-mode hero with 0 parameters is not "bold creative vision," it's a missed opportunity for the user to fine-tune the direction they pick.
+1. Leia as palavras de Brand Personality do PRODUCT.md. Que experiências físicas, espaciais ou materiais encarnariam essas palavras se design não estivesse envolvido? (Uma personalidade descrita como "específica, conquistada, inconfundível" evoca uma carta carimbada à mão, uma impressão numerada, uma lupa de relojoeiro. Uma personalidade descrita como "inquieta, barulhenta, sem filtro" evoca um poster de show, uma parede pixada, um megafone.)
+2. A partir dessas experiências físicas, derive três direções visuais genuinamente diferentes entre si E da superfície atual da qual você está se afastando.
+3. Evite as **faixas de reflexo-rejeição** em [brand.md](brand.md). Não troque uma monocultura por outra. Se você se pegar alcançando "Swiss-grid" ou "Terminal" ou "Industrial-signage" por reflexo, você está correspondendo padrões de um catálogo em seus dados de treinamento, não lendo a marca. Comece de novo pelas palavras de personalidade.
+4. Cada direção deve ser expressável em uma frase concreta que nomeie um referente do mundo real ("um sistema de rótulos de exposição de museu para uma galeria de arte contemporânea" não "limpo e minimal"). Se sua frase contém apenas adjetivos, não é concreta o suficiente.
+5. **Ao planejar cada direção, também nomeie seus 2–3 knobs de parâmetro** (conforme a tabela de orçamento do §7). O mesmo princípio do modo padrão: decida "o que é ajustável" durante o planejamento, não depois de escrever o HTML. Um hero em modo departure com 0 parâmetros não é "visão criativa ousada," é uma oportunidade perdida para o usuário ajustar a direção que escolher.
 
-#### Phase D: Squint test
+#### Fase D: Teste do olho semicerrado
 
-**Default mode squint.** Read each variant's identity sentence and compare to the locked identity from Phase A. If any variant has drifted to a different palette, type voice, or visual rhetoric, it has crossed into departure mode by accident; rework. Then check that each variant commits to a different primary axis. Three "tighter density" variants is failure.
+**Squint do modo padrão.** Leia a frase de identidade de cada variante e compare com a identidade bloqueada da Fase A. Se qualquer variante derivou para uma palette diferente, voz tipográfica, ou retórica visual, ela cruzou para o modo departure acidentalmente; retrabalhe. Depois verifique se cada variante se compromete com um eixo primário diferente. Três variantes de "densidade mais justa" é falha.
 
-**Departure mode squint.** Two passes, family before sentence:
+**Squint do modo departure.** Duas passagens, família antes de frase:
 
-1. **Family pass.** Label each variant with one design-family word of your own choosing (any concrete noun: *exhibition, storefront, cockpit, recipe-card, playbill, field-manual*). If any two variants share a label, or if the label could apply to the other variants equally well, rework. Do not use a fixed vocabulary list for the labels. *This pass is non-negotiable in departure mode and catches the monoculture failure that the sentence pass misses.*
-2. **Sentence pass.** Write three one-sentence descriptions side by side. If two of them rhyme ("both feature big type" / "both are stacks of sections" / "both center the CTA"), rework the offender.
+1. **Passagem de família.** Rotule cada variante com uma palavra de família de design de sua própria escolha (qualquer substantivo concreto: *exhibition, storefront, cockpit, recipe-card, playbill, field-manual*). Se quaisquer duas variantes compartilham um rótulo, ou se o rótulo poderia se aplicar igualmente bem às outras variantes, retrabalhe. Não use uma lista de vocabulário fixa para os rótulos. *Esta passagem é inegociável no modo departure e captura a falha de monocultura que a passagem de frase perde.*
+2. **Passagem de frase.** Escreva três descrições de uma frase lado a lado. Se duas delas rimam ("ambas têm tipo grande" / "ambas são pilhas de seções" / "ambas centralizam o CTA"), retrabalhe a ofensora.
 
-**When the primary axis is color or theme, forbid the trio from sharing theme + dominant hue.** Two dark-plus-one-dark is not distinct. Aim for three color worlds, not three shades of the same.
+**Quando o eixo primário é cor ou tema, proíba o trio de compartilhar tema + matiz dominante.** Dois escuros-mais-um-escuro não é distinto. Mire em três mundos de cor, não três tons do mesmo.
 
-**For action-specific invocations**, each variant must vary along the dimension the action names:
+**Para invocações específicas de ação**, cada variante deve variar ao longo da dimensão que a ação nomeia:
 
-- `bolder`: amplify a different dimension per variant (scale / saturation / structural change). Not three "slightly bigger" variants.
-- `quieter`: pull back a different dimension (color / ornament / spacing).
-- `distill`: remove a different class of excess (visual noise / redundant content / nested structure).
-- `polish`: target a different refinement axis (rhythm / hierarchy / micro-details like corner radii, focus states, optical kerning).
-- `typeset`: different type pairing AND different scale ratio each. Not three riffs on one pairing.
-- `colorize`: different hue family each (not shades of one hue). Vary chroma and contrast strategy.
-- `layout`: different structural arrangement (stacked / side-by-side / grid / asymmetric). Not spacing tweaks.
-- `adapt`: different target context per variant (mobile-first / tablet / desktop / print or low-data). Don't make three mobile layouts.
-- `animate`: different motion vocabulary (cascade stagger / clip wipe / scale-and-focus / morph / parallax). Not three staggered fades.
-- `delight`: different flavor of personality (unexpected micro-interaction / typographic surprise / illustrated accent / sonic-or-haptic moment / easter-egg interaction).
-- `overdrive`: different convention broken (scale / structure / motion / input model / state transitions). Skip `overdrive.md`'s "propose and ask" step; live mode is non-interactive.
+- `bolder`: amplifique uma dimensão diferente por variante (escala / saturação / mudança estrutural). Não três variantes de "ligeiramente maior".
+- `quieter`: recue uma dimensão diferente (cor / ornamento / espaçamento).
+- `distill`: remova uma classe diferente de excesso (ruído visual / conteúdo redundante / estrutura aninhada).
+- `polish`: direcione um eixo de refinamento diferente (ritmo / hierarquia / micro-detalhes como raios de canto, estados de foco, kerning óptico).
+- `typeset`: type pairing diferente E razão de escala diferente cada. Não três variações sobre um pairing.
+- `colorize`: família de matiz diferente cada (não tons de um matiz). Varie chroma e estratégia de contraste.
+- `layout**: arranjo estrutural diferente (empilhado / lado a lado / grid / assimétrico). Não ajustes de espaçamento.
+- `adapt`: contexto alvo diferente por variante (mobile-first / tablet / desktop / print ou low-data). Não faça três layouts mobile.
+- `animate**: vocabulário de movimento diferente (cascade stagger / clip wipe / scale-and-focus / morph / parallax). Não três fades escalonados.
+- `delight`: sabor diferente de personalidade (micro-interação inesperada / surpresa tipográfica / acento ilustrado / momento sônico-ou-háptico / interação easter-egg).
+- `overdrive`: convenção diferente quebrada (escala / estrutura / movimento / modelo de input / transições de estado). Pule o passo "proponha e pergunte" do `overdrive.md`; modo live é não-interativo.
 
-### 5. Apply the freeform prompt (if present)
+### 5. Aplique o prompt livre (se presente)
 
-`event.freeformPrompt` is the user's ceiling on direction (all variants must honor it), but still explore meaningfully different *interpretations*. The interpretations stay within whichever mode you picked in Phase B.
+`event.freeformPrompt` é o teto do usuário sobre direção (todas as variantes devem honrá-lo), mas ainda explore *interpretações* significativamente diferentes. As interpretações permanecem dentro de qualquer modo que você escolheu na Fase B.
 
-In **default mode**, the prompt narrows the axes you choose, not the identity. *"Make it feel more confident"* → variant 1 amplifies hierarchy (one element commands the eye), variant 2 commits the existing accent color (Committed strategy on the brand's hue), variant 3 tightens density and removes decorative slack. Three different axes, same brand.
+No **modo padrão**, o prompt estreita os eixos que você escolhe, não a identidade. *"Faça parecer mais confiante"* → variante 1 amplifica hierarquia (um elemento comanda o olhar), variante 2 compromete a cor de destaque existente (estratégia Comprometida no matiz da marca), variante 3 aperta a densidade e remove folga decorativa. Três eixos diferentes, mesma marca.
 
-In **departure mode**, the prompt narrows the lanes you draw from, not the families. *"Make it feel like a newspaper front page"* would itself be a departure-mode prompt; honor it but pick three meaningfully different newspaper-adjacent lanes (broadsheet vs. tabloid vs. trade journal), and run the family pass to confirm they don't collapse into one.
+No **modo departure**, o prompt estreita as faixas de onde você tira, não as famílias. *"Faça parecer como a primeira página de um jornal"* seria em si um prompt de modo departure; honre-o mas escolha três faixas adjacentes a jornais significativamente diferentes (broadsheet vs. tabloid vs. trade journal), e execute a passagem de família para confirmar que não colapsam em uma.
 
-When the prompt and PRODUCT.md anti-references conflict (the prompt asks for X, the anti-references ban X), the anti-references win; they describe the brand's standing position, the prompt is one moment.
+Quando o prompt e anti-referências do PRODUCT.md conflitam (o prompt pede X, as anti-referências banem X), as anti-referências vencem; elas descrevem a posição estabelecida da marca, o prompt é um momento.
 
-### 6. Write all variants in a single edit
+### 6. Escreva todas as variantes em uma única edição
 
-Complete HTML replacement of the original element for each variant, not a CSS-only patch. Consider the element's context (computed styles, parent structure, CSS variables from `event.element`).
+Substituição HTML completa do elemento original para cada variante, não um patch apenas de CSS. Considere o contexto do elemento (estilos computados, estrutura pai, variáveis CSS de `event.element`).
 
-Write CSS + all variants in ONE edit at the `insertLine` reported by `wrap`. Colocate CSS as a `<style>` tag inside the variant wrapper; `<style>` works anywhere in modern browsers and this ensures CSS and HTML arrive atomically (no FOUC).
+Escreva CSS + todas as variantes em UMA edição na `insertLine` reportada por `wrap`. Coloque o CSS junto como uma tag `<style>` dentro do wrapper de variantes; `<style>` funciona em qualquer lugar em navegadores modernos e isto garante que CSS e HTML cheguem atomicamente (sem FOUC).
 
-Use the `cssAuthoring` object returned by `live-wrap.mjs` to author the temporary preview CSS. The style opening tag shown below is the common case; replace it with `cssAuthoring.styleTag` when the tool returns a different one. The variant markup shape is otherwise stable:
+Use o objeto `cssAuthoring` retornado por `live-wrap.mjs` para autorar o CSS de preview temporário. A tag de abertura de estilo mostrada abaixo é o caso comum; substitua-a por `cssAuthoring.styleTag` quando a ferramenta retornar uma diferente. A forma da marcação da variante é de resto estável:
 
 ```html
 <!-- Variants: insert below this line -->
@@ -254,15 +254,15 @@ Use the `cssAuthoring` object returned by `live-wrap.mjs` to author the temporar
 </div>
 ```
 
-**Each variant div contains exactly one top-level element: the full replacement for the original.** Use the same tag as the original (e.g. `<section>` if the user picked a `<section>`). Loose siblings (heading + paragraph + div as direct children of the variant div) break the outline tracking and the accept flow, which both assume one child.
+**Cada div de variante contém exatamente um elemento de nível superior: a substituição completa do original.** Use a mesma tag do original (ex.: `<section>` se o usuário selecionou uma `<section>`). Irmãos soltos (heading + paragraph + div como filhos diretos da div de variante) quebram o rastreamento de outline e o fluxo de accept, que ambos assumem um filho.
 
-The first variant has no `display: none` (visible by default). All others do. If variants use only inline styles and no preview CSS, omit the `<style>` tag entirely.
+A primeira variante não tem `display: none` (visível por padrão). Todas as outras têm. Se variantes usam apenas estilos inline e nenhum CSS de preview, omita a tag `<style>` inteiramente.
 
-One edit, all variants; the browser's MutationObserver picks everything up in one pass.
+Uma edição, todas as variantes; o MutationObserver do navegador capta tudo em uma passagem.
 
-For `styleMode: "scoped"`, author every `:scope` rule with a descendant combinator. The `@scope` boundary is the **variant wrapper `<div data-impeccable-variant="N">`**, not the element you're designing. A bare `:scope { background: cream; }` styles the wrapper, not the inner replacement, so the cream lands on a `display: contents` shell while the actual element keeps page defaults. Always step in: `:scope > .card`, `:scope > section`, `:scope .hero-title`, etc. The fake test agent's CSS in `tests/live-e2e/agent.mjs` is a faithful template; every scoped rule starts `:scope > ...`.
+Para `styleMode: "scoped"`, autore toda regra `:scope` com um combinador descendente. O limite do `@scope` é o **wrapper de variante `<div data-impeccable-variant="N">`**, não o elemento que você está projetando. Um `:scope { background: cream; }` simples estiliza o wrapper, não a substituição interna, então o cream pousa em uma shell com `display: contents` enquanto o elemento real mantém os padrões da página. Sempre entre um nível: `:scope > .card`, `:scope > section`, `:scope .hero-title`, etc. O CSS do agente de teste falso em `tests/live-e2e/agent.mjs` é um template fiel; toda regra scoped começa com `:scope > ...`.
 
-**JSX / TSX target files.** Wrap `<style>` content in a template literal so the CSS `{` / `}` aren't parsed as JSX expressions, and use `className=` / `style={{…}}` on every variant element. Keep `data-impeccable-*` attributes as-is; they're plain strings:
+**Arquivos alvo JSX / TSX.** Envolva o conteúdo de `<style>` em uma template literal para que as `{` / `}` do CSS não sejam parseadas como expressões JSX, e use `className=` / `style={{…}}` em cada elemento de variante. Mantenha os atributos `data-impeccable-*` como estão; são strings simples:
 
 ```tsx
 <style data-impeccable-css="SESSION_ID">{`
@@ -277,30 +277,30 @@ For `styleMode: "scoped"`, author every `:scope` rule with a descendant combinat
 </div>
 ```
 
-The wrap script already gives you a single-rooted JSX wrapper: a `<div data-impeccable-variants="…">` outer element with the marker comments tucked inside. Drop the variants block above into the "Variants: insert below this line" comment and the source stays valid TSX.
+O script wrap já dá a você um wrapper JSX de raiz única: um elemento externo `<div data-impeccable-variants="…">` com os comentários de marcação enfiados dentro. Solte o bloco de variantes acima no comentário "Variants: insert below this line" e o fonte permanece TSX válido.
 
-### 7. Parameters (composition-sized, 0–4 per variant)
+### 7. Parâmetros (tamanho de composição, 0–4 por variante)
 
-Each variant can expose **coarse** knobs alongside the full HTML/CSS replacement. The browser docks a small panel to the right of the outline with one control per parameter. The user drags/clicks and sees instant feedback: there is zero regeneration cost because the knob toggles a CSS variable or data attribute that the variant's scoped CSS is already authored against.
+Cada variante pode expor knobs **grossos** junto com a substituição HTML/CSS completa. O navegador ancora um pequeno painel à direita do outline com um controle por parâmetro. O usuário arrasta/clica e vê feedback instantâneo: não há custo de regeneração porque o knob alterna uma variável CSS ou atributo de dados contra o qual o CSS escopo da variante já foi autorado.
 
-**What “optional” does not mean.** Parameters are not nice-to-have decoration on large work. The word meant “omit controls that are redundant or cosmetic,” not “default to zero because three variants were enough work.”
+**O que "opcional" não significa.** Parâmetros não são decoração nice-to-have em trabalho grande. A palavra significava "omita controles que são redundantes ou cosméticos," não "use zero por padrão porque três variantes já foram trabalho suficiente."
 
-**When to add.** As soon as the variant’s scoped CSS has a meaningful continuous or stepped axis: density, color amount, type scale, motion intensity, column weight, and so on. If you can imagine the user muttering “a bit tighter” or “a touch more accent” **without** wanting a full regeneration, wire that axis. **Not** micro-margins or one-off nudges; those are not parameters.
+**Quando adicionar.** Assim que o CSS escopo da variante tem um eixo contínuo ou escalonado significativo: densidade, quantidade de cor, escala de tipo, intensidade de movimento, peso de coluna, e assim por diante. Se você consegue imaginar o usuário murmurando "um pouco mais justo" ou "um toque mais de destaque" **sem** querer uma regeneração completa, conecte aquele eixo. **Não** micro-margens ou empurrões pontuais; esses não são parâmetros.
 
-**Freeform (`action` is `impeccable`) bias.** You did not load a sub-command reference, so you must **choose** signature axes yourself. Match the budget table: for a hero or large composition, that means **2–3 axes per variant**, not 1. Prefer knobs that sit on the dimensions where your three variants actually differ (if density varies, expose it as a `steps` knob; if color commitment varies, expose it as a `range`). A hero that ships with **0** params is almost always a mistake, not a judgment call. A hero with exactly **1** param is underweight unless the design is genuinely a fixed-point comparison. Start from the budget table, not from zero.
+**Viés freeform (`action` é `impeccable`).** Você não carregou uma referência de sub-comando, então deve **escolher** eixos de assinatura você mesmo. Corresponda à tabela de orçamento: para um hero ou composição grande, isso significa **2–3 eixos por variante**, não 1. Prefira knobs que se situam nas dimensões onde suas três variantes realmente diferem (se densidade varia, exponha como knob `steps`; se comprometimento de cor varia, exponha como `range`). Um hero que sai com **0** params é quase sempre um erro, não uma decisão. Um hero com exatamente **1** param está abaixo do peso a menos que o design seja genuinamente uma comparação de ponto fixo. Comece da tabela de orçamento, não do zero.
 
-**Budget scales with the element's visual weight, not token budget.** Knobs need real estate to read as tunable; three sliders on a single control are noise.
+**O orçamento escala com o peso visual do elemento, não com o orçamento de tokens.** Knobs precisam de espaço para lerem como ajustáveis; três sliders em um controle único são ruído.
 
-- **Leaf / tiny**: a single button, icon, input, bare heading, solitary paragraph: **0 params.**
-- **Small composition**: labeled input, simple card, short callout (≤ ~5 visual children): **0–1** params when one dominant axis is obvious; otherwise **0.**
-- **Medium composition**: section component, nav cluster, dense card, short feature block (6–15 visual children): **target 2**; **1** is acceptable if the block is simple; **0** only when variants are truly fixed points.
-- **Large composition**: hero section, full page region, spread layout, strong internal structure (16+ visual children or multiple sub-sections): **target 2–3**; **up to 4** when several independent axes (e.g. structure `steps` + `density` + one accent) are all authored in scoped CSS.
+- **Folha / minúsculo**: um único botão, ícone, input, heading puro, parágrafo solitário: **0 params.**
+- **Composição pequena**: input com rótulo, card simples, callout curto (≤ ~5 filhos visuais): **0–1** params quando um eixo dominante é óbvio; caso contrário **0.**
+- **Composição média**: componente de seção, cluster de navegação, card denso, bloco de feature curto (6–15 filhos visuais): **meta 2**; **1** é aceitável se o bloco é simples; **0** apenas quando variantes são genuinamente pontos fixos.
+- **Composição grande**: seção hero, região de página inteira, layout spread, forte estrutura interna (16+ filhos visuais ou múltiplas sub-seções): **meta 2–3**; **até 4** quando vários eixos independentes (ex.: structure `steps` + `density` + um destaque) estão todos autorados no CSS escopo.
 
-**When in doubt, ask whether a dial exists before defaulting to zero.** The user can always request more variants, but the point of live mode is instant tuning without another Go. Crowding the panel is bad; **under-shipping** knobs on a dense composition is the more common failure for freeform. Count by **visual** children, not DOM depth; a shallow-but-wide hero is still large.
+**Na dúvida, pergunte se um dial existe antes de padronizar para zero.** O usuário sempre pode pedir mais variantes, mas o ponto do modo live é ajuste instantâneo sem outro Go. Lotar o painel é ruim; **sub-entregar** knobs em uma composição densa é a falha mais comum para freeform. Conte por filhos **visuais**, não profundidade DOM; um hero raso-mas-largo ainda é grande.
 
-**Hard cap per variant**: at most **four** parameters so the panel stays legible; rare fifth only if the reference explicitly allows it.
+**Limite máximo por variante**: no máximo **quatro** parâmetros para o painel permanecer legível; raro quinto apenas se a referência permite explicitamente.
 
-**How to declare.** Put a JSON manifest on the variant wrapper:
+**Como declarar.** Coloque um manifesto JSON no wrapper da variante:
 
 ```html
 <div data-impeccable-variant="1" data-impeccable-params='[
@@ -312,155 +312,155 @@ Each variant can expose **coarse** knobs alongside the full HTML/CSS replacement
   ]},
   {"id":"serif","kind":"toggle","default":false,"label":"Serif display"}
 ]'>
-  ...variant content...
+  ...conteúdo da variante...
 </div>
 ```
 
-**Three kinds:**
+**Três tipos:**
 
-- `range`: smooth slider. Drives a CSS custom property `--p-<id>` on the variant wrapper. Author CSS with `var(--p-color-amount, 0.5)`. Fields: `min`, `max`, `step`, `default` (number), `label`.
-- `steps`: segmented radio. Drives a data attribute `data-p-<id>` on the variant wrapper. Author CSS with `:scope[data-p-density="airy"] .grid { ... }`. Fields: `options` (array of `{value, label}`), `default` (string), `label`.
-- `toggle`: on/off switch. Drives BOTH a CSS var (`--p-<id>: 0|1`) and a data attribute (present when on, absent when off). Use whichever is more convenient. Fields: `default` (boolean), `label`.
+- `range`: slider suave. Direciona uma custom property CSS `--p-<id>` no wrapper da variante. Autore CSS com `var(--p-color-amount, 0.5)`. Campos: `min`, `max`, `step`, `default` (número), `label`.
+- `steps`: radio segmentado. Direciona um atributo de dados `data-p-<id>` no wrapper da variante. Autore CSS com `:scope[data-p-density="airy"] .grid { ... }`. Campos: `options` (array de `{value, label}`), `default` (string), `label`.
+- `toggle`: interruptor liga/desliga. Direciona AMBOS uma var CSS (`--p-<id>: 0|1`) e um atributo de dados (presente quando ligado, ausente quando desligado). Use o que for mais conveniente. Campos: `default` (booleano), `label`.
 
-**Signature params per action.** For named sub-commands, read that action’s `reference/<action>.md` for one or two **MUST** params (e.g. `layout` → `density`). Those are non-negotiable when the design can express them. **Freeform has no file-level MUST**; the **Freeform (`impeccable`) bias** in this section is the stand-in. If the user’s action is both stylized and sub-command (e.g. `colorize`), the sub-command’s MUST list takes precedence for its axes; still respect the **Hard cap** and add no redundant duplicate knobs.
+**Parâmetros de assinatura por ação.** Para sub-comandos nomeados, leia o `reference/<action>.md` daquela ação para um ou dois parâmetros **OBRIGATÓRIOS** (ex.: `layout` → `density`). Esses são inegociáveis quando o design pode expressá-los. **Freeform não tem OBRIGATÓRIO em nível de arquivo**; o **Viés Freeform (`impeccable`)** nesta seção é o substituto. Se a ação do usuário é tanto estilizada quanto sub-comando (ex.: `colorize`), a lista OBRIGATÓRIA do sub-comando tem precedência para seus eixos; ainda respeite o **Limite máximo** e não adicione knobs duplicados redundantes.
 
-**Reset on variant switch.** User dials density on v1, flips to v2, v2 starts at v2's declared defaults. Known limitation; preservation across variants may land later.
+**Reset na troca de variante.** Usuário ajusta densidade na v1, troca para v2, v2 começa nos defaults declarados de v2. Limitação conhecida; preservação entre variantes pode chegar depois.
 
-**On accept**, the browser sends the user's current values in the accept event. `live-accept.mjs` writes them as a sibling comment:
+**No accept**, o navegador envia os valores atuais do usuário no evento de accept. `live-accept.mjs` os escreve como um comentário irmão:
 
 ```html
 <!-- impeccable-param-values SESSION_ID: {"color-amount":0.7,"density":"packed"} -->
 ```
 
-The carbonize cleanup step (see below) reads that comment and bakes the chosen values into the final CSS. For `steps`/`toggle` attribute selectors: keep only the branch matching the chosen value, drop the others, collapse `:scope[data-p-density="packed"] .grid` to a semantic class rule. For `range` vars: either substitute the literal or keep the var with the chosen value as its new default.
+O passo de limpeza de carbonize (veja abaixo) lê aquele comentário e incorpora os valores escolhidos no CSS final. Para seletores de atributo `steps`/`toggle`: mantenha apenas o ramo correspondendo ao valor escolhido, descarte os outros, colapse `:scope[data-p-density="packed"] .grid` para uma regra de classe semântica. Para vars `range`: substitua o literal ou mantenha a var com o valor escolhido como seu novo default.
 
-### 8. Signal done
-
-```bash
-node .claude/skills/impeccable/scripts/live-poll.mjs --reply EVENT_ID done --file RELATIVE_PATH
-```
-
-`RELATIVE_PATH` is relative to project root (`public/index.html`, `src/App.tsx`, etc.); the browser fetches source directly if the dev server lacks HMR.
-
-Then run `live-poll.mjs` again immediately.
-
-### Aborting an in-flight session
-
-If wrap or generation fails after the browser has flipped to GENERATING (e.g. wrap landed on the wrong source branch and you've already reverted it, or generation hit an unrecoverable error), tell the **browser** so its bar resets to PICKING:
+### 8. Sinalize conclusão
 
 ```bash
-node .claude/skills/impeccable/scripts/live-poll.mjs --reply EVENT_ID error "Short reason"
+node {{scripts_path}}/live-poll.mjs --reply EVENT_ID done --file RELATIVE_PATH
 ```
 
-Don't run `live-accept --discard` for this; that's a pure file mutator, the browser doesn't see it, and the bar gets stuck on the GENERATING dots forever (the user has to refresh). `--discard` is only correct when the **browser** initiated the discard (user clicked ✕ during CYCLING) and the agent is just running source-side cleanup the browser already triggered.
+`RELATIVE_PATH` é relativo à raiz do projeto (`public/index.html`, `src/App.tsx`, etc.); o navegador busca o fonte diretamente se o dev server não tem HMR.
 
-## Handle fallback
+Depois execute `live-poll.mjs` novamente imediatamente.
 
-When wrap returns `fallback: "agent-driven"`, the deterministic flow doesn't apply. Pick up here.
+### Abortando uma sessão em andamento
 
-The goal is the same: give the user three variants to choose from AND persist the accepted one in a place the next build won't wipe. The difference is that you have to pick the right source file yourself.
-
-### Step 1: Identify where the element actually lives
-
-Use the error payload:
-
-- `element_not_in_source` with `generatedMatch: "public/docs/foo.html"`: the served HTML is generated. Find the generator (grep for writers of that path, e.g. `scripts/build-sub-pages.js`, an Astro/Next template) and locate the template or partial that emits this element.
-- `element_not_found`: the element is runtime-injected. Look for the component that renders it (React/Vue/Svelte), the JS that assembles it, or the data source that feeds it.
-- `file_is_generated` with `file: "..."`: user pointed at a generated file explicitly. Same resolution as `element_not_in_source`.
-
-Read the candidate source until you're confident where a change to the element would belong. If the change is purely visual, that source might be a shared stylesheet, not the template.
-
-### Step 2: Show three variants in the DOM for preview
-
-The browser bar is waiting for variants. Even without a wrapper in source, you still need to show something:
-
-1. Manually write the wrapper scaffold into the **served** file (the one the browser actually loaded). Use the same structure `live-wrap.mjs` produces; `<!-- impeccable-variants-start ID --><div data-impeccable-variants="ID" data-impeccable-variant-count="3" style="display: contents">…</div><!-- end -->`.
-2. Insert your three variant divs inside it, same shape as the deterministic path.
-3. Signal done with `--reply EVENT_ID done --file <served file>`. The browser's no-HMR fallback will fetch and inject.
-
-This served-file edit is **temporary**: next regen wipes it, and that's fine. The real work happens on accept.
-
-### Step 3: On accept, write to true source
-
-When the accept event arrives (`_acceptResult.handled` will usually be `false` here because accept also refuses to persist into generated files; see Handle accept for the carbonize branch), extract the accepted variant's content and write it into the source you identified in Step 1:
-
-- Structural change → edit the template / component source.
-- Visual-only change → add or update rules in the appropriate stylesheet; remove the inline `<style>` scope.
-- Dynamic from data → update the data source or the render logic.
-
-Then remove the temporary wrapper from the served file if it's still there.
-
-### Step 4: On discard, clean up the served file
-
-Remove the wrapper you inserted in Step 2. Nothing else to do.
-
-## Handle `accept`
-
-Event: `{id, variantId, _acceptResult, _completionAck}`. The poll script already ran `live-accept.mjs` to handle the file operation deterministically, then acknowledged event delivery to the helper. The browser DOM is already updated.
-
-- `_completionAck.ok !== true`: do not poll yet. Run `live-status.mjs` / `live-resume.mjs`, complete the cleanup manually if needed, then run `live-complete.mjs --id EVENT_ID`.
-- `_acceptResult.handled: true` and `carbonize: false`: nothing to do. Poll again.
-- `_acceptResult.handled: true` and `carbonize: true`: **post-accept cleanup is required before the next poll.** See the "Required after accept (carbonize)" section below. The `event._acceptResult.todo` field, `_completionAck.requiresComplete`, and a stderr banner all point at this required follow-up; none are decorative. After cleanup, run `live-complete.mjs --id EVENT_ID`, then poll again.
-- `_acceptResult.handled: false, mode: "fallback"`: the session lived in a generated file and the script refused to persist there. You've already written the accepted variant into true source during Handle fallback Step 3; just clean up the temporary wrapper in the served file if any, and poll again.
-- `_acceptResult.handled: false` without `mode`: manual cleanup: read file, find markers, edit.
-
-### Required after accept (carbonize)
-
-When `_acceptResult.carbonize === true`, the accepted variant was stitched into source with helper markers and inline CSS so the browser can render it immediately with no visual gap. That stitch-in is **temporary**. The agent must rewrite it into permanent form before doing anything else. Skipping this leaves dead `@scope` rules for unaccepted variants, a pointless `data-impeccable-variant` wrapper, and `impeccable-carbonize-start/end` comment noise in the source file; all of which accumulate across sessions.
-
-Do these five steps in the current thread, synchronously, before the next poll. Do not poll again until the file is clean.
-
-1. **Locate the carbonize block** in the source file (`_acceptResult.file`). It's bracketed by `<!-- impeccable-carbonize-start SESSION_ID -->` and `<!-- impeccable-carbonize-end SESSION_ID -->` and contains a `<style data-impeccable-css="SESSION_ID">` element. If the variant declared parameters, an `<!-- impeccable-param-values SESSION_ID: {...} -->` comment sits alongside the style tag with the user's chosen values; read it first; it drives steps 3 and 4 below.
-2. **Move the CSS rules** into the project's real stylesheet. Which stylesheet depends on the project (e.g. `site/styles/workflow.css` for an Astro project, or the component's co-located CSS file for a Vite/Next project; pick whichever already owns styling for the surrounding element).
-3. **Bake in parameter values while rewriting selectors.** For `@scope ([data-impeccable-variant="N"])` wrappers: retarget to real, semantic classes on the accepted HTML (`.why-visual--v2 .v2-label { … }`). For `:scope[data-p-<id>="VALUE"]` selectors: keep only the branch matching the chosen value from the param-values comment; drop the others (they're dead after accept). For `var(--p-<id>, DEFAULT)` in the CSS: either substitute the literal value, or if the param is still useful as a knob going forward, leave the var and update its initial declaration to the chosen value.
-4. **Unwrap the accepted content.** Delete the `<div data-impeccable-variant="N" style="display: contents">` that wraps it. Drop `data-impeccable-params` and any `data-p-*` attributes from it; those are live-mode plumbing, not source.
-5. **Delete the inline `<style>` block, the `<!-- impeccable-param-values -->` comment if present, and both `<!-- impeccable-carbonize-start/end -->` markers.** Also drop any `@scope` rules for variants other than the accepted one; those are dead code now.
-
-After the file is clean, run `live-complete.mjs --id SESSION_ID`, verify it reports `phase: "completed"`, then poll again.
-
-A background agent may be used for the rewrite, but the current thread is responsible for verifying the five steps are complete before issuing the next poll. In practice, inline is usually faster and less error-prone.
-
-## Handle `discard`
-
-Event: `{id, _acceptResult, _completionAck}`. The poll script already restored the original, removed all variant markers, and acknowledged `discarded` durable completion. Nothing to do unless `_completionAck.ok !== true`; in that case run `live-complete.mjs --id EVENT_ID --discarded`, then poll again.
-
-## Handle `prefetch`
-
-Event: `{pageUrl}`. The browser fires this the first time the user selects an element on a given route, as a latency shortcut; it signals the user is likely about to Go on a page you haven't read yet.
-
-Resolve `pageUrl` to the underlying file:
-
-- Root `/` → the `pageFile` returned by `live.mjs` (usually `public/index.html` or equivalent).
-- Sub-routes (e.g. `/docs`, `/docs/live`) → the generated or source file for that route. Use your knowledge of the project layout (multi-page static sites often resolve `/foo` → `public/foo/index.html`; SPAs may map all routes to a single entry).
-
-Read the file into context, then poll again. No `--reply`: this is speculative pre-work; Go will come later. If you can't confidently resolve the route to a file, skip and poll again.
-
-Dedupe is the browser's job (one prefetch per unique pathname per session); trust it. If the same file shows up twice from different routes mapping to the same file, the second Read is cached anyway.
-
-## Exit
-
-The user can stop live mode by:
-- Saying "stop live mode" / "exit live" in chat
-- Closing the browser tab (SSE drops, poll returns `exit` after 8s)
-- The browser's exit button
-
-When the poll returns `exit`, proceed to cleanup. If the poll is still running as a background task, kill it first.
-
-## Cleanup
+Se wrap ou geração falhar após o navegador ter mudado para GENERATING (ex.: wrap pousou na ramificação fonte errada e você já reverteu, ou a geração atingiu um erro irrecuperável), diga ao **navegador** para que sua barra resete para PICKING:
 
 ```bash
-node .claude/skills/impeccable/scripts/live-server.mjs stop
+node {{scripts_path}}/live-poll.mjs --reply EVENT_ID error "Short reason"
 ```
 
-Stops the HTTP server and runs `live-inject.mjs --remove` to strip `localhost:…/live.js` from the HTML entry. To stop the server but keep the inject tag (for a quick restart), use `stop --keep-inject`. `.impeccable/live/config.json` persists as project config for future sessions.
+Não execute `live-accept --discard` para isso; isso é um mutador de arquivo puro, o navegador não vê, e a barra fica presa nos pontos de GENERATING para sempre (o usuário precisa atualizar). `--discard` é correto apenas quando o **navegador** iniciou o descarte (usuário clicou ✕ durante CYCLING) e o agente está apenas executando limpeza do lado do fonte que o navegador já acionou.
 
-Then:
-- Remove any leftover variant wrappers (search for `impeccable-variants-start` markers).
-- Remove any leftover carbonize blocks (search for `impeccable-carbonize-start` markers).
+## Tratar fallback
 
-## First-time setup (config missing or invalid)
+Quando wrap retorna `fallback: "agent-driven"`, o fluxo determinístico não se aplica. Continue aqui.
 
-If `live.mjs` outputs `{ ok: false, error: "config_missing" | "config_invalid", path }`, write the live config at the reported path. By default this is `.impeccable/live/config.json`.
+O objetivo é o mesmo: dar ao usuário três variantes para escolher E persistir a aceita em um lugar que o próximo build não vai apagar. A diferença é que você tem que escolher o arquivo fonte certo você mesmo.
+
+### Passo 1: Identifique onde o elemento realmente vive
+
+Use a carga do erro:
+
+- `element_not_in_source` com `generatedMatch: "public/docs/foo.html"`: o HTML servido é gerado. Encontre o gerador (grep por escritores daquele caminho, ex.: `scripts/build-sub-pages.js`, um template Astro/Next) e localize o template ou partial que emite este elemento.
+- `element_not_found`: o elemento é injetado em runtime. Procure o componente que o renderiza (React/Vue/Svelte), o JS que o monta, ou a fonte de dados que o alimenta.
+- `file_is_generated` com `file: "..."`: usuário apontou para um arquivo gerado explicitamente. Mesma resolução que `element_not_in_source`.
+
+Leia o fonte candidato até ter confiança de onde uma mudança ao elemento pertenceria. Se a mudança é puramente visual, aquele fonte pode ser uma stylesheet compartilhada, não o template.
+
+### Passo 2: Mostre três variantes no DOM para preview
+
+A barra do navegador está esperando por variantes. Mesmo sem um wrapper no fonte, você ainda precisa mostrar algo:
+
+1. Escreva manualmente o scaffold do wrapper no arquivo **servido** (aquele que o navegador realmente carregou). Use a mesma estrutura que `live-wrap.mjs` produz; `<!-- impeccable-variants-start ID --><div data-impeccable-variants="ID" data-impeccable-variant-count="3" style="display: contents">…</div><!-- end -->`.
+2. Insira suas três divs de variante dentro dele, mesma forma do caminho determinístico.
+3. Sinalize conclusão com `--reply EVENT_ID done --file <arquivo servido>`. O fallback sem HMR do navegador vai buscar e injetar.
+
+Esta edição no arquivo servido é **temporária**: a próxima regeneração a apaga, e isso é aceitável. O trabalho real acontece no accept.
+
+### Passo 3: No accept, escreva no fonte verdadeiro
+
+Quando o evento de accept chegar (`_acceptResult.handled` será geralmente `false` aqui porque accept também se recusa a persistir em arquivos gerados; veja Tratar accept para o ramo carbonize), extraia o conteúdo da variante aceita e escreva-o no fonte que você identificou no Passo 1:
+
+- Mudança estrutural → edite o template / fonte do componente.
+- Mudança apenas visual → adicione ou atualize regras na stylesheet apropriada; remova o escopo `<style>` inline.
+- Dinâmico a partir de dados → atualize a fonte de dados ou a lógica de render.
+
+Depois remova o wrapper temporário do arquivo servido se ainda estiver lá.
+
+### Passo 4: No discard, limpe o arquivo servido
+
+Remova o wrapper que você inseriu no Passo 2. Nada mais a fazer.
+
+## Tratar `accept`
+
+Evento: `{id, variantId, _acceptResult, _completionAck}`. O script de poll já executou `live-accept.mjs` para lidar com a operação de arquivo deterministicamente, depois reconheceu a entrega do evento ao helper. O DOM do navegador já está atualizado.
+
+- `_completionAck.ok !== true`: não faça poll ainda. Execute `live-status.mjs` / `live-resume.mjs`, complete a limpeza manualmente se necessário, depois execute `live-complete.mjs --id EVENT_ID`.
+- `_acceptResult.handled: true` e `carbonize: false`: nada a fazer. Faça poll novamente.
+- `_acceptResult.handled: true` e `carbonize: true`: **limpeza pós-accept é necessária antes do próximo poll.** Veja a seção "Obrigatório após accept (carbonize)" abaixo. O campo `event._acceptResult.todo`, `_completionAck.requiresComplete`, e um banner stderr todos apontam para este acompanhamento necessário; nenhum é decorativo. Após a limpeza, execute `live-complete.mjs --id EVENT_ID`, depois faça poll novamente.
+- `_acceptResult.handled: false, mode: "fallback"`: a sessão vivia em um arquivo gerado e o script se recusou a persistir lá. Você já escreveu a variante aceita no fonte verdadeiro durante Tratar fallback Passo 3; apenas limpe o wrapper temporário no arquivo servido se houver, e faça poll novamente.
+- `_acceptResult.handled: false` sem `mode`: limpeza manual: leia o arquivo, encontre marcadores, edite.
+
+### Obrigatório após accept (carbonize)
+
+Quando `_acceptResult.carbonize === true`, a variante aceita foi costurada no fonte com marcadores do helper e CSS inline para que o navegador possa renderizá-la imediatamente sem gap visual. Aquela costura é **temporária**. O agente deve reescrevê-la em forma permanente antes de fazer qualquer outra coisa. Pular isso deixa regras `@scope` mortas para variantes não aceitas, um wrapper `data-impeccable-variant` sem propósito, e ruído de comentários `impeccable-carbonize-start/end` no arquivo fonte; todos os quais se acumulam entre sessões.
+
+Faça estes cinco passos na thread atual, sincronamente, antes do próximo poll. Não faça poll novamente até o arquivo estar limpo.
+
+1. **Localize o bloco carbonize** no arquivo fonte (`_acceptResult.file`). Ele está delimitado por `<!-- impeccable-carbonize-start SESSION_ID -->` e `<!-- impeccable-carbonize-end SESSION_ID -->` e contém um elemento `<style data-impeccable-css="SESSION_ID">`. Se a variante declarou parâmetros, um comentário `<!-- impeccable-param-values SESSION_ID: {...} -->` fica ao lado da tag style com os valores escolhidos pelo usuário; leia-o primeiro; ele orienta os passos 3 e 4 abaixo.
+2. **Mova as regras CSS** para a stylesheet real do projeto. Qual stylesheet depende do projeto (ex.: `site/styles/workflow.css` para um projeto Astro, ou o arquivo CSS co-localizado do componente para um projeto Vite/Next; escolha aquele que já é dono do estilo do elemento circundante).
+3. **Incorpore os valores dos parâmetros ao reescrever seletores.** Para wrappers `@scope ([data-impeccable-variant="N"])`: redirecione para classes semânticas reais no HTML aceito (`.why-visual--v2 .v2-label { … }`). Para seletores `:scope[data-p-<id>="VALUE"]`: mantenha apenas o ramo correspondendo ao valor escolhido do comentário param-values; descarte os outros (estão mortos após o accept). Para `var(--p-<id>, DEFAULT)` no CSS: substitua o valor literal, ou se o param ainda é útil como knob adiante, deixe a var e atualize sua declaração inicial para o valor escolhido.
+4. **Desembrulhe o conteúdo aceito.** Delete o `<div data-impeccable-variant="N" style="display: contents">` que o envolve. Remova `data-impeccable-params` e quaisquer atributos `data-p-*` dele; esses são infraestrutura do modo live, não fonte.
+5. **Delete o bloco `<style>` inline, o comentário `<!-- impeccable-param-values -->` se presente, e ambos os marcadores `<!-- impeccable-carbonize-start/end -->`.** Também descarte quaisquer regras `@scope` para variantes que não a aceita; essas são código morto agora.
+
+Após o arquivo estar limpo, execute `live-complete.mjs --id SESSION_ID`, verifique se reporta `phase: "completed"`, depois faça poll novamente.
+
+Um agente em background pode ser usado para a reescrita, mas a thread atual é responsável por verificar se os cinco passos estão completos antes de emitir o próximo poll. Na prática, inline é geralmente mais rápido e menos propenso a erros.
+
+## Tratar `discard`
+
+Evento: `{id, _acceptResult, _completionAck}`. O script de poll já restaurou o original, removeu todos os marcadores de variante, e reconheceu a conclusão durável `discarded`. Nada a fazer a menos que `_completionAck.ok !== true`; nesse caso execute `live-complete.mjs --id EVENT_ID --discarded`, depois faça poll novamente.
+
+## Tratar `prefetch`
+
+Evento: `{pageUrl}`. O navegador dispara isto na primeira vez que o usuário seleciona um elemento em uma dada rota, como atalho de latência; sinaliza que o usuário provavelmente vai Go em uma página que você ainda não leu.
+
+Resolva `pageUrl` para o arquivo subjacente:
+
+- Raiz `/` → o `pageFile` retornado por `live.mjs` (geralmente `public/index.html` ou equivalente).
+- Sub-rotas (ex.: `/docs`, `/docs/live`) → o arquivo gerado ou fonte para aquela rota. Use seu conhecimento do layout do projeto (sites estáticos multi-página frequentemente resolvem `/foo` → `public/foo/index.html`; SPAs podem mapear todas as rotas para uma única entrada).
+
+Leia o arquivo para o contexto, depois faça poll novamente. Sem `--reply`: este é pré-trabalho especulativo; Go virá depois. Se não conseguir resolver com confiança a rota para um arquivo, pule e faça poll novamente.
+
+Dedupe é trabalho do navegador (um prefetch por pathname único por sessão); confie nele. Se o mesmo arquivo aparece duas vezes de rotas diferentes mapeando para o mesmo arquivo, o segundo Read está em cache de qualquer forma.
+
+## Saída
+
+O usuário pode parar o modo live:
+- Dizendo "stop live mode" / "exit live" no chat
+- Fechando a aba do navegador (SSE cai, poll retorna `exit` após 8s)
+- O botão de saída do navegador
+
+Quando o poll retorna `exit`, prossiga para limpeza. Se o poll ainda está rodando como tarefa em background, mate-o primeiro.
+
+## Limpeza
+
+```bash
+node {{scripts_path}}/live-server.mjs stop
+```
+
+Para o servidor HTTP e executa `live-inject.mjs --remove` para remover `localhost:…/live.js` da entrada HTML. Para parar o servidor mas manter a tag de injeção (para um reinício rápido), use `stop --keep-inject`. `.impeccable/live/config.json` persiste como configuração do projeto para sessões futuras.
+
+Depois:
+- Remova quaisquer wrappers de variante restantes (busque por marcadores `impeccable-variants-start`).
+- Remova quaisquer blocos carbonize restantes (busque por marcadores `impeccable-carbonize-start`).
+
+## Configuração inicial (config ausente ou inválida)
+
+Se `live.mjs` exibe `{ ok: false, error: "config_missing" | "config_invalid", path }`, escreva a configuração live no caminho reportado. Por padrão este é `.impeccable/live/config.json`.
 
 Schema:
 
@@ -474,35 +474,35 @@ Schema:
 }
 ```
 
-`files` is the inject target; **the HTML files the browser actually loads**, not necessarily source. Each entry is either a literal path (`"public/index.html"`) or a glob pattern (`"public/**/*.html"`). Tracked or generated doesn't matter here; wrap has its own generated-file guard and routes accepts through the fallback flow.
+`files` é o alvo de injeção; **os arquivos HTML que o navegador realmente carrega**, não necessariamente o fonte. Cada entrada é um caminho literal (`"public/index.html"`) ou um padrão glob (`"public/**/*.html"`). Rastreado ou gerado não importa aqui; wrap tem sua própria guarda de arquivo gerado e rotas aceita através do fluxo de fallback.
 
-`exclude` (optional) is a list of glob patterns matching files to skip, even if a `files` glob would have included them. Use for email templates, demo fixtures, or any HTML that isn't a live page.
+`exclude` (opcional) é uma lista de padrões glob correspondendo a arquivos para pular, mesmo se um glob de `files` os teria incluído. Use para templates de email, fixtures de demo, ou qualquer HTML que não é uma página live.
 
-`cspChecked` tracks whether the CSP detection step below has already run. Absent on first setup; set to `true` after CSP is checked (whether patched, declined, or not needed).
+`cspChecked` rastreia se o passo de detecção CSP abaixo já foi executado. Ausente na primeira configuração; defina como `true` após CSP ser verificado (seja corrigido, recusado, ou não necessário).
 
-**Hard-excluded paths (cannot be overridden).** `**/node_modules/**` and `**/.git/**` are never matched regardless of what the user writes. These are vendor/metadata directories and injecting into them would silently instrument third-party code.
+**Caminhos hard-excluded (não podem ser sobrescritos).** `**/node_modules/**` e `**/.git/**` nunca são correspondidos independentemente do que o usuário escrever. Estes são diretórios de vendor/metadata e injetar neles seria instrumentar código de terceiros silenciosamente.
 
-**Glob syntax.** `**` matches any number of path segments (including zero), `*` matches any characters except `/`, `?` matches a single character except `/`. Paths are always relative to the project root with forward slashes.
+**Sintaxe de glob.** `**` corresponde a qualquer número de segmentos de caminho (incluindo zero), `*` corresponde a quaisquer caracteres exceto `/`, `?` corresponde a um único caractere exceto `/`. Caminhos são sempre relativos à raiz do projeto com barras invertidas.
 
 | Framework | `files` | `insertBefore` | `commentSyntax` |
 |-----------|---------|----------------|-----------------|
-| SPA with single shell (Vite / React / Plain HTML) | `["index.html"]` | `</body>` | `html` |
+| SPA com shell único (Vite / React / Plain HTML) | `["index.html"]` | `</body>` | `html` |
 | Next.js (App Router) | `["app/layout.tsx"]` | `</body>` | `jsx` |
 | Next.js (Pages) | `["pages/_document.tsx"]` | `</body>` | `jsx` |
 | Nuxt | `["app.vue"]` | `</body>` | `html` |
 | Svelte / SvelteKit | `["src/app.html"]` | `</body>` | `html` |
 | Astro | `[" <root layout .astro>"]` | `</body>` | `html` |
-| Multi-page (separate HTML per route) | `["public/**/*.html"]`: a glob covering the served directory | `</body>` | `html` |
+| Multi-página (HTML separado por rota) | `["public/**/*.html"]`: um glob cobrindo o diretório servido | `</body>` | `html` |
 
-Pick an anchor that exists in every file (`</body>` almost always works). Use `insertAfter` if the anchor should match **after** a specific line.
+Escolha uma âncora que exista em todo arquivo (`</body>` quase sempre funciona). Use `insertAfter` se a âncora deve corresponder **após** uma linha específica.
 
-For multi-page sites, **prefer a glob over a literal file list**. New pages added later are picked up automatically on the next `live-inject.mjs` run; no config maintenance needed.
+Para sites multi-página, **prefira um glob a uma lista literal de arquivos**. Novas páginas adicionadas depois são captadas automaticamente na próxima execução de `live-inject.mjs`; sem manutenção de config.
 
-For multi-page sites whose pages are *rebuilt* by a generator (Astro, static-site generators, custom scripts like `build-sub-pages.js`), the inject survives only until the next regeneration. Re-run `live.mjs` after each build. Accept is unaffected; it writes to true source via the fallback flow.
+Para sites multi-página cujas páginas são *reconstruídas* por um gerador (Astro, static-site generators, scripts customizados como `build-sub-pages.js`), a injeção sobrevive apenas até a próxima regeneração. Re-execute `live.mjs` após cada build. Accept não é afetado; escreve no fonte verdadeiro via fluxo de fallback.
 
-### Drift-heal warning
+### Aviso de drift-heal
 
-On every `live.mjs` boot, after inject, the project is scanned for HTML files under common page-source roots (`public/`, `src/`, `app/`, `pages/`). If any exist that aren't covered by the resolved `files` list, the output includes a `configDrift` field:
+A cada inicialização de `live.mjs`, após injeção, o projeto é escaneado por arquivos HTML sob raízes comuns de fonte de páginas (`public/`, `src/`, `app/`, `pages/`). Se algum existir que não está coberto pela lista `files` resolvida, a saída inclui um campo `configDrift`:
 
 ```json
 {
@@ -517,61 +517,61 @@ On every `live.mjs` boot, after inject, the project is scanned for HTML files un
 }
 ```
 
-When `configDrift` is present, surface it to the user once per session before entering the poll loop:
+Quando `configDrift` está presente, apresente-o ao usuário uma vez por sessão antes de entrar no loop de poll:
 
-> Noticed N HTML file(s) in the project that aren't in `config.files`:
+> Notei N arquivo(s) HTML no projeto que não estão em `config.files`:
 >
 > - `public/new-section/index.html`
 > - `public/docs/new-command.html`
 >
-> Add them, or switch `files` to a glob like `["public/**/*.html"]` and let it track new pages automatically?
+> Adicione-os, ou mude `files` para um glob como `["public/**/*.html"]` e deixe rastrear novas páginas automaticamente?
 
-Don't auto-update the config; let the user decide. `configDrift` is `null` when there's no drift.
+Não atualize a config automaticamente; deixe o usuário decidir. `configDrift` é `null` quando não há drift.
 
-### CSP detection (first-time only)
+### Detecção de CSP (apenas na primeira vez)
 
-If `config.cspChecked === true`, skip this entire section. You already asked this user once; the answer sticks.
+Se `config.cspChecked === true`, pule esta seção inteira. Você já perguntou a este usuário uma vez; a resposta permanece.
 
-Otherwise, run the detection helper:
+Caso contrário, execute o helper de detecção:
 
 ```bash
-node .claude/skills/impeccable/scripts/detect-csp.mjs
+node {{scripts_path}}/detect-csp.mjs
 ```
 
-Output: `{ shape, signals }` where `shape` is one of `append-arrays`, `append-string`, `middleware`, `meta-tag`, or `null`. The shape is named by *patch mechanism*, so one template covers many frameworks.
+Saída: `{ shape, signals }` onde `shape` é um de `append-arrays`, `append-string`, `middleware`, `meta-tag`, ou `null`. O shape é nomeado pelo *mecanismo de patch*, então um template cobre muitos frameworks.
 
-- **`null`**: no CSP; skip to writing `.impeccable/live/config.json` with `cspChecked: true`.
-- **`append-arrays`**: CSP defined as structured directive arrays. Auto-patchable. See *append-arrays* below. Covers:
-  - Monorepo helpers with `additionalScriptSrc` / `additionalConnectSrc` options (Next.js + shared config package)
-  - SvelteKit `kit.csp.directives`
-  - Nuxt `nuxt-security` module's `contentSecurityPolicy`
-- **`append-string`**: CSP written as a literal value string. Auto-patchable. See *append-string* below. Covers:
-  - Inline `next.config.*` `headers()` with a CSP literal
-  - Nuxt `routeRules` / `nitro.routeRules` headers
-- **`middleware`** or **`meta-tag`**: rarer. Detected but not auto-patched in v1. Show the user the detected files and ask them to add `http://localhost:8400` to `script-src` and `connect-src` manually, then mark `cspChecked: true` and proceed.
+- **`null`**: sem CSP; pule para escrever `.impeccable/live/config.json` com `cspChecked: true`.
+- **`append-arrays`**: CSP definida como arrays de diretivas estruturadas. Auto-patcheável. Veja *append-arrays* abaixo. Cobre:
+  - Helpers de monorepo com opções `additionalScriptSrc` / `additionalConnectSrc` (Next.js + pacote de config compartilhado)
+  - `kit.csp.directives` do SvelteKit
+  - Módulo `nuxt-security` do Nuxt com `contentSecurityPolicy`
+- **`append-string`**: CSP escrita como string de valor literal. Auto-patcheável. Veja *append-string* abaixo. Cobre:
+  - `headers()` inline em `next.config.*` com um literal CSP
+  - Headers de `routeRules` / `nitro.routeRules` do Nuxt
+- **`middleware`** ou **`meta-tag`**: mais raros. Detectados mas não auto-patcheados na v1. Mostre ao usuário os arquivos detectados e peça para adicionar `http://localhost:8400` a `script-src` e `connect-src` manualmente, depois marque `cspChecked: true` e prossiga.
 
-#### Consent prompt template
+#### Template de prompt de consentimento
 
-Use this phrasing so the experience is consistent across agents:
+Use esta formulação para que a experiência seja consistente entre agentes:
 
-> **CSP patch needed.** I detected a Content Security Policy in your project that blocks `http://localhost:8400`: the live picker won't load without an allowance. Here's the change I'd make:
+> **Patch de CSP necessário.** Detectei uma Content Security Policy no seu projeto que bloqueia `http://localhost:8400`: o seletor live não carrega sem uma permissão. Aqui está a mudança que eu faria:
 >
 > ```diff
 > [file: <patchTarget>]
-> [exact diff, 2–5 lines]
+> [diff exato, 2–5 linhas]
 > ```
 >
-> It's guarded by `NODE_ENV === "development"` so the extra entry only appears in dev and never reaches production. You can remove it any time by reverting this file. Apply? [y/n]
+> Está protegido por `NODE_ENV === "development"` então a entrada extra aparece apenas em dev e nunca chega à produção. Você pode removê-la a qualquer momento revertendo este arquivo. Aplicar? [s/n]
 
-On "no": skip the patch, mention live won't work until the user adds the allowance manually, still write `cspChecked: true` (the question's been asked).
+Em "não": pule o patch, mencione que live não vai funcionar até o usuário adicionar a permissão manualmente, ainda escreva `cspChecked: true` (a pergunta já foi feita).
 
-On "yes": apply the Shape-specific patch below, then write `cspChecked: true`.
+Em "sim": aplique o patch específico do Shape abaixo, depois escreva `cspChecked: true`.
 
 #### append-arrays
 
-CSP expressed as structured directive arrays. Patch mechanism: declare a dev-only array, spread it into the script-src and connect-src arrays.
+CSP expressa como arrays de diretivas estruturadas. Mecanismo de patch: declare um array apenas de dev, espalhe-o nos arrays de script-src e connect-src.
 
-**Declare near the top of the file that holds the CSP arrays:**
+**Declare perto do topo do arquivo que contém os arrays de CSP:**
 
 ```ts
 // Dev-only allowance so impeccable live mode can load. Guarded by NODE_ENV.
@@ -579,21 +579,21 @@ const __impeccableLiveDev =
   process.env.NODE_ENV === "development" ? ["http://localhost:8400"] : [];
 ```
 
-**Append `...__impeccableLiveDev` to the script-src and connect-src directive arrays.** Per-framework specifics:
+**Acrescente `...__impeccableLiveDev` aos arrays de diretivas script-src e connect-src.** Especificidades por framework:
 
-- **Next.js + monorepo helper**: edit the *app's* `next.config.*` (not the shared helper), appending to `additionalScriptSrc` and `additionalConnectSrc` passed into `createBaseNextConfig` (or equivalent). Keeps the shared package clean.
-- **SvelteKit**: edit `svelte.config.js`, appending to `kit.csp.directives['script-src']` and `kit.csp.directives['connect-src']`.
-- **Nuxt + nuxt-security**: edit `nuxt.config.*`, appending to `security.headers.contentSecurityPolicy['script-src']` and `['connect-src']`.
+- **Next.js + helper de monorepo**: edite o `next.config.*` do *app* (não o helper compartilhado), acrescentando a `additionalScriptSrc` e `additionalConnectSrc` passados para `createBaseNextConfig` (ou equivalente). Mantém o pacote compartilhado limpo.
+- **SvelteKit**: edite `svelte.config.js`, acrescentando a `kit.csp.directives['script-src']` e `kit.csp.directives['connect-src']`.
+- **Nuxt + nuxt-security**: edite `nuxt.config.*`, acrescentando a `security.headers.contentSecurityPolicy['script-src']` e `['connect-src']`.
 
-Reference outputs:
+Saídas de referência:
 - `tests/framework-fixtures/nextjs-turborepo/expected-after-patch.ts` (Next.js)
 - `tests/framework-fixtures/sveltekit-csp/expected-after-patch.js` (SvelteKit)
 
-Idempotency: if `__impeccableLiveDev` already exists in the file, the patch is already applied; skip asking and just mark `cspChecked: true`.
+Idempotência: se `__impeccableLiveDev` já existe no arquivo, o patch já foi aplicado; pule a pergunta e apenas marque `cspChecked: true`.
 
 #### append-string
 
-CSP built as a literal value string. Two-point patch: declare a dev-only string near the top, interpolate it into the CSP at the `script-src` and `connect-src` directives.
+CSP construída como string de valor literal. Patch de dois pontos: declare uma string apenas de dev perto do topo, interpole-a na CSP nas diretivas `script-src` e `connect-src`.
 
 ```ts
 // Dev-only allowance so impeccable live mode can load.
@@ -601,22 +601,22 @@ const __impeccableLiveDev =
   process.env.NODE_ENV === "development" ? " http://localhost:8400" : "";
 ```
 
-Then in the CSP value string:
+Depois na string de valor CSP:
 - `script-src 'self' 'unsafe-inline'` → `` `script-src 'self' 'unsafe-inline'${__impeccableLiveDev}` ``
 - `connect-src 'self'` → `` `connect-src 'self'${__impeccableLiveDev}` ``
 
-(Leading space on the dev string so it concatenates cleanly into the existing value. Convert the literal CSP directives into template strings as part of the edit if they aren't already.)
+(Espaço inicial na string dev para concatenar de forma limpa no valor existente. Converta as diretivas CSP literais em template strings como parte da edição se ainda não forem.)
 
-Per-framework specifics:
-- **Next.js inline `headers()`**: edit `next.config.*`, splicing the variable into the CSP value.
-- **Nuxt `routeRules`**: edit `nuxt.config.*`, splicing into the CSP in `routeRules['/**'].headers['Content-Security-Policy']`.
+Especificidades por framework:
+- **Next.js inline `headers()`**: edite `next.config.*`, inserindo a variável no valor CSP.
+- **Nuxt `routeRules`**: edite `nuxt.config.*`, inserindo na CSP em `routeRules['/**'].headers['Content-Security-Policy']`.
 
-Reference outputs:
+Saídas de referência:
 - `tests/framework-fixtures/nextjs-inline-csp/expected-after-patch.js` (Next.js)
 - `tests/framework-fixtures/nuxt-csp/expected-after-patch.ts` (Nuxt)
 
-### Troubleshooting
+### Solução de problemas
 
-If a user says "no" to the CSP patch at setup time and later complains that live doesn't work: their dev CSP blocks `http://localhost:8400`. Fix: delete `cspChecked` from `.impeccable/live/config.json` and re-run `live.mjs`: setup will ask again.
+Se um usuário diz "não" ao patch de CSP na configuração e depois reclama que live não funciona: o CSP de dev bloqueia `http://localhost:8400`. Correção: delete `cspChecked` de `.impeccable/live/config.json` e re-execute `live.mjs`: a configuração vai perguntar novamente.
 
-Then re-run `live.mjs`.
+Depois re-execute `live.mjs`.

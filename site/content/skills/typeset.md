@@ -1,42 +1,42 @@
 ---
-tagline: "Fix typography that feels generic, inconsistent, or accidental."
+tagline: "Conserte tipografia que parece genérica, inconsistente ou acidental."
 ---
 
-## When to use it
+## Quando usar
 
-Reach for `/impeccable typeset` when the text on a page looks like default typography instead of designed typography. Muddy hierarchy, three sizes that look the same, body copy at 14px, a display font that is actually just Inter bold, headlines with no kerning attention.
+Use `/impeccable typeset` quando o texto em uma página parece tipografia default em vez de tipografia desenhada. Hierarquia confusa, três tamanhos que parecem iguais, body copy a 14px, uma font display que na verdade é apenas Inter bold, headlines sem atenção ao kerning.
 
-Common triggers: "hierarchy feels flat", "readability is off", "fonts look generic".
+Gatilhos comuns: "hierarquia parece plana", "legibilidade está esquisita", "fonts parecem genéricas".
 
-## How it works
+## Como funciona
 
-The skill assesses typography across five dimensions:
+A skill avalia tipografia em cinco dimensões:
 
-1. **Font choices**: are you using invisible defaults (Inter, Roboto, Arial, Open Sans), does the typeface match the brand, are there more than 2 to 3 families.
-2. **Hierarchy**: are heading, body, and caption clearly different at a glance, is the size contrast at least 1.25x between steps, are weight contrasts legible.
-3. **Sizing and scale**: is there a coherent type scale, does body text meet 16px minimum, is the scale fixed-rem for app UIs or fluid-clamp for marketing pages.
-4. **Readability**: line length 45 to 75 characters, line-height tuned for font and context, contrast.
-5. **Consistency**: same element uses same treatment everywhere, no one-off font-size overrides.
+1. **Escolhas de fontes**: você está usando defaults invisíveis (Inter, Roboto, Arial, Open Sans), a typeface combina com a marca, há mais de 2 a 3 famílias.
+2. **Hierarquia**: heading, body e caption são claramente diferentes à primeira vista, o contraste de tamanho é pelo menos 1.25x entre passos, os contrastes de peso são legíveis.
+3. **Dimensionamento e escala**: existe uma escala de tipos coerente, o body text atende ao mínimo de 16px, a escala é fixed-rem para app UIs ou fluid-clamp para páginas de marketing.
+4. **Legibilidade**: comprimento de linha de 45 a 75 caracteres, line-height ajustado para a fonte e contexto, contraste.
+5. **Consistência**: o mesmo elemento usa o mesmo tratamento em todo lugar, sem overrides de font-size isolados.
 
-It then fixes what it finds: picks distinctive typefaces, builds a modular scale, widens hierarchy contrast, sets proper line length and leading.
+Ela então corrige o que encontra: escolhe typefaces distintas, constrói uma escala modular, amplia o contraste de hierarquia, define comprimento de linha e entrelinha adequados.
 
-## Try it
+## Experimente
 
 ```
 /impeccable typeset the article layout
 ```
 
-Expected diff:
+Diff esperado:
 
-- Display font swapped from Inter 700 to a real display face
-- Type scale rebuilt: 3rem / 2rem / 1.25rem / 1rem / 0.875rem, ratio 1.333
-- Body text bumped from 14px to 16px
-- Line length clamped to 68ch on the article column
-- Line-height 1.6 for body, 1.1 for display
-- Removed four one-off `font-size` values scattered in component styles
+- Font display trocada de Inter 700 para uma face display real
+- Escala de tipos reconstruída: 3rem / 2rem / 1.25rem / 1rem / 0.875rem, razão 1.333
+- Body text aumentado de 14px para 16px
+- Comprimento de linha limitado a 68ch na coluna do artigo
+- Line-height 1.6 para body, 1.1 para display
+- Removidos quatro valores de `font-size` isolados espalhados nos estilos de componentes
 
-## Pitfalls
+## Armadilhas
 
-- **Asking for a new font without context.** Typeset will pick based on the `PRODUCT.md` brand voice. If you have not run `/impeccable teach`, the suggestion will be generic.
-- **Reaching for typeset when the issue is layout.** If paragraphs are fine but the page feels cramped, you want `/impeccable layout`.
-- **Expecting fluid clamp scales on app UIs.** Typeset uses fixed rem scales for app interfaces. Fluid typography is for marketing and content pages where line length varies dramatically.
+- **Pedir uma nova fonte sem contexto.** Typeset vai escolher com base na voz da marca do `PRODUCT.md`. Se você não executou `/impeccable teach`, a sugestão será genérica.
+- **Recorrer a typeset quando o problema é layout.** Se os parágrafos estão finos mas a página parece apertada, você quer `/impeccable layout`.
+- **Esperar escalas fluid clamp em app UIs.** Typeset usa escalas fixas em rem para interfaces de app. Tipografia fluida é para páginas de marketing e conteúdo onde o comprimento de linha varia dramaticamente.

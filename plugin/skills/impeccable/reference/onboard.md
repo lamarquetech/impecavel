@@ -1,234 +1,234 @@
-> **Additional context needed**: the "aha moment" you want users to reach, and users' experience level.
+> **Contexto adicional necessário**: o "momento aha" que você quer que os usuários alcancem, e o nível de experiência dos usuários.
 
-Get users to first value as fast as possible. Onboarding's job is not to teach the product. Its job is to get people to the moment that proves the product is worth their time.
+Leve os usuários ao primeiro valor o mais rápido possível. O trabalho do onboarding não é ensinar o produto. Seu trabalho é levar as pessoas ao momento que prova que o produto vale o tempo delas.
 
-## Assess Onboarding Needs
+## Avaliar Necessidades de Onboarding
 
-Understand what users need to learn and why:
+Entenda o que os usuários precisam aprender e por quê:
 
-1. **Identify the challenge**:
-   - What are users trying to accomplish?
-   - What's confusing or unclear about current experience?
-   - Where do users get stuck or drop off?
-   - What's the "aha moment" we want users to reach?
+1. **Identifique o desafio**:
+   - O que os usuários estão tentando realizar?
+   - O que é confuso ou pouco claro na experiência atual?
+   - Onde os usuários travam ou desistem?
+   - Qual é o "momento aha" que queremos que os usuários alcancem?
 
-2. **Understand the users**:
-   - What's their experience level? (Beginners, power users, mixed?)
-   - What's their motivation? (Excited and exploring? Required by work?)
-   - What's their time commitment? (5 minutes? 30 minutes?)
-   - What alternatives do they know? (Coming from competitor? New to category?)
+2. **Entenda os usuários**:
+   - Qual é o nível de experiência deles? (Iniciantes, usuários avançados, misto?)
+   - Qual é a motivação deles? (Animados e explorando? Obrigatoriedade de trabalho?)
+   - Qual é o compromisso de tempo deles? (5 minutos? 30 minutos?)
+   - Quais alternativas eles conhecem? (Vindo de concorrente? Novos na categoria?)
 
-3. **Define success**:
-   - What's the minimum users need to learn to be successful?
-   - What's the key action we want them to take? (First project? First invite?)
-   - How do we know onboarding worked? (Completion rate? Time to value?)
+3. **Defina o sucesso**:
+   - Qual é o mínimo que os usuários precisam aprender para ter sucesso?
+   - Qual é a ação-chave que queremos que eles realizem? (Primeiro projeto? Primeiro convite?)
+   - Como sabemos que o onboarding funcionou? (Taxa de conclusão? Tempo até o valor?)
 
-**CRITICAL**: Onboarding should get users to value as quickly as possible, not teach everything possible.
+**CRÍTICO**: O onboarding deve levar os usuários ao valor o mais rapidamente possível, não ensinar tudo o que é possível.
 
-## Onboarding Principles
+## Princípios de Onboarding
 
-Follow these core principles:
+Siga estes princípios centrais:
 
-### Show, Don't Tell
-- Demonstrate with working examples, not just descriptions
-- Provide real functionality in onboarding, not separate tutorial mode
-- Use progressive disclosure, teach one thing at a time
+### Mostre, Não Conte
+- Demonstre com exemplos funcionais, não apenas descrições
+- Forneça funcionalidade real no onboarding, não modo tutorial separado
+- Use disclosure progressivo, ensine uma coisa de cada vez
 
-### Make It Optional (When Possible)
-- Let experienced users skip onboarding
-- Don't block access to product
-- Provide "Skip" or "I'll explore on my own" options
+### Torne Opcional (Quando Possível)
+- Deixe usuários experientes pularem o onboarding
+- Não bloqueie acesso ao produto
+- Forneça opções de "Pular" ou "Vou explorar por conta"
 
-### Time to Value
-- Get users to their "aha moment" ASAP
-- Front-load most important concepts
-- Teach 20% that delivers 80% of value
-- Save advanced features for contextual discovery
+### Tempo Até o Valor
+- Leve os usuários ao "momento aha" o mais rápido possível
+- Priorize os conceitos mais importantes
+- Ensine os 20% que entrega 80% do valor
+- Guarde funcionalidades avançadas para descoberta contextual
 
-### Context Over Ceremony
-- Teach features when users need them, not upfront
-- Empty states are onboarding opportunities
-- Tooltips and hints at point of use
+### Contexto Acima de Cerimônia
+- Ensine funcionalidades quando os usuários precisam delas, não antecipadamente
+- Estados vazios são oportunidades de onboarding
+- Tooltips e dicas no ponto de uso
 
-### Respect User Intelligence
-- Don't patronize or over-explain
-- Be concise and clear
-- Assume users can figure out standard patterns
+### Respeite a Inteligência do Usuário
+- Não seja condescendente nem superexplique
+- Seja conciso e claro
+- Presuma que os usuários conseguem descobrir padrões conhecidos
 
-## Design Onboarding Experiences
+## Projetar Experiências de Onboarding
 
-Create appropriate onboarding for the context:
+Crie onboarding apropriado para o contexto:
 
-### Initial Product Onboarding
+### Onboarding Inicial do Produto
 
-**Welcome Screen**:
-- Clear value proposition (what is this product?)
-- What users will learn/accomplish
-- Time estimate (honest about commitment)
-- Option to skip (for experienced users)
+**Tela de Boas-vindas**:
+- Proposta de valor clara (o que é este produto?)
+- O que os usuários vão aprender/realizar
+- Estimativa de tempo (honesto sobre o compromisso)
+- Opção de pular (para usuários experientes)
 
-**Account Setup**:
-- Minimal required information (collect more later)
-- Explain why you're asking for each piece of information
-- Smart defaults where possible
-- Social login when appropriate
+**Configuração de Conta**:
+- Informação mínima necessária (colete mais depois)
+- Explique por que está pedindo cada informação
+- Padrões inteligentes quando possível
+- Login social quando apropriado
 
-**Core Concept Introduction**:
-- Introduce 1-3 core concepts (not everything)
-- Use simple language and examples
-- Interactive when possible (do, don't just read)
-- Progress indication (step 1 of 3)
+**Introdução de Conceitos Centrais**:
+- Introduza 1-3 conceitos centrais (não tudo)
+- Use linguagem simples e exemplos
+- Interativo quando possível (faça, não apenas leia)
+- Indicação de progresso (passo 1 de 3)
 
-**First Success**:
-- Guide users to accomplish something real
-- Pre-populated examples or templates
-- Celebrate completion (but don't overdo it)
-- Clear next steps
+**Primeiro Sucesso**:
+- Guie os usuários a realizar algo real
+- Exemplos ou templates pré-preenchidos
+- Celebre a conclusão (mas não exagere)
+- Próximos passos claros
 
-### Feature Discovery & Adoption
+### Descoberta e Adoção de Funcionalidades
 
-**Empty States**:
-Instead of blank space, show:
-- What will appear here (description + screenshot/illustration)
-- Why it's valuable
-- Clear CTA to create first item
-- Example or template option
+**Estados Vazios**:
+Em vez de espaço em branco, mostre:
+- O que aparecerá aqui (descrição + screenshot/ilustração)
+- Por que é valioso
+- CTA claro para criar primeiro item
+- Opção de exemplo ou template
 
-Example:
+Exemplo:
 ```
-No projects yet
-Projects help you organize your work and collaborate with your team.
-[Create your first project] or [Start from template]
+Nenhum projeto ainda
+Projetos ajudam você a organizar seu trabalho e colaborar com sua equipe.
+[Criar seu primeiro projeto] ou [Começar de um template]
 ```
 
-**Contextual Tooltips**:
-- Appear at relevant moment (first time user sees feature)
-- Point directly at relevant UI element
-- Brief explanation + benefit
-- Dismissable (with "Don't show again" option)
-- Optional "Learn more" link
+**Tooltips Contextuais**:
+- Aparecem no momento relevante (primeira vez que o usuário vê a funcionalidade)
+- Apontam diretamente para o elemento de UI relevante
+- Explicação breve + benefício
+- Dispensáveis (com opção "Não mostrar novamente")
+- Link opcional "Saiba mais"
 
-**Feature Announcements**:
-- Highlight new features when they're released
-- Show what's new and why it matters
-- Let users try immediately
-- Dismissable
+**Anúncios de Funcionalidades**:
+- Destaquem novas funcionalidades quando lançadas
+- Mostrem o que há de novo e por que importa
+- Deixem o usuário experimentar imediatamente
+- Dispensáveis
 
-**Progressive Onboarding**:
-- Teach features when users encounter them
-- Badges or indicators on new/unused features
-- Unlock complexity gradually (don't show all options immediately)
+**Onboarding Progressivo**:
+- Ensine funcionalidades quando os usuários as encontram
+- Badges ou indicadores em funcionalidades novas/não usadas
+- Desbloqueie complexidade gradualmente (não mostre todas as opções imediatamente)
 
-### Guided Tours & Walkthroughs
+### Tours Guiados e Walkthroughs
 
-**When to use**:
-- Complex interfaces with many features
-- Significant changes to existing product
-- Industry-specific tools needing domain knowledge
+**Quando usar**:
+- Interfaces complexas com muitas funcionalidades
+- Mudanças significativas em produto existente
+- Ferramentas específicas de indústria que precisam de conhecimento do domínio
 
-**How to design**:
-- Spotlight specific UI elements (dim rest of page)
-- Keep steps short (3-7 steps max per tour)
-- Allow users to click through tour freely
-- Include "Skip tour" option
-- Make replayable (help menu)
+**Como projetar**:
+- Destaque elementos específicos de UI (escureça o resto da página)
+- Mantenha os passos curtos (3-7 passos no máximo por tour)
+- Permita que os usuários cliquem pelo tour livremente
+- Inclua opção "Pular tour"
+- Torne reproduzível (menu de ajuda)
 
-**Best practices**:
-- Interactive over passive (let users click real buttons)
-- Focus on workflow, not features ("Create a project" not "This is the project button")
-- Provide sample data so actions work
+**Melhores práticas**:
+- Interativo acima de passivo (deixe os usuários clicar em botões reais)
+- Foque no fluxo de trabalho, não em funcionalidades ("Criar um projeto" não "Este é o botão de projeto")
+- Forneça dados de exemplo para que as ações funcionem
 
-### Interactive Tutorials
+### Tutoriais Interativos
 
-**When to use**:
-- Users need hands-on practice
-- Concepts are complex or unfamiliar
-- High stakes (better to practice in safe environment)
+**Quando usar**:
+- Usuários precisam de prática prática
+- Conceitos são complexos ou desconhecidos
+- Alto risco (melhor praticar em ambiente seguro)
 
-**How to design**:
-- Sandbox environment with sample data
-- Clear objectives ("Create a chart showing sales by region")
-- Step-by-step guidance
-- Validation (confirm they did it right)
-- Graduation moment (you're ready!)
+**Como projetar**:
+- Ambiente sandbox com dados de exemplo
+- Objetivos claros ("Criar um gráfico mostrando vendas por região")
+- Orientação passo a passo
+- Validação (confirme que fizeram certo)
+- Momento de formatura (você está pronto!)
 
-### Documentation & Help
+### Documentação e Ajuda
 
-**In-product help**:
-- Contextual help links throughout interface
-- Keyboard shortcut reference
-- Search-able help center
-- Video tutorials for complex workflows
+**Ajuda no produto**:
+- Links de ajuda contextual por toda a interface
+- Referência de atalhos de teclado
+- Central de ajuda pesquisável
+- Tutoriais em vídeo para fluxos de trabalho complexos
 
-**Help patterns**:
-- `?` icon near complex features
-- "Learn more" links in tooltips
-- Keyboard shortcut hints (`⌘K` shown on search box)
+**Padrões de ajuda**:
+- Ícone `?` perto de funcionalidades complexas
+- Links "Saiba mais" nos tooltips
+- Dicas de atalhos de teclado (`⌘K` exibido na caixa de busca)
 
-## Empty State Design
+## Design de Estado Vazio
 
-Every empty state needs:
+Todo estado vazio precisa de:
 
-### What Will Be Here
-"Your recent projects will appear here"
+### O Que Estará Aqui
+"Seus projetos recentes aparecerão aqui"
 
-### Why It Matters
-"Projects help you organize your work and collaborate with your team"
+### Por Que Importa
+"Projetos ajudam você a organizar seu trabalho e colaborar com sua equipe"
 
-### How to Get Started
-[Create project] or [Import from template]
+### Como Começar
+[Criar projeto] ou [Importar de template]
 
-### Visual Interest
-Illustration or icon (not just text on blank page)
+### Interesse Visual
+Ilustração ou ícone (não apenas texto em página em branco)
 
-### Contextual Help
-"Need help getting started? [Watch 2-min tutorial]"
+### Ajuda Contextual
+"Precisa de ajuda para começar? [Assista tutorial de 2 min]"
 
-**Empty state types**:
-- **First use**: Never used this feature (emphasize value, provide template)
-- **User cleared**: Intentionally deleted everything (light touch, easy to recreate)
-- **No results**: Search or filter returned nothing (suggest different query, clear filters)
-- **No permissions**: Can't access (explain why, how to get access)
-- **Error state**: Failed to load (explain what happened, retry option)
+**Tipos de estado vazio**:
+- **Primeiro uso**: Nunca usou esta funcionalidade (enfatize valor, forneça template)
+- **Usuário limpou**: Excluiu tudo intencionalmente (toque leve, fácil recriar)
+- **Sem resultados**: Busca ou filtro não retornou nada (sugira consulta diferente, limpe filtros)
+- **Sem permissão**: Não pode acessar (explique por quê, como obter acesso)
+- **Estado de erro**: Falha ao carregar (explique o que aconteceu, opção de retry)
 
-## Implementation Patterns
+## Padrões de Implementação
 
-### Technical approaches:
+### Abordagens técnicas:
 
-**Tooltip libraries**: Tippy.js, Popper.js
-**Tour libraries**: Intro.js, Shepherd.js, React Joyride
-**Modal patterns**: Focus trap, backdrop, ESC to close
-**Progress tracking**: LocalStorage for "seen" states
-**Analytics**: Track completion, drop-off points
+**Bibliotecas de tooltip**: Tippy.js, Popper.js
+**Bibliotecas de tour**: Intro.js, Shepherd.js, React Joyride
+**Padrões de modal**: Focus trap, backdrop, ESC para fechar
+**Rastreamento de progresso**: LocalStorage para estados "vistos"
+**Analytics**: Rastreie conclusão, pontos de desistência
 
-**Storage patterns**:
+**Padrões de armazenamento**:
 ```javascript
 // Track which onboarding steps user has seen
 localStorage.setItem('onboarding-completed', 'true');
 localStorage.setItem('feature-tooltip-seen-reports', 'true');
 ```
 
-**IMPORTANT**: Don't show same onboarding twice (annoying). Track completion and respect dismissals.
+**IMPORTANTE**: Não mostre o mesmo onboarding duas vezes (irritante). Rastreie conclusão e respeite descartes.
 
-**NEVER**:
-- Force users through long onboarding before they can use product
-- Patronize users with obvious explanations
-- Show same tooltip repeatedly (respect dismissals)
-- Block all UI during tour (let users explore)
-- Create separate tutorial mode disconnected from real product
-- Overwhelm with information upfront (progressive disclosure!)
-- Hide "Skip" or make it hard to find
-- Forget about returning users (don't show initial onboarding again)
+**NUNCA**:
+- Force usuários por um onboarding longo antes que possam usar o produto
+- Seja condescendente com usuários com explicações óbvias
+- Mostre o mesmo tooltip repetidamente (respeite descartes)
+- Bloqueie toda a UI durante o tour (deixe os usuários explorar)
+- Crie modo tutorial separado desconectado do produto real
+- Esmague com informações antecipadamente (disclosure progressivo!)
+- Esconda "Pular" ou torne difícil de encontrar
+- Esqueça de usuários que retornam (não mostre onboarding inicial novamente)
 
-## Verify Onboarding Quality
+## Verificar Qualidade do Onboarding
 
-Test with real users:
+Teste com usuários reais:
 
-- **Time to completion**: Can users complete onboarding quickly?
-- **Comprehension**: Do users understand after completing?
-- **Action**: Do users take desired next step?
-- **Skip rate**: Are too many users skipping? (Maybe it's too long or not valuable)
-- **Completion rate**: Are users completing? (If low, simplify)
-- **Time to value**: How long until users get first value?
+- **Tempo até conclusão**: Os usuários conseguem completar o onboarding rapidamente?
+- **Compreensão**: Os usuários entendem após completar?
+- **Ação**: Os usuários realizam o próximo passo desejado?
+- **Taxa de pulo**: Muitos usuários estão pulando? (Talvez seja longo ou sem valor)
+- **Taxa de conclusão**: Os usuários estão completando? (Se baixa, simplifique)
+- **Tempo até o valor**: Quanto tempo até os usuários obterem o primeiro valor?
 
-When users hit the aha moment fast and don't drop off, hand off to `/impeccable polish` for the final pass.
+Quando os usuários alcançam o momento aha rápido e não desistem, passe para `{{command_prefix}}impeccable polish` para a passagem final.

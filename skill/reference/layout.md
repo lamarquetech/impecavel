@@ -1,134 +1,134 @@
-Space is the most underused design tool. Find the layout's actual problem (monotone spacing, weak hierarchy, identical card grids, the centered-stack default) and fix the structure, not the surface.
+Espaço é a ferramenta de design mais subutilizada. Encontre o problema real do layout (espaçamento monótono, hierarquia fraca, grids de cards idênticos, o padrão de pilha centralizada) e corrija a estrutura, não a superfície.
 
 ---
 
-## Register
+## Registro
 
-Brand: asymmetric compositions, fluid spacing with `clamp()`, intentional grid-breaking for emphasis. Rhythm through contrast: tight groupings paired with generous separations.
+Brand: composições assimétricas, espaçamento fluido com `clamp()`, quebra de grid intencional para ênfase. Ritmo através do contraste: agrupamentos compactos pareados com separações generosas.
 
-Product: predictable grids, consistent densities, familiar navigation patterns. Responsive behavior is structural (collapse sidebar, responsive table), not fluid typography. Consistency IS an affordance.
+Product: grids previsíveis, densidades consistentes, padrões de navegação familiares. Comportamento responsivo é estrutural (colapsar sidebar, tabela responsiva), não tipografia fluida. Consistência É uma affordance.
 
 ---
 
-## Assess Current Layout
+## Avaliar o Layout Atual
 
-Analyze what's weak about the current spatial design:
+Analise o que está fraco no design espacial atual:
 
-1. **Spacing**:
-   - Is spacing consistent or arbitrary? (Random padding/margin values)
-   - Is all spacing the same? (Equal padding everywhere = no rhythm)
-   - Are related elements grouped tightly, with generous space between groups?
+1. **Espaçamento**:
+   - O espaçamento é consistente ou arbitrário? (Valores de padding/margin aleatórios)
+   - Todo o espaçamento é igual? (Padding igual em todo lugar = sem ritmo)
+   - Elementos relacionados estão agrupados de forma compacta, com espaço generoso entre grupos?
 
-2. **Visual hierarchy**:
-   - Apply the squint test: blur your (metaphorical) eyes. Can you still identify the most important element, second most important, and clear groupings?
-   - Is hierarchy achieved effectively? (Space and weight alone can be enough; is the current approach working?)
-   - Does whitespace guide the eye to what matters?
+2. **Hierarquia visual**:
+   - Aplique o teste do olho semicerrado: borre seus olhos (metaforicamente). Você ainda consegue identificar o elemento mais importante, o segundo mais importante, e os agrupamentos claros?
+   - A hierarquia é alcançada de forma eficaz? (Espaço e peso sozinhos podem ser suficientes; a abordagem atual está funcionando?)
+   - O whitespace guia o olhar para o que importa?
 
-3. **Grid & structure**:
-   - Is there a clear underlying structure, or does the layout feel random?
-   - Are identical card grids used everywhere? (Icon + heading + text, repeated endlessly)
-   - Is everything centered? (Left-aligned with asymmetric layouts feels more designed, but not a hard and fast rule)
+3. **Grid e estrutura**:
+   - Existe uma estrutura subjacente clara, ou o layout parece aleatório?
+   - Grids de cards idênticos são usados em todo lugar? (Ícone + título + texto, repetido infinitamente)
+   - Está tudo centralizado? (Alinhado à esquerda com layouts assimétricos parece mais projetado, mas não é uma regra absoluta)
 
-4. **Rhythm & variety**:
-   - Does the layout have visual rhythm? (Alternating tight/generous spacing)
-   - Is every section structured the same way? (Monotonous repetition)
-   - Are there intentional moments of surprise or emphasis?
+4. **Ritmo e variedade**:
+   - O layout tem ritmo visual? (Alternância de espaçamento compacto/generoso)
+   - Cada seção está estruturada da mesma forma? (Repetição monótona)
+   - Existem momentos intencionais de surpresa ou ênfase?
 
-5. **Density**:
-   - Is the layout too cramped? (Not enough breathing room)
-   - Is the layout too sparse? (Excessive whitespace without purpose)
-   - Does density match the content type? (Data-dense UIs need tighter spacing; marketing pages need more air)
+5. **Densidade**:
+   - O layout está demasiado comprimido? (Sem espaço para respirar)
+   - O layout está demasiado esparso? (Whitespace excessivo sem propósito)
+   - A densidade corresponde ao tipo de conteúdo? (UIs densas em dados precisam de espaçamento mais justo; páginas de marketing precisam de mais respiro)
 
-**CRITICAL**: Layout problems are often the root cause of interfaces feeling "off" even when colors and fonts are fine. Space is a design material; use it with intention.
+**CRÍTICO**: Problemas de layout são frequentemente a causa raiz de interfaces parecerem "estranhas" mesmo quando cores e fontes estão boas. Espaço é um material de design; use-o com intenção.
 
-## Plan Layout Improvements
+## Planejar Melhorias de Layout
 
-Consult the [spatial design reference](spatial-design.md) for detailed guidance on grids, rhythm, and container queries.
+Consulte a [referência de design espacial](spatial-design.md) para orientação detalhada sobre grids, ritmo e container queries.
 
-Create a systematic plan:
+Crie um plano sistemático:
 
-- **Spacing system**: Use a consistent scale (a framework's built-in scale like Tailwind's, rem-based tokens, or a custom system). The specific values matter less than consistency.
-- **Hierarchy strategy**: How will space communicate importance?
-- **Layout approach**: What structure fits the content? Flex for 1D, Grid for 2D, named areas for complex page layouts.
-- **Rhythm**: Where should spacing be tight vs generous?
+- **Sistema de espaçamento**: Use uma escala consistente (escala integrada do framework como a do Tailwind, tokens baseados em rem, ou um sistema personalizado). Os valores específicos importam menos que a consistência.
+- **Estratégia de hierarquia**: Como o espaço vai comunicar importância?
+- **Abordagem de layout**: Qual estrutura se adapta ao conteúdo? Flex para 1D, Grid para 2D, áreas nomeadas para layouts de página complexos.
+- **Ritmo**: Onde o espaçamento deve ser compacto versus generoso?
 
-## Improve Layout Systematically
+## Melhorar o Layout Sistematicamente
 
-### Establish a Spacing System
+### Estabeleça um Sistema de Espaçamento
 
-- Use a consistent spacing scale (framework scales like Tailwind, rem-based tokens, or a custom scale all work). What matters is that values come from a defined set, not arbitrary numbers.
-- Name tokens semantically if using custom properties: `--space-xs` through `--space-xl`, not `--spacing-8`
-- Use `gap` for sibling spacing instead of margins; eliminates margin collapse hacks
-- Apply `clamp()` for fluid spacing that breathes on larger screens
+- Use uma escala de espaçamento consistente (escalas de framework como Tailwind, tokens baseados em rem, ou uma escala personalizada todas funcionam). O que importa é que os valores venham de um conjunto definido, não números arbitrários.
+- Nomeie tokens semanticamente se usar custom properties: `--space-xs` até `--space-xl`, não `--spacing-8`
+- Use `gap` para espaçamento entre irmãos em vez de margins; elimina hacks de margin collapse
+- Aplique `clamp()` para espaçamento fluido que respira em telas maiores
 
-### Create Visual Rhythm
+### Crie Ritmo Visual
 
-- **Tight grouping** for related elements (8-12px between siblings)
-- **Generous separation** between distinct sections (48-96px)
-- **Varied spacing** within sections (not every row needs the same gap)
-- **Asymmetric compositions**: break the predictable centered-content pattern when it makes sense
+- **Agrupamento compacto** para elementos relacionados (8-12px entre irmãos)
+- **Separação generosa** entre seções distintas (48-96px)
+- **Espaçamento variado** dentro das seções (nem toda linha precisa do mesmo gap)
+- **Composições assimétricas**: quebre o padrão previsível de conteúdo centralizado quando fizer sentido
 
-### Choose the Right Layout Tool
+### Escolha a Ferramenta de Layout Certa
 
-- **Use Flexbox for 1D layouts**: Rows of items, nav bars, button groups, card contents, most component internals. Flex is simpler and more appropriate for the majority of layout tasks.
-- **Use Grid for 2D layouts**: Page-level structure, dashboards, data-dense interfaces, anything where rows AND columns need coordinated control.
-- **Don't default to Grid** when Flexbox with `flex-wrap` would be simpler and more flexible.
-- Use `repeat(auto-fit, minmax(280px, 1fr))` for responsive grids without breakpoints.
-- Use named grid areas (`grid-template-areas`) for complex page layouts; redefine at breakpoints.
+- **Use Flexbox para layouts 1D**: Fileiras de itens, barras de navegação, grupos de botões, conteúdos de cards, maioria dos interiores de componentes. Flex é mais simples e mais apropriado para a maioria das tarefas de layout.
+- **Use Grid para layouts 2D**: Estrutura de nível de página, dashboards, interfaces densas em dados, qualquer situação onde linhas E colunas precisam de controle coordenado.
+- **Não use Grid por padrão** quando Flexbox com `flex-wrap` seria mais simples e flexível.
+- Use `repeat(auto-fit, minmax(280px, 1fr))` para grids responsivos sem breakpoints.
+- Use áreas de grid nomeadas (`grid-template-areas`) para layouts de página complexos; redefina nos breakpoints.
 
-### Break Card Grid Monotony
+### Quebre a Monotonia do Grid de Cards
 
-- Don't default to card grids for everything; spacing and alignment create visual grouping naturally
-- Use cards only when content is truly distinct and actionable. Never nest cards inside cards
-- Vary card sizes, span columns, or mix cards with non-card content to break repetition
+- Não use grids de cards por padrão para tudo; espaçamento e alinhamento criam agrupamento visual naturalmente
+- Use cards apenas quando o conteúdo é verdadeiramente distinto e acionável. Nunca aninhe cards dentro de cards
+- Varie os tamanhos dos cards, faça span de colunas, ou misture cards com conteúdo não-card para quebrar a repetição
 
-### Strengthen Visual Hierarchy
+### Fortaleça a Hierarquia Visual
 
-- Use the fewest dimensions needed for clear hierarchy. Space alone can be enough; generous whitespace around an element draws the eye. Some of the most polished designs achieve rhythm with just space and weight. Add color or size contrast only when simpler means aren't sufficient.
-- Be aware of reading flow: in LTR languages, the eye naturally scans top-left to bottom-right, but primary action placement depends on context (e.g., bottom-right in dialogs, top in navigation).
-- Create clear content groupings through proximity and separation.
+- Use as menores dimensões necessárias para uma hierarquia clara. Espaço sozinho pode ser suficiente; whitespace generoso ao redor de um elemento atrai o olhar. Alguns dos designs mais polidos alcançam ritmo apenas com espaço e peso. Adicione contraste de cor ou tamanho apenas quando meios mais simples não forem suficientes.
+- Esteja ciente do fluxo de leitura: em idiomas LTR, o olhar escaneia naturalmente do canto superior esquerdo para o inferior direito, mas o posicionamento da ação primária depende do contexto (ex.: inferior direito em diálogos, topo na navegação).
+- Crie agrupamentos claros de conteúdo através de proximidade e separação.
 
-### Manage Depth & Elevation
+### Gerencie Profundidade e Elevação
 
-- Create a semantic z-index scale (dropdown → sticky → modal-backdrop → modal → toast → tooltip)
-- Build a consistent shadow scale (sm → md → lg → xl); shadows should be subtle
-- Use elevation to reinforce hierarchy, not as decoration
+- Crie uma escala semântica de z-index (dropdown → sticky → modal-backdrop → modal → toast → tooltip)
+- Construa uma escala de sombras consistente (sm → md → lg → xl); sombras devem ser sutis
+- Use elevação para reforçar hierarquia, não como decoração
 
-### Optical Adjustments
+### Ajustes Ópticos
 
-- If an icon looks visually off-center despite being geometrically centered, nudge it. But only if you're confident it actually looks wrong. Don't adjust speculatively.
+- Se um ícone parece visualmente descentralizado apesar de estar geometricamente centralizado, ajuste-o. Mas apenas se você tiver confiança de que realmente parece errado. Não ajuste especulativamente.
 
-**NEVER**:
-- Use arbitrary spacing values outside your scale
-- Make all spacing equal (variety creates hierarchy)
-- Wrap everything in cards (not everything needs a container)
-- Nest cards inside cards (use spacing and dividers for hierarchy within)
-- Use identical card grids everywhere (icon + heading + text, repeated)
-- Center everything (left-aligned with asymmetry feels more designed)
-- Default to the hero metric layout (big number, small label, stats, gradient) as a template. If showing real user data, a prominent metric can work, but it should display actual data, not decorative numbers.
-- Default to CSS Grid when Flexbox would be simpler; use the simplest tool for the job
-- Use arbitrary z-index values (999, 9999); build a semantic scale
+**NUNCA**:
+- Use valores de espaçamento arbitrários fora da sua escala
+- Faça todo espaçamento igual (variedade cria hierarquia)
+- Envolva tudo em cards (nem tudo precisa de um container)
+- Aninhe cards dentro de cards (use espaçamento e divisores para hierarquia interna)
+- Use grids de cards idênticos em todo lugar (ícone + título + texto, repetido)
+- Centralize tudo (alinhado à esquerda com assimetria parece mais projetado)
+- Use o layout de métrica hero por padrão (número grande, rótulo pequeno, stats, gradiente) como template. Se estiver mostrando dados reais do usuário, uma métrica proeminente pode funcionar, mas deve exibir dados reais, não números decorativos.
+- Use CSS Grid por padrão quando Flexbox seria mais simples; use a ferramenta mais simples para o trabalho
+- Use valores arbitrários de z-index (999, 9999); construa uma escala semântica
 
-## Verify Layout Improvements
+## Verificar Melhorias de Layout
 
-- **Squint test**: Can you identify primary, secondary, and groupings with blurred vision?
-- **Rhythm**: Does the page have a satisfying beat of tight and generous spacing?
-- **Hierarchy**: Is the most important content obvious within 2 seconds?
-- **Breathing room**: Does the layout feel comfortable, not cramped or wasteful?
-- **Consistency**: Is the spacing system applied uniformly?
-- **Responsiveness**: Does the layout adapt gracefully across screen sizes?
+- **Teste do olho semicerrado**: Você consegue identificar primário, secundário e agrupamentos com visão borrada?
+- **Ritmo**: A página tem uma cadência satisfatória de espaçamento compacto e generoso?
+- **Hierarquia**: O conteúdo mais importante é óbvio em 2 segundos?
+- **Espaço para respirar**: O layout parece confortável, não comprimido ou desperdiçado?
+- **Consistência**: O sistema de espaçamento é aplicado uniformemente?
+- **Responsividade**: O layout se adapta graciosamente entre tamanhos de tela?
 
-When the rhythm and hierarchy land, hand off to `{{command_prefix}}impeccable polish` for the final pass.
+Quando o ritmo e a hierarquia estiverem corretos, passe para `{{command_prefix}}impeccable polish` para a passagem final.
 
-## Live-mode signature params
+## Parâmetros de assinatura do modo live
 
-Each variant MUST declare a `density` param. Drive all spacing tokens in the variant's scoped CSS through `calc(var(--p-density, 1) * <base>)`: paddings, gaps, column widths. Users slide from airy to packed and see layout re-breathe with no regeneration.
+Cada variante DEVE declarar um parâmetro `density`. Direcione todos os tokens de espaçamento no CSS escopo da variante através de `calc(var(--p-density, 1) * <base>)`: paddings, gaps, larguras de coluna. Os usuários deslizam de arejado para compacto e veem o layout respirar novamente sem regeneração.
 
 ```json
 {"id":"density","kind":"range","min":0.6,"max":1.4,"step":0.05,"default":1,"label":"Density"}
 ```
 
-For variants whose topology genuinely changes (stacked vs. side-by-side, grid vs. bento), use a `steps` param whose scoped CSS branches via `:scope[data-p-structure="X"]`. One structure param + one density param is a powerful combo; resist adding a third.
+Para variantes cuja topologia muda genuinamente (empilhado vs. lado a lado, grid vs. bento), use um parâmetro `steps` cujo CSS escopo ramifica via `:scope[data-p-structure="X"]`. Um parâmetro de estrutura + um parâmetro de densidade é uma combinação poderosa; resista a adicionar um terceiro.
 
 ```json
 {"id":"structure","kind":"steps","default":"grid","label":"Structure","options":[
@@ -138,4 +138,4 @@ For variants whose topology genuinely changes (stacked vs. side-by-side, grid vs
 ]}
 ```
 
-See `reference/live.md` for the full params contract.
+Consulte `reference/live.md` para o contrato completo de parâmetros.

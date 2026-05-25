@@ -1,38 +1,38 @@
 ---
-tagline: "Add strategic color to monochrome interfaces without going garish."
+tagline: "Adicione cor estratégica a interfaces monocromáticas sem ficar berrante."
 ---
 
-## When to use it
+## Quando usar
 
-`/impeccable colorize` is the counterweight to "everything is gray". Dashboards that read as a beige wall, forms with no accent, content pages that could be any SaaS product. Reach for it when the interface is functional but emotionally flat, and you want warmth without tipping into the AI color palette (purple-to-pink, cyan neon, dark mode glow).
+`/impeccable colorize` é o contrapeso para "tudo é cinza". Dashboards que leem como uma parede bege, formulários sem acento, páginas de conteúdo que poderiam ser de qualquer produto SaaS. Use quando a interface é funcional mas emocionalmente plana, e você quer calor sem cair na paleta de cores da IA (roxo-para-rosa, neon ciano, glow no dark mode).
 
-## How it works
+## Como funciona
 
-The skill starts by reading your brand color if one exists, then decides where color earns its place:
+A skill começa lendo sua cor de marca se existir uma, e então decide onde a cor ganha seu lugar:
 
-1. **Primary action** gets the strongest expression of the brand hue.
-2. **Secondary accents** get muted or tinted variants, not a second full color.
-3. **Neutrals** get tinted toward the brand hue at low chroma (around 0.005 to 0.01), which is nearly invisible per pixel but creates subconscious cohesion.
-4. **Content categories** get a limited, intentional accent system, not a rainbow.
+1. **Ação primária** ganha a expressão mais forte do hue da marca.
+2. **Acentos secundários** ganham variantes abafadas ou tinted, não uma segunda cor cheia.
+3. **Neutros** são tinted em direção ao hue da marca em chroma baixo (cerca de 0.005 a 0.01), que é quase invisível por pixel mas cria coesão subconsciente.
+4. **Categorias de conteúdo** ganham um sistema de acentos limitado e intencional, não um arco-íris.
 
-Importantly, it uses OKLCH rather than HSL so that equal lightness steps look equal. As lightness moves toward the extremes, chroma drops automatically. This is how you get color that feels considered instead of computed.
+Importante, ela usa OKLCH em vez de HSL para que passos de lightness iguais pareçam iguais. Conforme a lightness se move para os extremos, a chroma cai automaticamente. É assim que você obtém cor que parece considerada em vez de computada.
 
-## Try it
+## Experimente
 
 ```
 /impeccable colorize the dashboard
 ```
 
-Expected diff:
+Diff esperado:
 
-- Brand color moved from a hardcoded hex to `--color-accent: oklch(62% 0.18 240)`
-- Neutrals tinted with 0.007 chroma toward the brand hue
-- Primary button gets the full accent, secondary buttons get ink/mist
-- Chart series uses 3 distinct hues, all at matched lightness so no series visually dominates
-- Empty state illustration picks up a soft accent wash
+- Cor de marca movida de um hex hardcoded para `--color-accent: oklch(62% 0.18 240)`
+- Neutros tinted com 0.007 chroma em direção ao hue da marca
+- Botão primário recebe o acento cheio, botões secundários recebem ink/mist
+- Série do chart usa 3 hues distintos, todos em lightness equiparada para que nenhuma série domine visualmente
+- Ilustração do empty state recebe um lavado suave de acento
 
-## Pitfalls
+## Armadilhas
 
-- **Running it without a brand hue.** Colorize needs a starting point. If `PRODUCT.md` does not specify one, it will ask. Do not let it pick from the AI color palette defaults.
-- **Expecting it to fix the AI color palette problem.** If your design already has purple gradients and cyan neon, you need `/impeccable quieter` first, then colorize can rebuild.
-- **Using it on already-colorful interfaces.** That is a `/impeccable quieter` job. Colorize adds, it does not subtract.
+- **Executar sem um hue de marca.** Colorize precisa de um ponto de partida. Se `PRODUCT.md` não especifica um, ele vai perguntar. Não deixe escolher dos defaults da paleta de cores da IA.
+- **Esperar que resolva o problema da paleta de cores da IA.** Se seu design já tem gradientes roxos e neon ciano, você precisa de `/impeccable quieter` primeiro, depois colorize pode reconstruir.
+- **Usar em interfaces já coloridas.** Isso é trabalho para `/impeccable quieter`. Colorize adiciona, não subtrai.

@@ -3,135 +3,135 @@ const ANTIPATTERNS = [
   {
     id: 'side-tab',
     category: 'slop',
-    name: 'Side-tab accent border',
+    name: 'Borda lateral de destaque',
     description:
-      'Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.',
+      'Borda colorida espessa em um lado de um card — o indicador mais reconhecível de UIs geradas por IA. Use um destaque mais sutil ou remova-o completamente.',
     skillSection: 'Visual Details',
     skillGuideline: 'colored accent stripe',
   },
   {
     id: 'border-accent-on-rounded',
     category: 'slop',
-    name: 'Border accent on rounded element',
+    name: 'Borda de destaque em elemento arredondado',
     description:
-      'Thick accent border on a rounded card — the border clashes with the rounded corners. Remove the border or the border-radius.',
+      'Borda de destaque espessa em um card arredondado — a borda entra em conflito com os cantos arredondados. Remova a borda ou o border-radius.',
     skillSection: 'Visual Details',
     skillGuideline: 'colored accent stripe',
   },
   {
     id: 'overused-font',
     category: 'slop',
-    name: 'Overused font',
+    name: 'Fonte superutilizada',
     description:
-      'Inter, Roboto, Fraunces, Geist, Plus Jakarta Sans, and Space Grotesk are used on so many sites they no longer feel distinctive. Each new wave of AI-generated UIs converges on the same handful of faces. Choose a face that gives your interface personality.',
+      'Inter, Roboto, Fraunces, Geist, Plus Jakarta Sans e Space Grotesk são usadas em tantos sites que já não parecem distintas. Cada nova onda de UIs geradas por IA converge nas mesmas poucas fontes. Escolha uma fonte que dê personalidade à sua interface.',
     skillSection: 'Typography',
     skillGuideline: 'overused fonts like Inter',
   },
   {
     id: 'single-font',
     category: 'slop',
-    name: 'Single font for everything',
+    name: 'Fonte única para tudo',
     description:
-      'Only one font family is used for the entire page. Pair a distinctive display font with a refined body font to create typographic hierarchy.',
+      'Apenas uma família de fontes é usada para a página inteira. Combine uma fonte display marcante com uma fonte de corpo refinada para criar hierarquia tipográfica.',
     skillSection: 'Typography',
     skillGuideline: 'only one font family for the entire page',
   },
   {
     id: 'flat-type-hierarchy',
     category: 'slop',
-    name: 'Flat type hierarchy',
+    name: 'Hierarquia tipográfica plana',
     description:
-      'Font sizes are too close together — no clear visual hierarchy. Use fewer sizes with more contrast (aim for at least a 1.25 ratio between steps).',
+      'Os tamanhos de fonte estão muito próximos — sem hierarquia visual clara. Use menos tamanhos com mais contraste (mire em pelo menos uma proporção de 1.25 entre os degraus).',
     skillSection: 'Typography',
     skillGuideline: 'flat type hierarchy',
   },
   {
     id: 'gradient-text',
     category: 'slop',
-    name: 'Gradient text',
+    name: 'Texto com gradiente',
     description:
-      'Gradient text is decorative rather than meaningful — a common AI tell, especially on headings and metrics. Use solid colors for text.',
+      'Texto com gradiente é decorativo em vez de significativo — um indicador comum de IA, especialmente em títulos e métricas. Use cores sólidas para texto.',
     skillSection: 'Color & Contrast',
     skillGuideline: 'gradient text for',
   },
   {
     id: 'ai-color-palette',
     category: 'slop',
-    name: 'AI color palette',
+    name: 'Paleta de cores de IA',
     description:
-      'Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. Choose a distinctive, intentional palette.',
+      'Gradientes roxo/violeta e ciano sobre fundo escuro são os indicadores mais reconhecíveis de UIs geradas por IA. Escolha uma paleta distinta e intencional.',
     skillSection: 'Color & Contrast',
     skillGuideline: 'AI color palette',
   },
   {
     id: 'nested-cards',
     category: 'slop',
-    name: 'Nested cards',
+    name: 'Cards aninhados',
     description:
-      'Cards inside cards create visual noise and excessive depth. Flatten the hierarchy — use spacing, typography, and dividers instead of nesting containers.',
+      'Cards dentro de cards criam ruído visual e profundidade excessiva. Achate a hierarquia — use espaçamento, tipografia e divisores em vez de aninhar contêineres.',
     skillSection: 'Layout & Space',
     skillGuideline: 'Nest cards inside cards',
   },
   {
     id: 'monotonous-spacing',
     category: 'slop',
-    name: 'Monotonous spacing',
+    name: 'Espaçamento monótono',
     description:
-      'The same spacing value used everywhere — no rhythm, no variation. Use tight groupings for related items and generous separations between sections.',
+      'O mesmo valor de espaçamento usado em todo lugar — sem ritmo, sem variação. Use agrupamentos mais ajustados para itens relacionados e separações generosas entre seções.',
     skillSection: 'Layout & Space',
     skillGuideline: 'same spacing everywhere',
   },
   {
     id: 'everything-centered',
     category: 'slop',
-    name: 'Everything centered',
+    name: 'Tudo centralizado',
     description:
-      'Every text element is center-aligned. Left-aligned text with asymmetric layouts feels more designed. Center only hero sections and CTAs.',
+      'Todos os elementos de texto estão alinhados ao centro. Texto alinhado à esquerda com layouts assimétricos parece mais elaborado. Centralize apenas seções hero e CTAs.',
     skillSection: 'Layout & Space',
     skillGuideline: 'Center everything',
   },
   {
     id: 'bounce-easing',
     category: 'slop',
-    name: 'Bounce or elastic easing',
+    name: 'Easing bounce ou elástico',
     description:
-      'Bounce and elastic easing feel dated and tacky. Real objects decelerate smoothly — use exponential easing (ease-out-quart/quint/expo) instead.',
+      'Easing bounce e elástico parecem datados e bregas. Objetos reais desaceleram suavemente — use easing exponencial (ease-out-quart/quint/expo) em vez disso.',
     skillSection: 'Motion',
     skillGuideline: 'bounce or elastic easing',
   },
   {
     id: 'dark-glow',
     category: 'slop',
-    name: 'Dark mode with glowing accents',
+    name: 'Modo escuro com destaques brilhantes',
     description:
-      'Dark backgrounds with colored box-shadow glows are the default "cool" look of AI-generated UIs. Use subtle, purposeful lighting instead — or skip the dark theme entirely.',
+      'Fundos escuros com brilhos coloridos de box-shadow são o visual "descolado" padrão de UIs geradas por IA. Use iluminação sutil e proposital em vez disso — ou simplesmente não use o tema escuro.',
     skillSection: 'Color & Contrast',
     skillGuideline: 'dark mode with glowing accents',
   },
   {
     id: 'icon-tile-stack',
     category: 'slop',
-    name: 'Icon tile stacked above heading',
+    name: 'Ícone empilhado acima do título',
     description:
-      'A small rounded-square icon container above a heading is the universal AI feature-card template — every generator outputs this exact shape. Try a side-by-side icon and heading, or let the icon sit in flow without its own container.',
+      'Um pequeno contêiner de ícone quadrado-arredondado acima de um título é o template universal de feature-cards de IA — todo gerador produz esse exato formato. Experimente ícone e título lado a lado, ou deixe o ícone no fluxo sem seu próprio contêiner.',
     skillSection: 'Typography',
     skillGuideline: 'large icons with rounded corners above every heading',
   },
   {
     id: 'italic-serif-display',
     category: 'slop',
-    name: 'Italic serif display headline',
+    name: 'Título principal em serif itálico',
     description:
-      'Oversized italic serif (Fraunces, Recoleta, Playfair, Newsreader-italic) as the primary hero headline reads as taste in isolation but has become the universal AI-startup landing page hero. Set roman, or move to a non-serif display face. Editorial / magazine register may legitimately want this — judge by context.',
+      'Serif itálico oversize (Fraunces, Recoleta, Playfair, Newsreader-italic) como título hero principal soa como bom gosto isoladamente, mas tornou-se o hero universal de landing pages de startups de IA. Use romano, ou mude para uma fonte display não-serif. Contextos editoriais/revisteiros podem legitimamente querer isso — julgue pelo contexto.',
     skillSection: 'Typography',
     skillGuideline: 'oversized italic serif as the hero headline',
   },
   {
     id: 'hero-eyebrow-chip',
     category: 'slop',
-    name: 'Hero eyebrow / pill chip',
+    name: 'Eyebrow hero / pill chip',
     description:
-      'A tiny uppercase letter-spaced label sitting immediately above an oversized hero headline — or the same shape rendered as a pill chip — is now the default AI SaaS hero. Drop the eyebrow, integrate the kicker into the headline, or run it as a navigation breadcrumb instead.',
+      'Um rótulo minúsculo em maiúsculas com letter-spacing posicionado imediatamente acima de um título hero oversize — ou o mesmo formato renderizado como pill chip — é agora o hero padrão de SaaS de IA. Remova o eyebrow, integre o kicker ao título, ou use-o como breadcrumb de navegação.',
     skillSection: 'Typography',
     skillGuideline: 'tiny uppercase tracked label above the hero headline',
   },
@@ -139,9 +139,9 @@ const ANTIPATTERNS = [
     id: 'repeated-section-kickers',
     category: 'slop',
     severity: 'advisory',
-    name: 'Repeated section kicker labels',
+    name: 'Rótulos kicker de seção repetidos',
     description:
-      'Repeating tiny uppercase tracked labels above section headings turns a brand page into AI editorial scaffolding. Replace them with stronger structure, artifacts, imagery, or a deliberate brand system.',
+      'Repetir rótulos minúsculos em maiúsculas com tracking acima dos títulos de seções transforma uma página de marca em andaime editorial de IA. Substitua-os por estrutura mais forte, artefatos, imagens ou um sistema de marca deliberado.',
     skillSection: 'Typography',
     skillGuideline: 'repeated eyebrow or kicker labels as section scaffolding',
   },
@@ -150,103 +150,103 @@ const ANTIPATTERNS = [
   {
     id: 'pure-black-white',
     category: 'quality',
-    name: 'Pure black background',
+    name: 'Fundo preto puro',
     description:
-      'Pure #000000 as a background color looks harsh and unnatural. Tint it slightly toward your brand hue (e.g., oklch(12% 0.01 250)) for a more refined feel.',
+      'Preto puro #000000 como cor de fundo parece agressivo e artificial. Adicione um leve tom em direção à sua cor de marca (ex: oklch(12% 0.01 250)) para um visual mais refinado.',
     skillSection: 'Color & Contrast',
     skillGuideline: 'pure black (#000)',
   },
   {
     id: 'gray-on-color',
     category: 'quality',
-    name: 'Gray text on colored background',
+    name: 'Texto cinza em fundo colorido',
     description:
-      'Gray text looks washed out on colored backgrounds. Use a darker shade of the background color instead, or white/near-white for contrast.',
+      'Texto cinza parece desbotado em fundos coloridos. Use um tom mais escuro da cor de fundo em vez disso, ou branco/quase-branco para contraste.',
     skillSection: 'Color & Contrast',
     skillGuideline: 'gray text on colored backgrounds',
   },
   {
     id: 'low-contrast',
     category: 'quality',
-    name: 'Low contrast text',
+    name: 'Texto com baixo contraste',
     description:
-      'Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.',
+      'O texto não atende aos requisitos de contraste WCAG AA (4.5:1 para corpo, 3:1 para texto grande). Aumente o contraste entre o texto e o fundo.',
   },
   {
     id: 'layout-transition',
     category: 'quality',
-    name: 'Layout property animation',
+    name: 'Animação de propriedades de layout',
     description:
-      'Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.',
+      'Animar width, height, padding ou margin causa layout thrash e performance ruim. Use transform e opacity em vez disso, ou grid-template-rows para animações de altura.',
     skillSection: 'Motion',
     skillGuideline: 'Animate layout properties',
   },
   {
     id: 'line-length',
     category: 'quality',
-    name: 'Line length too long',
+    name: 'Linha muito longa',
     description:
-      'Text lines wider than ~80 characters are hard to read. The eye loses its place tracking back to the start of the next line. Add a max-width (65ch to 75ch) to text containers.',
+      'Linhas de texto com mais de ~80 caracteres são difíceis de ler. O olho perde o ponto de referência ao voltar ao início da próxima linha. Adicione max-width (65ch a 75ch) aos contêineres de texto.',
     skillSection: 'Layout & Space',
     skillGuideline: 'wrap beyond ~80 characters',
   },
   {
     id: 'cramped-padding',
     category: 'quality',
-    name: 'Cramped padding',
+    name: 'Padding apertado',
     description:
-      'Text is too close to the edge of its container. Add at least 8px (ideally 12-16px) of padding inside bordered or colored containers.',
+      'O texto está muito perto da borda de seu contêiner. Adicione pelo menos 8px (idealmente 12-16px) de padding dentro de contêineres com borda ou cor.',
   },
   {
     id: 'body-text-viewport-edge',
     category: 'quality',
-    name: 'Body text touching viewport edge',
+    name: 'Texto do corpo colado na borda do viewport',
     description:
-      'Body paragraphs render flush against the left or right viewport edge with no container providing horizontal padding. Wrap content in a container with at least 16px (ideally 24-32px) of horizontal padding, or apply max-width with mx-auto.',
+      'Parágrafos do corpo são renderizados colados na borda esquerda ou direita do viewport sem nenhum contêiner fornecendo padding horizontal. Envolva o conteúdo em um contêiner com pelo menos 16px (idealmente 24-32px) de padding horizontal, ou aplique max-width com mx-auto.',
   },
   {
     id: 'tight-leading',
     category: 'quality',
-    name: 'Tight line height',
+    name: 'Altura de linha apertada',
     description:
-      'Line height below 1.3x the font size makes multi-line text hard to read. Use 1.5 to 1.7 for body text so lines have room to breathe.',
+      'Altura de linha abaixo de 1.3x o tamanho da fonte dificulta a leitura de texto com múltiplas linhas. Use 1.5 a 1.7 para texto de corpo para que as linhas tenham espaço para respirar.',
   },
   {
     id: 'skipped-heading',
     category: 'quality',
-    name: 'Skipped heading level',
+    name: 'Nível de heading pulado',
     description:
-      'Heading levels should not skip (e.g. h1 then h3 with no h2). Screen readers use heading hierarchy for navigation. Skipping levels breaks the document outline.',
+      'Níveis de heading não devem ser pulados (ex: h1 seguido de h3 sem h2). Leitores de tela usam a hierarquia de headings para navegação. Pular níveis quebra a estrutura do documento.',
   },
   {
     id: 'justified-text',
     category: 'quality',
-    name: 'Justified text',
+    name: 'Texto justificado',
     description:
-      'Justified text without hyphenation creates uneven word spacing ("rivers of white"). Use text-align: left for body text, or enable hyphens: auto if you must justify.',
+      'Texto justificado sem hifenização cria espaçamento irregular entre palavras ("rios de espaço"). Use text-align: left para texto de corpo, ou ative hyphens: auto se precisar justificar.',
   },
   {
     id: 'tiny-text',
     category: 'quality',
-    name: 'Tiny body text',
+    name: 'Texto de corpo minúsculo',
     description:
-      'Body text below 12px is hard to read, especially on high-DPI screens. Use at least 14px for body content, 16px is ideal.',
+      'Texto de corpo abaixo de 12px é difícil de ler, especialmente em telas de alto DPI. Use pelo menos 14px para conteúdo de corpo; 16px é o ideal.',
   },
   {
     id: 'all-caps-body',
     category: 'quality',
-    name: 'All-caps body text',
+    name: 'Texto de corpo em maiúsculas',
     description:
-      'Long passages in uppercase are hard to read. We recognize words by shape (ascenders and descenders), which all-caps removes. Reserve uppercase for short labels and headings.',
+      'Longos trechos em maiúsculas são difíceis de ler. Reconhecemos palavras pela forma (ascenders e descenders), que as maiúsculas removem. Reserve maiúsculas para rótulos curtos e títulos.',
     skillSection: 'Typography',
     skillGuideline: 'long body passages in uppercase',
   },
   {
     id: 'wide-tracking',
     category: 'quality',
-    name: 'Wide letter spacing on body text',
+    name: 'Letter-spacing amplo no texto de corpo',
     description:
-      'Letter spacing above 0.05em on body text disrupts natural character groupings and slows reading. Reserve wide tracking for short uppercase labels only.',
+      'Letter-spacing acima de 0.05em no texto de corpo prejudica os agrupamentos naturais de caracteres e desacelera a leitura. Reserve tracking amplo apenas para rótulos curtos em maiúsculas.',
   },
 ];
 

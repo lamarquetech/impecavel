@@ -1,94 +1,94 @@
 {
   "craft": {
-    "description": "Full confirmed-brief-then-build flow. Runs multi-round shape discovery first, resolves visual probe and north-star mock gates when available, then builds and visually iterates. Use when building a new feature end-to-end.",
-    "argumentHint": "[feature description]"
+    "description": "Fluxo completo de brief-confirmada-e-então-constrói. Executa descoberta de forma em múltiplas rodadas primeiro, resolve gates de visual probe e north-star mock quando disponíveis, depois constrói e itera visualmente. Use ao construir uma nova funcionalidade de ponta a ponta.",
+    "argumentHint": "[descrição da funcionalidade]"
   },
   "teach": {
-    "description": "Gathers design context for a project. Runs a multi-round discovery interview when context is missing and writes PRODUCT.md (strategic: users, brand, principles) and, when code exists to analyze, DESIGN.md (visual: colors, typography, components). Every other command reads these files before doing work. Use once per project.",
+    "description": "Reúne contexto de design para um projeto. Executa uma entrevista de descoberta em múltiplas rodadas quando o contexto está ausente e escreve PRODUCT.md (estratégico: usuários, marca, princípios) e, quando existe código para analisar, DESIGN.md (visual: cores, tipografia, componentes). Todos os outros comandos leem esses arquivos antes de trabalhar. Use uma vez por projeto.",
     "argumentHint": ""
   },
   "document": {
-    "description": "Generate a DESIGN.md file that captures the current visual design system. Auto-extracts colors, typography, spacing, radii, and component patterns from the codebase, then asks the user to confirm descriptive language for atmosphere and color character. Follows the Google Stitch DESIGN.md format so the file is tool-compatible. Use when you need a visual design spec an AI agent can follow to stay on-brand.",
+    "description": "Gera um arquivo DESIGN.md que captura o sistema de design visual atual. Extrai automaticamente cores, tipografia, espaçamento, raios de borda e padrões de componentes do código, depois pede ao usuário para confirmar a linguagem descritiva de atmosfera e caráter das cores. Segue o formato DESIGN.md do Google Stitch para que o arquivo seja compatível com ferramentas. Use quando precisar de uma especificação de design visual que um agente de IA possa seguir para manter a identidade da marca.",
     "argumentHint": ""
   },
   "extract": {
-    "description": "Pull reusable patterns, components, and design tokens into the design system. Identifies repeated patterns and consolidates them. Use when you have drift across the codebase and want to bring things back to a consistent system.",
-    "argumentHint": "[target]"
+    "description": "Extrai padrões reutilizáveis, componentes e design tokens para o sistema de design. Identifica padrões repetidos e os consolida. Use quando houver dispersão no código e quiser trazer tudo de volta a um sistema consistente.",
+    "argumentHint": "[alvo]"
   },
   "live": {
-    "description": "Interactive live variant mode. Select elements in the browser, pick a design action, and get AI-generated HTML+CSS variants hot-swapped via HMR. Requires a running dev server. Use when you want to visually experiment with design alternatives in real time.",
+    "description": "Modo de variante interativo ao vivo. Selecione elementos no navegador, escolha uma ação de design e receba variantes HTML+CSS geradas por IA trocadas via HMR. Requer um dev server em execução. Use quando quiser experimentar alternativas de design visualmente em tempo real.",
     "argumentHint": ""
   },
   "adapt": {
-    "description": "Adapt designs to work across different screen sizes, devices, contexts, or platforms. Implements breakpoints, fluid layouts, and touch targets. Use when the user mentions responsive design, mobile layouts, breakpoints, viewport adaptation, or cross-device compatibility.",
-    "argumentHint": "[target] [context (mobile, tablet, print...)]"
+    "description": "Adapta designs para funcionar em diferentes tamanhos de tela, dispositivos, contextos ou plataformas. Implementa breakpoints, layouts fluidos e alvos de toque. Use quando o usuário mencionar design responsivo, layouts mobile, breakpoints, adaptação de viewport ou compatibilidade entre dispositivos.",
+    "argumentHint": "[alvo] [contexto (mobile, tablet, impressão...)]"
   },
   "animate": {
-    "description": "Review a feature and enhance it with purposeful animations, micro-interactions, and motion effects that improve usability and delight. Use when the user mentions adding animation, transitions, micro-interactions, motion design, hover effects, or making the UI feel more alive.",
-    "argumentHint": "[target]"
+    "description": "Analisa uma funcionalidade e a aprimora com animações propositais, micro-interações e efeitos de movimento que melhoram a usabilidade e encantam. Use quando o usuário mencionar adicionar animação, transições, micro-interações, motion design, efeitos de hover ou tornar a UI mais viva.",
+    "argumentHint": "[alvo]"
   },
   "audit": {
-    "description": "Run technical quality checks across accessibility, performance, theming, responsive design, and anti-patterns. Generates a scored report with P0-P3 severity ratings and actionable plan. Use when the user wants an accessibility check, performance audit, or technical quality review.",
-    "argumentHint": "[area (feature, page, component...)]"
+    "description": "Executa verificações de qualidade técnica em acessibilidade, performance, tematização, design responsivo e anti-patterns. Gera um relatório pontuado com classificações de severidade P0-P3 e plano de ação. Use quando o usuário quiser uma verificação de acessibilidade, audit de performance ou revisão de qualidade técnica.",
+    "argumentHint": "[área (funcionalidade, página, componente...)]"
   },
   "bolder": {
-    "description": "Amplify safe or boring designs to make them more visually interesting and stimulating. Increases impact while maintaining usability. Use when the user says the design looks bland, generic, too safe, lacks personality, or wants more visual impact and character.",
-    "argumentHint": "[target]"
+    "description": "Amplifica designs seguros ou sem graça para torná-los mais interessantes e estimulantes visualmente. Aumenta o impacto mantendo a usabilidade. Use quando o usuário disser que o design parece sem graça, genérico, muito seguro, sem personalidade ou quiser mais impacto visual e caráter.",
+    "argumentHint": "[alvo]"
   },
   "clarify": {
-    "description": "Improve unclear UX copy, error messages, microcopy, labels, and instructions to make interfaces easier to understand. Use when the user mentions confusing text, unclear labels, bad error messages, hard-to-follow instructions, or wanting better UX writing.",
-    "argumentHint": "[target]"
+    "description": "Melhora textos de UX confusos, mensagens de erro, microcopy, rótulos e instruções para tornar as interfaces mais fáceis de entender. Use quando o usuário mencionar texto confuso, rótulos pouco claros, mensagens de erro ruins, instruções difíceis de seguir ou quiser melhor escrita de UX.",
+    "argumentHint": "[alvo]"
   },
   "colorize": {
-    "description": "Add strategic color to features that are too monochromatic or lack visual interest, making interfaces more engaging and expressive. Use when the user mentions the design looking gray, dull, lacking warmth, needing more color, or wanting a more vibrant or expressive palette.",
-    "argumentHint": "[target]"
+    "description": "Adiciona cor estratégica a funcionalidades que estão muito monocromáticas ou sem interesse visual, tornando as interfaces mais envolventes e expressivas. Use quando o usuário mencionar que o design parece cinza, sem vida, sem calor, precisando de mais cor ou querendo uma paleta mais vibrante ou expressiva.",
+    "argumentHint": "[alvo]"
   },
   "critique": {
-    "description": "Evaluate design from a UX perspective, assessing visual hierarchy, information architecture, emotional resonance, cognitive load, and overall quality with quantitative scoring, persona-based testing, automated anti-pattern detection, and actionable feedback. Use when the user asks to review, critique, evaluate, or give feedback on a design or component.",
-    "argumentHint": "[area (feature, page, component...)]"
+    "description": "Avalia o design da perspectiva de UX, analisando hierarquia visual, arquitetura de informação, ressonância emocional, carga cognitiva e qualidade geral com pontuação quantitativa, testes baseados em personas, detecção automatizada de anti-patterns e feedback acionável. Use quando o usuário pedir para revisar, criticar, avaliar ou dar feedback sobre um design ou componente.",
+    "argumentHint": "[área (funcionalidade, página, componente...)]"
   },
   "delight": {
-    "description": "Add moments of joy, personality, and unexpected touches that make interfaces memorable and enjoyable to use. Elevates functional to delightful. Use when the user asks to add polish, personality, animations, micro-interactions, delight, or make an interface feel fun or memorable.",
-    "argumentHint": "[target]"
+    "description": "Adiciona momentos de alegria, personalidade e toques inesperados que tornam as interfaces memoráveis e prazerosas de usar. Eleva o funcional para encantador. Use quando o usuário pedir para adicionar polish, personalidade, animações, micro-interações, delight ou tornar uma interface divertida ou memorável.",
+    "argumentHint": "[alvo]"
   },
   "distill": {
-    "description": "Strip designs to their essence by removing unnecessary complexity. Great design is simple, powerful, and clean. Use when the user asks to simplify, declutter, reduce noise, remove elements, or make a UI cleaner and more focused.",
-    "argumentHint": "[target]"
+    "description": "Reduz os designs à sua essência removendo complexidade desnecessária. Um ótimo design é simples, poderoso e limpo. Use quando o usuário pedir para simplificar, desobstruir, reduzir ruído, remover elementos ou tornar uma UI mais limpa e focada.",
+    "argumentHint": "[alvo]"
   },
   "harden": {
-    "description": "Make interfaces production-ready: error handling, i18n, text overflow, edge case management, and resilience under real-world data. Use when the user asks to harden, make production-ready, handle edge cases, add error states, or fix overflow and i18n issues.",
-    "argumentHint": "[target]"
+    "description": "Torna as interfaces prontas para produção: tratamento de erros, i18n, overflow de texto, gerenciamento de casos extremos e resiliência sob dados do mundo real. Use quando o usuário pedir para endurecer, tornar production-ready, tratar casos extremos, adicionar estados de erro ou corrigir overflow e problemas de i18n.",
+    "argumentHint": "[alvo]"
   },
   "onboard": {
-    "description": "Design onboarding flows, first-run experiences, and empty states that guide new users to value. Covers welcome screens, account setup, progressive disclosure, contextual tooltips, feature announcements, and activation moments. Use when the user mentions onboarding, first-time users, empty states, activation, getting started, new user flows, or the aha moment.",
-    "argumentHint": "[target]"
+    "description": "Projeta fluxos de onboarding, experiências de primeira execução e estados vazios que guiam novos usuários ao valor. Abrange telas de boas-vindas, configuração de conta, disclosure progressivo, tooltips contextuais, anúncios de funcionalidades e momentos de ativação. Use quando o usuário mencionar onboarding, usuários pela primeira vez, estados vazios, ativação, primeiros passos, fluxos de novos usuários ou o momento aha.",
+    "argumentHint": "[alvo]"
   },
   "layout": {
-    "description": "Improve layout, spacing, and visual rhythm. Fixes monotonous grids, inconsistent spacing, and weak visual hierarchy. Use when the user mentions layout feeling off, spacing issues, visual hierarchy, crowded UI, alignment problems, or wanting better composition.",
-    "argumentHint": "[target]"
+    "description": "Melhora layout, espaçamento e ritmo visual. Corrige grids monótonos, espaçamento inconsistente e hierarquia visual fraca. Use quando o usuário mencionar layout estranho, problemas de espaçamento, hierarquia visual, UI lotada, problemas de alinhamento ou quiser melhor composição.",
+    "argumentHint": "[alvo]"
   },
   "optimize": {
-    "description": "Diagnoses and fixes UI performance across loading speed, rendering, animations, images, and bundle size. Use when the user mentions slow, laggy, janky, performance, bundle size, load time, or wants a faster, smoother experience.",
-    "argumentHint": "[target]"
+    "description": "Diagnostica e corrige performance de UI em velocidade de carregamento, renderização, animações, imagens e tamanho do bundle. Use quando o usuário mencionar lento, travado, janky, performance, tamanho do bundle, tempo de carregamento ou quiser uma experiência mais rápida e fluida.",
+    "argumentHint": "[alvo]"
   },
   "overdrive": {
-    "description": "Pushes interfaces past conventional limits with technically ambitious implementations — shaders, spring physics, scroll-driven reveals, 60fps animations. Use when the user wants to wow, impress, go all-out, or make something that feels extraordinary.",
-    "argumentHint": "[target]"
+    "description": "Leva interfaces além dos limites convencionais com implementações tecnicamente ambiciosas — shaders, física de mola, revelações scroll-driven, animações a 60fps. Use quando o usuário quiser impressionar, causar impacto, ir com tudo ou criar algo que pareça extraordinário.",
+    "argumentHint": "[alvo]"
   },
   "polish": {
-    "description": "Performs a final quality pass fixing alignment, spacing, consistency, and micro-detail issues before shipping. Use when the user mentions polish, finishing touches, pre-launch review, something looks off, or wants to go from good to great.",
-    "argumentHint": "[target]"
+    "description": "Realiza uma passagem final de qualidade corrigindo alinhamento, espaçamento, consistência e questões de micro-detalhes antes de entregar. Use quando o usuário mencionar polish, retoques finais, revisão pré-lançamento, algo parecido estranho ou quiser ir de bom para ótimo.",
+    "argumentHint": "[alvo]"
   },
   "quieter": {
-    "description": "Tones down visually aggressive or overstimulating designs, reducing intensity while preserving quality. Use when the user mentions too bold, too loud, overwhelming, aggressive, garish, or wants a calmer, more refined aesthetic.",
-    "argumentHint": "[target]"
+    "description": "Atenua designs visualmente agressivos ou superestimulantes, reduzindo a intensidade preservando a qualidade. Use quando o usuário mencionar muito ousado, muito barulhento, opressor, agressivo, berrante ou quiser uma estética mais calma e refinada.",
+    "argumentHint": "[alvo]"
   },
   "shape": {
-    "description": "Plan UX and UI before code. Runs a required multi-round discovery interview, uses visual probes when available, and produces a user-confirmed design brief for implementation.",
-    "argumentHint": "[feature to shape]"
+    "description": "Planeja UX e UI antes do código. Executa uma entrevista de descoberta em múltiplas rodadas obrigatória, usa visual probes quando disponíveis e produz um brief de design confirmado pelo usuário para implementação.",
+    "argumentHint": "[funcionalidade a moldar]"
   },
   "typeset": {
-    "description": "Improves typography by fixing font choices, hierarchy, sizing, weight, and readability so text feels intentional. Use when the user mentions fonts, type, readability, text hierarchy, sizing looks off, or wants more polished, intentional typography.",
-    "argumentHint": "[target]"
+    "description": "Melhora a tipografia corrigindo escolhas de fontes, hierarquia, dimensionamento, peso e legibilidade para que o texto pareça intencional. Use quando o usuário mencionar fontes, tipo, legibilidade, hierarquia de texto, dimensionamento estranho ou quiser tipografia mais polida e intencional.",
+    "argumentHint": "[alvo]"
   }
 }

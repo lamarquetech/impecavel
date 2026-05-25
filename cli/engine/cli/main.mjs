@@ -26,14 +26,14 @@ function formatFindings(findings, jsonMode) {
   }
   const out = [];
   for (const [file, items] of Object.entries(grouped)) {
-    const importNote = items[0]?.importedBy?.length ? ` (imported by ${items[0].importedBy.join(', ')})` : '';
+    const importNote = items[0]?.importedBy?.length ? ` (importado por ${items[0].importedBy.join(', ')})` : '';
     out.push(`\n${file}${importNote}`);
     for (const item of items) {
-      out.push(`  ${item.line ? `line ${item.line}: ` : ''}[${item.antipattern}] ${item.snippet}`);
+      out.push(`  ${item.line ? `linha ${item.line}: ` : ''}[${item.antipattern}] ${item.snippet}`);
       out.push(`    → ${item.description}`);
     }
   }
-  out.push(`\n${findings.length} anti-pattern${findings.length === 1 ? '' : 's'} found.`);
+  out.push(`\n${findings.length} anti-pattern${findings.length === 1 ? ' encontrado' : 's encontrados'}.`);
   return out.join('\n');
 }
 
@@ -74,22 +74,22 @@ async function confirm(question) {
 }
 
 function printUsage() {
-  console.log(`Usage: impeccable detect [options] [file-or-dir-or-url...]
+  console.log(`Uso: impeccable detect [opções] [arquivo-ou-diretório-ou-url...]
 
-Scan files or URLs for UI anti-patterns and design quality issues.
+Escanear arquivos ou URLs em busca de anti-patterns de UI e problemas de qualidade de design.
 
-Options:
-  --fast    Regex-only mode (skip static HTML/CSS analysis, faster but misses linked stylesheets)
-  --json    Output results as JSON
-  --help    Show this help message
+Opções:
+  --fast    Modo somente regex (ignora análise HTML/CSS estática, mais rápido mas não detecta stylesheets linkados)
+  --json    Emitir resultados como JSON
+  --help    Exibir esta mensagem de ajuda
 
-Detection modes:
-  HTML files     Static HTML/CSS analysis (default, catches linked CSS)
-  Non-HTML files Regex pattern matching (CSS, JSX, TSX, etc.)
-  URLs           Puppeteer full browser rendering (auto-detected)
-  --fast         Forces regex for all files
+Modos de detecção:
+  Arquivos HTML     Análise HTML/CSS estática (padrão, detecta CSS linkado)
+  Arquivos não-HTML Correspondência por padrões regex (CSS, JSX, TSX, etc.)
+  URLs              Renderização completa via Puppeteer (detectado automaticamente)
+  --fast            Força regex para todos os arquivos
 
-Examples:
+Exemplos:
   impeccable detect src/
   impeccable detect index.html
   impeccable detect https://example.com
@@ -127,14 +127,14 @@ async function detectCli() {
               ? (url) => browserDetector.detectUrl(url)
               : (url) => detectUrl(url);
             allFindings.push(...await scanner(target));
-          } catch (e) { process.stderr.write(`Error: ${e.message}\n`); }
+          } catch (e) { process.stderr.write(`Erro: ${e.message}\n`); }
           continue;
         }
 
         const resolved = path.resolve(target);
         let stat;
         try { stat = fs.statSync(resolved); }
-        catch { process.stderr.write(`Warning: cannot access ${target}\n`); continue; }
+        catch { process.stderr.write(`Aviso: não foi possível acessar ${target}\n`); continue; }
 
         if (stat.isDirectory()) {
           // Check for framework dev server config (skip in JSON mode to avoid polluting output)
@@ -144,19 +144,19 @@ async function detectCli() {
               const probe = await isPortListening(fwConfig.port, fwConfig.fingerprint);
               if (probe.listening && probe.matched) {
                 process.stderr.write(
-                  `\n${fwConfig.name} dev server detected on localhost:${fwConfig.port}.\n` +
-                  `For more accurate results, scan the running site:\n` +
+                  `\n${fwConfig.name} dev server detectado em localhost:${fwConfig.port}.\n` +
+                  `Para resultados mais precisos, escaneie o site em execução:\n` +
                   `  npx impeccable detect http://localhost:${fwConfig.port}\n\n`
                 );
               } else if (probe.listening && !probe.matched) {
                 process.stderr.write(
-                  `\n${fwConfig.name} project detected (${path.basename(fwConfig.configPath)}).\n` +
-                  `Port ${fwConfig.port} is in use by another service. Start the ${fwConfig.name} dev server and scan via URL for best results.\n\n`
+                  `\nProjeto ${fwConfig.name} detectado (${path.basename(fwConfig.configPath)}).\n` +
+                  `A porta ${fwConfig.port} está em uso por outro serviço. Inicie o dev server do ${fwConfig.name} e escaneie via URL para melhores resultados.\n\n`
                 );
               } else {
                 process.stderr.write(
-                  `\n${fwConfig.name} project detected (${path.basename(fwConfig.configPath)}).\n` +
-                  `Start the dev server and scan via URL for best results:\n` +
+                  `\nProjeto ${fwConfig.name} detectado (${path.basename(fwConfig.configPath)}).\n` +
+                  `Inicie o dev server e escaneie via URL para melhores resultados:\n` +
                   `  npx impeccable detect http://localhost:${fwConfig.port}\n\n`
                 );
               }
@@ -169,12 +169,12 @@ async function detectCli() {
           // Warn and confirm if scanning many files (static HTML/CSS processes each HTML file)
           if (files.length > 50 && process.stdin.isTTY && !jsonMode) {
             process.stderr.write(
-              `\nFound ${files.length} files (${htmlCount} HTML) in ${target}.\n` +
-              `Scanning may take a while${htmlCount > 10 ? ' (static HTML/CSS processes each HTML file individually)' : ''}.\n` +
-              `Use --fast to skip static HTML/CSS analysis, or target a specific subdirectory.\n`
+              `\nEncontrados ${files.length} arquivos (${htmlCount} HTML) em ${target}.\n` +
+              `O escaneamento pode demorar${htmlCount > 10 ? ' (a análise HTML/CSS estática processa cada arquivo HTML individualmente)' : ''}.\n` +
+              `Use --fast para pular a análise HTML/CSS estática, ou direcione um subdiretório específico.\n`
             );
-            const ok = await confirm('Continue?');
-            if (!ok) { process.stderr.write('Aborted.\n'); process.exit(0); }
+            const ok = await confirm('Continuar?');
+            if (!ok) { process.stderr.write('Abortado.\n'); process.exit(0); }
           }
 
           // Build import graph for multi-file awareness

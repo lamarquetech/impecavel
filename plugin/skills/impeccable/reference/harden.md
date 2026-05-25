@@ -1,51 +1,51 @@
-Designs that only work with perfect data aren't production-ready. Harden the interface against the inputs, errors, languages, and network conditions that real users will throw at it.
+Designs que só funcionam com dados perfeitos não estão prontos para produção. Endureça a interface contra as entradas, erros, idiomas e condições de rede que usuários reais vão lhe jogar.
 
-## Assess Hardening Needs
+## Avalie as Necessidades de Hardening
 
-Identify weaknesses and edge cases:
+Identifique fragilidades e casos extremos:
 
-1. **Test with extreme inputs**:
-   - Very long text (names, descriptions, titles)
-   - Very short text (empty, single character)
-   - Special characters (emoji, RTL text, accents)
-   - Large numbers (millions, billions)
-   - Many items (1000+ list items, 50+ options)
-   - No data (empty states)
+1. **Teste com entradas extremas**:
+   - Texto muito longo (nomes, descrições, títulos)
+   - Texto muito curto (vazio, caractere único)
+   - Caracteres especiais (emoji, texto RTL, acentos)
+   - Números grandes (milhões, bilhões)
+   - Muitos itens (1000+ itens em lista, 50+ opções)
+   - Nenhum dado (estados vazios)
 
-2. **Test error scenarios**:
-   - Network failures (offline, slow, timeout)
-   - API errors (400, 401, 403, 404, 500)
-   - Validation errors
-   - Permission errors
+2. **Teste cenários de erro**:
+   - Falhas de rede (offline, lento, timeout)
+   - Erros de API (400, 401, 403, 404, 500)
+   - Erros de validação
+   - Erros de permissão
    - Rate limiting
-   - Concurrent operations
+   - Operações concorrentes
 
-3. **Test internationalization**:
-   - Long translations (German is often 30% longer than English)
-   - RTL languages (Arabic, Hebrew)
-   - Character sets (Chinese, Japanese, Korean, emoji)
-   - Date/time formats
-   - Number formats (1,000 vs 1.000)
-   - Currency symbols
+3. **Teste internacionalização**:
+   - Traduções longas (Alemão costuma ser 30% mais longo que Inglês)
+   - Idiomas RTL (Árabe, Hebraico)
+   - Conjuntos de caracteres (Chinês, Japonês, Coreano, emoji)
+   - Formatos de data/hora
+   - Formatos numéricos (1,000 vs 1.000)
+   - Símbolos de moeda
 
-**CRITICAL**: Designs that only work with perfect data aren't production-ready. Harden against reality.
+**CRÍTICO**: Designs que só funcionam com dados perfeitos não estão prontos para produção. Endureça contra a realidade.
 
-## Hardening Dimensions
+## Dimensões de Hardening
 
-Systematically improve resilience:
+Melhore a resiliência sistematicamente:
 
-### Text Overflow & Wrapping
+### Overflow e Quebra de Texto
 
-**Long text handling**:
+**Tratamento de texto longo**:
 ```css
-/* Single line with ellipsis */
+/* Linha única com reticências */
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* Multi-line with clamp */
+/* Múltiplas linhas com clamp */
 .line-clamp {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -53,7 +53,7 @@ Systematically improve resilience:
   overflow: hidden;
 }
 
-/* Allow wrapping */
+/* Permitir quebra */
 .wrap {
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -61,63 +61,63 @@ Systematically improve resilience:
 }
 ```
 
-**Flex/Grid overflow**:
+**Overflow em Flex/Grid**:
 ```css
-/* Prevent flex items from overflowing */
+/* Prevenir que itens flex transbordem */
 .flex-item {
-  min-width: 0; /* Allow shrinking below content size */
+  min-width: 0; /* Permite encolher abaixo do tamanho do conteúdo */
   overflow: hidden;
 }
 
-/* Prevent grid items from overflowing */
+/* Prevenir que itens grid transbordem */
 .grid-item {
   min-width: 0;
   min-height: 0;
 }
 ```
 
-**Responsive text sizing**:
-- Use `clamp()` for fluid typography
-- Set minimum readable sizes (14px on mobile)
-- Test text scaling (zoom to 200%)
-- Ensure containers expand with text
+**Dimensionamento responsivo de texto**:
+- Use `clamp()` para tipografia fluida
+- Defina tamanhos mínimos legíveis (14px no mobile)
+- Teste escalamento de texto (zoom para 200%)
+- Garanta que containers expandam com o texto
 
-### Internationalization (i18n)
+### Internacionalização (i18n)
 
-**Text expansion**:
-- Add 30-40% space budget for translations
-- Use flexbox/grid that adapts to content
-- Test with longest language (usually German)
-- Avoid fixed widths on text containers
+**Expansão de texto**:
+- Adicione orçamento de espaço de 30-40% para traduções
+- Use flexbox/grid que se adapta ao conteúdo
+- Teste com o idioma mais longo (geralmente Alemão)
+- Evite larguras fixas em containers de texto
 
 ```jsx
-// ❌ Bad: Assumes short English text
+// ❌ Ruim: Presume texto curto em Inglês
 <button className="w-24">Submit</button>
 
-// ✅ Good: Adapts to content
+// ✅ Bom: Adapta ao conteúdo
 <button className="px-4 py-2">Submit</button>
 ```
 
-**RTL (Right-to-Left) support**:
+**Suporte a RTL (Right-to-Left)**:
 ```css
-/* Use logical properties */
-margin-inline-start: 1rem; /* Not margin-left */
-padding-inline: 1rem; /* Not padding-left/right */
-border-inline-end: 1px solid; /* Not border-right */
+/* Use propriedades lógicas */
+margin-inline-start: 1rem; /* Não margin-left */
+padding-inline: 1rem; /* Não padding-left/right */
+border-inline-end: 1px solid; /* Não border-right */
 
-/* Or use dir attribute */
+/* Ou use atributo dir */
 [dir="rtl"] .arrow { transform: scaleX(-1); }
 ```
 
-**Character set support**:
-- Use UTF-8 encoding everywhere
-- Test with Chinese/Japanese/Korean (CJK) characters
-- Test with emoji (they can be 2-4 bytes)
-- Handle different scripts (Latin, Cyrillic, Arabic, etc.)
+**Suporte a conjuntos de caracteres**:
+- Use codificação UTF-8 em todo lugar
+- Teste com caracteres Chinês/Japonês/Coreano (CJK)
+- Teste com emoji (podem ter 2-4 bytes)
+- Trate scripts diferentes (Latim, Cirílico, Árabe, etc.)
 
-**Date/Time formatting**:
+**Formatação de Data/Hora**:
 ```javascript
-// ✅ Use Intl API for proper formatting
+// ✅ Use Intl API para formatação adequada
 new Intl.DateTimeFormat('en-US').format(date); // 1/15/2024
 new Intl.DateTimeFormat('de-DE').format(date); // 15.1.2024
 
@@ -127,114 +127,114 @@ new Intl.NumberFormat('en-US', {
 }).format(1234.56); // $1,234.56
 ```
 
-**Pluralization**:
+**Pluralização**:
 ```javascript
-// ❌ Bad: Assumes English pluralization
+// ❌ Ruim: Presume pluralização em Inglês
 `${count} item${count !== 1 ? 's' : ''}`
 
-// ✅ Good: Use proper i18n library
-t('items', { count }) // Handles complex plural rules
+// ✅ Bom: Use biblioteca de i18n adequada
+t('items', { count }) // Trata regras complexas de plural
 ```
 
-### Error Handling
+### Tratamento de Erros
 
-**Network errors**:
-- Show clear error messages
-- Provide retry button
-- Explain what happened
-- Offer offline mode (if applicable)
-- Handle timeout scenarios
+**Erros de rede**:
+- Mostre mensagens de erro claras
+- Forneça botão de tentar novamente
+- Explique o que aconteceu
+- Ofereça modo offline (se aplicável)
+- Trate cenários de timeout
 
 ```jsx
-// Error states with recovery
+// Estados de erro com recuperação
 {error && (
   <ErrorMessage>
-    <p>Failed to load data. {error.message}</p>
-    <button onClick={retry}>Try again</button>
+    <p>Falha ao carregar dados. {error.message}</p>
+    <button onClick={retry}>Tentar novamente</button>
   </ErrorMessage>
 )}
 ```
 
-**Form validation errors**:
-- Inline errors near fields
-- Clear, specific messages
-- Suggest corrections
-- Don't block submission unnecessarily
-- Preserve user input on error
+**Erros de validação de formulário**:
+- Erros inline próximos aos campos
+- Mensagens claras e específicas
+- Sugira correções
+- Não bloqueie envio desnecessariamente
+- Preserve o input do usuário em caso de erro
 
-**API errors**:
-- Handle each status code appropriately
-  - 400: Show validation errors
-  - 401: Redirect to login
-  - 403: Show permission error
-  - 404: Show not found state
-  - 429: Show rate limit message
-  - 500: Show generic error, offer support
+**Erros de API**:
+- Trate cada código de status apropriadamente
+  - 400: Mostre erros de validação
+  - 401: Redirecione para login
+  - 403: Mostre erro de permissão
+  - 404: Mostre estado de não encontrado
+  - 429: Mostre mensagem de rate limit
+  - 500: Mostre erro genérico, ofereça suporte
 
-**Graceful degradation**:
-- Core functionality works without JavaScript
-- Images have alt text
-- Progressive enhancement
-- Fallbacks for unsupported features
+**Degradação graceful**:
+- Funcionalidade principal funciona sem JavaScript
+- Imagens têm texto alt
+- Melhoria progressiva
+- Fallbacks para funcionalidades não suportadas
 
-### Edge Cases & Boundary Conditions
+### Casos Extremos e Condições de Contorno
 
-**Empty states**:
-- No items in list
-- No search results
-- No notifications
-- No data to display
-- Provide clear next action
+**Estados vazios**:
+- Nenhum item na lista
+- Nenhum resultado de busca
+- Nenhuma notificação
+- Nenhum dado para exibir
+- Forneça uma próxima ação clara
 
-**Loading states**:
-- Initial load
-- Pagination load
-- Refresh
-- Show what's loading ("Loading your projects...")
-- Time estimates for long operations
+**Estados de carregamento**:
+- Carregamento inicial
+- Carregamento de paginação
+- Atualização
+- Mostre o que está carregando ("Carregando seus projetos...")
+- Estimativas de tempo para operações longas
 
-**Large datasets**:
-- Pagination or virtual scrolling
-- Search/filter capabilities
-- Performance optimization
-- Don't load all 10,000 items at once
+**Grandes conjuntos de dados**:
+- Paginação ou scroll virtual
+- Capacidades de busca/filtro
+- Otimização de performance
+- Não carregue todos os 10.000 itens de uma vez
 
-**Concurrent operations**:
-- Prevent double-submission (disable button while loading)
-- Handle race conditions
-- Optimistic updates with rollback
-- Conflict resolution
+**Operações concorrentes**:
+- Previna duplo envio (desabilite botão enquanto carrega)
+- Trate condições de corrida
+- Atualizações otimistas com rollback
+- Resolução de conflitos
 
-**Permission states**:
-- No permission to view
-- No permission to edit
-- Read-only mode
-- Clear explanation of why
+**Estados de permissão**:
+- Sem permissão para visualizar
+- Sem permissão para editar
+- Modo somente leitura
+- Explicação clara do motivo
 
-**Browser compatibility**:
-- Polyfills for modern features
-- Fallbacks for unsupported CSS
-- Feature detection (not browser detection)
-- Test in target browsers
+**Compatibilidade de navegadores**:
+- Polyfills para funcionalidades modernas
+- Fallbacks para CSS não suportado
+- Detecção de funcionalidades (não detecção de navegador)
+- Teste nos navegadores-alvo
 
-### Input Validation & Sanitization
+### Validação e Sanitização de Entrada
 
-**Client-side validation**:
-- Required fields
-- Format validation (email, phone, URL)
-- Length limits
+**Validação client-side**:
+- Campos obrigatórios
+- Validação de formato (email, telefone, URL)
+- Limites de comprimento
 - Pattern matching
-- Custom validation rules
+- Regras de validação customizadas
 
-**Server-side validation** (always):
-- Never trust client-side only
-- Validate and sanitize all inputs
-- Protect against injection attacks
+**Validação server-side** (sempre):
+- Nunca confie apenas no client-side
+- Valide e sanitize todas as entradas
+- Proteja contra ataques de injeção
 - Rate limiting
 
-**Constraint handling**:
+**Tratamento de restrições**:
 ```html
-<!-- Set clear constraints -->
+<!-- Defina restrições claras -->
 <input 
   type="text"
   maxlength="100"
@@ -243,25 +243,25 @@ t('items', { count }) // Handles complex plural rules
   aria-describedby="username-hint"
 />
 <small id="username-hint">
-  Letters and numbers only, up to 100 characters
+  Apenas letras e números, até 100 caracteres
 </small>
 ```
 
-### Accessibility Resilience
+### Resiliência de Acessibilidade
 
-**Keyboard navigation**:
-- All functionality accessible via keyboard
-- Logical tab order
-- Focus management in modals
-- Skip links for long content
+**Navegação por teclado**:
+- Toda funcionalidade acessível via teclado
+- Ordem lógica de tab
+- Gerenciamento de foco em modais
+- Skip links para conteúdo longo
 
-**Screen reader support**:
-- Proper ARIA labels
-- Announce dynamic changes (live regions)
-- Descriptive alt text
-- Semantic HTML
+**Suporte a screen reader**:
+- Rótulos ARIA adequados
+- Anuncie mudanças dinâmicas (live regions)
+- Texto alt descritivo
+- HTML semântico
 
-**Motion sensitivity**:
+**Sensibilidade a movimento**:
 ```css
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -272,76 +272,76 @@ t('items', { count }) // Handles complex plural rules
 }
 ```
 
-**High contrast mode**:
-- Test in Windows high contrast mode
-- Don't rely only on color
-- Provide alternative visual cues
+**Modo de alto contraste**:
+- Teste no modo de alto contraste do Windows
+- Não dependa apenas de cor
+- Forneça pistas visuais alternativas
 
-### Performance Resilience
+### Resiliência de Performance
 
-**Slow connections**:
-- Progressive image loading
+**Conexões lentas**:
+- Carregamento progressivo de imagens
 - Skeleton screens
-- Optimistic UI updates
-- Offline support (service workers)
+- Atualizações otimistas de UI
+- Suporte offline (service workers)
 
-**Memory leaks**:
-- Clean up event listeners
-- Cancel subscriptions
-- Clear timers/intervals
-- Abort pending requests on unmount
+**Vazamentos de memória**:
+- Limpe event listeners
+- Cancele subscriptions
+- Limpe timers/intervals
+- Aborte requisições pendentes no unmount
 
-**Throttling & Debouncing**:
+**Throttling e Debouncing**:
 ```javascript
-// Debounce search input
+// Debounce na busca
 const debouncedSearch = debounce(handleSearch, 300);
 
-// Throttle scroll handler
+// Throttle no handler de scroll
 const throttledScroll = throttle(handleScroll, 100);
 ```
 
-## Testing Strategies
+## Estratégias de Teste
 
-**Manual testing**:
-- Test with extreme data (very long, very short, empty)
-- Test in different languages
-- Test offline
-- Test slow connection (throttle to 3G)
-- Test with screen reader
-- Test keyboard-only navigation
-- Test on old browsers
+**Teste manual**:
+- Teste com dados extremos (muito longo, muito curto, vazio)
+- Teste em diferentes idiomas
+- Teste offline
+- Teste conexão lenta (throttle para 3G)
+- Teste com screen reader
+- Teste navegação apenas por teclado
+- Teste em navegadores antigos
 
-**Automated testing**:
-- Unit tests for edge cases
-- Integration tests for error scenarios
-- E2E tests for critical paths
-- Visual regression tests
-- Accessibility tests (axe, WAVE)
+**Teste automatizado**:
+- Testes unitários para casos extremos
+- Testes de integração para cenários de erro
+- Testes E2E para caminhos críticos
+- Testes de regressão visual
+- Testes de acessibilidade (axe, WAVE)
 
-**IMPORTANT**: Hardening is about expecting the unexpected. Real users will do things you never imagined.
+**IMPORTANTE**: Hardening é sobre esperar o inesperado. Usuários reais vão fazer coisas que você nunca imaginou.
 
-**NEVER**:
-- Assume perfect input (validate everything)
-- Ignore internationalization (design for global)
-- Leave error messages generic ("Error occurred")
-- Forget offline scenarios
-- Trust client-side validation alone
-- Use fixed widths for text
-- Assume English-length text
-- Block entire interface when one component errors
+**NUNCA**:
+- Presuma entrada perfeita (valide tudo)
+- Ignore internacionalização (design para o global)
+- Deixe mensagens de erro genéricas ("Ocorreu um erro")
+- Esqueça cenários offline
+- Confie apenas na validação client-side
+- Use larguras fixas para texto
+- Presuma texto com comprimento em Inglês
+- Bloqueie toda a interface quando um componente apresenta erro
 
-## Verify Hardening
+## Verifique o Hardening
 
-Test thoroughly with edge cases:
+Teste minuciosamente com casos extremos:
 
-- **Long text**: Try names with 100+ characters
-- **Emoji**: Use emoji in all text fields
-- **RTL**: Test with Arabic or Hebrew
-- **CJK**: Test with Chinese/Japanese/Korean
-- **Network issues**: Disable internet, throttle connection
-- **Large datasets**: Test with 1000+ items
-- **Concurrent actions**: Click submit 10 times rapidly
-- **Errors**: Force API errors, test all error states
-- **Empty**: Remove all data, test empty states
+- **Texto longo**: Tente nomes com 100+ caracteres
+- **Emoji**: Use emoji em todos os campos de texto
+- **RTL**: Teste com Árabe ou Hebraico
+- **CJK**: Teste com Chinês/Japonês/Coreano
+- **Problemas de rede**: Desabilite internet, faça throttle da conexão
+- **Grandes conjuntos de dados**: Teste com 1000+ itens
+- **Ações concorrentes**: Clique em enviar 10 vezes rapidamente
+- **Erros**: Force erros de API, teste todos os estados de erro
+- **Vazio**: Remova todos os dados, teste estados vazios
 
-When edge cases are covered, hand off to `/impeccable polish` for the final pass.
+Quando os casos extremos estiverem cobertos, passe para `{{command_prefix}}impeccable polish` para a revisão final.

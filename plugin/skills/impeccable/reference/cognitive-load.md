@@ -1,106 +1,106 @@
-# Cognitive Load Assessment
+# Avaliação de Carga Cognitiva
 
-Cognitive load is the total mental effort required to use an interface. Overloaded users make mistakes, get frustrated, and leave. This reference helps identify and fix cognitive overload.
-
----
-
-## Three Types of Cognitive Load
-
-### Intrinsic Load: The Task Itself
-Complexity inherent to what the user is trying to do. You can't eliminate this, but you can structure it.
-
-**Manage it by**:
-- Breaking complex tasks into discrete steps
-- Providing scaffolding (templates, defaults, examples)
-- Progressive disclosure: show what's needed now, hide the rest
-- Grouping related decisions together
-
-### Extraneous Load: Bad Design
-Mental effort caused by poor design choices. **Eliminate this ruthlessly.** It's pure waste.
-
-**Common sources**:
-- Confusing navigation that requires mental mapping
-- Unclear labels that force users to guess meaning
-- Visual clutter competing for attention
-- Inconsistent patterns that prevent learning
-- Unnecessary steps between user intent and result
-
-### Germane Load: Learning Effort
-Mental effort spent building understanding. This is *good* cognitive load; it leads to mastery.
-
-**Support it by**:
-- Progressive disclosure that reveals complexity gradually
-- Consistent patterns that reward learning
-- Feedback that confirms correct understanding
-- Onboarding that teaches through action, not walls of text
+Carga cognitiva é o esforço mental total necessário para usar uma interface. Usuários sobrecarregados cometem erros, ficam frustrados e abandonam. Esta referência ajuda a identificar e corrigir a sobrecarga cognitiva.
 
 ---
 
-## Cognitive Load Checklist
+## Três Tipos de Carga Cognitiva
 
-Evaluate the interface against these 8 items:
+### Carga Intrínseca: A Tarefa em Si
+Complexidade inerente ao que o usuário está tentando fazer. Você não pode eliminá-la, mas pode estruturá-la.
 
-- [ ] **Single focus**: Can the user complete their primary task without distraction from competing elements?
-- [ ] **Chunking**: Is information presented in digestible groups (≤4 items per group)?
-- [ ] **Grouping**: Are related items visually grouped together (proximity, borders, shared background)?
-- [ ] **Visual hierarchy**: Is it immediately clear what's most important on the screen?
-- [ ] **One thing at a time**: Can the user focus on a single decision before moving to the next?
-- [ ] **Minimal choices**: Are decisions simplified (≤4 visible options at any decision point)?
-- [ ] **Working memory**: Does the user need to remember information from a previous screen to act on the current one?
-- [ ] **Progressive disclosure**: Is complexity revealed only when the user needs it?
+**Gerencie-a**:
+- Dividindo tarefas complexas em etapas discretas
+- Fornecendo scaffolding (templates, padrões, exemplos)
+- Revelação progressiva: mostre o que é necessário agora, oculte o resto
+- Agrupando decisões relacionadas
 
-**Scoring**: Count the failed items. 0–1 failures = low cognitive load (good). 2–3 = moderate (address soon). 4+ = high cognitive load (critical fix needed).
+### Carga Extrínseca: Design Ruim
+Esforço mental causado por escolhas ruins de design. **Elimine-a implacavelmente.** É puro desperdício.
 
----
+**Fontes comuns**:
+- Navegação confusa que exige mapeamento mental
+- Rótulos obscuros que forçam os usuários a adivinhar o significado
+- Desordem visual competindo por atenção
+- Padrões inconsistentes que impedem o aprendizado
+- Etapas desnecessárias entre a intenção do usuário e o resultado
 
-## The Working Memory Rule
+### Carga Germinal: Esforço de Aprendizado
+Esforço mental gasto na construção de compreensão. Esta é uma carga cognitiva *boa*; leva à maestria.
 
-**Humans can hold ≤4 items in working memory at once** (Miller's Law revised by Cowan, 2001).
-
-At any decision point, count the number of distinct options, actions, or pieces of information a user must simultaneously consider:
-- **≤4 items**: Within working memory limits, manageable
-- **5–7 items**: Pushing the boundary; consider grouping or progressive disclosure
-- **8+ items**: Overloaded; users will skip, misclick, or abandon
-
-**Practical applications**:
-- Navigation menus: ≤5 top-level items (group the rest under clear categories)
-- Form sections: ≤4 fields visible per group before a visual break
-- Action buttons: 1 primary, 1–2 secondary, group the rest in a menu
-- Dashboard widgets: ≤4 key metrics visible without scrolling
-- Pricing tiers: ≤3 options (more causes analysis paralysis)
+**Apoie-a**:
+- Revelação progressiva que revela complexidade gradualmente
+- Padrões consistentes que recompensam o aprendizado
+- Feedback que confirma a compreensão correta
+- Onboarding que ensina pela ação, não por muros de texto
 
 ---
 
-## Common Cognitive Load Violations
+## Checklist de Carga Cognitiva
 
-### 1. The Wall of Options
-**Problem**: Presenting 10+ choices at once with no hierarchy.
-**Fix**: Group into categories, highlight recommended, use progressive disclosure.
+Avalie a interface contra estes 8 itens:
 
-### 2. The Memory Bridge
-**Problem**: User must remember info from step 1 to complete step 3.
-**Fix**: Keep relevant context visible, or repeat it where it's needed.
+- [ ] **Foco único**: O usuário consegue completar sua tarefa primária sem distração de elementos competidores?
+- [ ] **Agrupamento**: A informação é apresentada em grupos digestíveis (≤4 itens por grupo)?
+- [ ] **Agrupamento visual**: Itens relacionados estão agrupados visualmente (proximidade, bordas, fundo compartilhado)?
+- [ ] **Hierarquia visual**: Está imediatamente claro o que é mais importante na tela?
+- [ ] **Uma coisa de cada vez**: O usuário consegue focar em uma única decisão antes de passar para a próxima?
+- [ ] **Escolhas mínimas**: As decisões estão simplificadas (≤4 opções visíveis em qualquer ponto de decisão)?
+- [ ] **Memória de trabalho**: O usuário precisa lembrar informação de uma tela anterior para agir na atual?
+- [ ] **Revelação progressiva**: A complexidade é revelada apenas quando o usuário precisa?
 
-### 3. The Hidden Navigation
-**Problem**: User must build a mental map of where things are.
-**Fix**: Always show current location (breadcrumbs, active states, progress indicators).
+**Pontuação**: Conte os itens falhos. 0–1 falhas = carga cognitiva baixa (bom). 2–3 = moderada (resolva em breve). 4+ = carga cognitiva alta (correção crítica necessária).
 
-### 4. The Jargon Barrier
-**Problem**: Technical or domain language forces translation effort.
-**Fix**: Use plain language. If domain terms are unavoidable, define them inline.
+---
 
-### 5. The Visual Noise Floor
-**Problem**: Every element has the same visual weight; nothing stands out.
-**Fix**: Establish clear hierarchy: one primary element, 2–3 secondary, everything else muted.
+## A Regra da Memória de Trabalho
 
-### 6. The Inconsistent Pattern
-**Problem**: Similar actions work differently in different places.
-**Fix**: Standardize interaction patterns. Same type of action = same type of UI.
+**Humanos conseguem manter ≤4 itens na memória de trabalho ao mesmo tempo** (Lei de Miller revisada por Cowan, 2001).
 
-### 7. The Multi-Task Demand
-**Problem**: Interface requires processing multiple simultaneous inputs (reading + deciding + navigating).
-**Fix**: Sequence the steps. Let the user do one thing at a time.
+Em qualquer ponto de decisão, conte o número de opções, ações ou informações distintas que um usuário deve considerar simultaneamente:
+- **≤4 itens**: Dentro dos limites da memória de trabalho, gerenciável
+- **5–7 itens**: No limite; considere agrupamento ou revelação progressiva
+- **8+ itens**: Sobrecarregado; os usuários vão pular, clicar errado ou abandonar
 
-### 8. The Context Switch
-**Problem**: User must jump between screens/tabs/modals to gather info for a single decision.
-**Fix**: Co-locate the information needed for each decision. Reduce back-and-forth.
+**Aplicações práticas**:
+- Menus de navegação: ≤5 itens de nível superior (agrupe o resto sob categorias claras)
+- Seções de formulário: ≤4 campos visíveis por grupo antes de uma pausa visual
+- Botões de ação: 1 primário, 1–2 secundários, agrupe o resto em um menu
+- Widgets de dashboard: ≤4 métricas-chave visíveis sem scroll
+- Faixas de preço: ≤3 opções (mais causa paralisia de análise)
+
+---
+
+## Violações Comuns de Carga Cognitiva
+
+### 1. O Muro de Opções
+**Problema**: Apresentar 10+ opções de uma vez sem hierarquia.
+**Solução**: Agrupe em categorias, destaque a recomendada, use revelação progressiva.
+
+### 2. A Ponte de Memória
+**Problema**: O usuário precisa lembrar informação da etapa 1 para completar a etapa 3.
+**Solução**: Mantenha o contexto relevante visível, ou repita-o onde for necessário.
+
+### 3. A Navegação Oculta
+**Problema**: O usuário precisa construir um mapa mental de onde as coisas estão.
+**Solução**: Sempre mostre a localização atual (breadcrumbs, estados ativos, indicadores de progresso).
+
+### 4. A Barreira do Jargão
+**Problema**: Linguagem técnica ou de domínio força esforço de tradução.
+**Solução**: Use linguagem simples. Se termos de domínio são inevitáveis, defina-os inline.
+
+### 5. O Ruído Visual de Fundo
+**Problema**: Todo elemento tem o mesmo peso visual; nada se destaca.
+**Solução**: Estabeleça hierarquia clara: um elemento primário, 2–3 secundários, todo o resto atenuado.
+
+### 6. O Padrão Inconsistente
+**Problema**: Ações similares funcionam de formas diferentes em lugares diferentes.
+**Solução**: Padronize padrões de interação. Mesmo tipo de ação = mesmo tipo de UI.
+
+### 7. A Exigência de Multitarefa
+**Problema**: A interface exige processamento de múltiplas entradas simultâneas (ler + decidir + navegar).
+**Solução**: Sequencie as etapas. Deixe o usuário fazer uma coisa de cada vez.
+
+### 8. A Troca de Contexto
+**Problema**: O usuário precisa saltar entre telas/tabs/modais para reunir informação para uma única decisão.
+**Solução**: Co-localize a informação necessária para cada decisão. Reduza o vai-e-vem.

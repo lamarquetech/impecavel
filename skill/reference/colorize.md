@@ -1,154 +1,154 @@
-> **Additional context needed**: existing brand colors.
+> **Contexto adicional necessário**: cores de marca existentes.
 
-Replace timid grayscale or single-accent designs with a strategic palette: pick a color strategy, choose a hue family that fits the brand, then apply color with intent. More color ≠ better. Strategic color beats rainbow vomit.
-
----
-
-## Register
-
-Brand: palette IS voice. Pick a color strategy first per SKILL.md (Restrained / Committed / Full palette / Drenched) and follow its dosage. Committed, Full palette, and Drenched deliberately exceed the ≤10% rule; that rule is Restrained only. Unexpected combinations are allowed; a dominant color can own the page when the chosen strategy calls for it.
-
-Product: semantic-first and almost always Restrained. Accent color is reserved for primary action, current selection, and state indicators. Not decoration. Every color has a consistent meaning across every screen.
+Substitua designs cinza-tímidos ou de acento-único por uma paleta estratégica: escolha uma estratégia de cor, selecione uma família de tons que combine com a marca, e depois aplique cor com intenção. Mais cor ≠ melhor. Cor estratégica vence o vomido de arco-íris.
 
 ---
 
-## Assess Color Opportunity
+## Registro
 
-Analyze the current state and identify opportunities:
+Brand: a paleta É a voz. Escolha uma estratégia de cor primeiro conforme SKILL.md (Restrained / Committed / Full palette / Drenched) e siga sua dosagem. Committed, Full palette e Drenched deliberadamente excedem a regra de ≤10%; essa regra é apenas para Restrained. Combinações inesperadas são permitidas; uma cor dominante pode tomar a página quando a estratégia escolhida exige.
 
-1. **Understand current state**:
-   - **Color absence**: Pure grayscale? Limited neutrals? One timid accent?
-   - **Missed opportunities**: Where could color add meaning, hierarchy, or delight?
-   - **Context**: What's appropriate for this domain and audience?
-   - **Brand**: Are there existing brand colors we should use?
+Product: semântica primeiro e quase sempre Restrained. A cor de acento é reservada para ação primária, seleção atual e indicadores de estado. Não decoração. Cada cor tem um significado consistente em cada tela.
 
-2. **Identify where color adds value**:
-   - **Semantic meaning**: Success (green), error (red), warning (yellow/orange), info (blue)
-   - **Hierarchy**: Drawing attention to important elements
-   - **Categorization**: Different sections, types, or states
-   - **Emotional tone**: Warmth, energy, trust, creativity
-   - **Wayfinding**: Helping users navigate and understand structure
-   - **Delight**: Moments of visual interest and personality
+---
 
-If any of these are unclear from the codebase, {{ask_instruction}}
+## Avalie a Oportunidade de Cor
 
-**CRITICAL**: More color ≠ better. Strategic color beats rainbow vomit every time. Every color should have a purpose.
+Analise o estado atual e identifique oportunidades:
 
-## Plan Color Strategy
+1. **Entenda o estado atual**:
+   - **Ausência de cor**: Escala de cinza pura? Neutros limitados? Um acento tímido?
+   - **Oportunidades perdidas**: Onde a cor poderia adicionar significado, hierarquia ou encanto?
+   - **Contexto**: O que é apropriado para este domínio e público?
+   - **Marca**: Existem cores de marca que deveríamos usar?
 
-Create a purposeful color introduction plan:
+2. **Identifique onde a cor adiciona valor**:
+   - **Significado semântico**: Sucesso (verde), erro (vermelho), alerta (amarelo/laranja), informação (azul)
+   - **Hierarquia**: Atraindo atenção para elementos importantes
+   - **Categorização**: Seções, tipos ou estados diferentes
+   - **Tom emocional**: Acolhimento, energia, confiança, criatividade
+   - **Orientação**: Ajudando os usuários a navegar e entender a estrutura
+   - **Encanto**: Momentos de interesse visual e personalidade
 
-- **Color palette**: What colors match the brand/context? (Choose 2-4 colors max beyond neutrals)
-- **Dominant color**: Which color owns 60% of colored elements?
-- **Accent colors**: Which colors provide contrast and highlights? (30% and 10%)
-- **Application strategy**: Where does each color appear and why?
+Se algum desses itens não estiver claro no codebase, {{ask_instruction}}
 
-**IMPORTANT**: Color should enhance hierarchy and meaning, not create chaos. Less is more when it matters more.
+**CRÍTICO**: Mais cor ≠ melhor. Cor estratégica vence o vomido de arco-íris sempre. Cada cor deve ter um propósito.
 
-## Introduce Color Strategically
+## Planeje a Estratégia de Cor
 
-Add color systematically across these dimensions:
+Crie um plano de introdução de cor com propósito:
 
-### Semantic Color
-- **State indicators**:
-  - Success: Green tones (emerald, forest, mint)
-  - Error: Red/pink tones (rose, crimson, coral)
-  - Warning: Orange/amber tones
-  - Info: Blue tones (sky, ocean, indigo)
-  - Neutral: Gray/slate for inactive states
+- **Paleta de cores**: Quais cores combinam com a marca/contexto? (Escolha 2-4 cores no máximo além dos neutros)
+- **Cor dominante**: Qual cor domina 60% dos elementos coloridos?
+- **Cores de acento**: Quais cores fornecem contraste e destaques? (30% e 10%)
+- **Estratégia de aplicação**: Onde cada cor aparece e por quê?
 
-- **Status badges**: Colored backgrounds or borders for states (active, pending, completed, etc.)
-- **Progress indicators**: Colored bars, rings, or charts showing completion or health
+**IMPORTANTE**: A cor deve melhorar a hierarquia e o significado, não criar caos. Menos é mais quando importa mais.
 
-### Accent Color Application
-- **Primary actions**: Color the most important buttons/CTAs
-- **Links**: Add color to clickable text (maintain accessibility)
-- **Icons**: Colorize key icons for recognition and personality
-- **Headers/titles**: Add color to section headers or key labels
-- **Hover states**: Introduce color on interaction
+## Introduza Cor Estrategicamente
 
-### Background & Surfaces
-- **Tinted backgrounds**: Replace pure gray (`#f5f5f5`) with warm neutrals (`oklch(97% 0.01 60)`) or cool tints (`oklch(97% 0.01 250)`)
-- **Colored sections**: Use subtle background colors to separate areas
-- **Gradient backgrounds**: Add depth with subtle, intentional gradients (not generic purple-blue)
-- **Cards & surfaces**: Tint cards or surfaces slightly for warmth
+Adicione cor sistematicamente nestas dimensões:
 
-**Use OKLCH for color**: It's perceptually uniform, meaning equal steps in lightness *look* equal. Great for generating harmonious scales.
+### Cor Semântica
+- **Indicadores de estado**:
+  - Sucesso: Tons de verde (esmeralda, floresta, menta)
+  - Erro: Tons de vermelho/rosa (rosa, carmesim, coral)
+  - Alerta: Tons de laranja/âmbar
+  - Informação: Tons de azul (celeste, oceano, índigo)
+  - Neutro: Cinza/ardósia para estados inativos
 
-### Data Visualization
-- **Charts & graphs**: Use color to encode categories or values
-- **Heatmaps**: Color intensity shows density or importance
-- **Comparison**: Color coding for different datasets or timeframes
+- **Badges de status**: Fundos ou bordas coloridas para estados (ativo, pendente, concluído, etc.)
+- **Indicadores de progresso**: Barras, anéis ou gráficos coloridos mostrando conclusão ou saúde
 
-### Borders & Accents
-- **Hairline borders**: 1px colored borders on full perimeter (not side-stripes; see the absolute ban on `border-left/right > 1px`)
-- **Underlines**: Color underlines for emphasis or active states
-- **Dividers**: Subtle colored dividers instead of gray lines
-- **Focus rings**: Colored focus indicators matching brand
-- **Surface tints**: A 4-8% background wash of the accent color instead of a stripe
+### Aplicação de Cor de Acento
+- **Ações primárias**: Colora os botões/CTAs mais importantes
+- **Links**: Adicione cor a texto clicável (mantenha acessibilidade)
+- **Ícones**: Colora ícones-chave para reconhecimento e personalidade
+- **Headers/títulos**: Adicione cor a headers de seção ou rótulos-chave
+- **Estados de hover**: Introduza cor na interação
 
-**NEVER**: `border-left` or `border-right` greater than 1px as a colored accent stripe. This is one of the three absolute bans in the parent skill. If you want to mark a card as "active" or "warning", use a full hairline border, a background tint, a leading glyph, or a numbered prefix. Not a side stripe.
+### Fundos e Superfícies
+- **Fundos tingidos**: Substitua cinza puro (`#f5f5f5`) por neutros quentes (`oklch(97% 0.01 60)`) ou tons frios (`oklch(97% 0.01 250)`)
+- **Seções coloridas**: Use cores de fundo sutis para separar áreas
+- **Fundos com gradiente**: Adicione profundidade com gradientes sutis e intencionais (não roxo-azul genérico)
+- **Cards e superfícies**: Tinja cards ou superfícies levemente para aquecimento
 
-### Typography Color
-- **Colored headings**: Use brand colors for section headings (maintain contrast)
-- **Highlight text**: Color for emphasis or categories
-- **Labels & tags**: Small colored labels for metadata or categories
+**Use OKLCH para cor**: É perceptualmente uniforme, o que significa passos iguais em luminosidade *parecem* iguais. Ótimo para gerar escalas harmoniosas.
 
-### Decorative Elements
-- **Illustrations**: Add colored illustrations or icons
-- **Shapes**: Geometric shapes in brand colors as background elements
-- **Gradients**: Colorful gradient overlays or mesh backgrounds
-- **Blobs/organic shapes**: Soft colored shapes for visual interest
+### Visualização de Dados
+- **Gráficos e charts**: Use cor para codificar categorias ou valores
+- **Heatmaps**: Intensidade de cor mostra densidade ou importância
+- **Comparação**: Codificação por cor para conjuntos de dados ou períodos diferentes
 
-## Balance & Refinement
+### Bordas e Acentos
+- **Bordas hairline**: Bordas coloridas de 1px no perímetro completo (não side-stripes; veja a proibição absoluta de `border-left/right > 1px`)
+- **Underlines**: Underlines coloridos para ênfase ou estados ativos
+- **Divisores**: Divisores coloridos sutis em vez de linhas cinza
+- **Focus rings**: Indicadores de foco coloridos correspondentes à marca
+- **Tinturas de superfície**: Uma lavagem de fundo de 4-8% da cor de acento em vez de uma faixa
 
-Ensure color addition improves rather than overwhelms:
+**NUNCA**: `border-left` ou `border-right` maior que 1px como faixa de acento colorida. Esta é uma das três proibições absolutas do skill pai. Se você quer marcar um card como "ativo" ou "alerta", use uma borda hairline completa, uma tintura de fundo, um glifo inicial ou um prefixo numerado. Não uma faixa lateral.
 
-### Maintain Hierarchy
-- **Dominant color** (60%): Primary brand color or most used accent
-- **Secondary color** (30%): Supporting color for variety
-- **Accent color** (10%): High contrast for key moments
-- **Neutrals** (remaining): Gray/black/white for structure
+### Cor na Tipografia
+- **Títulos coloridos**: Use cores da marca para títulos de seção (mantenha contraste)
+- **Texto destacado**: Cor para ênfase ou categorias
+- **Rótulos e tags**: Pequenos rótulos coloridos para metadados ou categorias
 
-### Accessibility
-- **Contrast ratios**: Ensure WCAG compliance (4.5:1 for text, 3:1 for UI components)
-- **Don't rely on color alone**: Use icons, labels, or patterns alongside color
-- **Test for color blindness**: Verify red/green combinations work for all users
+### Elementos Decorativos
+- **Ilustrações**: Adicione ilustrações ou ícones coloridos
+- **Formas**: Formas geométricas nas cores da marca como elementos de fundo
+- **Gradientes**: Sobreposições de gradiente coloridas ou fundos mesh
+- **Blobs/formas orgânicas**: Formas suaves e coloridas para interesse visual
 
-### Cohesion
-- **Consistent palette**: Use colors from defined palette, not arbitrary choices
-- **Systematic application**: Same color meanings throughout (green always = success)
-- **Temperature consistency**: Warm palette stays warm, cool stays cool
+## Equilíbrio e Refinamento
 
-**NEVER**:
-- Use every color in the rainbow (choose 2-4 colors beyond neutrals)
-- Apply color randomly without semantic meaning
-- Put gray text on colored backgrounds. It looks washed out; use a darker shade of the background color or transparency instead
-- Use pure gray for neutrals. Add subtle color tint (warm or cool) for depth
-- Use pure black (`#000`) or pure white (`#fff`) for large areas
-- Violate WCAG contrast requirements
-- Use color as the only indicator (accessibility issue)
-- Make everything colorful (defeats the purpose)
-- Default to purple-blue gradients (AI slop aesthetic)
+Garanta que a adição de cor melhore em vez de sobrecarregar:
 
-## Verify Color Addition
+### Mantenha a Hierarquia
+- **Cor dominante** (60%): Cor primária da marca ou acento mais usado
+- **Cor secundária** (30%): Cor de suporte para variedade
+- **Cor de acento** (10%): Alto contraste para momentos-chave
+- **Neutros** (restante): Cinza/preto/branco para estrutura
 
-Test that colorization improves the experience:
+### Acessibilidade
+- **Taxas de contraste**: Garanta conformidade WCAG (4.5:1 para texto, 3:1 para componentes de UI)
+- **Não dependa apenas de cor**: Use ícones, rótulos ou padrões junto com a cor
+- **Teste para daltonismo**: Verifique se combinações vermelho/verde funcionam para todos os usuários
 
-- **Better hierarchy**: Does color guide attention appropriately?
-- **Clearer meaning**: Does color help users understand states/categories?
-- **More engaging**: Does the interface feel warmer and more inviting?
-- **Still accessible**: Do all color combinations meet WCAG standards?
-- **Not overwhelming**: Is color balanced and purposeful?
+### Coesão
+- **Paleta consistente**: Use cores da paleta definida, não escolhas arbitrárias
+- **Aplicação sistemática**: Mesmos significados de cor ao longo (verde sempre = sucesso)
+- **Consistência de temperatura**: Paleta quente permanece quente, fria permanece fria
 
-When the palette earns its place, hand off to `{{command_prefix}}impeccable polish` for the final pass.
+**NUNCA**:
+- Use todas as cores do arco-íris (escolha 2-4 cores além dos neutros)
+- Aplique cor aleatoriamente sem significado semântico
+- Coloque texto cinza sobre fundos coloridos. Fica desbotado; use um tom mais escuro da cor de fundo ou transparência
+- Use cinza puro para neutros. Adicione tinta de cor sutil (quente ou fria) para profundidade
+- Use preto puro (`#000`) ou branco puro (`#fff`) para grandes áreas
+- Violar os requisitos de contraste WCAG
+- Use cor como único indicador (problema de acessibilidade)
+- Faça tudo colorido (derrota o propósito)
+- Use gradientes roxo-azul por padrão (estética de AI slop)
 
-## Live-mode signature params
+## Verifique a Adição de Cor
 
-When invoked from live mode, each variant MUST declare a `color-amount` param so the user can dial between a restrained accent and a drenched surface without regeneration. Author the variant's CSS against `var(--p-color-amount, 0.5)`, typically as the alpha multiplier on backgrounds, or as a scaling factor on the chroma axis in an OKLCH expression. 0 = neutral/monochrome, 1 = full saturation / dominant coverage.
+Teste se a colorização melhora a experiência:
+
+- **Hierarquia melhor**: A cor guia a atenção apropriadamente?
+- **Significado mais claro**: A cor ajuda os usuários a entender estados/categorias?
+- **Mais envolvente**: A interface parece mais acolhedora e convidativa?
+- **Ainda acessível**: Todas as combinações de cor atendem aos padrões WCAG?
+- **Não esmagadora**: A cor está equilibrada e com propósito?
+
+Quando a paleta merece seu lugar, passe para `{{command_prefix}}impeccable polish` para a revisão final.
+
+## Parâmetros signature do modo live
+
+Quando invocada a partir do modo live, cada variante DEVE declarar um parâmetro `color-amount` para que o usuário possa ajustar entre um acento contido e uma superfície imersiva sem regeneração. Autor o CSS da variante contra `var(--p-color-amount, 0.5)`, tipicamente como o multiplicador de alpha em fundos, ou como fator de escala no eixo chroma em uma expressão OKLCH. 0 = neutro/monocromático, 1 = saturação total / cobertura dominante.
 
 ```json
 {"id":"color-amount","kind":"range","min":0,"max":1,"step":0.05,"default":0.5,"label":"Color amount"}
 ```
 
-Layer 1-2 variant-specific params on top: palette selection (`steps` with named options), temperature warmth, or tint vs. true color. See `reference/live.md` for the full params contract.
+Sobreponha 1-2 parâmetros específicos da variante: seleção de paleta (`steps` com opções nomeadas), quentura da temperatura, ou tint vs. cor verdadeira. Veja `reference/live.md` para o contrato completo de parâmetros.

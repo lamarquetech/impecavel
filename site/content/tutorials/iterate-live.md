@@ -1,58 +1,58 @@
 ---
-title: Iterate on UI with Live Mode
-tagline: "Pick an element, generate three variants, accept one. Canvas-like iteration without leaving your code."
+title: Itere na UI com Live Mode
+tagline: "Selecione um elemento, gere três variantes, aceite uma. Iteração tipo canvas sem sair do seu código."
 order: 2
-description: "Use /impeccable live to visually iterate on a real element in your dev server: pick, annotate, generate three variants, accept the one you want, and have it written back to source."
+description: "Use /impeccable live para iterar visualmente em um elemento real no seu dev server: selecione, anote, gere três variantes, aceite a que quiser, e tenha-a escrita de volta no código-fonte."
 ---
 
-## What you'll build
+## O que você vai construir
 
-You will use `/impeccable live` on your dev server to iterate on a single piece of UI (a hero, a card, a section) and end with one of three AI-generated variants written back to source as real code. You'll see the canvas-style picking, annotation, and three-up cycling flow.
+Você vai usar `/impeccable live` no seu dev server para iterar em uma única peça de UI (um hero, um card, uma seção) e terminar com uma de três variantes geradas por IA escrita de volta no código-fonte como código real. Você vai ver o fluxo de seleção estilo canvas, anotação e ciclagem entre três opções.
 
-Total time: about ten minutes. Most of that is picking what to iterate on.
+Tempo total: cerca de dez minutos. A maior parte é escolhendo o que iterar.
 
-## Prerequisites
+## Pré-requisitos
 
-- Impeccable installed (see [getting started](/tutorials/getting-started) if you have not). Run `/impeccable teach` first if you haven't yet: variants lean on `PRODUCT.md` and `DESIGN.md` for brand fit.
-- A running dev server with HMR (Vite, Next.js, SvelteKit, Astro, Nuxt, Bun) OR a static HTML file open in a browser.
-- A page with at least one piece of UI you'd like to iterate on. A newsletter card, a hero, a pricing tier, something small enough to hold in your head.
+- Impeccable instalado (veja [primeiros passos](/tutorials/getting-started) se ainda não instalou). Execute `/impeccable teach` primeiro se ainda não fez: variantes dependem de `PRODUCT.md` e `DESIGN.md` para adequação à marca.
+- Um dev server em execução com HMR (Vite, Next.js, SvelteKit, Astro, Nuxt, Bun) OU um arquivo HTML estático aberto em um navegador.
+- Uma página com pelo menos uma peça de UI que você gostaria de iterar. Um card de newsletter, um hero, um tier de preços, algo pequeno o suficiente para manter na cabeça.
 
-## Step 1. Start live mode
+## Passo 1. Inicie o live mode
 
-From your harness, run:
+A partir do seu harness, execute:
 
 ```
 /impeccable live
 ```
 
-The skill starts a small local helper server on port 8400 and injects a `<script>` tag into your dev entry file that loads the picker. If your project has a strict Content Security Policy, the first run detects it and offers a one-time, dev-only patch for `script-src` and `connect-src`. Accept the patch: it is guarded by `NODE_ENV === "development"` and you can revert any time.
+A skill inicia um pequeno servidor helper local na porta 8400 e injeta uma tag `<script>` no seu arquivo de entrada do dev que carrega o picker. Se seu projeto tem uma Content Security Policy restrita, a primeira execução detecta e oferece um patch único, apenas para desenvolvimento, para `script-src` e `connect-src`. Aceite o patch: ele é protegido por `NODE_ENV === "development"` e você pode reverter a qualquer momento.
 
-Open your dev server URL (not port 8400, that's the helper server, not the app). You'll see a dark pill at the bottom of the page with **Pick** highlighted.
+Abra a URL do seu dev server (não a porta 8400, que é o servidor helper, não o app). Você verá uma pill escura na parte inferior da página com **Pick** destacado.
 
-## Step 2. Pick an element
+## Passo 2. Selecione um elemento
 
 <div class="docs-viz-step">
   <div class="docs-viz-picker-row">
     <div class="docs-viz-picker-target">
       <span class="docs-viz-picker-pin">1</span>
       Newsletter signup
-      <span class="docs-viz-picker-note">more playful</span>
+      <span class="docs-viz-picker-note">mais lúdico</span>
     </div>
   </div>
 </div>
 
-Click the element you want to iterate on. A picker outline appears around it, and a light context bar pops up next to the selection with a command chip on the left and a freeform text field.
+Clique no elemento que você quer iterar. Um contorno de seleção aparece ao redor dele, e uma barra de contexto leve surge ao lado da seleção com um chip de comando à esquerda e um campo de texto livre.
 
-A few things you can do before pressing Go:
+Algumas coisas que você pode fazer antes de apertar Go:
 
-- **Click the command chip** (default is `impeccable`, the freeform action). Pick a specific action like `bolder`, `delight`, `layout`, or `typeset` to constrain the variants along one dimension.
-- **Type in the freeform field.** "More playful." "Less SaaS." "Feel like a newsletter from a magazine."
-- **Drop a comment pin** by clicking anywhere on the picked element. The pin's position matters: a comment near the title is about the title, not the whole element.
-- **Draw a stroke** by dragging across the element. Closed loop = "this part matters." Arrow = direction. Cross = "delete this." The skill reads strokes by shape, not by pixel content.
+- **Clique no chip de comando** (o default é `impeccable`, a ação livre). Escolha uma ação específica como `bolder`, `delight`, `layout`, ou `typeset` para restringir as variantes a uma dimensão.
+- **Digite no campo livre.** "Mais lúdico." "Menos SaaS." "Parecer uma newsletter de uma revista."
+- **Fixe um comentário** clicando em qualquer lugar do elemento selecionado. A posição do pino importa: um comentário perto do título é sobre o título, não sobre o elemento inteiro.
+- **Desenhe um traço** arrastando sobre o elemento. Loop fechado = "esta parte importa." Seta = direção. X = "delete isto." A skill lê traços pela forma, não pelo conteúdo de pixels.
 
-When the brief feels clear, hit **Go**.
+Quando o brief parecer claro, aperte **Go**.
 
-## Step 3. Cycle through the three variants
+## Passo 3. Navegue pelas três variantes
 
 <div class="docs-viz-step">
   <div class="docs-viz-variants">
@@ -77,47 +77,47 @@ When the brief feels clear, hit **Go**.
   </div>
 </div>
 
-You'll see a spinner ("Generating variants...") and within a few seconds, three variants hot-swap into the page in place. Not a preview, the actual rendered DOM on your actual dev server with your actual context.
+Você verá um spinner ("Generating variants...") e em poucos segundos, três variantes são trocadas em tempo real na página no lugar. Não é uma preview, é o DOM real renderizado no seu dev server real com seu contexto real.
 
-Use the arrow keys (or the prev / next buttons on the context bar) to cycle through them. A counter at the top right shows `1 / 3`, `2 / 3`, `3 / 3`.
+Use as teclas de seta (ou os botões anterior / próximo na barra de contexto) para navegar entre elas. Um contador no canto superior direito mostra `1 / 3`, `2 / 3`, `3 / 3`.
 
-The three variants are designed to be **genuinely different**, not three riffs on one idea. Freeform variants anchor to three different design archetypes (broadsheet masthead, oversized-glyph poster, catalog-style spec rows, and so on). Action-specific variants vary along the dimension the action names: `colorize` gives you three hue families, `animate` gives you three motion vocabularies, `layout` gives you three structural arrangements.
+As três variantes são desenhadas para serem **genuinamente diferentes**, não três variações de uma ideia. Variantes livres se ancoram em três arquétipos de design diferentes (cabeçalho broadsheet, pôster com glifos oversized, linhas de spec estilo catálogo, etc.). Variantes de ação específica variam na dimensão que a ação nomeia: `colorize` dá três famílias de hue, `animate` dá três vocabulários de motion, `layout` dá três arranjos estruturais.
 
-If two variants feel like they rhyme, that is the skill's "squint test" failure mode. You can tell the picker "try again, all three felt too similar" and get a fresh set.
+Se duas variantes parecem que rimam, esse é o modo de falha do "squint test" da skill. Você pode dizer ao picker "tente de novo, as três pareceram parecidas demais" e receber um novo conjunto.
 
-## Step 4. Accept one
+## Passo 4. Aceite uma
 
 <div class="docs-viz-step" style="text-align:center">
   <span class="docs-viz-accept-pill">Variant 2 written to source</span>
 </div>
 
-When you find the one you like, click **Accept** on the context bar (or press Enter). Three things happen:
+Quando encontrar a que você gosta, clique em **Accept** na barra de contexto (ou pressione Enter). Três coisas acontecem:
 
-1. The picked element is replaced with the accepted variant on the page.
-2. The variant is written back to source: the same file your picker was injected into, or the component source if live detected a generated file during step 1.
-3. If the accept touched CSS, the relevant rules are consolidated into your project's real stylesheet, not left inline.
+1. O elemento selecionado é substituído pela variante aceita na página.
+2. A variante é escrita de volta no código-fonte: o mesmo arquivo em que o picker foi injetado, ou o código-fonte do componente se o live detectou um arquivo gerado durante o passo 1.
+3. Se o accept tocou CSS, as regras relevantes são consolidadas na stylesheet real do seu projeto, não deixadas inline.
 
-Discard all three (press Escape) and the original stays. No trace, no commented-out leftovers.
+Descarte as três (pressione Escape) e o original permanece. Sem rastros, sem leftovers comentados.
 
-## Step 5. Stop live mode
+## Passo 5. Pare o live mode
 
-When you are done iterating, stop the helper:
+Quando terminar de iterar, pare o helper:
 
-- Say **"stop live mode"** in your harness chat, or
-- Click the **×** on the picker pill, or
-- Close the browser tab: the helper detects the dropped connection after eight seconds and exits cleanly.
+- Diga **"stop live mode"** no chat do seu harness, ou
+- Clique no **×** na pill do picker, ou
+- Feche a aba do navegador: o helper detecta a conexão encerrada após oito segundos e sai limpo.
 
-The stop also strips the `<script>` tag from your dev entry and stops the helper server on port 8400.
+O stop também remove a tag `<script>` do seu arquivo de entrada do dev e para o servidor helper na porta 8400.
 
-## What to try next
+## O que tentar a seguir
 
-- Run `/impeccable live` on a different page after a `/impeccable polish` pass to A/B the polished version against two more directions.
-- Pair with [critique with the overlay](/tutorials/critique-with-overlay): run critique first, fix priority issues, then use live to explore redirections on the element critique flagged.
-- Reach for `/impeccable craft` when you want the shape-then-build flow (a new feature end-to-end, not a single element).
+- Execute `/impeccable live` em uma página diferente após uma passada de `/impeccable polish` para fazer A/B da versão polida contra duas direções adicionais.
+- Combine com [crítica com o overlay](/tutorials/critique-with-overlay): execute critique primeiro, corrija problemas prioritários, depois use live para explorar redireções no elemento que critique sinalizou.
+- Use `/impeccable craft` quando quiser o fluxo de shape-then-build (uma funcionalidade nova de ponta a ponta, não um único elemento).
 
-## Common issues
+## Problemas comuns
 
-- **The picker never appears on the page.** Either the helper did not start (look for errors in the terminal) or CSP is blocking the inject. Re-run `/impeccable live` and let it re-check CSP. If you declined the patch on first run, delete the `cspChecked` line in `.impeccable/live/config.json` and re-run.
-- **"element lives in a generated file"** on Go. Live detected that the picked element is in a compiled output, not a source file. It routes the accept through a fallback path so the variant still lands in true source. Follow the hint; don't force-accept into the generated file.
-- **Variants don't feel brand-aligned.** Check that `PRODUCT.md` and `DESIGN.md` exist at the project root. Without them, live leans toward generic defaults. Run `/impeccable teach` and `/impeccable document` first.
-- **The helper port is in use.** Another live session left its server running. `npx impeccable live stop` releases the port.
+- **O picker nunca aparece na página.** Ou o helper não iniciou (procure erros no terminal) ou CSP está bloqueando a injeção. Re-execute `/impeccable live` e deixe re-verificar o CSP. Se você recusou o patch na primeira execução, delete a linha `cspChecked` em `.impeccable/live/config.json` e re-execute.
+- **"element lives in a generated file"** ao apertar Go. O live detectou que o elemento selecionado está em um output compilado, não em um arquivo fonte. Ele roteia o accept por um caminho de fallback para que a variante ainda chegue ao código-fonte real. Siga a dica; não force o accept no arquivo gerado.
+- **Variantes não parecem alinhadas com a marca.** Verifique se `PRODUCT.md` e `DESIGN.md` existem na raiz do projeto. Sem eles, o live tende para defaults genéricos. Execute `/impeccable teach` e `/impeccable document` primeiro.
+- **A porta do helper está em uso.** Outra sessão de live deixou seu servidor rodando. `npx impeccable live stop` libera a porta.

@@ -1,40 +1,40 @@
 ---
-tagline: "Tone down designs that are shouting without losing their intent."
+tagline: "Reduza o tom de designs que estão gritando sem perder sua intenção."
 ---
 
-## When to use it
+## Quando usar
 
-`/impeccable quieter` is the counterweight to `/impeccable bolder`. Reach for it when an interface is visually aggressive, overstimulating, or trying to do too many things at full volume. Neon on dark, gradient text everywhere, 6 accent colors, everything animated, 20px shadows. Use quieter when the design needs to breathe and you want refinement without losing the point of view.
+`/impeccable quieter` é o contrapeso de `/impeccable bolder`. Use quando uma interface está visualmente agressiva, superestimulante, ou tentando fazer muitas coisas em volume máximo. Neon no dark, texto com gradiente por toda parte, 6 cores de destaque, tudo animado, sombras de 20px. Use quieter quando o design precisa respirar e você quer refinamento sem perder o ponto de vista.
 
-Also useful after `/impeccable bolder` goes a little too far.
+Também útil depois que `/impeccable bolder` foi um pouco longe demais.
 
-## How it works
+## Como funciona
 
-The skill works by reduction across four axes:
+A skill trabalha por redução em quatro eixos:
 
-1. **Color**: desaturate, lower chroma in OKLCH, pull accents back to a single primary plus muted support. No more than two intentional colors.
-2. **Contrast**: soften extreme darks and lights, pull the range in. Backgrounds move from pure white and pure black to paper and ink.
-3. **Decoration**: remove shadows that are not doing work, drop borders that are not carrying structure, retire gradients that exist for energy rather than hierarchy.
-4. **Motion and effect**: slow animations down, remove anything that auto-plays, drop parallax and blur unless they serve readability.
+1. **Cor**: dessaturar, reduzir chroma no OKLCH, recuar os acentos para um primário único mais suportes abafados. No máximo duas cores intencionais.
+2. **Contraste**: suavizar escuros e claros extremos, recuar a faixa. Fundos passam de branco puro e preto puro para papel e tinta.
+3. **Decoração**: remover sombras que não estão fazendo trabalho, descartar bordas que não carregam estrutura, aposentar gradientes que existem por energia em vez de hierarquia.
+4. **Motion e efeito**: desacelerar animações, remover qualquer coisa que auto-play, descartar parallax e blur a menos que sirvam à legibilidade.
 
-The skill preserves the design's intent. If the original had a point of view, the quieter version has the same point of view with more confidence. Refinement, not neutralization.
+A skill preserva a intenção do design. Se o original tinha um ponto de vista, a versão quieter tem o mesmo ponto de vista com mais confiança. Refinamento, não neutralização.
 
-## Try it
+## Experimente
 
 ```
 /impeccable quieter the pricing page
 ```
 
-Typical diff:
+Diff típico:
 
-- Gradient text on the price removed, replaced with solid ink at one weight heavier
-- Three accent colors reduced to one (magenta), the other two become neutral variants
-- Card shadows reduced from `0 20px 40px rgba(0,0,0,0.2)` to `0 1px 0 var(--color-mist)` (a hairline)
-- Background switches from dark gradient to paper with a subtle cream wash at the top
-- Hero animation from 1.2s easeOut with 3 staggered elements to a single 260ms fade-in
+- Texto com gradiente no preço removido, substituído por tinta sólida um peso mais pesado
+- Três cores de destaque reduzidas a uma (magenta), as outras duas viram variantes neutras
+- Sombras dos cards reduzidas de `0 20px 40px rgba(0,0,0,0.2)` para `0 1px 0 var(--color-mist)` (uma hairline)
+- Fundo muda de gradiente escuro para papel com um leve lavado cremoso no topo
+- Animação do hero de 1.2s easeOut com 3 elementos escalonados para um único fade-in de 260ms
 
-## Pitfalls
+## Armadilhas
 
-- **Over-applying.** Quieter can strip personality if you run it on something that was already measured. Use it when the design is too loud, not when it is correctly assertive.
-- **Confusing quieter with distill.** Quieter reduces intensity. Distill removes elements. They are different moves.
-- **Running it in response to a critique that says "too busy".** Busy usually means too many things, not too loud. Try `/impeccable distill` first.
+- **Aplicar em excesso.** Quieter pode retirar personalidade se você rodar em algo que já era medido. Use quando o design está alto demais, não quando está corretamente assertivo.
+- **Confundir quieter com distill.** Quieter reduz intensidade. Distill remove elementos. São movimentos diferentes.
+- **Executar em resposta a uma crítica que diz "muito ocupado".** Ocupado geralmente significa muitas coisas, não muito alto. Tente `/impeccable distill` primeiro.

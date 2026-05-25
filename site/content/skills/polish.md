@@ -1,33 +1,33 @@
 ---
-tagline: "The meticulous final pass between good and great."
+tagline: "A passada final meticulosa entre bom e ótimo."
 ---
 
-## When to use it
+## Quando usar
 
-`/impeccable polish` is the last thing you run before shipping. It hunts down the small details that separate a shipped feature from a polished one: half-pixel misalignments, inconsistent spacing, forgotten focus states, loading transitions that flash, copy that drifts in tone. It also aligns the feature with your design system, replacing hard-coded values with tokens, swapping custom components for shared ones, and fixing any drift from established patterns.
+`/impeccable polish` é a última coisa que você executa antes de fazer deploy. Ele caça os pequenos detalhes que separam uma funcionalidade entregue de uma polida: desalinhamentos de meio pixel, espaçamento inconsistente, estados de foco esquecidos, transições de carregamento que piscam, copy que deriva em tom. Ele também alinha a funcionalidade com seu design system, substituindo valores hard-coded por tokens, trocando componentes customizados por compartilhados, e corrigindo qualquer deriva dos padrões estabelecidos.
 
-Reach for it when the feature is functionally complete, nothing is broken, and something still feels off. Also reach for it when a feature has drifted from the design system and needs to be pulled back in line.
+Use quando a funcionalidade está funcionalmente completa, nada está quebrado, e algo ainda parece esquisito. Também use quando uma funcionalidade derivou do design system e precisa ser trazida de volta à linha.
 
-## How it works
+## Como funciona
 
-Polish starts by discovering the design system (tokens, spacing scale, shared components), then works methodically across six dimensions:
+Polish começa descobrindo o design system (tokens, escala de espaçamento, componentes compartilhados), e então trabalha metodicamente em seis dimensões:
 
-1. **Visual alignment and spacing**: pixel-perfect grid adherence, consistent spacing scale, optical alignment on icons.
-2. **Typography**: hierarchy consistency, line length, widows and orphans, kerning on headlines.
-3. **Color and contrast**: token usage, theme parity, WCAG ratios, focus indicators.
-4. **Interaction states**: hover, focus, active, disabled, loading, error, success. Every state accounted for.
-5. **Transitions and motion**: smooth easing, no layout jank, respect for `prefers-reduced-motion`.
-6. **Copy**: consistent voice, correct tense, no placeholder strings, no stray TODOs.
+1. **Alinhamento visual e espaçamento**: aderência pixel-perfect ao grid, escala de espaçamento consistente, alinhamento óptico em ícones.
+2. **Tipografia**: consistência de hierarquia, comprimento de linha, viúvas e órfãs, kerning em headlines.
+3. **Cor e contraste**: uso de tokens, paridade de tema, razões WCAG, indicadores de foco.
+4. **Estados de interação**: hover, focus, active, disabled, loading, error, success. Cada estado contabilizado.
+5. **Transições e motion**: easing suave, sem layout jank, respeito a `prefers-reduced-motion`.
+6. **Copy**: voz consistente, tempo verbal correto, sem strings placeholder, sem TODOs perdidos.
 
-The skill is explicit about one thing: polish is the last step, not the first. If the feature is not functionally complete, polishing it is wasted work.
+A skill é explícita sobre uma coisa: polish é o último passo, não o primeiro. Se a funcionalidade não está funcionalmente completa, polir é trabalho desperdiçado.
 
-## Try it
+## Experimente
 
 ```
 /impeccable polish the pricing page
 ```
 
-A healthy run looks like:
+Uma execução saudável se parece com:
 
 ```
 Visual alignment: fixed 3 off-grid elements (8px baseline)
@@ -37,10 +37,10 @@ Motion: softened modal entrance, added reduced-motion fallback
 Copy: removed one "Lorem ipsum" stray, aligned button voice
 ```
 
-Five small fixes, no rewrites. That is the shape of a good polish pass.
+Cinco pequenas correções, sem reescritas. Esse é o formato de uma boa passada de polish.
 
-## Pitfalls
+## Armadilhas
 
-- **Polishing work that is not done.** If there are TODOs in the code, you are not ready. Run `/impeccable polish` on finished features only.
-- **Treating polish as redesign.** Polish refines what exists. If you find yourself rearchitecting a layout, you needed `/impeccable critique` or `/impeccable layout` instead.
-- **Running `/impeccable polish` without `/impeccable audit` first.** Polish catches feel-based issues. Audit catches measurable ones. Use both.
+- **Polir trabalho que não está pronto.** Se há TODOs no código, você não está pronto. Execute `/impeccable polish` apenas em funcionalidades finalizadas.
+- **Tratar polish como redesign.** Polish refine o que existe. Se você se pegar rearquitetando um layout, você precisava de `/impeccable critique` ou `/impeccable layout`.
+- **Executar `/impeccable polish` sem `/impeccable audit` antes.** Polish captura problemas baseados em sensação. Audit captura os mensuráveis. Use ambos.

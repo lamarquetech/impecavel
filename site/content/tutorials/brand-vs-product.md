@@ -1,13 +1,13 @@
 ---
-title: Brand vs product, pick a register
-tagline: "Two worlds, two sets of defaults. Pick the right one and every command downstream benefits."
+title: Brand vs product, escolha um register
+tagline: "Dois mundos, dois conjuntos de defaults. Escolha o certo e cada comando downstream se beneficia."
 order: 3
-description: "Impeccable treats brand work (landing pages, campaigns, portfolios) and product work (app UI, dashboards, tools) as different worlds with different defaults. Learn how to pick a register and how it shapes every command that reads it."
+description: "O Impeccable trata trabalho de brand (landing pages, campanhas, portfólios) e trabalho de product (app UI, dashboards, ferramentas) como mundos diferentes com defaults diferentes. Aprenda como escolher um register e como isso molda cada comando que o lê."
 ---
 
-## See the divergence
+## Veja a divergência
 
-Same element, one register each. A newsletter signup, twice.
+Mesmo elemento, um register cada. Uma inscrição de newsletter, duas vezes.
 
 <div class="docs-viz-hero docs-viz-hero--plain">
   <div class="docs-viz-register">
@@ -23,15 +23,15 @@ Same element, one register each. A newsletter signup, twice.
         <span class="docs-viz-reg-btn">Send me one</span>
       </div>
       <div class="docs-viz-register-notes">
-        <span>Serif display, italic display weight</span>
-        <span>Drenched in the primary hue</span>
-        <span>Monospaced kicker, editorial voice</span>
+        <span>Serif display, peso italic de display</span>
+        <span>Imerso no hue primário</span>
+        <span>Kicker monospaced, voz editorial</span>
       </div>
     </div>
     <div class="docs-viz-register-side">
       <div class="docs-viz-register-label">
         <span class="docs-viz-register-name">Product</span>
-        <span class="docs-viz-register-lane">Utility / app shell</span>
+        <span class="docs-viz-register-lane">Utilidade / app shell</span>
       </div>
       <div class="docs-viz-register-frame docs-viz-register-frame--product">
         <span class="docs-viz-reg-kicker">Newsletter</span>
@@ -40,25 +40,25 @@ Same element, one register each. A newsletter signup, twice.
         <span class="docs-viz-reg-btn">Subscribe</span>
       </div>
       <div class="docs-viz-register-notes">
-        <span>Neutral sans, semibold for hierarchy</span>
-        <span>Restrained palette, accent only on state</span>
-        <span>Short, scannable, mobile-readable copy</span>
+        <span>Sans neutro, semibold para hierarquia</span>
+        <span>Paleta contida, acento apenas em estado</span>
+        <span>Copy curto, escaneável, legível no mobile</span>
       </div>
     </div>
   </div>
-  <p class="docs-viz-caption">The table below lists what's different. This is what it looks like at the pixel.</p>
+  <p class="docs-viz-caption">A tabela abaixo lista o que é diferente. É assim que parece no pixel.</p>
 </div>
 
-## Why register matters
+## Por que register importa
 
-Every design task belongs to one of two worlds:
+Cada tarefa de design pertence a um de dois mundos:
 
-- **Brand** is where design IS the product. Marketing sites, landing pages, portfolios, long-form content, campaign surfaces. Distinctiveness is the bar. Fonts, motion, density, and color all push toward "this looks like nothing else in the category."
-- **Product** is where design SERVES the product. App UI, admin, dashboards, tools. Earned familiarity is the bar. Fluent users of Linear, Figma, Notion, Raycast, or Stripe should trust the output on sight.
+- **Brand** é onde o design É o produto. Sites de marketing, landing pages, portfólios, conteúdo de formato longo, superfícies de campanha. Distinção é a medida. Fontes, motion, densidade e cor todas empurram para "isso não parece com nada mais na categoria."
+- **Product** é onde o design SERVE ao produto. App UI, admin, dashboards, ferramentas. Familiaridade conquistada é a medida. Usuários fluentes do Linear, Figma, Notion, Raycast ou Stripe devem confiar no output à primeira vista.
 
-If you ask the same AI to design a dashboard and a campaign page without naming which world, you'll get the average of the two. Brand surfaces will feel too careful. Product surfaces will feel too precious. Register is how Impeccable avoids that.
+Se você pedir à mesma IA para desenhar um dashboard e uma página de campanha sem nomear qual mundo, você vai receber a média dos dois. Superfícies de brand vão parecer cuidadosas demais. Superfícies de product vão parecer preciosas demais. Register é como o Impeccable evita isso.
 
-Impeccable tracks register as a single field in `PRODUCT.md`:
+O Impeccable rastreia register como um único campo em `PRODUCT.md`:
 
 ```markdown
 ## Register
@@ -66,39 +66,39 @@ Impeccable tracks register as a single field in `PRODUCT.md`:
 product
 ```
 
-That is it: a bare value, `brand` or `product`. Every command that does register-sensitive work (`typeset`, `animate`, `colorize`, `layout`, `bolder`, `quieter`, `delight`) loads a different reference file based on what it finds here.
+É isso: um valor simples, `brand` ou `product`. Cada comando que faz trabalho register-sensitivo (`typeset`, `animate`, `colorize`, `layout`, `bolder`, `quieter`, `delight`) carrega um arquivo de referência diferente baseado no que encontra aqui.
 
-## How the two worlds diverge
+## Como os dois mundos divergem
 
-This is not an exhaustive list, the full divergence lives in the `brand.md` and `product.md` reference files, but the shape of the difference:
+Esta não é uma lista exaustiva, a divergência completa está nos arquivos de referência `brand.md` e `product.md`, mas o formato da diferença:
 
-| Dimension | Brand | Product |
+| Dimensão | Brand | Product |
 |---|---|---|
-| **Type lanes** | Editorial-magazine, luxury, brutalist, consumer-warm, tech-minimal, all available. Swing. | Tighter set: neutral sans + optional mono, sized for dense reading, fluid type reserved for marketing surfaces. |
-| **Motion** | Choreographed entrances, scroll-driven sequences, decorative moments earn their place. | Restrained. State changes only. Animation serves feedback, not atmosphere. |
-| **Color** | Full palette, Committed, or Drenched are all on the table. | Restrained by default. Accents carry meaning; color is not decoration. |
-| **Density** | Whatever the narrative wants. Generous whitespace or packed rule-divided columns both valid. | Comfortable to dense. Every pixel earns its place. |
-| **References** | Real-world, from the right lane. *Klim specimen pages* or *Broadsheet masthead*, not "modern SaaS". | Category best-tool. *Linear*, *Figma*, *Notion*, *Raycast*, *Stripe*. |
+| **Pistas tipográficas** | Editorial-magazine, luxury, brutalist, consumer-warm, tech-minimal, todas disponíveis. Varie. | Conjunto mais restrito: sans neutro + mono opcional, dimensionado para leitura densa, tipo fluido reservado para superfícies de marketing. |
+| **Motion** | Entradas coreografadas, sequências scroll-driven, momentos decorativos ganham seu lugar. | Contido. Apenas mudanças de estado. Animação serve feedback, não atmosfera. |
+| **Cor** | Paleta completa, Committed ou Drenched estão na mesa. | Contido por padrão. Acentos carregam significado; cor não é decoração. |
+| **Densidade** | O que a narrativa quiser. Espaço em branco generoso ou colunas divididas por linhas densas, ambos válidos. | Confortável a denso. Cada pixel ganha seu lugar. |
+| **Referências** | Do mundo real, da pista certa. *Páginas de espécime do Klim* ou *Cabeçalho broadsheet*, não "SaaS moderno". | Melhor-ferramenta da categoria. *Linear*, *Figma*, *Notion*, *Raycast*, *Stripe*. |
 
-The same command, `/impeccable typeset`, pulls from different fonts in the two worlds. The same command, `/impeccable animate`, picks different motion vocabularies. The same command, `/impeccable layout`, assumes different density defaults. You do not re-learn the command: you answer the register question once, and the command adapts.
+O mesmo comando, `/impeccable typeset`, puxa de fonts diferentes nos dois mundos. O mesmo comando, `/impeccable animate`, escolhe vocabulários de motion diferentes. O mesmo comando, `/impeccable layout`, assume defaults de densidade diferentes. Você não reaprende o comando: responde a pergunta de register uma vez, e o comando se adapta.
 
-## Step 1. Decide or inherit
+## Passo 1. Decida ou herde
 
-If you haven't run `/impeccable teach` yet, run it now. The first question is about register:
+Se você ainda não executou `/impeccable teach`, execute agora. A primeira pergunta é sobre register:
 
 ```
 /impeccable teach
 ```
 
-Teach scans your codebase first and forms a hypothesis: routes like `/`, `/pricing`, `/blog`, hero sections, scroll-driven content point toward brand. Routes like `/app`, `/dashboard`, `/settings`, forms and tables point toward product. It leads with the hypothesis rather than starting cold:
+Teach escaneia seu codebase primeiro e forma uma hipótese: rotas como `/`, `/pricing`, `/blog`, seções hero, conteúdo scroll-driven apontam para brand. Rotas como `/app`, `/dashboard`, `/settings`, formulários e tabelas apontam para product. Ele começa com a hipótese em vez de começar do zero:
 
-> From the codebase, this looks like a product surface, does that match your intent, or should we treat it differently?
+> Pelo codebase, isso parece uma superfície de produto, isso corresponde à sua intenção, ou devemos tratar de forma diferente?
 
-If the project genuinely spans both (a product with a big marketing landing), teach asks which register describes the **primary** surface. Register is per-project, not per-page, but you can override it per task when needed.
+Se o projeto genuinamente abrange ambos (um produto com uma grande landing de marketing), teach pergunta qual register descreve a **superfície primária**. Register é por projeto, não por página, mas você pode sobrescrever por tarefa quando necessário.
 
-## Step 2. Verify the register landed
+## Passo 2. Verifique se o register foi registrado
 
-Open `PRODUCT.md` and look for the `## Register` section. It should carry a bare value, not prose:
+Abra `PRODUCT.md` e procure pela seção `## Register`. Ela deve conter um valor simples, não prosa:
 
 ```markdown
 ## Register
@@ -106,25 +106,25 @@ Open `PRODUCT.md` and look for the `## Register` section. It should carry a bare
 brand
 ```
 
-If the section is missing (you're on an older `PRODUCT.md` from pre-v3.0), re-run `/impeccable teach`. It will detect the gap and add the field without re-interviewing you on everything else.
+Se a seção está faltando (você está num `PRODUCT.md` mais antigo, pré-v3.0), re-execute `/impeccable teach`. Ele vai detectar a lacuna e adicionar o campo sem te re-entrevistar sobre todo o resto.
 
-## Step 3. Override per task when you need to
+## Passo 3. Sobrescreva por tarefa quando precisar
 
-Most of the time, register is set once and forgotten. But a product project might occasionally need a single brand surface (a launch landing, an investor one-pager) without flipping the whole project.
+Na maioria das vezes, register é definido uma vez e esquecido. Mas um projeto de product pode ocasionalmente precisar de uma única superfície de brand (uma landing de lançamento, um one-pager para investidores) sem virar o projeto inteiro.
 
-You have two options:
+Você tem duas opções:
 
-- **Name it in the brief.** "`/impeccable craft a launch landing for v2, brand register for this one page.`" The skill honors the override for that task only.
-- **Set a per-surface register.** If the override is lasting, add a short note in `PRODUCT.md` under an explicit section: `## Register overrides: /launch is brand.` Commands that read PRODUCT.md will respect it.
+- **Nomeie no brief.** "`/impeccable craft a launch landing for v2, brand register for this one page.`" A skill honra a sobrescrita apenas para aquela tarefa.
+- **Defina um register por superfície.** Se a sobrescrita é duradoura, adicione uma nota curta em `PRODUCT.md` sob uma seção explícita: `## Register overrides: /launch is brand.` Comandos que leem PRODUCT.md vão respeitar.
 
-## What to try next
+## O que tentar a seguir
 
-- Run a command that is register-sensitive and watch the divergence: `/impeccable typeset the pricing page` on a product project vs. a brand project will pick different type families, different scale ratios, and different pairings.
-- Pair with [getting started](/tutorials/getting-started) if you haven't installed Impeccable yet.
-- Reach for `/impeccable document` after teach to capture the visual side (colors, components) into DESIGN.md.
+- Execute um comando que é register-sensitivo e observe a divergência: `/impeccable typeset the pricing page` em um projeto de product vs. um projeto de brand vai escolher famílias de tipos diferentes, razões de escala diferentes e pairings diferentes.
+- Combine com [primeiros passos](/tutorials/getting-started) se você ainda não instalou o Impeccable.
+- Use `/impeccable document` após teach para capturar o lado visual (cores, componentes) no DESIGN.md.
 
-## Common issues
+## Problemas comuns
 
-- **Register keeps slipping the wrong way.** If you set `product` but commands keep producing brand-feeling output, check that `PRODUCT.md` is at the project root and the `## Register` section has a bare value (no prose, no explanation, just the word). Commands can only read what is there.
-- **The hypothesis teach formed is wrong.** Disagree in the answer. Teach is asking, not telling.
-- **A project is genuinely 50/50.** Pick the primary surface, then use per-task overrides for the minority one. Trying to average the two in PRODUCT.md produces worse output than committing to one.
+- **Register continua escorregando para o lado errado.** Se você definiu `product` mas comandos continuam produzindo output com sensação de brand, verifique se `PRODUCT.md` está na raiz do projeto e a seção `## Register` tem um valor simples (sem prosa, sem explicação, apenas a palavra). Comandos só podem ler o que está lá.
+- **A hipótese que teach formou está errada.** Discorda na resposta. Teach está perguntando, não afirmando.
+- **Um projeto é genuinamente 50/50.** Escolha a superfície primária, depois use sobrescritas por tarefa para a minoritária. Tentar fazer a média dos dois no PRODUCT.md produz resultados piores do que se comprometer com um.

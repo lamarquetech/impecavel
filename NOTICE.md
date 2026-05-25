@@ -1,25 +1,25 @@
-# Notice
+# Aviso
 
 Impeccable
 Copyright 2025-2026 Paul Bakaus
 
-## Anthropic frontend-design Skill
+## Skill frontend-design da Anthropic
 
-The `impeccable` skill in this project builds on Anthropic's original frontend-design skill.
+A skill `impeccable` neste projeto baseia-se na skill frontend-design original da Anthropic.
 
-**Original work:** https://github.com/anthropics/skills/tree/main/skills/frontend-design
-**Original license:** Apache License 2.0
+**Trabalho original:** https://github.com/anthropics/skills/tree/main/skills/frontend-design
+**Licença original:** Apache License 2.0
 **Copyright:** 2025 Anthropic, PBC
 
-This project extends the original with:
-- 7 domain-specific reference files (typography, color-and-contrast, spatial-design, motion-design, interaction-design, responsive-design, ux-writing)
-- 23 commands
-- Expanded patterns and anti-patterns
+Este projeto estende o original com:
+- 7 arquivos de referência por domínio (typography, color-and-contrast, spatial-design, motion-design, interaction-design, responsive-design, ux-writing)
+- 23 comandos
+- Padrões e anti-patterns expandidos
 
-## Typecraft Guide Skill
+## Skill Typecraft Guide
 
-The `typography.md` reference in this project incorporates a set of tactical additions merged in from ehmo's `typecraft-guide-skill` at the author's request: dark-mode weight/tracking compensation, `font-display: optional` vs `swap`, preload-critical-weight-only guidance, variable fonts for 3+ weights, `clamp()` max-to-min ratio bound, responsive measure/container coupling, `text-wrap: balance` / `pretty`, `font-optical-sizing: auto`, ALL-CAPS tracking quantification, and the paragraph-rhythm rule (space OR indent, never both).
+A referência `typography.md` neste projeto incorpora um conjunto de adições táticas mescladas a partir do `typecraft-guide-skill` do ehmo a pedido do autor: compensação de peso/tracking em modo escuro, `font-display: optional` vs `swap`, orientação de preload-apenas-peso-crítico, fontes variáveis para 3+ pesos, limite de razão max-to-min com `clamp()`, acoplamento responsive measure/container, `text-wrap: balance` / `pretty`, `font-optical-sizing: auto`, quantificação de tracking ALL-CAPS, e a regra de ritmo de parágrafo (espaço OU indentação, nunca ambos).
 
-**Original work:** https://github.com/ehmo/typecraft-guide-skill
-**Original license:** see upstream repo
-**Author:** ehmo
+**Trabalho original:** https://github.com/ehmo/typecraft-guide-skill
+**Licença original:** veja repositório upstream
+**Autor:** ehmo

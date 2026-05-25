@@ -1,123 +1,123 @@
-# Craft Flow
+# Fluxo de Craft
 
-Build a feature with impeccable UX and UI quality: shape the design, land the visual direction, build real production code, inspect and improve in-browser until it meets a high-end studio bar.
+Construa uma funcionalidade com qualidade impecável de UX e UI: molde o design, defina a direção visual, construa código de produção real, inspecione e melhore no navegador até atingir o padrão de um estúdio de alto nível.
 
-Before writing code, you need: PRODUCT.md loaded, register identified and the matching reference loaded, and a confirmed design direction for this task (either from `shape` or supplied by the user). PRODUCT.md is project context, not a task-specific brief.
+Antes de escrever código, você precisa: PRODUCT.md carregado, registro identificado e a referência correspondente carregada, e uma direção de design confirmada para esta tarefa (seja de `shape` ou fornecida pelo usuário). PRODUCT.md é contexto de projeto, não um brief específico da tarefa.
 
-Treat any approved visual direction (generated mock or stated reference) as a concrete contract for composition, hierarchy, density, atmosphere, signature motifs, and distinctive visual moves. Don't let mocks replace structure, copy, accessibility, or state design. But if the live result lacks the approved direction's major ingredients, the implementation is wrong.
+Trate qualquer direção visual aprovada (mock gerado ou referência declarada) como um contrato concreto para composição, hierarquia, densidade, atmosfera, motivos marcantes e movimentos visuais distintivos. Não deixe que mocks substituam estrutura, copy, acessibilidade ou design de estados. Mas se o resultado ao vivo carece dos ingredientes principais da direção aprovada, a implementação está errada.
 
-### Gates: do not compress
+### Gates: não comprima
 
-Craft has **multiple user gates**, not one. When the harness has native image generation (Codex via `image_gen`), the gate sequence before code is:
+Craft tem **múltiplos gates do usuário**, não apenas um. Quando o harness tem geração de imagens nativa (Codex via `image_gen`), a sequência de gates antes do código é:
 
-1. **Shape brief confirmed** (Step 1)
-2. **Direction questions answered** (codex.md Step A)
-3. **Palette confirmed** (codex.md Step B)
-4. **One mock direction approved or delegated** (codex.md Step D)
+1. **Brief de shape confirmado** (Passo 1)
+2. **Perguntas de direção respondidas** (codex.md Passo A)
+3. **Paleta confirmada** (codex.md Passo B)
+4. **Uma direção de mock aprovada ou delegada** (codex.md Passo D)
 
-You must stop at every gate. **Shape confirmation alone is NOT a green light to start coding.** It is the green light to begin codex.md Step A. Compressing gates 2 through 4 because the shape brief felt complete is the dominant failure mode of this flow.
+Você deve parar em cada gate. **Confirmação do shape sozinha NÃO é luz verde para começar a codificar.** É a luz verde para iniciar o codex.md Passo A. Comprimir os gates 2 a 4 porque o brief de shape pareceu completo é o modo de falha dominante deste fluxo.
 
-When the harness lacks native image generation, gates 2-4 collapse into the brief itself, and shape confirmation does advance straight to code.
+Quando o harness não tem geração de imagens nativa, os gates 2-4 colapsam no próprio brief, e a confirmação do shape avança diretamente para o código.
 
-## Step 0: Project Foundation
+## Passo 0: Fundação do Projeto
 
-Before shape, before code: figure out what kind of project you're working in.
+Antes do shape, antes do código: descubra em que tipo de projeto você está trabalhando.
 
-Look at the working directory. Run `ls`. Check for:
+Olhe para o diretório de trabalho. Execute `ls`. Verifique:
 
-- An existing framework: `astro.config.mjs/ts`, `next.config.js/ts`, `nuxt.config.ts`, `svelte.config.js`, `vite.config.js/ts`, `package.json` with framework deps, `Cargo.toml` + Leptos/Yew, `Gemfile` + Rails. **If found, use it.** Do not start a parallel build, do not introduce a second framework, do not write to `dist/` or `build/` directly. Whatever pipeline the project has, respect it.
-- An existing component library or design system: `src/components/`, `app/components/`, a `tokens.css` / `theme.ts`, an `astro.config` `integrations`. Read what's there before adding to it.
-- An existing icon set: `lucide-react`, `@phosphor-icons/react`, `@iconify/*`, hand-rolled SVG sprites in `assets/icons/`. **Use what's already in the project**; don't introduce a second set.
+- Um framework existente: `astro.config.mjs/ts`, `next.config.js/ts`, `nuxt.config.ts`, `svelte.config.js`, `vite.config.js/ts`, `package.json` com deps de framework, `Cargo.toml` + Leptos/Yew, `Gemfile` + Rails. **Se encontrado, use-o.** Não inicie uma build paralela, não introduza um segundo framework, não escreva em `dist/` ou `build/` diretamente. Qualquer pipeline que o projeto tenha, respeite-o.
+- Uma biblioteca de componentes ou design system existente: `src/components/`, `app/components/`, um `tokens.css` / `theme.ts`, um `astro.config` `integrations`. Leia o que está lá antes de adicionar a ele.
+- Um conjunto de ícones existente: `lucide-react`, `@phosphor-icons/react`, `@iconify/*`, sprites SVG feitos à mão em `assets/icons/`. **Use o que já está no projeto**; não introduza um segundo conjunto.
 
-If the directory is empty (greenfield), don't pick a framework silently. Ask the user via the AskUserQuestion tool, with sensible defaults framed by the brief:
+Se o diretório está vazio (greenfield), não escolha um framework silenciosamente. Pergunte ao usuário via ferramenta AskUserQuestion, com padrões sensatos enquadrados pelo brief:
 
 ```text
-What should this be built on?
-  - Astro (default for content-led brand sites, landing pages, marketing surfaces)
-  - SvelteKit / Next.js / Nuxt (when the brief implies an app surface or significant interactivity)
-  - Single index.html (one-shot demo, prototype, or a deliberately framework-free experiment)
+No que isso deve ser construído?
+  - Astro (padrão para sites de marca liderados por conteúdo, landing pages, superfícies de marketing)
+  - SvelteKit / Next.js / Nuxt (quando o brief implica uma superfície de app ou interatividade significativa)
+  - index.html único (demo de uso único, protótipo, ou um experimento deliberadamente sem framework)
 ```
 
-Default: Astro for brand briefs, the project's existing framework for product briefs. Ask once; don't re-ask mid-task.
+Padrão: Astro para briefs de marca, o framework existente do projeto para briefs de produto. Pergunte uma vez; não pergunte de novo no meio da tarefa.
 
-## Step 1: Shape the Design
+## Passo 1: Molde o Design
 
-Run {{command_prefix}}impeccable shape, passing along whatever feature description the user provided. Shape is **required** for craft; it is what produces a confirmed direction.
+Execute {{command_prefix}}impeccable shape, passando adiante qualquer descrição de funcionalidade que o usuário forneceu. Shape é **obrigatório** para craft; é o que produz uma direção confirmada.
 
-Present the shape output and stop. Wait for the user to confirm, override, or course-correct before writing code.
+Apresente a saída do shape e pare. Espere o usuário confirmar, substituir ou corrigir o curso antes de escrever código.
 
-If the user already supplied a confirmed brief or ran shape separately, use it and skip this step.
+Se o usuário já forneceu um brief confirmado ou executou shape separadamente, use-o e pule este passo.
 
-When the original prompt + PRODUCT.md already answer scope, content, and visual direction with no real ambiguity, the shape output can be **compact** (3-5 bullets stating what you're building and the visual lane, ending with one or two specific questions or "confirm or override"). The full 10-section structured brief is reserved for genuinely ambiguous, multi-screen, or stakeholder-heavy tasks. Don't pad a clear brief into a long one to look thorough; equally, don't skip the pause to look efficient.
+Quando o prompt original + PRODUCT.md já respondem escopo, conteúdo e direção visual sem ambiguidade real, a saída do shape pode ser **compacta** (3-5 bullets declarando o que você está construindo e a faixa visual, terminando com uma ou duas perguntas específicas ou "confirme ou substitua"). O brief estruturado completo de 10 seções é reservado para tarefas genuinamente ambíguas, multi-tela ou com muitos stakeholders. Não aumente um brief claro para parecer completo; igualmente, não pule a pausa para parecer eficiente.
 
-If the harness has native image generation (Codex), a compact shape's "confirm or override" advances to **Step 3 and the codex.md flow**, not to Step 4. Phrase the closing line accordingly: "Confirm or override; once we lock direction, I'll run a couple of palette and reference questions before generating any mocks." This stops the model from reading shape confirmation as code-green.
+Se o harness tem geração de imagens nativa (Codex), o "confirme ou substitua" de um shape compacto avança para o **Passo 3 e o fluxo codex.md**, não para o Passo 4. Formule a linha de encerramento de acordo: "Confirme ou substitua; assim que trancarmos a direção, vou fazer algumas perguntas de paleta e referência antes de gerar mocks." Isso impede o modelo de ler a confirmação do shape como luz verde para código.
 
-## Step 2: Load References
+## Passo 2: Carregue Referências
 
-Based on the design brief's "Recommended References" section, consult the relevant impeccable reference files. At minimum, always consult:
+Com base na seção "Referências Recomendadas" do brief de design, consulte os arquivos de referência impecável relevantes. No mínimo, sempre consulte:
 
-- [spatial-design.md](spatial-design.md) for layout and spacing
-- [typography.md](typography.md) for type hierarchy
+- [spatial-design.md](spatial-design.md) para layout e espaçamento
+- [typography.md](typography.md) para hierarquia de tipos
 
-Then add references based on the brief's needs:
-- Complex interactions or forms? Consult [interaction-design.md](interaction-design.md)
-- Animation or transitions? Consult [motion-design.md](motion-design.md)
-- Color-heavy or themed? Consult [color-and-contrast.md](color-and-contrast.md)
-- Responsive requirements? Consult [responsive-design.md](responsive-design.md)
-- Heavy on copy, labels, or errors? Consult [ux-writing.md](ux-writing.md)
+Depois adicione referências com base nas necessidades do brief:
+- Interações complexas ou formulários? Consulte [interaction-design.md](interaction-design.md)
+- Animação ou transições? Consulte [motion-design.md](motion-design.md)
+- Intenso em cores ou com temas? Consulte [color-and-contrast.md](color-and-contrast.md)
+- Requisitos responsivos? Consulte [responsive-design.md](responsive-design.md)
+- Rico em copy, rótulos ou erros? Consulte [ux-writing.md](ux-writing.md)
 
-## Step 3: Visual Direction & Assets (Harness-Gated)
+## Passo 3: Direção Visual e Assets (Controlado pelo Harness)
 
-If the harness has **native image generation** (currently Codex via `image_gen`), this step is mandatory. **Stop and load [codex.md](codex.md)**. It covers palette generation, mock exploration, the approval loop, mock-fidelity inventory, and asset slicing via the `impeccable_asset_producer` subagent. Follow Steps A-F in that file, then return here for Step 4.
+Se o harness tem **geração de imagens nativa** (atualmente Codex via `image_gen`), este passo é obrigatório. **Pare e carregue [codex.md](codex.md)**. Ele cobre geração de paleta, exploração de mocks, o loop de aprovação, inventário de fidelidade de mocks e corte de assets via o subagente `impeccable_asset_producer`. Siga os Passos A-F naquele arquivo, depois retorne aqui para o Passo 4.
 
-If the harness lacks native image generation, **state in one line that the visual-direction-by-generation step is being skipped because the harness lacks native image generation, then proceed**. The one-line announcement is required; it forces a conscious decision instead of letting the step quietly evaporate. The brief is your only visual reference. Implement directly from it, treating any named anchor references and the brief's "Design Direction" as the contract.
+Se o harness não tem geração de imagens nativa, **declare em uma linha que o passo de direção-visual-por-geração está sendo pulado porque o harness não tem geração de imagens nativa, depois prossiga**. O anúncio de uma linha é obrigatório; força uma decisão consciente em vez de deixar o passo evaporar silenciosamente. O brief é sua única referência visual. Implemente diretamente a partir dele, tratando quaisquer referências de âncora nomeadas e a "Direção de Design" do brief como o contrato.
 
-Whether you generated mocks or not: don't replace required imagery with generic cards, bullets, emoji, fake metrics, decorative CSS panels, or filler copy. Image-led briefs (restaurants, hotels, magazines, photography, hobbyist communities, food, travel, fashion, product) need real or sourced imagery in the build, not CSS scenery.
+Tenha ou não gerado mocks: não substitua imagens necessárias por cards genéricos, bullets, emoji, métricas falsas, painéis CSS decorativos ou copy de preenchimento. Briefs liderados por imagens (restaurantes, hotéis, revistas, fotografia, comunidades de hobby, comida, viagens, moda, produto) precisam de imagens reais ou obtidas de fontes na build, não cenário CSS.
 
-## Step 4: Build to Production Quality
+## Passo 4: Construa com Qualidade de Produção
 
-**Precondition.** If Step 3 routed you to codex.md (native image generation available), Steps A through D in that file must be complete before any code: questions answered, palette confirmed, mocks generated, one direction approved or delegated. **Do not mention implementation, file paths, or patch plans until that's done.** A confirmed shape brief is not enough; the model that compressed those gates is the model that already failed this flow.
+**Pré-condição.** Se o Passo 3 direcionou você ao codex.md (geração de imagens nativa disponível), os Passos A a D naquele arquivo devem estar completos antes de qualquer código: perguntas respondidas, paleta confirmada, mocks gerados, uma direção aprovada ou delegada. **Não mencione implementação, caminhos de arquivo ou planos de patch até que isso esteja feito.** Um brief de shape confirmado não é suficiente; o modelo que comprimiu esses gates é o modelo que já falhou neste fluxo.
 
-Implement the feature following the design brief. Build in passes so structure, visual system, states, motion/media, and responsive behavior each get deliberate attention. The list below is the definition of done, not inspiration.
+Implemente a funcionalidade seguindo o brief de design. Construa em passagens para que estrutura, sistema visual, estados, movimento/mídia e comportamento responsivo cada um receba atenção deliberada. A lista abaixo é a definição de pronto, não inspiração.
 
-### Production bar
+### Barra de produção
 
-- **Real content.** No placeholder copy, placeholder images, dead links, fake controls, or unused scaffold at presentation time.
-- **Preserve the approved mock's major ingredients.** Missing hero objects, world/product imagery, section structure, CTA/nav treatment, or distinctive motifs are blocking defects unless the user accepted the change.
-- **Semantic first.** Real headings, landmarks, labels, form associations, button/link semantics, accessible names, state announcements where needed.
-- **Deliberate spacing and alignment.** No default gaps, arbitrary margins, unbalanced whitespace, or accidental optical misalignment.
-- **Intentional typography.** Chosen loading strategy, clear hierarchy, readable measure, stable line breaks, no overflow at any width.
-- **Realistic state coverage.** Default, hover, focus-visible, active, disabled, loading, error, success, empty, overflow, long/short text, first-run.
-- **Finished interaction quality.** Keyboard paths, touch targets, feedback timing, scroll behavior, state transitions, no hover-only functionality.
-- **Coherent icon set.** Use the project's established set; otherwise pick one library or use accessible text. Don't mix.
-- **Respect the build pipeline.** Edit source files and run the project's build (`npm run build` or equivalent). Don't write to `build/` / `dist/` / `.next/` with `cat`, heredoc, or Bash redirects; that skips asset hashing, image optimization, code splitting, and CSS extraction, and produces output the dev server won't serve.
-- **Verify image URLs before referencing them.** Use image-search MCP or web-fetch when available; guessed photo IDs ship as broken-image placeholders. Without verification, prefer fewer images you're confident about.
-- **Optimized imagery and media.** Correct dimensions, useful alt text, lazy loading below the fold, modern formats when practical, responsive `srcset`/`picture` for raster, no project-referenced asset left outside the workspace.
-- **Premium motion.** Use atmospheric blur, filter, mask, shadow, reveal when they improve the experience. Avoid casual layout-property animation, bound expensive effects, verify smoothness in-browser, respect reduced motion, and avoid choreography that blocks task completion.
-- **Maintainable.** Reusable local patterns, clear component boundaries, project conventions. No rasterized UI text or one-off hacks when a local pattern exists.
-- **Technically clean.** Production build passes, no console errors, no avoidable layout shift, no needless dependencies, no broken asset paths.
-- **Ask when uncertain.** If a discovery materially changes the brief or approved direction, stop and ask. Don't guess.
+- **Conteúdo real.** Sem copy de placeholder, imagens de placeholder, links mortos, controles falsos ou scaffold não utilizado no momento da apresentação.
+- **Preserve os ingredientes principais do mock aprovado.** Objetos hero ausentes, imagens de mundo/produto, estrutura de seção, tratamento de CTA/nav ou motivos distintivos são defeitos bloqueadores a menos que o usuário tenha aceitado a mudança.
+- **Semântica primeiro.** Headings reais, landmarks, rótulos, associações de formulário, semântica de botão/link, nomes acessíveis, anúncios de estado quando necessário.
+- **Espaçamento e alinhamento deliberados.** Sem gaps padrão, margens arbitrárias, whitespace desbalanceado ou desalinhamento ótico acidental.
+- **Tipografia intencional.** Estratégia de carregamento escolhida, hierarquia clara, medida legível, quebras de linha estáveis, sem overflow em nenhuma largura.
+- **Cobertura de estados realista.** Default, hover, focus-visible, active, disabled, loading, error, success, empty, overflow, texto longo/curto, primeira execução.
+- **Qualidade de interação finalizada.** Caminhos de teclado, alvos de toque, timing de feedback, comportamento de scroll, transições de estado, sem funcionalidade apenas com hover.
+- **Conjunto de ícones coerente.** Use o conjunto estabelecido do projeto; caso contrário, escolha uma biblioteca ou use texto acessível. Não misture.
+- **Respeite o pipeline de build.** Edite arquivos fonte e execute a build do projeto (`npm run build` ou equivalente). Não escreva em `build/` / `dist/` / `.next/` com `cat`, heredoc ou redirects Bash; isso pula hash de assets, otimização de imagens, code splitting e extração de CSS, e produz saída que o dev server não vai servir.
+- **Verifique URLs de imagens antes de referenciá-las.** Use MCP de busca de imagens ou web-fetch quando disponível; IDs de fotos adivinhados são entregues como placeholders de imagem quebrada. Sem verificação, prefira menos imagens das quais você tem confiança.
+- **Imagens e mídia otimizadas.** Dimensões corretas, alt text útil, lazy loading abaixo da dobra, formatos modernos quando prático, `srcset`/`picture` responsivo para raster, nenhum asset referenciado pelo projeto deixado fora do workspace.
+- **Movimento premium.** Use blur atmosférico, filter, mask, shadow, reveal quando melhoram a experiência. Evite animação casual de propriedades de layout, limite efeitos caros, verifique suavidade no navegador, respeite movimento reduzido e evite coreografia que bloqueie a conclusão da tarefa.
+- **Sustentável.** Padrões locais reutilizáveis, limites claros de componentes, convenções do projeto. Sem texto UI rasterizado ou gambirras únicas quando um padrão local existe.
+- **Tecnicamente limpo.** Build de produção passa, sem erros de console, sem layout shift evitável, sem dependências desnecessárias, sem caminhos de assets quebrados.
+- **Pergunte quando incerto.** Se uma descoberta muda materialmente o brief ou direção aprovada, pare e pergunte. Não adivinhe.
 
-## Step 5: Iterate Visually
+## Passo 5: Itere Visualmente
 
-Look at what you built like a designer would. Your eyes are whatever the harness gives you: a connected browser, a screenshotting tool, Playwright, or asking the user. Use them for responsive testing (mobile, tablet, desktop minimum) and general visual validation.
+Olhe para o que você construiu como um designer faria. Seus olhos são o que o harness lhe dá: um navegador conectado, uma ferramenta de captura de tela, Playwright, ou perguntar ao usuário. Use-os para testes responsivos (mobile, tablet, desktop no mínimo) e validação visual geral.
 
-If your tool returns a file path, read the PNG back into the conversation. A screenshot you didn't read doesn't count.
+Se sua ferramenta retorna um caminho de arquivo, leia o PNG de volta para a conversa. Uma captura de tela que você não leu não conta.
 
-For long-form brand surfaces, inspect major sections individually. Thumbnails hide spacing, clipping, and cascade defects.
+Para superfícies de marca de formato longo, inspecione seções principais individualmente. Thumbnails escondem defeitos de espaçamento, recorte e cascata.
 
-After the first pass, write an honest critique against the brief, the approved mock's major ingredients (hero silhouette, motifs, imagery, nav/CTA, density), and impeccable's DON'Ts. Patch material defects and re-inspect. **Don't invent defects to demonstrate iteration.** A confident "first pass clean, shipping" beats a fake fix.
+Após a primeira passagem, escreva uma crítica honesta contra o brief, os ingredientes principais do mock aprovado (silhueta do hero, motivos, imagens, nav/CTA, densidade) e os NÃO's do impeccable. Corrija defeitos materiais e reinspecione. **Não invente defeitos para demonstrar iteração.** Um "primeira passagem limpa, enviando" confiante é melhor que uma correção falsa.
 
-Actively check: responsive behavior (composes, not shrinks), every state (empty / error / loading / edge), craft details (spacing, alignment, hierarchy, contrast, motion timing, focus), performance basics. The exit bar: defensible in a high-end studio review.
+Verifique ativamente: comportamento responsivo (compõe, não encolhe), cada estado (vazio / erro / carregamento / borda), detalhes de craft (espaçamento, alinhamento, hierarquia, contraste, timing de movimento, foco), básicos de desempenho. A barra de saída: defensável em uma revisão de estúdio de alto nível.
 
-Detector or QA output is defect evidence only; never proof the work is finished.
+Saída de detector ou QA é apenas evidência de defeito; nunca prova de que o trabalho está concluído.
 
-## Step 6: Present
+## Passo 6: Apresente
 
-Present the result to the user:
-- Show the feature in its primary state
-- Summarize the browser/viewports checked and the most important fixes made after inspection
-- Walk through the key states (empty, error, responsive)
-- Explain design decisions that connect back to the design brief and, when used, the chosen north-star mock. Include any accepted deviations from the mock; do not hide unimplemented mock ingredients.
-- Note any remaining limitations or follow-up risks honestly
-- Ask: "What's working? What isn't?"
+Apresente o resultado ao usuário:
+- Mostre a funcionalidade em seu estado primário
+- Resuma os navegadores/viewports verificados e as correções mais importantes feitas após inspeção
+- Percorra os estados principais (vazio, erro, responsivo)
+- Explique decisões de design que conectam de volta ao brief de design e, quando usado, ao mock north-star escolhido. Inclua quaisquer desvios aceitos do mock; não esconda ingredientes do mock não implementados.
+- Note quaisquer limitações restantes ou riscos de follow-up honestamente
+- Pergunte: "O que está funcionando? O que não está?"

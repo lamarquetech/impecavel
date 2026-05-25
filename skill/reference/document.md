@@ -1,10 +1,10 @@
-Generate a `DESIGN.md` file at the project root that captures the current visual design system, so AI agents generating new screens stay on-brand.
+Gere um arquivo `DESIGN.md` na raiz do projeto que captura o sistema de design visual atual, para que agentes de IA gerando novas telas permaneçam on-brand.
 
-DESIGN.md follows the [official Google Stitch DESIGN.md format](https://stitch.withgoogle.com/docs/design-md/format/): YAML frontmatter carrying machine-readable design tokens, followed by a markdown body with exactly six sections in a fixed order. **Tokens are normative; prose provides context for how to apply them.** Sections may be omitted when not relevant, but **do not reorder them and do not rename them**. Section headers must match the spec character-for-character so the file stays parseable by other DESIGN.md-aware tools (Stitch itself, awesome-design-md, skill-rest, etc.).
+DESIGN.md segue o [formato oficial Google Stitch DESIGN.md](https://stitch.withgoogle.com/docs/design-md/format/): frontmatter YAML carregando design tokens legíveis por máquina, seguido por um corpo markdown com exatamente seis seções em uma ordem fixa. **Tokens são normativos; a prosa fornece contexto sobre como aplicá-los.** Seções podem ser omitidas quando não relevantes, mas **não as reordene e não as renomeie**. Os cabeçalhos das seções devem corresponder à especificação caractere por caractere para que o arquivo permaneça parseável por outras ferramentas conscientes de DESIGN.md (Stitch propriamente dito, awesome-design-md, skill-rest, etc.).
 
-## The frontmatter: token schema
+## O frontmatter: schema de tokens
 
-The YAML frontmatter is the machine-readable layer. It's what Stitch's linter validates and what the live panel renders tiles from. Keep it tight; every entry should correspond to a token the project actually uses.
+O frontmatter YAML é a camada legível por máquina. É o que o linter do Stitch valida e o que o painel live renderiza como tiles. Mantenha-o enxuto; cada entrada deve corresponder a um token que o projeto realmente usa.
 
 ```yaml
 ---
@@ -40,15 +40,15 @@ components:
 ---
 ```
 
-Rules that matter:
+Regras que importam:
 
-- **Token refs** use `{path.to.token}` (e.g. `{colors.primary}`, `{rounded.md}`). Components may reference primitives; primitives may not reference each other.
-- **Stitch validates colors as hex sRGB only** (`#RGB` / `#RGBA` / `#RRGGBB` / `#RRGGBBAA`); OKLCH/HSL/P3 trigger a linter warning, not a hard error. YAML accepts the string either way and our own parser is format-agnostic. Choose based on project posture: (a) if the project has an "OKLCH-only" doctrine or uses Display-P3 values that don't round-trip through sRGB, put OKLCH directly in the frontmatter and accept the Stitch linter warning; (b) if the project wants strict Stitch compliance or plans to use their Tailwind/DTCG export pipeline, put hex in the frontmatter and keep OKLCH in prose as the canonical reference. Never split the source of truth without explicit reason.
-- **Component sub-tokens** are limited to 8 props: `backgroundColor`, `textColor`, `typography`, `rounded`, `padding`, `size`, `height`, `width`. Shadows, motion, focus rings, backdrop-filter: none of those fit. Carry them in the sidecar (Step 4b).
-- **Scale keys are open-ended.** Use whatever names the project already uses (`warm-ash-cream`, `surface-container-low`). Don't rename to Material defaults.
-- **Variants are naming convention, not schema.** `button-primary` / `button-primary-hover` / `button-primary-active` as sibling keys.
+- **Referências de tokens** usam `{path.to.token}` (ex.: `{colors.primary}`, `{rounded.md}`). Componentes podem referenciar primitivos; primitivos não podem referenciar uns aos outros.
+- **O Stitch valida cores apenas como hex sRGB** (`#RGB` / `#RGBA` / `#RRGGBB` / `#RRGGBBAA`); OKLCH/HSL/P3 acionam um aviso do linter, não um erro fatal. O YAML aceita a string de qualquer forma e nosso próprio parser é agnóstico quanto ao formato. Escolha com base na postura do projeto: (a) se o projeto tem uma doutrina "apenas OKLCH" ou usa valores Display-P3 que não fazem round-trip por sRGB, coloque OKLCH diretamente no frontmatter e aceite o aviso do linter do Stitch; (b) se o projeto quer conformidade estrita com o Stitch ou planeja usar seu pipeline de exportação Tailwind/DTCG, coloque hex no frontmatter e mantenha OKLCH na prosa como referência canônica. Nunca divida a fonte da verdade sem motivo explícito.
+- **Sub-tokens de componentes** estão limitados a 8 props: `backgroundColor`, `textColor`, `typography`, `rounded`, `padding`, `size`, `height`, `width`. Shadows, motion, focus rings, backdrop-filter: nenhum deles se encaixa. Carregue-os no sidecar (Passo 4b).
+- **Chaves de escala são abertas.** Use quaisquer nomes que o projeto já usa (`warm-ash-cream`, `surface-container-low`). Não renomeie para padrões Material.
+- **Variantes são convenção de nomenclatura, não schema.** `button-primary` / `button-primary-hover` / `button-primary-active` como chaves irmãs.
 
-## The markdown body: six sections (exact order)
+## O corpo markdown: seis seções (ordem exata)
 
 1. `## Overview`
 2. `## Colors`
@@ -57,74 +57,74 @@ Rules that matter:
 5. `## Components`
 6. `## Do's and Don'ts`
 
-Optional evocative subtitles are allowed in the form `## 2. Colors: The [Name] Palette` (Stitch's own outputs do this), but the literal word in each header (Overview, Colors, Typography, Elevation, Components, Do's and Don'ts) must be present. Do NOT add extra top-level sections (Layout Principles, Responsive Behavior, Motion, Agent Prompt Guide). Fold that content into the six spec sections where it naturally belongs.
+Subtítulos evocativos opcionais são permitidos na forma `## 2. Colors: The [Name] Palette` (as saídas do próprio Stitch fazem isso), mas a palavra literal em cada cabeçalho (Overview, Colors, Typography, Elevation, Components, Do's and Don'ts) deve estar presente. NÃO adicione seções de nível superior extras (Layout Principles, Responsive Behavior, Motion, Agent Prompt Guide). Dobre esse conteúdo nas seis seções da especificação onde naturalmente pertence.
 
-## When to run
+## Quando executar
 
-- The user just ran `/impeccable teach` and needs the visual side documented.
-- The skill noticed no `DESIGN.md` exists and nudged the user to create one.
-- An existing `DESIGN.md` is stale (the design has drifted).
-- Before a large redesign, to capture the current state as a reference.
+- O usuário acabou de executar `/impeccable teach` e precisa do lado visual documentado.
+- A skill percebeu que não existe `DESIGN.md` e sugeriu ao usuário criar um.
+- Um `DESIGN.md` existente está desatualizado (o design divergiu).
+- Antes de uma grande reformulação, para capturar o estado atual como referência.
 
-If a `DESIGN.md` already exists, **do not silently overwrite it**. Show the user the existing file and {{ask_instruction}} whether to refresh, overwrite, or merge.
+Se um `DESIGN.md` já existe, **não o sobrescreva silenciosamente**. Mostre o arquivo existente ao usuário e {{ask_instruction}} se deseja atualizar, sobrescrever ou fazer merge.
 
-## Two paths
+## Dois caminhos
 
-- **Scan mode** (default): the project has design tokens, components, or rendered output. Extract, then confirm descriptive language. Use when there's code to analyze.
-- **Seed mode**: the project is pre-implementation (fresh teach, nothing built yet). Interview for five high-level answers, write a minimal DESIGN.md marked `<!-- SEED -->`. Re-run in scan mode once there's code.
+- **Modo scan** (padrão): o projeto tem design tokens, componentes ou saída renderizada. Extraia, depois confirme a linguagem descritiva. Use quando há código para analisar.
+- **Modo seed**: o projeto está pré-implementação (teach recente, nada construído ainda). Entreviste para cinco respostas de alto nível, escreva um DESIGN.md mínimo marcado com `<!-- SEED -->`. Re-execute no modo scan quando houver código.
 
-Decide by scanning first (Scan mode Step 1). If the scan finds no tokens, no component files, and no rendered site, offer seed mode; don't silently switch. `/impeccable document --seed` forces seed mode regardless of code presence.
+Decida escaneando primeiro (Modo scan Passo 1). Se o scan não encontra tokens, arquivos de componentes ou site renderizado, ofereça o modo seed; não mude silenciosamente. `/impeccable document --seed` força o modo seed independentemente da presença de código.
 
-## Scan mode (approach C: auto-extract, then confirm descriptive language)
+## Modo scan (abordagem C: auto-extração, depois confirmar linguagem descritiva)
 
-### Step 1: Find the design assets
+### Passo 1: Encontrar os assets de design
 
-Search the codebase in priority order:
+Busque no codebase em ordem de prioridade:
 
-1. **CSS custom properties**: grep for `--color-`, `--font-`, `--spacing-`, `--radius-`, `--shadow-`, `--ease-`, `--duration-` declarations in CSS files (usually `src/styles/`, `public/css/`, `app/globals.css`, etc.). Record name, value, and the file it's defined in.
-2. **Tailwind config**: if `tailwind.config.{js,ts,mjs}` exists, read the `theme.extend` block for colors, fontFamily, spacing, borderRadius, boxShadow.
-3. **CSS-in-JS theme files**: styled-components, emotion, vanilla-extract, stitches; look for `theme.ts`, `tokens.ts`, or equivalent.
-4. **Design token files**: `tokens.json`, `design-tokens.json`, Style Dictionary output, W3C token community group format.
-5. **Component library**: scan the main button, card, input, navigation, dialog components. Note their variant APIs and default styles.
-6. **Global stylesheet**: the root CSS file usually has the base typography and color assignments.
-7. **Visible rendered output**: if browser automation tools are available, load the live site and sample computed styles from key elements (body, h1, a, button, .card). This catches values that tokens miss.
+1. **CSS custom properties**: grep por declarações `--color-`, `--font-`, `--spacing-`, `--radius-`, `--shadow-`, `--ease-`, `--duration-` em arquivos CSS (geralmente `src/styles/`, `public/css/`, `app/globals.css`, etc.). Registre nome, valor e o arquivo onde está definido.
+2. **Tailwind config**: se `tailwind.config.{js,ts,mjs}` existe, leia o bloco `theme.extend` para colors, fontFamily, spacing, borderRadius, boxShadow.
+3. **Arquivos de tema CSS-in-JS**: styled-components, emotion, vanilla-extract, stitches; procure por `theme.ts`, `tokens.ts`, ou equivalente.
+4. **Arquivos de design tokens**: `tokens.json`, `design-tokens.json`, saída do Style Dictionary, formato W3C token community group.
+5. **Biblioteca de componentes**: escaneie os componentes principais de button, card, input, navigation, dialog. Anote suas APIs de variantes e estilos padrão.
+6. **Stylesheet global**: o arquivo CSS raiz geralmente tem a tipografia base e atribuições de cor.
+7. **Saída renderizada visível**: se ferramentas de automação de navegador estão disponíveis, carregue o site ao vivo e amostre estilos computados de elementos-chave (body, h1, a, button, .card). Isso captura valores que os tokens perdem.
 
-### Step 2: Auto-extract what can be auto-extracted
+### Passo 2: Auto-extrair o que pode ser auto-extraído
 
-Build a structured draft from the discovered tokens. For each token class:
+Construa um rascunho estruturado a partir dos tokens descobertos. Para cada classe de token:
 
-- **Colors**: Group into Primary / Secondary / Tertiary / Neutral (the Material-derived roles Stitch uses). If the project only has one accent, express it as Primary + Neutral; omit Secondary and Tertiary rather than inventing them.
-- **Typography**: Map observed sizes and weights to the Material hierarchy (display / headline / title / body / label). Note font-family stacks and the scale ratio.
-- **Elevation**: Catalogue the shadow vocabulary. If the project is flat and uses tonal layering instead, that's a valid answer; state it explicitly.
-- **Components**: For each common component (button, card, input, chip, list item, tooltip, nav), extract shape (radius), color assignment, hover/focus treatment, internal padding.
-- **Spacing + layout**: Fold into Overview or relevant Components. The spec does NOT have a Layout section.
+- **Cores**: Agrupe em Primary / Secondary / Tertiary / Neutral (os papéis derivados do Material que o Stitch usa). Se o projeto tem apenas um acento, expresse-o como Primary + Neutral; omita Secondary e Tertiary em vez de inventá-los.
+- **Tipografia**: Mapeie tamanhos e pesos observados para a hierarquia Material (display / headline / title / body / label). Anote font-family stacks e a razão de escala.
+- **Elevação**: Catalogue o vocabulário de sombras. Se o projeto é flat e usa camadas tonais em vez disso, essa é uma resposta válida; declare explicitamente.
+- **Componentes**: Para cada componente comum (button, card, input, chip, list item, tooltip, nav), extraia forma (radius), atribuição de cor, tratamento hover/focus, padding interno.
+- **Espaçamento + layout**: Dobre em Overview ou Componentes relevantes. A especificação NÃO tem uma seção de Layout.
 
-### Step 2b: Stage the frontmatter
+### Passo 2b: Preparar o frontmatter
 
-From the auto-extracted tokens, draft the YAML frontmatter now (you'll write it at the top of DESIGN.md in Step 4). This is the machine-readable layer: what the live panel and Stitch's linter consume.
+A partir dos tokens auto-extraídos, redija o frontmatter YAML agora (você o escreverá no topo do DESIGN.md no Passo 4). Esta é a camada legível por máquina: o que o painel live e o linter do Stitch consomem.
 
-- **Colors**: one entry per extracted color. Key = descriptive slug (`warm-ash-cream`, `editorial-magenta`, not `blue-800`). Value = whichever format the project treats as canonical (OKLCH or hex; see the frontmatter rules above). Don't split the source of truth: one format in the frontmatter, don't redefine the same token in prose with a different value.
-- **Typography**: one entry per role (`display`, `headline`, `title`, `body`, `label`). Typography is an object; include only the props that are real for the project (`fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing`, `fontFeature`, `fontVariation`).
-- **Rounded / Spacing**: whatever scale steps the project actually uses, keyed by whatever scale name the project uses (`sm` / `md` / `lg`, or `surface-sm`, or numeric steps).
-- **Components**: one entry per variant (`button-primary`, `button-primary-hover`, `button-ghost`). Reference primitives via `{colors.X}`, `{rounded.Y}`. If a variant needs a property Stitch's 8-prop set doesn't cover (shadow, focus ring, backdrop-filter), carry the full snippet in the sidecar instead.
+- **Cores**: uma entrada por cor extraída. Chave = slug descritivo (`warm-ash-cream`, `editorial-magenta`, não `blue-800`). Valor = o formato que o projeto trata como canônico (OKLCH ou hex; veja as regras do frontmatter acima). Não divida a fonte da verdade: um formato no frontmatter, não redefina o mesmo token na prosa com um valor diferente.
+- **Tipografia**: uma entrada por papel (`display`, `headline`, `title`, `body`, `label`). Tipografia é um objeto; inclua apenas as props que são reais para o projeto (`fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing`, `fontFeature`, `fontVariation`).
+- **Rounded / Spacing**: quaisquer passos de escala que o projeto realmente usa, codificados por qualquer nome de escala que o projeto usa (`sm` / `md` / `lg`, ou `surface-sm`, ou passos numéricos).
+- **Componentes**: uma entrada por variante (`button-primary`, `button-primary-hover`, `button-ghost`). Referencie primitivos via `{colors.X}`, `{rounded.Y}`. Se uma variante precisa de uma propriedade que o conjunto de 8 props do Stitch não cobre (shadow, focus ring, backdrop-filter), carregue o snippet completo no sidecar.
 
-Skip anything the project doesn't have. Empty scale keys or fabricated tokens pollute the spec.
+Pule qualquer coisa que o projeto não tenha. Chaves de escala vazias ou tokens fabricados poluem a especificação.
 
-### Step 3: Ask the user for qualitative language
+### Passo 3: Perguntar ao usuário pela linguagem qualitativa
 
-The following require creative input that cannot be auto-extracted. Group them into one `AskUserQuestion` interaction:
+Os itens a seguir requerem insumo criativo que não pode ser auto-extraído. Agrupe-os em uma interação `AskUserQuestion`:
 
-- **Creative North Star**: a single named metaphor for the whole system ("The Editorial Sanctuary", "The Golden State Curator", "The Lab Notebook"). Offer 2-3 options that honor PRODUCT.md's brand personality.
-- **Overview voice**: mood adjectives, aesthetic philosophy in 2-3 sentences, anti-references (what the system should not feel like).
-- **Color character** (for auto-extracted colors): descriptive names ("Deep Muted Teal-Navy", not "blue-800"). Suggest 2-3 options per key color based on hue/saturation.
-- **Elevation philosophy**: flat/layered/lifted. If shadows exist, is their role ambient or structural?
-- **Component philosophy**: the feel of buttons, cards, inputs in one phrase ("tactile and confident" vs. "refined and restrained").
+- **North Star Criativo**: uma metáfora nomeada única para todo o sistema ("The Editorial Sanctuary", "The Golden State Curator", "The Lab Notebook"). Ofereça 2-3 opções que honrem a personalidade da marca do PRODUCT.md.
+- **Voz do Overview**: adjetivos de humor, filosofia estética em 2-3 frases, anti-referências (o que o sistema não deve parecer).
+- **Caráter da cor** (para cores auto-extraídas): nomes descritivos ("Deep Muted Teal-Navy", não "blue-800"). Sugira 2-3 opções por cor-chave com base em matiz/saturação.
+- **Filosofia de elevação**: flat/layered/lifted. Se sombras existem, seu papel é ambiental ou estrutural?
+- **Filosofia de componentes**: a sensação dos botões, cards e inputs em uma frase ("tátil e confiante" vs. "refinado e contido").
 
-Quote a line from PRODUCT.md when possible so the user sees their own strategic language carry forward.
+Cite uma linha de PRODUCT.md quando possível para que o usuário veja sua própria linguagem estratégica ser levada adiante.
 
-### Step 4: Write DESIGN.md
+### Passo 4: Escrever DESIGN.md
 
-The file opens with the YAML frontmatter staged in Step 2b (schema documented at the top of this reference), then the markdown body using the structure below. Headers must match character-for-character. Optional evocative subtitles (e.g. `## 2. Colors: The Coastal Palette`) are allowed.
+O arquivo abre com o frontmatter YAML preparado no Passo 2b (schema documentado no topo desta referência), depois o corpo markdown usando a estrutura abaixo. Os cabeçalhos devem corresponder caractere por caractere. Subtítulos evocativos opcionais (ex.: `## 2. Colors: The Coastal Palette`) são permitidos.
 
 ```markdown
 ---
@@ -237,11 +237,11 @@ Concrete, forceful guardrails. Lead each with "Do" or "Don't". Be specific: incl
 - **Don't** [...]
 ```
 
-### Step 4b: Write .impeccable/design.json sidecar (extensions only)
+### Passo 4b: Escrever sidecar .impeccable/design.json (apenas extensões)
 
-The frontmatter owns token primitives (colors, typography, rounded, spacing, components). The sidecar at `.impeccable/design.json` carries **what Stitch's schema can't hold**: tonal ramps per color, shadow/elevation tokens, motion tokens, breakpoints, full component HTML/CSS snippets (the panel renders these into a shadow DOM), and narrative (north star, rules, do's/don'ts). It extends the frontmatter, it doesn't duplicate it.
+O frontmatter possui os primitivos de tokens (colors, typography, rounded, spacing, components). O sidecar em `.impeccable/design.json` carrega **o que o schema do Stitch não suporta**: ramps tonais por cor, tokens de shadow/elevação, tokens de motion, breakpoints, snippets HTML/CSS completos de componentes (o painel renderiza em um shadow DOM), e narrativa (north star, regras, do's/don'ts). Ele estende o frontmatter, não o duplica.
 
-Regenerate the sidecar whenever you regenerate root `DESIGN.md`. If the user only asks to refresh the sidecar (e.g., from the live panel's stale-hint), preserve `DESIGN.md` and write only `.impeccable/design.json`.
+Regenere o sidecar sempre que regenerar o `DESIGN.md` raiz. Se o usuário apenas pediu para atualizar o sidecar (ex.: a partir da dica de desatualização do painel live), preserve `DESIGN.md` e escreva apenas `.impeccable/design.json`.
 
 #### Schema
 
@@ -289,139 +289,139 @@ Regenerate the sidecar whenever you regenerate root `DESIGN.md`. If the user onl
 }
 ```
 
-**What changed from schemaVersion 1.** The old sidecar carried token primitive arrays (`tokens.colors[]`, `tokens.typography[]`, etc.). Those values now live in the frontmatter. The sidecar only carries metadata that can't live in the frontmatter (tonal ramps, canonical OKLCH when the hex is an approximation, display names, role hints), keyed by the frontmatter token name (`colorMeta.<token-name>`, `typographyMeta.<token-name>`). Components still carry full HTML/CSS because Stitch's 8-prop set can't hold them.
+**O que mudou do schemaVersion 1.** O sidecar antigo carregava arrays de primitivos de tokens (`tokens.colors[]`, `tokens.typography[]`, etc.). Esses valores agora vivem no frontmatter. O sidecar carrega apenas metadados que não podem viver no frontmatter (ramps tonais, OKLCH canônico quando o hex é uma aproximação, nomes de exibição, dicas de papel), codificados pelo nome do token do frontmatter (`colorMeta.<token-name>`, `typographyMeta.<token-name>`). Componentes ainda carregam HTML/CSS completos porque o conjunto de 8 props do Stitch não suporta.
 
-#### Component translation rules
+#### Regras de tradução de componentes
 
-The `html` and `css` fields must be **self-contained, drop-in snippets** that render correctly when injected into a shadow DOM. The panel applies them directly: no post-processing, no framework runtime.
+Os campos `html` e `css` devem ser **snippets autônomos e drop-in** que renderizam corretamente quando injetados em um shadow DOM. O painel os aplica diretamente: sem pós-processamento, sem runtime de framework.
 
-1. **Tailwind expansion.** If the source uses Tailwind (className="bg-primary text-white rounded-lg px-6 py-3"), expand every utility to literal CSS properties in the `css` string. Do **not** reference Tailwind classes; do **not** assume a Tailwind CSS bundle is loaded. Each component is self-contained.
-2. **Token resolution.** If the project exposes tokens as CSS custom properties on `:root` (e.g. `--color-primary`, `--radius-md`), reference them via `var(--color-primary)`; they inherit through the shadow DOM and stay live-bound. If tokens live only in JS theme objects (styled-components, CSS-in-JS), resolve to literal values at generation time.
-3. **Icons.** Inline as SVG. Do not reference Lucide/Heroicons packages, icon fonts, or `<img src="...">`. A typical icon is 16-24px; copy the SVG path data directly.
-4. **States.** Include `:hover`, `:focus-visible`, and (if meaningful) `:active` rules inline. A static default-only snapshot makes the panel feel dead. Hover + focus rules in the CSS make it feel alive.
-5. **Reset bloat.** Extract only the component's *distinctive* CSS (background, color, padding, border-radius, typography, transition). Skip universal resets (`box-sizing: border-box`, `line-height: inherit`, `-webkit-font-smoothing`). The panel already has a neutral canvas; don't re-ship resets.
-6. **Scoped class names.** Prefix every class with `ds-` (e.g. `ds-btn-primary`, `ds-input-search`) so component CSS doesn't collide with other components' CSS in the same shadow DOM.
+1. **Expansão do Tailwind.** Se a fonte usa Tailwind (className="bg-primary text-white rounded-lg px-6 py-3"), expanda cada utilidade para propriedades CSS literais na string `css`. **Não** referencie classes Tailwind; **não** presuma que um bundle Tailwind CSS está carregado. Cada componente é autônomo.
+2. **Resolução de tokens.** Se o projeto expõe tokens como CSS custom properties em `:root` (ex.: `--color-primary`, `--radius-md`), referencie-os via `var(--color-primary)`; eles herdam através do shadow DOM e permanecem live-bound. Se tokens vivem apenas em objetos de tema JS (styled-components, CSS-in-JS), resolva para valores literais no momento da geração.
+3. **Ícones.** Inline como SVG. Não referencie pacotes Lucide/Heroicons, fontes de ícones, ou `<img src="...">`. Um ícone típico tem 16-24px; copie os dados do path SVG diretamente.
+4. **Estados.** Inclua regras `:hover`, `:focus-visible` e (se relevante) `:active` inline. Um snapshot apenas padrão/estático faz o painel parecer morto. Regras de hover + focus no CSS fazem parecer vivo.
+5. **Bloat de reset.** Extraia apenas o CSS *distintivo* do componente (background, color, padding, border-radius, typography, transition). Pule resets universais (`box-sizing: border-box`, `line-height: inherit`, `-webkit-font-smoothing`). O painel já tem uma tela neutra; não re-envie resets.
+6. **Nomes de classes com escopo.** Prefixe toda classe com `ds-` (ex.: `ds-btn-primary`, `ds-input-search`) para que o CSS do componente não colida com o CSS de outros componentes no mesmo shadow DOM.
 
-#### What to include
+#### O que incluir
 
-Aim for a tight set of **5-10 components** that best represent the visual system:
+Mire em um conjunto enxuto de **5-10 componentes** que melhor representam o sistema visual:
 
-- **Canonical primitives (always include if the project has them):** button (each variant as a separate component entry), input/text field, navigation, chip/tag, card.
-- **Signature components (include if distinctive):** hero CTA, featured card, filter pill, any custom pattern the user mentioned as important in PRODUCT.md.
-- **Skip the rest.** Utility components, form building blocks, wrapper layouts: not worth documenting unless visually distinctive.
+- **Primitivos canônicos (sempre inclua se o projeto os tem):** button (cada variante como uma entrada de componente separada), input/text field, navegação, chip/tag, card.
+- **Componentes signature (inclua se distintivo):** hero CTA, featured card, filter pill, qualquer padrão customizado que o usuário mencionou como importante em PRODUCT.md.
+- **Pule o resto.** Componentes utilitários, blocos de construção de formulários, layouts wrapper: não vale documentar a menos que visualmente distintivos.
 
-If the project has **no component library yet** (bare landing page, new project), synthesize canonical primitives from the tokens using best-practice defaults consistent with the DESIGN.md's rules. Every `.impeccable/design.json` has *something* to render, even on day zero.
+Se o projeto **ainda não tem biblioteca de componentes** (landing page simples, projeto novo), sintetize primitivos canônicos a partir dos tokens usando padrões de melhor prática consistentes com as regras do DESIGN.md. Todo `.impeccable/design.json` tem *algo* para renderizar, mesmo no dia zero.
 
-#### Tonal ramps
+#### Ramps tonais
 
-For each color token, generate an 8-step `tonalRamp` array: dark to light, same hue and chroma, stepped lightness from ~15% to ~95%. The panel renders this as a strip under the swatch. If the project already defines a tonal scale (Material `surface-container-low` family, Tailwind-style `blue-50..blue-900`), use those values. Otherwise synthesize in OKLCH.
+Para cada token de cor, gere um array `tonalRamp` de 8 passos: escuro para claro, mesmo matiz e chroma, luminosidade escalonada de ~15% a ~95%. O painel renderiza isso como uma faixa sob a amostra. Se o projeto já define uma escala tonal (família `surface-container-low` do Material, estilo Tailwind `blue-50..blue-900`), use esses valores. Caso contrário, sintetize em OKLCH.
 
-#### Narrative mapping
+#### Mapeamento narrativo
 
-Pull directly from the DESIGN.md you just wrote:
+Puxe diretamente do DESIGN.md que você acabou de escrever:
 
-- `narrative.northStar` → the `**Creative North Star: "..."**` line from Overview
-- `narrative.overview` → the philosophy paragraphs from Overview
-- `narrative.keyCharacteristics` → the bulleted `**Key Characteristics:**` list
-- `narrative.rules` → every `**The [Name] Rule.** [body]` across all sections, tagged with `section`
-- `narrative.dos` / `narrative.donts` → the bullet lists from Do's and Don'ts verbatim
+- `narrative.northStar` → a linha `**Creative North Star: "..."**` do Overview
+- `narrative.overview` → os parágrafos de filosofia do Overview
+- `narrative.keyCharacteristics` → a lista com bullets `**Key Characteristics:**`
+- `narrative.rules` → cada `**The [Name] Rule.** [body]` em todas as seções, taggeado com `section`
+- `narrative.dos` / `narrative.donts` → as listas com bullets de Do's and Don'ts verbatim
 
-Do not reword. The panel shows these as secondary collapsible context; the same voice that's in the Markdown carries through.
+Não reescreva. O painel mostra esses como contexto colapsável secundário; a mesma voz que está no Markdown é levada adiante.
 
-### Step 5: Confirm, refine, and refresh session cache
+### Passo 5: Confirmar, refinar e atualizar cache da sessão
 
-1. Show the user the full DESIGN.md you wrote. Briefly highlight the non-obvious creative choices (descriptive color names, atmosphere language, named rules).
-2. Mention that `.impeccable/design.json` was also written alongside; the live panel will now render this project's actual button/input/nav primitives instead of generic approximations.
-3. Offer to refine any section: "Want me to revise a section, add component patterns I missed, or adjust the atmosphere language?"
-4. **Refresh the session cache.** Run `node {{scripts_path}}/load-context.mjs` one final time so the newly-written DESIGN.md lands in conversation. Subsequent commands in this session will use the fresh version automatically without re-reading.
+1. Mostre ao usuário o DESIGN.md completo que você escreveu. Destaque brevemente as escolhas criativas não óbvias (nomes descritivos de cores, linguagem de atmosfera, regras nomeadas).
+2. Mencione que `.impeccable/design.json` também foi escrito junto; o painel live agora renderizará os primitivos reais de button/input/nav deste projeto em vez de aproximações genéricas.
+3. Ofereça refinar qualquer seção: "Quer que eu revise uma seção, adicione padrões de componentes que perdi, ou ajuste a linguagem de atmosfera?"
+4. **Atualize o cache da sessão.** Execute `node {{scripts_path}}/load-context.mjs` uma última vez para que o DESIGN.md recém-escrito pouse na conversa. Comandos subsequentes nesta sessão usarão a versão atualizada automaticamente sem reler.
 
-## Seed mode
+## Modo seed
 
-For projects with no visual system to extract yet. Produces a minimal scaffold, not a full spec.
+Para projetos sem sistema visual para extrair ainda. Produz um scaffold mínimo, não uma especificação completa.
 
-### Step 1: Confirm seed mode
+### Passo 1: Confirmar modo seed
 
-Before interviewing: "There's no existing visual system to scan. I'll ask five quick questions to seed a starter DESIGN.md. You can re-run `/impeccable document` once there's code, to capture the real tokens and components. OK?"
+Antes de entrevistar: "Não há sistema visual existente para escanear. Vou fazer cinco perguntas rápidas para semear um DESIGN.md inicial. Você pode re-executar `/impeccable document` quando houver código, para capturar os tokens e componentes reais. OK?"
 
-If the user prefers to skip, stop. No file.
+Se o usuário preferir pular, pare. Nenhum arquivo.
 
-### Step 2: Five questions
+### Passo 2: Cinco perguntas
 
-Group into one `AskUserQuestion` interaction. Options must be concrete.
+Agrupe em uma interação `AskUserQuestion`. Opções devem ser concretas.
 
-1. **Color strategy.** Pick one:
-   - Restrained: tinted neutrals + one accent ≤10%
-   - Committed: one saturated color carries 30–60% of the surface
-   - Full palette: 3–4 named color roles, each deliberate
-   - Drenched: the surface IS the color
+1. **Estratégia de cor.** Escolha uma:
+   - Restrained: neutros tonalizados + um acento ≤10%
+   - Committed: uma cor saturada carrega 30–60% da superfície
+   - Full palette: 3-4 papéis de cor nomeados, cada um deliberado
+   - Drenched: a superfície É a cor
    
-   Then: one hue family or anchor reference ("deep teal", "mustard", "Klim #ff4500 orange").
+   Então: uma família de matiz ou referência-âncora ("deep teal", "mustard", "Klim #ff4500 orange").
 
-2. **Typography direction.** Pick one (specific fonts come later):
+2. **Direção tipográfica.** Escolha uma (fontes específicas vêm depois):
    - Serif display + sans body
-   - Single sans (warm / technical / geometric / humanist; pick a feel)
+   - Single sans (warm / technical / geometric / humanist; escolha uma sensação)
    - Display + mono
    - Mono-forward
    - Editorial script + sans
 
-3. **Motion energy.** Pick one:
-   - Restrained: state changes only
-   - Responsive: feedback + transitions, no choreography
-   - Choreographed: orchestrated entrances, scroll-driven sequences
+3. **Energia de movimento.** Escolha uma:
+   - Restrained: apenas mudanças de estado
+   - Responsive: feedback + transições, sem coreografia
+   - Choreographed: entradas orquestradas, sequências scroll-driven
 
-4. **Three named references.** Brands, products, printed objects. Not adjectives.
+4. **Três referências nomeadas.** Marcas, produtos, objetos impressos. Não adjetivos.
 
-5. **One anti-reference.** What it should NOT feel like. Also named.
+5. **Uma anti-referência.** O que NÃO deveria parecer. Também nomeada.
 
-### Step 3: Write seed DESIGN.md
+### Passo 3: Escrever DESIGN.md seed
 
-Use the six-section spec from Scan mode. Populate what the interview answers; leave the rest as honest placeholders. The seed is a scaffold, not a fabricated spec.
+Use a especificação de seis seções do Modo scan. Popule o que as respostas da entrevista fornecem; deixe o resto como placeholders honestos. O seed é um scaffold, não uma especificação fabricada.
 
-Lead the file with:
+Lidere o arquivo com:
 
 ```markdown
 <!-- SEED: re-run /impeccable document once there's code to capture the actual tokens and components. -->
 ```
 
-Per-section guidance in seed mode:
+Orientação por seção no modo seed:
 
-- **Overview**: Creative North Star and philosophy phrased from the answers (color strategy + motion energy + references). Reference the user's anti-reference directly.
-- **Colors**: Color strategy as a Named Rule (e.g. *"The Drenched Rule. The surface IS the color."*). Hue family or anchor reference. No hex values; mark as `[to be resolved during implementation]`.
-- **Typography**: the direction the user picked (e.g. "Serif display + sans body"). No font names yet: `[font pairing to be chosen at implementation]`.
-- **Elevation**: inferred from motion energy. Restrained/Responsive → flat by default; Choreographed → layered. One sentence.
-- **Components**: omit entirely; no components exist yet.
-- **Do's and Don'ts**: carry PRODUCT.md's anti-references directly plus the anti-reference named in Q5.
+- **Overview**: North Star Criativo e filosofia formulados a partir das respostas (estratégia de cor + energia de movimento + referências). Referencie a anti-referência do usuário diretamente.
+- **Colors**: Estratégia de cor como uma Regra Nomeada (ex.: *"The Drenched Rule. A superfície É a cor."*). Família de matiz ou referência-âncora. Sem valores hex; marque como `[a ser resolvido durante implementação]`.
+- **Typography**: a direção que o usuário escolheu (ex.: "Serif display + sans body"). Sem nomes de fontes ainda: `[pareamento de fontes a ser escolhido na implementação]`.
+- **Elevation**: inferido a partir da energia de movimento. Restrained/Responsive → flat por padrão; Choreographed → em camadas. Uma frase.
+- **Components**: omita inteiramente; nenhum componente existe ainda.
+- **Do's and Don'ts**: traga as anti-referências do PRODUCT.md diretamente mais a anti-referência nomeada na Q5.
 
-Seed mode writes a minimal frontmatter with `name` and `description` only; no colors, typography, rounded, spacing, or components yet. Real tokens land on the next Scan-mode run. Skip the `.impeccable/design.json` sidecar in seed mode for the same reason: nothing to render.
+O modo seed escreve um frontmatter mínimo com apenas `name` e `description`; sem cores, tipografia, rounded, spacing ou componentes ainda. Tokens reais pousam na próxima execução no Modo scan. Pule o sidecar `.impeccable/design.json` no modo seed pelo mesmo motivo: nada para renderizar.
 
-### Step 4: Confirm and refresh session cache
+### Passo 4: Confirmar e atualizar cache da sessão
 
-1. Show the seed DESIGN.md. Call out that it is a seed (the marker is the literal commitment).
-2. Tell the user: "Re-run `/impeccable document` once you have some code. That pass will extract real tokens and generate the sidecar."
-3. Run `node {{scripts_path}}/load-context.mjs` once so the seed lands in conversation for the rest of the session.
+1. Mostre o DESIGN.md seed. Destaque que é um seed (o marcador é o compromisso literal).
+2. Diga ao usuário: "Re-execute `/impeccable document` quando tiver algum código. Essa passagem vai extrair os tokens reais e gerar o sidecar."
+3. Execute `node {{scripts_path}}/load-context.mjs` uma vez para que o seed pouse na conversa para o resto da sessão.
 
-## Style guidelines
+## Diretrizes de estilo
 
-- **Frontmatter first, prose second.** Tokens go in the YAML frontmatter; prose contextualizes them. Don't redefine a token value in two places; the frontmatter is normative.
-- **Cite PRODUCT.md anti-references by name** in the Do's and Don'ts section. If PRODUCT.md lists "SaaS landing-page clichés" or "generic AI tool marketing" as anti-references, the DESIGN.md Don'ts should repeat those phrases verbatim so the visual spec enforces the strategic line.
-- **Match the spec, don't invent new sections.** The six section names are fixed. If you have Layout/Motion/Responsive content to document, fold it into Overview (philosophy-level rules) or Components (per-component behavior).
-- **Descriptive > technical**: "Gently curved edges (8px radius)" > "rounded-lg". Include the technical value in parens, lead with the description.
-- **Functional > decorative**: for each token, explain WHERE and WHY it's used, not just WHAT it is.
-- **Exact values in parens**: hex codes, px/rem values, font weights; always the number in parens alongside the description.
-- **Use Named Rules**: `**The [Name] Rule.** [short doctrine]`. These are memorable, citable, and much stickier for AI consumers than bullet lists. Stitch's own outputs use them heavily ("The No-Line Rule", "The Ghost Border Fallback"). Aim for 1-3 per section.
-- **Be forceful**. The voice of a design director. "Prohibited", "forbidden", "never", "always", not "consider", "might", "prefer". Match PRODUCT.md's tone.
-- **Concrete anti-pattern tests**. Stitch writes things like *"If it looks like a 2014 app, the shadow is too dark and the blur is too small."* A one-sentence audit test beats a paragraph of principle.
-- **Reference PRODUCT.md**. The anti-references section of PRODUCT.md should directly inform the Do's and Don'ts section here. Quote or paraphrase.
-- **Group colors by role**, not by hex-order or hue-order. Primary / Secondary / Tertiary / Neutral is the spec ordering.
+- **Frontmatter primeiro, prosa depois.** Tokens vão no frontmatter YAML; a prosa os contextualiza. Não redefina um valor de token em dois lugares; o frontmatter é normativo.
+- **Cite anti-referências do PRODUCT.md pelo nome** na seção Do's and Don'ts. Se PRODUCT.md lista "clichês de landing page SaaS" ou "marketing genérico de ferramenta AI" como anti-referências, os Don'ts do DESIGN.md devem repetir essas frases verbatim para que a especificação visual aplique a linha estratégica.
+- **Siga a especificação, não invente novas seções.** Os seis nomes de seção são fixos. Se você tem conteúdo de Layout/Motion/Responsive para documentar, dobre-o em Overview (regras de nível de filosofia) ou Components (comportamento por componente).
+- **Descritivo > técnico**: "Bordas suavemente curvas (8px radius)" > "rounded-lg". Inclua o valor técnico entre parênteses, lidere com a descrição.
+- **Funcional > decorativo**: para cada token, explique ONDE e POR QUE é usado, não apenas O QUE é.
+- **Valores exatos entre parênteses**: hex codes, valores px/rem, font weights; sempre o número entre parênteses ao lado da descrição.
+- **Use Regras Nomeadas**: `**The [Name] Rule.** [doutrina curta]**. Estas são memoráveis, citáveis e muito mais aderentes para consumidores de IA do que listas com bullets. As saídas do próprio Stitch as usam extensivamente ("The No-Line Rule", "The Ghost Border Fallback"). Mire em 1-3 por seção.
+- **Seja incisivo**. A voz de um diretor de design. "Proibido", "proibido", "nunca", "sempre", não "considere", "talvez", "prefira". Combine o tom do PRODUCT.md.
+- **Testes concretos de anti-padrões**. O Stitch escreve coisas como *"Se parece com um app de 2014, a sombra está escura demais e o blur está pequeno demais."* Um teste de auditoria de uma frase vale mais que um parágrafo de princípio.
+- **Referencie PRODUCT.md**. A seção de anti-referências do PRODUCT.md deve informar diretamente a seção Do's and Don'ts aqui. Cite ou parafraseie.
+- **Agrupe cores por papel**, não por ordem de hex ou ordem de matiz. Primary / Secondary / Tertiary / Neutral é a ordem da especificação.
 
-## Pitfalls
+## Armadilhas
 
-- Don't paste raw CSS class names. Translate to descriptive language.
-- Don't extract every token. Stop at what's actually reused; one-offs pollute the system.
-- Don't invent components that don't exist. If the project only has buttons and cards, only document those.
-- Don't overwrite an existing DESIGN.md without asking.
-- Don't duplicate content from PRODUCT.md. DESIGN.md is strictly visual.
-- Don't add a "Layout Principles" or "Motion" or "Responsive Behavior" top-level section. The spec has six, not nine. Fold that content where it belongs.
-- Don't rename sections even slightly. "Colors" not "Color Palette & Roles". "Typography" not "Typography Rules". Tooling parsing depends on exact headers.
-- Don't duplicate token values between frontmatter and prose. If a color is in `colors.primary` as hex, the prose can name it and describe its role but should not reassert a different hex. The frontmatter is normative.
-- Don't invent frontmatter token groups outside Stitch's schema (no `motion:`, `breakpoints:`, `shadows:` at the top level). Stitch's Zod schema only accepts `colors`, `typography`, `rounded`, `spacing`, `components`. Anything else belongs in the sidecar's `extensions`.
+- Não cole nomes de classes CSS brutos. Traduza para linguagem descritiva.
+- Não extraia todo token. Pare no que é realmente reutilizado; casos únicos poluem o sistema.
+- Não invente componentes que não existem. Se o projeto só tem botões e cards, documente apenas esses.
+- Não sobrescreva um DESIGN.md existente sem perguntar.
+- Não duplique conteúdo do PRODUCT.md. DESIGN.md é estritamente visual.
+- Não adicione uma seção de nível superior "Layout Principles" ou "Motion" ou "Responsive Behavior". A especificação tem seis, não nove. Dobre esse conteúdo onde pertence.
+- Não renomeie seções nem mesmo levemente. "Colors" não "Color Palette & Roles". "Typography" não "Typography Rules". Ferramentas de parsing dependem de cabeçalhos exatos.
+- Não duplique valores de tokens entre frontmatter e prosa. Se uma cor está em `colors.primary` como hex, a prosa pode nomeá-la e descrever seu papel, mas não deve reafirmar um hex diferente. O frontmatter é normativo.
+- Não invente grupos de tokens de frontmatter fora do schema do Stitch (sem `motion:`, `breakpoints:`, `shadows:` no nível superior). O schema Zod do Stitch aceita apenas `colors`, `typography`, `rounded`, `spacing`, `components`. Qualquer outra coisa pertence às `extensions` do sidecar.

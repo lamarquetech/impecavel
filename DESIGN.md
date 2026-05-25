@@ -1,10 +1,10 @@
 ---
 name: Impeccable
-description: Warm-paper editorial sanctuary — committed serif display, one decisive magenta, flat surfaces at rest.
+description: Santuário editorial em papel quente — serifa display comprometida, um magenta decisivo, superfícies planas em repouso.
 
-# Colors use OKLCH per `The OKLCH-Only Rule` in §2. Stitch's linter validates
-# hex sRGB only, so it will warn on these entries — deliberate trade for one
-# source of truth and full wide-gamut fidelity. Our own parser accepts strings.
+# As cores usam OKLCH conforme `The OKLCH-Only Rule` na §2. O linter do Stitch valida
+# apenas hex sRGB, então emitirá alertas nestas entradas — compensação deliberada por uma
+# única fonte de verdade e fidelidade completa de gamut amplo. Nosso próprio parser aceita strings.
 colors:
   editorial-magenta: "oklch(60% 0.25 350)"
   editorial-magenta-deep: "oklch(52% 0.25 350)"
@@ -113,185 +113,185 @@ components:
 
 # Design System: Impeccable
 
-## 1. Overview: The Editorial Sanctuary
+## 1. Visão Geral: O Santuário Editorial
 
-**Creative North Star: "The Editorial Sanctuary"**
+**Estrela Guia Criativa: "O Santuário Editorial"**
 
-The Impeccable site reads more like a printed design publication than a SaaS landing page. Committed typography, generous breathing room, and a single decisive accent that cuts through warm paper. The interface feels **considered, unhurried, and expert** — the work of someone who has made the calls a thousand times and has zero interest in chasing the current AI-tool aesthetic.
+O site do Impeccable lê-se mais como uma publicação de design impressa do que como uma landing page SaaS. Tipografia comprometida, espaço generoso para respirar, e um único acento decisivo que corta o papel quente. A interface parece **considerada, sem pressa e especializada** — o trabalho de alguém que já tomou essas decisões mil vezes e não tem o menor interesse em perseguir a estética atual de ferramentas de IA.
 
-The aesthetic philosophy is **restraint in service of craft**. Every element earns its place. Nothing is decorative without function. The palette is dominated by warm paper tones with one vibrant voice. The typography pairs a stately italic serif with a clean neutral sans. Motion is reserved for moments that actually communicate state. The site is the demo — it must pass the same anti-pattern audit it asks its users to run on their own work.
+A filosofia estética é **contenção a serviço do ofício**. Cada elemento justifica seu lugar. Nada é decorativo sem função. A paleta é dominada por tons de papel quente com uma voz vibrante. A tipologia combina uma serifa itálica imponente com uma sans neutra e limpa. O movimento é reservado para momentos que realmente comunicam estado. O site é a demo — ele deve passar no mesmo audit de anti-pattern que pede para seus usuários executarem em seus próprios trabalhos.
 
-This system explicitly rejects the AI-tool visual vocabulary that surrounds the product: dark mode with purple gradients, neon accents, glassmorphism, glowing cyan-on-black, SaaS hero-metric layouts, and identical-card feature grids. When in doubt, do less than a marketing site would, more than a portfolio would.
+Este sistema rejeita explicitamente o vocabulário visual de ferramentas de IA que cerca o produto: modo escuro com gradientes roxos, acentos neon, glassmorphism, ciano brilhante sobre preto, layouts hero-métricos de SaaS, e grids de features com cards idênticos. Em caso de dúvida, faça menos do que um site de marketing faria, mais do que um portfólio faria.
 
-**Key Characteristics:**
-- Warm off-white paper tones with an almost-imperceptible magenta tint for subliminal palette cohesion.
-- A single decisive magenta accent used on no more than 10% of any screen. Its rarity is the point.
-- Italic serif for display type; clean neutral sans for body at 1.6+ line-height.
-- Sharp, uppercase, letter-tracked primary CTAs — no rounded-rectangle-with-drop-shadow defaults.
-- Flat surfaces at rest. Shadows appear only as a response to state (hover, elevation, focus).
-- Asymmetric magazine-scale spacing; intentionally skips the 4px step.
+**Características Principais:**
+- Tons de papel off-white quente com uma tintura magenta quase imperceptível para coesão subliminar da paleta.
+- Um único acento magenta decisivo usado em não mais que 10% de qualquer tela. Sua raridade é o ponto.
+- Serifa itálica para tipo display; sans neutra e limpa para corpo com line-height de 1.6+.
+- CTAs primários afiados, uppercase, com letter-spacing — sem padrões de retângulo-arredondado-com-sombra-projetada.
+- Superfícies planas em repouso. Sombras aparecem apenas como resposta a estado (hover, elevação, foco).
+- Espaçamento assimétrico em escala de revista; intencionalmente omite o passo de 4px.
 
-## 2. Colors: The Warm-Paper Palette
+## 2. Cores: A Paleta de Papel Quente
 
-A two-chord palette: warm paper neutrals carrying a near-invisible magenta tint, plus one decisive accent in the same hue family. No secondary or tertiary accents in the core system — the restraint is doctrinal.
+Uma paleta de dois acordes: neutros de papel quente carregando uma tintura magenta quase invisível, mais um acento decisivo na mesma família de tonalidade. Nenhum acento secundário ou terciário no sistema principal — a contenção é doutrinária.
 
-### Primary
-- **Editorial Magenta** (oklch(60% 0.25 350)): The one vibrant voice. Primary CTAs, active navigation states, live-state indicators, rare editorial emphasis. Never used as a gradient, never as a background wash, never as text fill. Rarity is the design choice.
+### Primária
+- **Editorial Magenta** (oklch(60% 0.25 350)): A única voz vibrante. CTAs primários, estados ativos de navegação, indicadores de estado ativo, rara ênfase editorial. Nunca usada como gradiente, nunca como lavagem de fundo, nunca como preenchimento de texto. Raridade é a escolha de design.
 
-### Neutral
-- **Warm Ash Cream** (oklch(96% 0.005 350)): Primary page background. Near-white with a near-imperceptible magenta tint that creates subconscious cohesion with Editorial Magenta. Used on `body` and standard surfaces.
-- **Crisp Paper White** (oklch(98% 0 0)): Pure background. Used for inverted text moments (white-on-dark CTAs) and surfaces needing maximum contrast. Almost never the page background — too cold alone.
-- **Deep Graphite** (oklch(10% 0 0)): Primary text for body copy and headlines. Softer than pure black, reads as confident-but-not-aggressive on warm paper. Background of the primary CTA.
-- **Soft Charcoal** (oklch(25% 0 0)): Secondary text — taglines, hook paragraphs, supporting copy. Clearly subordinate to Deep Graphite without being washed out.
-- **Mid Ash** (oklch(55% 0 0)): Tertiary text — micro-labels, captions, meta lines, "works with" labels. At small sizes reads as intentionally recessed metadata.
-- **Paper Mist** (oklch(92% 0 0)): Hairline borders, section dividers, the barely-visible structural seams.
+### Neutros
+- **Warm Ash Cream** (oklch(96% 0.005 350)): Fundo primário da página. Quase branco com uma tintura magenta quase imperceptível que cria coesão subconsciente com o Editorial Magenta. Usado em `body` e superfícies padrão.
+- **Crisp Paper White** (oklch(98% 0 0)): Fundo puro. Usado para momentos de texto invertido (CTAs branco-no-escuro) e superfícies que precisam de contraste máximo. Quase nunca como fundo da página — frio demais sozinho.
+- **Deep Graphite** (oklch(10% 0 0)): Texto primário para cópia de corpo e manchetes. Mais suave que preto puro, lê-se como confiante-mas-não-agressivo no papel quente. Fundo do CTA primário.
+- **Soft Charcoal** (oklch(25% 0 0)): Texto secundário — taglines, parágrafos de gancho, cópia de apoio. Claramente subordinado ao Deep Graphite sem estar desbotado.
+- **Mid Ash** (oklch(55% 0 0)): Texto terciário — micro-rótulos, legendas, linhas de metadados, rótulos "compatível com". Em tamanhos pequenos lê-se como metadado intencionalmente recuado.
+- **Paper Mist** (oklch(92% 0 0)): Bordas finíssimas, divisores de seção, as costuras estruturais quase invisíveis.
 
-### Accent Alpha Variants
-- **Editorial Magenta Deep** (oklch(52% 0.25 350)): Hover/active state for Editorial Magenta. Small darkening, confirms interaction without shouting.
-- **Magenta Whisper** (oklch(60% 0.25 350 / 0.15)): Glow backdrop under accent elements on hover (diffuse shadows only), subtle selection highlights.
-- **Magenta Veil** (oklch(60% 0.25 350 / 0.25)): Slightly stronger translucent tint for focus rings and emphasis shells.
+### Variantes Alpha de Acento
+- **Editorial Magenta Deep** (oklch(52% 0.25 350)): Estado hover/ativo para Editorial Magenta. Leve escurecimento, confirma interação sem gritar.
+- **Magenta Whisper** (oklch(60% 0.25 350 / 0.15)): Brilho de fundo sob elementos de acento no hover (apenas sombras difusas), destaques de seleção sutis.
+- **Magenta Veil** (oklch(60% 0.25 350 / 0.25)): Tintura translúcida ligeiramente mais forte para anéis de foco e molduras de ênfase.
 
-### Command Category Tints (fenced — do not extend)
-A separate six-tint vocabulary used exclusively to color-code the periodic-table visualization of impeccable's 23 commands. These tints predate the OKLCH system and live in one component. **Do not extend this vocabulary elsewhere.**
+### Tinturas de Categoria de Comando (isoladas — não estender)
+Um vocabulário separado de seis tinturas usado exclusivamente para codificar por cores a visualização de tabela periódica dos 23 comandos do impeccable. Essas tinturas são anteriores ao sistema OKLCH e existem em um único componente. **Não estenda este vocabulário para outros locais.**
 
-- **Create** (bg `#fdf2f8` / border `#ec4899` / text `#be185d`)
-- **Evaluate** (bg `#fdf4ff` / border `#d946ef` / text `#a21caf`)
-- **Refine** (bg `#eff6ff` / border `#3b82f6` / text `#1d4ed8`)
-- **Simplify** (bg `#fffbeb` / border `#f59e0b` / text `#b45309`)
-- **Harden** (bg `#f0fdf4` / border `#22c55e` / text `#15803d`)
-- **System** (bg `#f5f5f4` / border `#78716c` / text `#44403c`)
+- **Create** (bg `#fdf2f8` / borda `#ec4899` / texto `#be185d`)
+- **Evaluate** (bg `#fdf4ff` / borda `#d946ef` / texto `#a21caf`)
+- **Refine** (bg `#eff6ff` / borda `#3b82f6` / texto `#1d4ed8`)
+- **Simplify** (bg `#fffbeb` / borda `#f59e0b` / texto `#b45309`)
+- **Harden** (bg `#f0fdf4` / borda `#22c55e` / texto `#15803d`)
+- **System** (bg `#f5f5f4` / borda `#78716c` / texto `#44403c`)
 
-### Named Rules
+### Regras Nomeadas
 
-**The One Voice Rule.** Editorial Magenta is the only vibrant color in the system. No supporting accent is added, ever, no matter how much a layout "wants" a second color. If a second emphasis point is needed, use scale or weight, never a second hue.
+**A Regra da Única Voz.** Editorial Magenta é a única cor vibrante no sistema. Nenhum acento de apoio é adicionado, jamais, não importa o quanto um layout "queira" uma segunda cor. Se um segundo ponto de ênfase for necessário, use escala ou peso, nunca uma segunda tonalidade.
 
-**The Paper-Not-White Rule.** The page background is Warm Ash Cream, never Crisp Paper White. Pure white is reserved for specific inverted surfaces. Warmth is load-bearing — without it, the site reads as generic and the decisive magenta reads as abrasive rather than decisive.
+**A Regra do Papel-Não-Branco.** O fundo da página é Warm Ash Cream, nunca Crisp Paper White. O branco puro é reservado para superfícies invertidas específicas. O calor é estrutural — sem ele, o site lê-se como genérico e o magenta decisivo lê-se como abrasivo em vez de decisivo.
 
-**The OKLCH-Only Rule.** All new colors must be declared in OKLCH. Legacy hex values exist only in the fenced Command Category Tints. Do not introduce new hex-declared colors into the system.
+**A Regra Apenas-OKLCH.** Todas as novas cores devem ser declaradas em OKLCH. Valores hex legados existem apenas nas Tinturas de Categoria de Comando isoladas. Não introduza novas cores declaradas em hex no sistema.
 
-## 3. Typography: The Italic-and-Ink Voice
+## 3. Tipografia: A Voz Itálica-e-Tinta
 
-**Display Font:** Cormorant Garamond (with Georgia fallback)
-**Body Font:** Instrument Sans (with system-ui fallback)
-**Label/Mono Font:** Space Grotesk (used as a geometric mono, not for code blocks)
+**Fonte de Display:** Cormorant Garamond (com fallback Georgia)
+**Fonte de Corpo:** Instrument Sans (com fallback system-ui)
+**Fonte de Rótulo/Mono:** Space Grotesk (usada como mono geométrica, não para blocos de código)
 
-**Character:** The display face is a refined transitional serif used in its **italic** cut — stately without being stuffy, drawing on long-form editorial headline traditions. The body face is a clean neutral sans with subtle geometric warmth, chosen to set long paragraphs without visual overhead. The "mono" is a contemporary grotesque reserved for small labels and metadata where a machine-adjacent feel reinforces the command-line product story.
+**Caráter:** A fonte de display é uma serifa transicional refinada usada em seu corte **itálico** — imponente sem ser afetada, inspirando-se nas tradições de manchetes editoriais de formato longo. A fonte de corpo é uma sans neutra e limpa com leve calor geométrico, escolhida para compor parágrafos longos sem sobrecarga visual. A "mono" é uma grotesca contemporânea reservada para rótulos pequenos e metadados onde uma sensação adjacente à máquina reforça a narrativa do produto de linha de comando.
 
-### Hierarchy
+### Hierarquia
 
-- **Display** (display family, weight 300, italic, clamp(2.5rem, 7vw, 4.5rem), line-height 1): Hero title only. The light weight + italic cursive reads as an author signature rather than a marketing headline.
-- **Headline** (display family, weight 400, clamp(1.75rem, 4vw, 2.5rem), line-height 1.2): Section headings. Larger editorial moments.
-- **Title** (display family, weight 400, italic, clamp(1.125rem, 2.5vw, 1.75rem), line-height 1.3): Hero tagline / section leads. A quieter second display voice.
-- **Body** (body family, weight 400, 1rem, line-height 1.6): Paragraph copy. Capped at 65–75ch for readability.
-- **Body Lead** (body family, weight 400, 1rem–1.0625rem, line-height 1.6–1.65): The one or two "lead" paragraphs on each page. Slightly relaxed leading.
-- **Supporting** (body family, weight 400, 0.875rem, line-height 1.6): Captions, footnotes, supporting context.
-- **Label** (body family, weight 500, 0.9rem, `text-transform: uppercase`, `letter-spacing: 0.05em`): CTA labels. Short, declarative.
-- **Micro-Label** (body family, weight 500, 0.625–0.6875rem, `text-transform: uppercase`, `letter-spacing: 0.1em`): "Works with", "What's Included", "v3.0 Changelog".
-- **Monospace Meta** (mono family, weight 400–500, 0.6875–0.8125rem): Command names in inline prose, periodic-table tile labels.
+- **Display** (família display, peso 300, itálico, clamp(2.5rem, 7vw, 4.5rem), line-height 1): Apenas título hero. O peso leve + itálico cursivo lê-se como assinatura de autor em vez de manchete de marketing.
+- **Headline** (família display, peso 400, clamp(1.75rem, 4vw, 2.5rem), line-height 1.2): Títulos de seção. Momentos editoriais maiores.
+- **Title** (família display, peso 400, itálico, clamp(1.125rem, 2.5vw, 1.75rem), line-height 1.3): Tagline hero / aberturas de seção. Uma segunda voz de display mais discreta.
+- **Body** (família de corpo, peso 400, 1rem, line-height 1.6): Cópia de parágrafo. Limitado a 65–75ch para legibilidade.
+- **Body Lead** (família de corpo, peso 400, 1rem–1.0625rem, line-height 1.6–1.65): Os um ou dois parágrafos de "abertura" em cada página. Leading ligeiramente mais relaxado.
+- **Supporting** (família de corpo, peso 400, 0.875rem, line-height 1.6): Legendas, notas de rodapé, contexto de apoio.
+- **Label** (família de corpo, peso 500, 0.9rem, `text-transform: uppercase`, `letter-spacing: 0.05em`): Rótulos de CTA. Curtos, declarativos.
+- **Micro-Label** (família de corpo, peso 500, 0.625–0.6875rem, `text-transform: uppercase`, `letter-spacing: 0.1em`): "Compatível com", "O que está incluído", "v3.0 Changelog".
+- **Monospace Meta** (família mono, peso 400–500, 0.6875–0.8125rem): Nomes de comandos em prosa inline, rótulos de tiles da tabela periódica.
 
-### Named Rules
+### Regras Nomeadas
 
-**The Italic-Is-Voice Rule.** Italic is used as a voice choice for display type, not as emphasis within body copy. Body emphasis is carried by weight or by swapping to the mono family (see `<em>` in command menus). Treating italic as emphasis inside paragraphs dilutes the display voice.
+**A Regra do Itálico-como-Voz.** O itálico é usado como escolha de voz para tipo display, não como ênfase dentro da cópia de corpo. A ênfase no corpo é dada pelo peso ou pela troca para a família mono (veja `<em>` em menus de comandos). Tratar o itálico como ênfase dentro de parágrafos dilui a voz de display.
 
-**The 1.6 Leading Rule.** Body line-height is 1.6 everywhere. Not 1.5, not 1.7, not "relaxed". This is the load-bearing readability decision — when the site reads as calm and editorial, it's 1.6 doing the work.
+**A Regra do Leading 1.6.** O line-height do corpo é 1.6 em todo lugar. Não 1.5, não 1.7, não "relaxed". Esta é a decisão estrutural de legibilidade — quando o site parece calmo e editorial, é 1.6 fazendo o trabalho.
 
-**The Fluid-Headlines-Only Rule.** Headings use `clamp()` fluid sizing. Body copy uses fixed `rem` values. Fluid body sizes look clever and feel wrong — they make line-lengths wander off spec.
+**A Regra Apenas-Manchetes-Fluidas.** Títulos usam dimensionamento fluido com `clamp()`. Cópia de corpo usa valores `rem` fixos. Tamanhos de corpo fluidos parecem espertos e sentem-se errados — fazem os comprimentos de linha desviarem das especificações.
 
-## 4. Elevation
+## 4. Elevação
 
-Flat by default. Depth is conveyed through **state response**, not structural shadow. Surfaces rest on a single tonal layer (Warm Ash Cream); shadows appear only when an element is hovered, deliberately lifted, or requires ambient separation from a busy area.
+Plano por padrão. A profundidade é transmitida através de **resposta a estado**, não sombra estrutural. As superfícies repousam em uma única camada tonal (Warm Ash Cream); sombras aparecem apenas quando um elemento sofre hover, é deliberadamente elevado, ou requer separação ambiente de uma área ocupada.
 
-### Shadow Vocabulary
+### Vocabulário de Sombras
 
-- **Soft Hover Lift** (`0 4px 24px -4px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06)`): The default hover response on cards and interactive surfaces. Diffuse, offset downward.
-- **Lifted Card** (`0 20px 40px rgba(0,0,0,0.08)`): Deliberately elevated content (featured cards, install blocks). Low alpha — never reads as dark.
-- **Accent Glow** (`0 20px 60px var(--color-accent-dim)`): Magenta-tinted ambient shadow under the one or two moments that should feel magnetic. Used sparingly — this is the "rare ingredient" of the shadow vocabulary.
-- **Tooltip / Popover** (`0 0 20px rgba(0,0,0,0.15)` or `0 2px 8px rgba(0,0,0,0.1)`): Tight shadow for small floating UI.
+- **Soft Hover Lift** (`0 4px 24px -4px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06)`): A resposta de hover padrão em cards e superfícies interativas. Difusa, deslocada para baixo.
+- **Lifted Card** (`0 20px 40px rgba(0,0,0,0.08)`): Conteúdo deliberadamente elevado (cards em destaque, blocos de instalação). Alpha baixo — nunca lê-se como escuro.
+- **Accent Glow** (`0 20px 60px var(--color-accent-dim)`): Sombra ambiente com tintura magenta sob os um ou dois momentos que devem parecer magnéticos. Usada com parcimônia — este é o "ingrediente raro" do vocabulário de sombras.
+- **Tooltip / Popover** (`0 0 20px rgba(0,0,0,0.15)` ou `0 2px 8px rgba(0,0,0,0.1)`): Sombra compacta para pequenos UIs flutuantes.
 
-### Named Rules
+### Regras Nomeadas
 
-**The Flat-By-Default Rule.** Surfaces are flat at rest. If you find yourself adding a shadow to a non-interactive, non-elevated element, stop — you're reaching for Material Design muscle memory. Use a hairline Paper Mist border instead, or no articulation at all.
+**A Regra do Plano-por-Padrão.** Superfícies são planas em repouso. Se você se pegar adicionando uma sombra a um elemento não interativo, não elevado, pare — você está recorrendo à memória muscular do Material Design. Use uma borda finíssima em Paper Mist, ou nenhuma articulação.
 
-**The Low-Alpha Rule.** Every shadow in the system uses ≤0.15 alpha on its strongest blur. Higher alphas read as 2014 Material Design drop shadows — an immediate tell that the design wasn't considered.
+**A Regra do Alpha-Baixo.** Cada sombra no sistema usa ≤0.15 de alpha em seu blur mais forte. Alphas mais altos lembram drop shadows do Material Design de 2014 — um sinal imediato de que o design não foi considerado.
 
-**The Tinted-Shadow-Only-For-Accent Rule.** Neutral shadows (black alpha) for structure. Colored (magenta-dim) shadows only for the deliberate accent-glow moments. Never tint shadows for decorative effect.
+**A Regra da Sombra-Tintida-Apenas-Para-Acento.** Sombras neutras (alpha preto) para estrutura. Sombras coloridas (magenta-dim) apenas para os momentos deliberados de accent-glow. Nunca tinza sombras para efeito decorativo.
 
-## 5. Components
+## 5. Componentes
 
-### Buttons
+### Botões
 
-- **Shape:** Flat and squared by default (`border-radius: 0`). Sharp corners are an explicit editorial choice — the site rejects the rounded-rectangle-with-drop-shadow default that marks most AI-adjacent marketing pages.
-- **Primary (hero-cta-combined):** Deep Graphite background, Crisp Paper White text. Padding 16px / 48px (`--spacing-sm` / `--spacing-xl`). Uppercase, `letter-spacing: 0.05em`, weight 500. No border, no shadow at rest.
-- **Hover:** `transform: translateY(-2px)` and background shifts to Editorial Magenta. Transition 200ms linear ease. A small confident step up, never a bounce.
-- **Focus:** Browser-default focus ring combined with the hover treatment. Visible keyboard focus is required.
-- **Secondary:** Inline text link in body copy, weight 500, hover shifts to Editorial Magenta. **No boxed secondary button exists in the system** — the site avoids the "stack of equal-weight CTAs" pattern entirely.
-- **Chip (picker overlay):** Radius 3–5px, small padding, mono-family label. Used in the live-mode action selector.
+- **Forma:** Planos e quadrados por padrão (`border-radius: 0`). Cantos afiados são uma escolha editorial explícita — o site rejeita o padrão retângulo-arredondado-com-sombra-projetada que marca a maioria das páginas de marketing adjacentes à IA.
+- **Primário (hero-cta-combined):** Fundo Deep Graphite, texto Crisp Paper White. Padding 16px / 48px (`--spacing-sm` / `--spacing-xl`). Uppercase, `letter-spacing: 0.05em`, peso 500. Sem borda, sem sombra em repouso.
+- **Hover:** `transform: translateY(-2px)` e fundo muda para Editorial Magenta. Transição 200ms linear ease. Um pequeno passo confiante para cima, nunca um bounce.
+- **Foco:** Anel de foco padrão do navegador combinado com o tratamento de hover. Foco visível por teclado é obrigatório.
+- **Secundário:** Link de texto inline na cópia de corpo, peso 500, hover muda para Editorial Magenta. **Não existe botão secundário boxado no sistema** — o site evita o padrão "pilha de CTAs de peso igual" inteiramente.
+- **Chip (seletor overlay):** Radius 3–5px, padding pequeno, rótulo família mono. Usado no seletor de ações do live-mode.
 
-### Cards & Containers
+### Cards e Contêineres
 
-- **Corner Style:** Controlled vocabulary — 4px (chips / inline callouts), 8px (standard cards and card-CTAs), 12px (feature cards, install blocks), 16px (large content frames). No single "rounded-lg" default. Radius is picked per component weight.
-- **Background:** Warm Ash Cream or Crisp Paper White depending on layering. Deeper nested surfaces may lift to Paper Mist as a near-imperceptible tone shift.
-- **Shadow:** Flat at rest — see Elevation for the shadow vocabulary that applies on hover/lift.
-- **Border:** Hairline 1px in Paper Mist when a surface needs articulation without shadow.
-- **Internal Padding:** 16–32px for typical cards; large editorial frames 48px+. Padding matches visual weight, not applied uniformly.
+- **Estilo de Canto:** Vocabulário controlado — 4px (chips / callouts inline), 8px (cards padrão e card-CTAs), 12px (cards de feature, blocos de instalação), 16px (frames de conteúdo grandes). Nenhum padrão único "rounded-lg". O radius é escolhido por peso do componente.
+- **Fundo:** Warm Ash Cream ou Crisp Paper White dependendo do empilhamento. Superfícies aninhadas mais profundas podem elevar-se para Paper Mist como uma mudança de tom quase imperceptível.
+- **Sombra:** Plano em repouso — veja Elevação para o vocabulário de sombras que se aplica em hover/elevação.
+- **Borda:** Finíssima 1px em Paper Mist quando uma superfície precisa de articulação sem sombra.
+- **Padding Interno:** 16–32px para cards típicos; frames editoriais grandes 48px+. O padding corresponde ao peso visual, não aplicado uniformemente.
 
-### Inputs / Fields
+### Inputs / Campos
 
-The site is primarily editorial, so inputs are minimal:
+O site é primariamente editorial, então os inputs são mínimos:
 
-- **Email / text field:** Radius 4–6px, hairline Paper Mist border, transparent background. Focus state shifts border to Editorial Magenta with a Magenta Whisper backdrop glow.
-- **Combobox / select (filter controls):** Same stroke vocabulary, smaller padding, chevron glyph in Mid Ash.
-- **No custom checkbox/radio styling** beyond what the live-mode command picker needs.
+- **Campo de email / texto:** Radius 4–6px, borda finíssima Paper Mist, fundo transparente. Estado de foco muda a borda para Editorial Magenta com um brilho de fundo Magenta Whisper.
+- **Combobox / select (controles de filtro):** Mesmo vocabulário de traço, padding menor, glifo chevron em Mid Ash.
+- **Sem estilo customizado de checkbox/radio** além do que o seletor de comandos do live-mode precisa.
 
-### Navigation
+### Navegação
 
-- **Site Header:** 62px compact bar, left-aligned brand lockup (monochrome mark + wordmark), right-aligned link cluster.
-- **Typography:** Body family, weight 500, 0.9–1rem. Normal case — the header is readable prose, not a set of signals.
-- **Default State:** Deep Graphite on Warm Ash Cream.
-- **Hover / Active:** Smooth color transition to Editorial Magenta, 200ms. No underline bar at rest; if an active indicator is needed, a thin accent-colored underline appears.
-- **Mobile:** Collapses to an icon-triggered drawer when horizontal space is insufficient.
+- **Cabeçalho do Site:** Barra compacta de 62px, lockup de marca alinhado à esquerda (marca monocromática + wordmark), cluster de links alinhado à direita.
+- **Tipografia:** Família de corpo, peso 500, 0.9–1rem. Caixa normal — o cabeçalho é prosa legível, não um conjunto de sinais.
+- **Estado Padrão:** Deep Graphite sobre Warm Ash Cream.
+- **Hover / Ativo:** Transição suave de cor para Editorial Magenta, 200ms. Sem barra de underline em repouso; se um indicador ativo for necessário, aparece um underline fino com cor de acento.
+- **Mobile:** Colapsa para uma gaveta acionada por ícone quando o espaço horizontal é insuficiente.
 
-### Periodic Table of Commands (signature component)
+### Tabela Periódica de Comandos (componente assinatura)
 
-A distinctive custom element worth documenting: the 23 commands are laid out as a periodic-table grid of 56×64px tiles, each with a category tint background, category-colored border, atomic number in the top-left (mono family, 7px), a symbol in the center (display family, weight 500, 20px), and a command label in mono below. Hover lifts the tile 2px with a category-colored shadow. Tiles are the one place where the Category Tint vocabulary (see Colors) is used on a colored surface rather than as a text accent.
+Um elemento customizado distintivo que vale documentar: os 23 comandos são dispostos como um grid de tabela periódica de tiles de 56×64px, cada um com fundo de tintura de categoria, borda com cor de categoria, número atômico no canto superior esquerdo (família mono, 7px), um símbolo no centro (família display, peso 500, 20px), e um rótulo de comando em mono abaixo. Hover eleva o tile 2px com uma sombra com cor de categoria. Os tiles são o único lugar onde o vocabulário de Tinturas de Categoria (veja Cores) é usado em uma superfície colorida em vez de como acento de texto.
 
-### Layout & Spacing (fold from spec-absent Layout section)
+### Layout e Espaçamento (integrado da seção de Layout ausente na spec)
 
-- **Max width:** Content blocks cap at 900px (`--width-content`); page-level containers at 1400px (`--width-max`). Prose further constrained to 65–75ch.
-- **Spacing scale:** 8 / 16 / 24 / 32 / 48 / 80 / 120px (`--spacing-xs` through `--spacing-3xl`). The 4px step is deliberately omitted — this is an editorial scale, not an app-UI scale.
-- **Rhythm:** 80–120px between top-level sections, 24–48px between content groups within a section, 6–16px inside tight clusters.
-- **Grid:** No traditional column grid. Hero layouts are asymmetric two-column splits. Feature sections use `repeat(auto-fit, minmax(280px, 1fr))` rather than breakpoint-driven columns.
-- **Motion:** 150ms for color/opacity, 300–400ms for transforms, 600–1200ms for orchestrated entrances. All use `--ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)`) or `--ease-out-quint`. `prefers-reduced-motion` collapses every non-essential transition.
+- **Largura máxima:** Blocos de conteúdo limitam-se a 900px (`--width-content`); contêineres de nível de página a 1400px (`--width-max`). Prosa ainda mais restrita a 65–75ch.
+- **Escala de espaçamento:** 8 / 16 / 24 / 32 / 48 / 80 / 120px (`--spacing-xs` até `--spacing-3xl`). O passo de 4px é deliberadamente omitido — esta é uma escala editorial, não uma escala de UI de app.
+- **Ritmo:** 80–120px entre seções de nível superior, 24–48px entre grupos de conteúdo dentro de uma seção, 6–16px dentro de clusters compactos.
+- **Grid:** Sem grid de colunas tradicional. Layouts hero são divisões assimétricas de duas colunas. Seções de features usam `repeat(auto-fit, minmax(280px, 1fr))` em vez de colunas orientadas por breakpoints.
+- **Movimento:** 150ms para cor/opacidade, 300–400ms para transformações, 600–1200ms para entradas orquestradas. Todos usam `--ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)`) ou `--ease-out-quint`. `prefers-reduced-motion` colapsa cada transição não essencial.
 
-## 6. Do's and Don'ts
+## 6. O que Fazer e o que Não Fazer
 
-### Do:
+### Faça:
 
-- **Do** treat Warm Ash Cream (not Crisp Paper White) as the default page background. Warmth is load-bearing — see The Paper-Not-White Rule.
-- **Do** use Editorial Magenta on ≤10% of any given screen. Scarcity is what makes it read as decisive rather than noisy — see The One Voice Rule.
-- **Do** set all new colors in OKLCH. Hex is for the fenced Command Category Tints only.
-- **Do** use italic display type as a voice, not as emphasis inside paragraphs. Body emphasis is carried by weight.
-- **Do** use `clamp()` fluid sizing for headings; use fixed `rem` for body — see The Fluid-Headlines-Only Rule.
-- **Do** keep the primary CTA sharp and squared. `border-radius: 0`, uppercase, letter-tracked. This is the editorial signature.
-- **Do** use `--ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)`) or `--ease-out-quint` on transitions. Expo-out only.
-- **Do** leave surfaces flat at rest. Reach for shadows only on hover or for deliberate elevation — see The Flat-By-Default Rule.
-- **Do** respect `prefers-reduced-motion` on every animation.
-- **Do** cap body line length at 65–75ch via `max-width`.
+- **Faça** tratar Warm Ash Cream (não Crisp Paper White) como fundo padrão da página. O calor é estrutural — veja A Regra do Papel-Não-Branco.
+- **Faça** usar Editorial Magenta em ≤10% de qualquer tela. Escassez é o que faz com que ele pareça decisivo em vez de barulhento — veja A Regra da Única Voz.
+- **Faça** definir todas as novas cores em OKLCH. Hex é apenas para as Tinturas de Categoria de Comando isoladas.
+- **Faça** usar tipo display itálico como voz, não como ênfase dentro de parágrafos. A ênfase no corpo é dada pelo peso.
+- **Faça** usar dimensionamento fluido com `clamp()` para títulos; usar `rem` fixo para corpo — veja A Regra Apenas-Manchetes-Fluidas.
+- **Faça** manter o CTA primário afiado e quadrado. `border-radius: 0`, uppercase, com letter-spacing. Esta é a assinatura editorial.
+- **Faça** usar `--ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)`) ou `--ease-out-quint` em transições. Apenas expo-out.
+- **Faça** deixar superfícies planas em repouso. Recorra a sombras apenas em hover ou para elevação deliberada — veja A Regra do Plano-por-Padrão.
+- **Faça** respeitar `prefers-reduced-motion` em cada animação.
+- **Faça** limitar o comprimento de linha do corpo a 65–75ch via `max-width`.
 
-### Don't:
+### Não faça:
 
-- **Don't** use pure black (#000) or pure white (#fff). Always the tinted neutrals (Deep Graphite / Warm Ash Cream / Crisp Paper White).
-- **Don't** use `border-left` or `border-right` greater than 1px as a colored stripe on cards, list items, callouts, or alerts. Ever. This is the single most recognizable AI-dashboard tell.
-- **Don't** use `background-clip: text` with a gradient. Gradient text is banned across the site. If you want emphasis, use weight or size, never gradient fill.
-- **Don't** default to dark mode. The site is light mode because editorial reading is a light-mode activity. Dark mode with glowing accents is the AI-tool aesthetic Impeccable exists to replace.
-- **Don't** use glassmorphism (blurred translucent cards, glass borders, glow backgrounds as decoration). It is on PRODUCT.md's explicit anti-reference list.
-- **Don't** add a second accent color. If a layout "needs" a second emphasis point, use scale or weight, not hue.
-- **Don't** use rounded rectangles with generic drop shadows. That's the "could be any AI output" fingerprint.
-- **Don't** use bounce or elastic easing. Real objects decelerate smoothly — expo-out is the signature.
-- **Don't** animate layout properties (`width`, `height`, `padding`, `margin`). Use `transform` and `opacity` only.
-- **Don't** nest cards inside cards. Flatten the hierarchy.
-- **Don't** use identical card grids (same-sized cards with icon + heading + text, repeated endlessly).
-- **Don't** use the hero-metric layout template (big number + small label + supporting stats + gradient accent). SaaS cliché.
-- **Don't** extend the Command Category Tints vocabulary. Those hex tints are scoped to the periodic-table viz.
-- **Don't** hedge in UI copy. "Maybe consider" and "could be helpful" are banned in-product — match PRODUCT.md's expert-decisive voice.
-- **Don't** introduce a new spacing token outside the 8/16/24/32/48/80/120 scale. If you need a specific pixel gap, use a literal value rather than polluting the token scale.
+- **Não** use preto puro (#000) ou branco puro (#fff). Sempre os neutros tintados (Deep Graphite / Warm Ash Cream / Crisp Paper White).
+- **Não** use `border-left` ou `border-right` maior que 1px como faixa colorida em cards, itens de lista, callouts ou alertas. Nunca. Este é o sinal mais reconhecível de dashboard de IA.
+- **Não** use `background-clip: text` com gradiente. Texto com gradiente é proibido no site inteiro. Se você quer ênfase, use peso ou tamanho, nunca preenchimento com gradiente.
+- **Não** use modo escuro por padrão. O site é modo claro porque leitura editorial é uma atividade de modo claro. Modo escuro com acentos brilhantes é a estética de ferramenta de IA que Impeccable existe para substituir.
+- **Não** use glassmorphism (cards translúcidos borrados, bordas de vidro, fundos brilhantes como decoração). Está na lista de anti-referências explícita do PRODUCT.md.
+- **Não** adicione uma segunda cor de acento. Se um layout "precisa" de um segundo ponto de ênfase, use escala ou peso, não tonalidade.
+- **Não** use retângulos arredondados com sombras projetadas genéricas. Essa é a impressão digital de "poderia ser qualquer saída de IA".
+- **Não** use easing bounce ou elástico. Objetos reais desaceleram suavemente — expo-out é a assinatura.
+- **Não** anime propriedades de layout (`width`, `height`, `padding`, `margin`). Use apenas `transform` e `opacity`.
+- **Não** aninhe cards dentro de cards. Aplane a hierarquia.
+- **Não** use grids de cards idênticos (cards do mesmo tamanho com ícone + título + texto, repetidos infinitamente).
+- **Não** use o template de layout hero-métrico (número grande + rótulo pequeno + estatísticas de apoio + acento gradiente). Clichê de SaaS.
+- **Não** estenda o vocabulário de Tinturas de Categoria de Comando. Aquelas tinturas hex são escopadas para a visualização da tabela periódica.
+- **Não** hesite na cópia de UI. "Talvez considere" e "poderia ser útil" são proibidos no produto — corresponda à voz especialista-decisiva do PRODUCT.md.
+- **Não** introduza um novo token de espaçamento fora da escala 8/16/24/32/48/80/120. Se você precisa de um gap específico em pixels, use um valor literal em vez de poluir a escala de tokens.

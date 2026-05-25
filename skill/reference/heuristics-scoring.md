@@ -1,234 +1,234 @@
-# Heuristics Scoring Guide
+# Guia de Pontuação por Heurísticas
 
-Score each of Nielsen's 10 Usability Heuristics on a 0–4 scale. Be honest: a 4 means genuinely excellent, not "good enough."
+Pontue cada uma das 10 Heurísticas de Usabilidade de Nielsen em uma escala de 0–4. Seja honesto: um 4 significa genuinamente excelente, não "bom o suficiente."
 
-## Nielsen's 10 Heuristics
+## 10 Heurísticas de Nielsen
 
-### 1. Visibility of System Status
+### 1. Visibilidade do Status do Sistema
 
-Keep users informed about what's happening through timely, appropriate feedback.
+Mantenha os usuários informados sobre o que está acontecimento através de feedback oportuno e apropriado.
 
-**Check for**:
-- Loading indicators during async operations
-- Confirmation of user actions (save, submit, delete)
-- Progress indicators for multi-step processes
-- Current location in navigation (breadcrumbs, active states)
-- Form validation feedback (inline, not just on submit)
+**Verificar**:
+- Indicadores de carregamento durante operações assíncronas
+- Confirmação de ações do usuário (salvar, enviar, excluir)
+- Indicadores de progresso para processos de múltiplas etapas
+- Localização atual na navegação (breadcrumbs, estados ativos)
+- Feedback de validação de formulários (inline, não apenas ao enviar)
 
-**Scoring**:
-| Score | Criteria |
+**Pontuação**:
+| Pontuação | Critério |
 |-------|----------|
-| 0 | No feedback; user is guessing what happened |
-| 1 | Rare feedback; most actions produce no visible response |
-| 2 | Partial; some states communicated, major gaps remain |
-| 3 | Good; most operations give clear feedback, minor gaps |
-| 4 | Excellent; every action confirms, progress is always visible |
+| 0 | Sem feedback; o usuário adivinha o que aconteceu |
+| 1 | Feedback raro; a maioria das ações não produz resposta visível |
+| 2 | Parcial; alguns estados comunicados, lacunas importantes permanecem |
+| 3 | Bom; a maioria das operações oferece feedback claro, lacunas menores |
+| 4 | Excelente; toda ação é confirmada, o progresso está sempre visível |
 
-### 2. Match Between System and Real World
+### 2. Correspondência entre o Sistema e o Mundo Real
 
-Speak the user's language. Follow real-world conventions. Information appears in natural, logical order.
+Fale a linguagem do usuário. Siga convenções do mundo real. A informação aparece em ordem natural e lógica.
 
-**Check for**:
-- Familiar terminology (no unexplained jargon)
-- Logical information order matching user expectations
-- Recognizable icons and metaphors
-- Domain-appropriate language for the target audience
-- Natural reading flow (left-to-right, top-to-bottom priority)
+**Verificar**:
+- Terminologia familiar (sem jargão inexplicado)
+- Ordem lógica das informações correspondendo às expectativas do usuário
+- Ícones e metáforas reconhecíveis
+- Linguagem adequada ao domínio para o público-alvo
+- Fluxo de leitura natural (prioridade da esquerda para a direita, de cima para baixo)
 
-**Scoring**:
-| Score | Criteria |
+**Pontuação**:
+| Pontuação | Critério |
 |-------|----------|
-| 0 | Pure tech jargon, alien to users |
-| 1 | Mostly confusing; requires domain expertise to navigate |
-| 2 | Mixed; some plain language, some jargon leaks through |
-| 3 | Mostly natural; occasional term needs context |
-| 4 | Speaks the user's language fluently throughout |
+| 0 | Jargão técnico puro, alienígena para os usuários |
+| 1 | Na maior parte confuso; requer conhecimento do domínio para navegar |
+| 2 | Misto; alguma linguagem simples, algum jargão vaza |
+| 3 | Na maior parte natural; termo ocasional precisa de contexto |
+| 4 | Fala a linguagem do usuário fluentemente por toda a interface |
 
-### 3. User Control and Freedom
+### 3. Controle e Liberdade do Usuário
 
-Users need a clear "emergency exit" from unwanted states without extended dialogue.
+Os usuários precisam de uma "saída de emergência" clara de estados indesejados sem diálogo prolongado.
 
-**Check for**:
-- Undo/redo functionality
-- Cancel buttons on forms and modals
-- Clear navigation back to safety (home, previous)
-- Easy way to clear filters, search, selections
-- Escape from long or multi-step processes
+**Verificar**:
+- Funcionalidade de desfazer/refazer
+- Botões de cancelamento em formulários e modais
+- Navegação clara de volta à segurança (início, anterior)
+- Forma fácil de limpar filtros, busca, seleções
+- Saída de processos longos ou de múltiplas etapas
 
-**Scoring**:
-| Score | Criteria |
+**Pontuação**:
+| Pontuação | Critério |
 |-------|----------|
-| 0 | Users get trapped; no way out without refreshing |
-| 1 | Difficult exits; must find obscure paths to escape |
-| 2 | Some exits; main flows have escape, edge cases don't |
-| 3 | Good control; users can exit and undo most actions |
-| 4 | Full control; undo, cancel, back, and escape everywhere |
+| 0 | Usuários ficam presos; sem saída sem atualizar a página |
+| 1 | Saídas difíceis; é preciso encontrar caminhos obscuros para escapar |
+| 2 | Algumas saídas; fluxos principais têm escapatória, casos extremos não |
+| 3 | Bom controle; os usuários podem sair e desfazer a maioria das ações |
+| 4 | Controle total; desfazer, cancelar, voltar e escapar em todos os lugares |
 
-### 4. Consistency and Standards
+### 4. Consistência e Padrões
 
-Users shouldn't wonder whether different words, situations, or actions mean the same thing.
+Os usuários não deveriam ter que se perguntar se palavras, situações ou ações diferentes significam a mesma coisa.
 
-**Check for**:
-- Consistent terminology throughout the interface
-- Same actions produce same results everywhere
-- Platform conventions followed (standard UI patterns)
-- Visual consistency (colors, typography, spacing, components)
-- Consistent interaction patterns (same gesture = same behavior)
+**Verificar**:
+- Terminologia consistente por toda a interface
+- Mesmas ações produzem mesmos resultados em todos os lugares
+- Convenções da plataforma seguidas (padrões de UI padrão)
+- Consistência visual (cores, tipografia, espaçamento, componentes)
+- Padrões de interação consistentes (mesmo gesto = mesmo comportamento)
 
-**Scoring**:
-| Score | Criteria |
+**Pontuação**:
+| Pontuação | Critério |
 |-------|----------|
-| 0 | Inconsistent everywhere; feels like different products stitched together |
-| 1 | Many inconsistencies; similar things look/behave differently |
-| 2 | Partially consistent; main flows match, details diverge |
-| 3 | Mostly consistent; occasional deviation, nothing confusing |
-| 4 | Fully consistent; cohesive system, predictable behavior |
+| 0 | Inconsistente em todos os lugares; parece produtos diferentes costurados |
+| 1 | Muitas inconsistências; coisas parecidas têm aparência/comportamento diferente |
+| 2 | Parcialmente consistente; fluxos principais coincidem, detalhes divergem |
+| 3 | Na maior parte consistente; desvio ocasional, nada confuso |
+| 4 | Totalmente consistente; sistema coeso, comportamento previsível |
 
-### 5. Error Prevention
+### 5. Prevenção de Erros
 
-Better than good error messages is a design that prevents problems in the first place.
+Melhor do que boas mensagens de erro é um design que previne problemas em primeiro lugar.
 
-**Check for**:
-- Confirmation before destructive actions (delete, overwrite)
-- Constraints preventing invalid input (date pickers, dropdowns)
-- Smart defaults that reduce errors
-- Clear labels that prevent misunderstanding
-- Autosave and draft recovery
+**Verificar**:
+- Confirmação antes de ações destrutivas (excluir, sobrescrever)
+- Restrições que previnem entrada inválida (seletores de data, dropdowns)
+- Padrões inteligentes que reduzem erros
+- Rótulos claros que previnem mal-entendidos
+- Salvamento automático e recuperação de rascunho
 
-**Scoring**:
-| Score | Criteria |
+**Pontuação**:
+| Pontuação | Critério |
 |-------|----------|
-| 0 | Errors easy to make; no guardrails anywhere |
-| 1 | Few safeguards; some inputs validated, most aren't |
-| 2 | Partial prevention; common errors caught, edge cases slip |
-| 3 | Good prevention; most error paths blocked proactively |
-| 4 | Excellent; errors nearly impossible through smart constraints |
+| 0 | Erros fáceis de cometer; sem proteções em nenhum lugar |
+| 1 | Poucas salvaguardas; algumas entradas validadas, a maioria não |
+| 2 | Prevenção parcial; erros comuns capturados, casos extremos escapam |
+| 3 | Boa prevenção; a maioria dos caminhos de erro bloqueada proativamente |
+| 4 | Excelente; erros quase impossíveis através de restrições inteligentes |
 
-### 6. Recognition Rather Than Recall
+### 6. Reconhecimento em Vez de Memorização
 
-Minimize memory load. Make objects, actions, and options visible or easily retrievable.
+Minimize a carga de memória. Torne objetos, ações e opções visíveis ou facilmente recuperáveis.
 
-**Check for**:
-- Visible options (not buried in hidden menus)
-- Contextual help when needed (tooltips, inline hints)
-- Recent items and history
-- Autocomplete and suggestions
-- Labels on icons (not icon-only navigation)
+**Verificar**:
+- Opções visíveis (não enterradas em menus ocultos)
+- Ajuda contextual quando necessário (tooltips, dicas inline)
+- Itens recentes e histórico
+- Autocomplete e sugestões
+- Rótulos nos ícones (não navegação apenas com ícones)
 
-**Scoring**:
-| Score | Criteria |
+**Pontuação**:
+| Pontuação | Critério |
 |-------|----------|
-| 0 | Heavy memorization; users must remember paths and commands |
-| 1 | Mostly recall; many hidden features, few visible cues |
-| 2 | Some aids; main actions visible, secondary features hidden |
-| 3 | Good recognition; most things discoverable, few memory demands |
-| 4 | Everything discoverable; users never need to memorize |
+| 0 | Memorização pesada; usuários devem lembrar caminhos e comandos |
+| 1 | Na maior parte memorização; muitos recursos ocultos, poucas pistas visíveis |
+| 2 | Algumas ajudas; ações principais visíveis, recursos secundários ocultos |
+| 3 | Bom reconhecimento; a maioria das coisas é descobrível, poucas exigências de memória |
+| 4 | Tudo descobrível; os usuários nunca precisam memorizar |
 
-### 7. Flexibility and Efficiency of Use
+### 7. Flexibilidade e Eficiência de Uso
 
-Accelerators, invisible to novices, speed up expert interaction.
+Aceleradores, invisíveis para novatos, aceleram a interação de especialistas.
 
-**Check for**:
-- Keyboard shortcuts for common actions
-- Customizable interface elements
-- Recent items and favorites
-- Bulk/batch actions
-- Power user features that don't complicate the basics
+**Verificar**:
+- Atalhos de teclado para ações comuns
+- Elementos de interface customizáveis
+- Itens recentes e favoritos
+- Ações em lote/batch
+- Recursos para usuários avançados que não complicam o básico
 
-**Scoring**:
-| Score | Criteria |
+**Pontuação**:
+| Pontuação | Critério |
 |-------|----------|
-| 0 | One rigid path; no shortcuts or alternatives |
-| 1 | Limited flexibility; few alternatives to the main path |
-| 2 | Some shortcuts; basic keyboard support, limited bulk actions |
-| 3 | Good accelerators; keyboard nav, some customization |
-| 4 | Highly flexible; multiple paths, power features, customizable |
+| 0 | Um caminho rígido; sem atalhos ou alternativas |
+| 1 | Flexibilidade limitada; poucas alternativas ao caminho principal |
+| 2 | Alguns atalhos; suporte básico de teclado, ações em lote limitadas |
+| 3 | Bons aceleradores; navegação por teclado, alguma customização |
+| 4 | Altamente flexível; múltiplos caminhos, recursos avançados, customizável |
 
-### 8. Aesthetic and Minimalist Design
+### 8. Estética e Design Minimalista
 
-Interfaces should not contain irrelevant or rarely needed information. Every element should serve a purpose.
+Interfaces não devem conter informações irrelevantes ou raramente necessárias. Cada elemento deve ter um propósito.
 
-**Check for**:
-- Only necessary information visible at each step
-- Clear visual hierarchy directing attention
-- Purposeful use of color and emphasis
-- No decorative clutter competing for attention
-- Focused, uncluttered layouts
+**Verificar**:
+- Apenas informações necessárias visíveis em cada etapa
+- Hierarquia visual clara direcionando a atenção
+- Uso intencional de cor e ênfase
+- Sem desordem decorativa competindo por atenção
+- Layouts focados e sem desordem
 
-**Scoring**:
-| Score | Criteria |
+**Pontuação**:
+| Pontuação | Critério |
 |-------|----------|
-| 0 | Overwhelming; everything competes for attention equally |
-| 1 | Cluttered; too much noise, hard to find what matters |
-| 2 | Some clutter; main content clear, periphery noisy |
-| 3 | Mostly clean; focused design, minor visual noise |
-| 4 | Perfectly minimal; every element earns its pixel |
+| 0 | Esmagador; tudo compete por atenção igualmente |
+| 1 | Desordenado; muito ruído, difícil encontrar o que importa |
+| 2 | Alguma desordem; conteúdo principal claro, periferia barulhenta |
+| 3 | Na maior parte limpo; design focado, ruído visual menor |
+| 4 | Perfeitamente minimal; cada elemento justifica seu pixel |
 
-### 9. Help Users Recognize, Diagnose, and Recover from Errors
+### 9. Ajudar Usuários a Reconhecer, Diagnosticar e Recuperar-se de Erros
 
-Error messages should use plain language, precisely indicate the problem, and constructively suggest a solution.
+Mensagens de erro devem usar linguagem simples, indicar precisamente o problema e sugerir construtivamente uma solução.
 
-**Check for**:
-- Plain language error messages (no error codes for users)
-- Specific problem identification ("Email is missing @" not "Invalid input")
-- Actionable recovery suggestions
-- Errors displayed near the source of the problem
-- Non-blocking error handling (don't wipe the form)
+**Verificar**:
+- Mensagens de erro em linguagem simples (sem códigos de erro para usuários)
+- Identificação específica do problema ("Email está sem @" não "Entrada inválida")
+- Sugestões de recuperação acionáveis
+- Erros exibidos próximos à fonte do problema
+- Tratamento de erro não-bloqueante (não apagar o formulário)
 
-**Scoring**:
-| Score | Criteria |
+**Pontuação**:
+| Pontuação | Critério |
 |-------|----------|
-| 0 | Cryptic errors; codes, jargon, or no message at all |
-| 1 | Vague errors; "Something went wrong" with no guidance |
-| 2 | Clear but unhelpful; names the problem but not the fix |
-| 3 | Clear with suggestions; identifies problem and offers next steps |
-| 4 | Perfect recovery; pinpoints issue, suggests fix, preserves user work |
+| 0 | Erros crípticos; códigos, jargão, ou nenhuma mensagem |
+| 1 | Erros vagos; "Algo deu errado" sem orientação |
+| 2 | Claro mas inútil; nomeia o problema mas não a solução |
+| 3 | Claro com sugestões; identifica o problema e oferece próximos passos |
+| 4 | Recuperação perfeita; localiza o problema, sugere a correção, preserva o trabalho do usuário |
 
-### 10. Help and Documentation
+### 10. Ajuda e Documentação
 
-Even if the system is usable without docs, help should be easy to find, task-focused, and concise.
+Mesmo que o sistema seja utilizável sem documentação, a ajuda deve ser fácil de encontrar, focada em tarefas e concisa.
 
-**Check for**:
-- Searchable help or documentation
-- Contextual help (tooltips, inline hints, guided tours)
-- Task-focused organization (not feature-organized)
-- Concise, scannable content
-- Easy access without leaving current context
+**Verificar**:
+- Ajuda ou documentação pesquisável
+- Ajuda contextual (tooltips, dicas inline, tours guiados)
+- Organização focada em tarefas (não organizada por funcionalidades)
+- Conteúdo conciso e escaneável
+- Acesso fácil sem sair do contexto atual
 
-**Scoring**:
-| Score | Criteria |
+**Pontuação**:
+| Pontuação | Critério |
 |-------|----------|
-| 0 | No help available anywhere |
-| 1 | Help exists but hard to find or irrelevant |
-| 2 | Basic help; FAQ or docs exist, not contextual |
-| 3 | Good documentation; searchable, mostly task-focused |
-| 4 | Excellent contextual help; right info at the right moment |
+| 0 | Nenhuma ajuda disponível em nenhum lugar |
+| 1 | Ajuda existe mas é difícil de encontrar ou irrelevante |
+| 2 | Ajuda básica; FAQ ou documentação existe, não contextual |
+| 3 | Boa documentação; pesquisável, na maior parte focada em tarefas |
+| 4 | Ajuda contextual excelente; informação certa no momento certo |
 
 ---
 
-## Score Summary
+## Resumo da Pontuação
 
-**Total possible**: 40 points (10 heuristics × 4 max)
+**Total possível**: 40 pontos (10 heurísticas × 4 máximo)
 
-| Score Range | Rating | What It Means |
+| Faixa de Pontuação | Classificação | O Que Significa |
 |-------------|--------|---------------|
-| 36–40 | Excellent | Minor polish only; ship it |
-| 28–35 | Good | Address weak areas, solid foundation |
-| 20–27 | Acceptable | Significant improvements needed before users are happy |
-| 12–19 | Poor | Major UX overhaul required; core experience broken |
-| 0–11 | Critical | Redesign needed; unusable in current state |
+| 36–40 | Excelente | Apenas polimento menor; pode lançar |
+| 28–35 | Bom | Trate as áreas fracas, base sólida |
+| 20–27 | Aceitável | Melhorias significativas necessárias antes que os usuários fiquem satisfeitos |
+| 12–19 | Ruim | Requer grande reformulação de UX; experiência fundamental comprometida |
+| 0–11 | Crítico | Redesign necessário; inutilizável no estado atual |
 
 ---
 
-## Issue Severity (P0–P3)
+## Severidade de Problemas (P0–P3)
 
-Tag each individual issue found during scoring with a priority level:
+Marque cada problema individual encontrado durante a pontuação com um nível de prioridade:
 
-| Priority | Name | Description | Action |
+| Prioridade | Nome | Descrição | Ação |
 |----------|------|-------------|--------|
-| **P0** | Blocking | Prevents task completion entirely | Fix immediately; this is a showstopper |
-| **P1** | Major | Causes significant difficulty or confusion | Fix before release |
-| **P2** | Minor | Annoyance, but workaround exists | Fix in next pass |
-| **P3** | Polish | Nice-to-fix, no real user impact | Fix if time permits |
+| **P0** | Bloqueante | Impede a conclusão da tarefa inteiramente | Corrigir imediatamente; este é um showstopper |
+| **P1** | Maior | Causa dificuldade ou confusão significativa | Corrigir antes do lançamento |
+| **P2** | Menor | Incômodo, mas existe alternativa | Corrigir na próxima passagem |
+| **P3** | Polimento | Bom de corrigir, sem impacto real no usuário | Corrigir se houver tempo |
 
-**Tip**: If you're unsure between two levels, ask: "Would a user contact support about this?" If yes, it's at least P1.
+**Dica**: Se você está em dúvida entre dois níveis, pergunte: "Um usuário entraria em contato com o suporte por causa disso?" Se sim, é pelo menos P1.

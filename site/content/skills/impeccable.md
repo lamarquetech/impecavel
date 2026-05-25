@@ -1,33 +1,33 @@
 ---
-tagline: "The design intelligence behind every command."
+tagline: "A inteligência de design por trás de cada comando."
 ---
 
-## When to use it
+## Quando usar
 
-`/impeccable` is the home command. Call it directly when you want freeform design work with the full guidebook loaded, without picking a specialized command. It is the fallback you reach for when none of the 23 specialists (`audit`, `polish`, `critique`, and the rest) map cleanly onto what you are trying to do.
+`/impeccable` é o comando principal. Chame diretamente quando quiser trabalho de design livre com o guia completo carregado, sem escolher um comando especializado. É o fallback para quando nenhum dos 23 especialistas (`audit`, `polish`, `critique` e o resto) mapeia claramente no que você está tentando fazer.
 
-Reach for `/impeccable` directly when:
+Use `/impeccable` diretamente quando:
 
-- **You are not sure which command fits.** Describe what you want in plain English and let the skill pick the right approach.
-- **The work spans multiple disciplines.** "Redo this hero section" touches layout, type, color, and motion. One command cannot own that.
-- **You want the full design intelligence without constraints.** Every reference file loaded, every anti-pattern checked, no pre-set workflow.
+- **Você não tem certeza de qual comando se encaixa.** Descreva o que quer em português simples e deixe a skill escolher a abordagem certa.
+- **O trabalho abrange múltiplas disciplinas.** "Refazer esta seção hero" toca layout, tipo, cor e motion. Um comando não pode abraçar isso.
+- **Você quer a inteligência de design completa sem restrições.** Todo arquivo de referência carregado, todo anti-pattern verificado, sem workflow pré-definido.
 
-For structured flows, reach for the specialized commands in the sidebar. Run `/impeccable teach` first on any new project to establish PRODUCT.md and DESIGN.md. `/impeccable craft` chains a discovery interview into a full build with live visual iteration. `/impeccable shape` produces a design brief without touching code. `/impeccable live` gives you a browser picker with three variants per element. The evaluation and refinement commands (`audit`, `critique`, `polish`, `typeset`, `layout`, `colorize`, and the rest) each own a specific slice of the work.
+Para fluxos estruturados, use os comandos especializados na barra lateral. Execute `/impeccable teach` primeiro em qualquer projeto novo para estabelecer PRODUCT.md e DESIGN.md. `/impeccable craft` encadeia uma entrevista de discovery em um build completo com iteração visual ao vivo. `/impeccable shape` produz um brief de design sem tocar em código. `/impeccable live` dá a você um picker no navegador com três variantes por elemento. Os comandos de avaliação e refinamento (`audit`, `critique`, `polish`, `typeset`, `layout`, `colorize` e o resto) cada um cuida de uma fatia específica do trabalho.
 
-## How it works
+## Como funciona
 
-Most AI-generated UIs fail the same way: generic fonts, purple gradients, card grids on card grids, glassmorphism everywhere. `/impeccable` gives your AI a strong point of view. It loads an opinionated design handbook plus a long list of anti-patterns, then pushes the model to commit to a specific aesthetic direction before writing a single line of code.
+A maioria das UIs geradas por IA falha da mesma forma: fonts genéricas, gradientes roxos, grids de cards sobre grids de cards, glassmorphism por toda parte. `/impeccable` dá à sua IA um ponto de vista forte. Ele carrega um handbook de design opinativo mais uma longa lista de anti-patterns, e então empurra o modelo a se comprometer com uma direção estética específica antes de escrever uma única linha de código.
 
-Two files at your project root shape everything the skill does:
+Dois arquivos na raiz do seu projeto moldam tudo o que a skill faz:
 
-- **`PRODUCT.md`** carries register (brand vs product), target users, brand personality, anti-references, design principles. Answers "who, what, why".
-- **`DESIGN.md`** carries colors, typography, elevation, components, do's and don'ts, in the six-section Google Stitch format. Answers "how it looks".
+- **`PRODUCT.md`** carrega register (brand vs product), usuários-alvo, personalidade da marca, anti-referências, princípios de design. Responde "quem, o quê, por quê".
+- **`DESIGN.md`** carrega cores, tipografia, elevação, componentes, do's e don'ts, no formato de seis seções do Google Stitch. Responde "como parece".
 
-Every command reads both files before generating. **Register** decides which defaults load. Brand (marketing, landing, portfolio, where design IS the product) and product (app UI, dashboards, tools, where design SERVES the product) have different defaults for type, motion, color, and density. Specifying it once in PRODUCT.md means `/impeccable typeset` will not push editorial-magazine fonts on a dashboard, and will not push product-fluent defaults on a campaign page. See the [brand vs product tutorial](/tutorials/brand-vs-product) for how the two diverge.
+Cada comando lê ambos os arquivos antes de gerar. **Register** decide quais defaults carregar. Brand (marketing, landing, portfólio, onde o design É o produto) e product (app UI, dashboards, ferramentas, onde o design SERVE ao produto) têm defaults diferentes para tipo, motion, cor e densidade. Especificar isso uma vez no PRODUCT.md significa que `/impeccable typeset` não vai empurrar fonts de revista editorial em um dashboard, e não vai empurrar defaults product-fluent em uma página de campanha. Veja o [tutorial brand vs product](/tutorials/brand-vs-product) para como os dois divergem.
 
-On first use in a project, the skill runs the `teach` flow automatically: a short interview that writes PRODUCT.md and then delegates to `/impeccable document` for DESIGN.md. Future commands read the files without asking again.
+No primeiro uso em um projeto, a skill executa o fluxo `teach` automaticamente: uma breve entrevista que escreve PRODUCT.md e depois delega para `/impeccable document` para DESIGN.md. Comandos futuros leem os arquivos sem perguntar novamente.
 
-## Try it
+## Experimente
 
 ```
 /impeccable redo this hero section
@@ -37,38 +37,38 @@ On first use in a project, the skill runs the `teach` flow automatically: a shor
 /impeccable build me a pricing page for a developer tool
 ```
 
-Both prompts are vague on purpose. `/impeccable` will pick a strong aesthetic direction consistent with your register, commit to non-default fonts, avoid the AI color palette, and make the kind of specific choices that a designer would make. No command name to pick first, no step-by-step workflow to follow.
+Ambos os prompts são vagos de propósito. `/impeccable` vai escolher uma direção estética forte consistente com seu register, comprometer-se com fonts não-padrão, evitar a paleta de cores da IA, e fazer o tipo de escolhas específicas que um designer faria. Sem nome de comando para escolher primeiro, sem workflow passo a passo para seguir.
 
-For visual iteration in the browser rather than chat:
+Para iteração visual no navegador em vez de chat:
 
 ```
 /impeccable live
 ```
 
-Pick any element on your running dev server. Drop a comment or stroke. Get three production-quality variants hot-swapped in via HMR. Accept the one you want and it writes back to source.
+Selecione qualquer elemento no seu dev server em execução. Deixe um comentário ou traço. Receba três variantes de qualidade de produção trocadas em tempo real via HMR. Aceite a que quiser e ela é escrita de volta no código-fonte.
 
-## Pin commands back as shortcuts
+## Fixe comandos de volta como atalhos
 
-v3.0 consolidated 18 standalone skills into a single `/impeccable` with 23 sub-commands. If you miss the short form of a specific command, pin it back:
+v3.0 consolidou 18 skills standalone em um único `/impeccable` com 23 sub-comandos. Se você sente falta da forma curta de um comando específico, fixe-o de volta:
 
 ```
 /impeccable pin critique
 ```
 
-From now on, `/critique` invokes `/impeccable critique` directly. It writes a lightweight redirect skill that delegates to the parent, so updates to the skill flow through without re-pinning.
+A partir de agora, `/critique` invoca `/impeccable critique` diretamente. Ele escreve uma skill de redirecionamento leve que delega ao pai, então atualiza na skill fluem sem precisar re-fixar.
 
-Useful pins to try:
+Pins úteis para experimentar:
 
-- `/impeccable pin polish` for final-pass work
-- `/impeccable pin audit` for deterministic a11y/perf checks
-- `/impeccable pin live` for the browser iteration flow
-- `/impeccable pin critique` for design review
+- `/impeccable pin polish` para trabalho de passada final
+- `/impeccable pin audit` para verificações determinísticas de a11y/perf
+- `/impeccable pin live` para o fluxo de iteração no navegador
+- `/impeccable pin critique` para review de design
 
-To remove: `/impeccable unpin critique`. Pins live as directories prefixed with `i-` in your harness skills folder (`.claude/skills/i-critique/`, `.cursor/skills/i-critique/`, etc.), so you can also delete them manually.
+Para remover: `/impeccable unpin critique`. Pins existem como diretórios prefixados com `i-` na pasta de skills do seu harness (`.claude/skills/i-critique/`, `.cursor/skills/i-critique/`, etc.), então você também pode deletá-los manualmente.
 
-## Pitfalls
+## Armadilhas
 
-- **Treating it like a style guide.** It is an opinionated design partner, not a linter. The defaults exist to raise the floor, not to overrule your judgment. If you have a real reason to push back (brand guideline, accessibility constraint, user research), push back and explain why. The skill will work with you. What produces worse output is ignoring the opinion without a reason.
-- **Expecting it to fix existing code.** `/impeccable` is for creation. For refinement, reach for `/impeccable polish`, `/impeccable distill`, or `/impeccable critique` instead.
-- **Running it before `teach` has had a chance to save context.** On a fresh project it will interview you mid-flight, which is fine but slower. Running `/impeccable teach` explicitly as your very first command is a tiny bit smoother.
-- **Skipping the register question.** Brand and product defaults diverge enough that running on the wrong register produces subtly off output. If `PRODUCT.md` has no `## Register` field (legacy), run `/impeccable teach` to add it.
+- **Tratar como style guide.** É um parceiro de design opinativo, não um linter. Os defaults existem para elevar o piso, não para sobrepor seu julgamento. Se você tem um motivo real para contestar (guideline de marca, restrição de acessibilidade, pesquisa de usuário), conteste e explique por quê. A skill vai trabalhar com você. O que produz resultados piores é ignorar a opinião sem um motivo.
+- **Esperar que conserte código existente.** `/impeccable` é para criação. Para refinamento, use `/impeccable polish`, `/impeccable distill`, ou `/impeccable critique`.
+- **Executar antes que `teach` tenha tido chance de salvar contexto.** Em um projeto novo ele vai te entrevistar no meio da execução, o que é aceitável mas mais lento. Executar `/impeccable teach` explicitamente como seu primeiro comando é um pouco mais suave.
+- **Pular a pergunta de register.** Os defaults de brand e product divergem o suficiente que executar no register errado produz saída sutilmente inadequada. Se `PRODUCT.md` não tem o campo `## Register` (legado), execute `/impeccable teach` para adicioná-lo.

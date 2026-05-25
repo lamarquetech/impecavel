@@ -1,62 +1,62 @@
-# Product register
+# Registro de produto
 
-When design SERVES the product: app UIs, admin dashboards, settings panels, data tables, tools, authenticated surfaces, anything where the user is in a task.
+Quando o design SERVE ao produto: UIs de apps, painéis administrativos, painéis de configurações, tabelas de dados, ferramentas, superfícies autenticadas, qualquer coisa onde o usuário está em uma tarefa.
 
-## The product slop test
+## O teste de product slop
 
-Not "would someone say AI made this." Familiarity is often a feature here. The test is: would a user fluent in the category's best tools (Linear, Figma, Notion, Raycast, Stripe come to mind) sit down and trust this interface, or pause at every subtly-off component?
+Não é "alguém diria que IA fez isso." Familiaridade frequentemente é uma funcionalidade aqui. O teste é: um usuário fluente nas melhores ferramentas da categoria (Linear, Figma, Notion, Raycast, Stripe vêm à mente) sentaria e confiaria nesta interface, ou pausaria em cada componente sutilmente errado?
 
-Product UI's failure mode isn't flatness, it's strangeness without purpose: over-decorated buttons, mismatched form controls, gratuitous motion, display fonts where labels should be, invented affordances for standard tasks. The bar is earned familiarity. The tool should disappear into the task.
+O modo de falha da UI de produto não é a planicidade, é a estranheza sem propósito: botões excessivamente decorados, controles de formulário incompatíveis, movimento gratuito, fontes de display onde deveriam haver rótulos, affordances inventadas para tarefas padrão. A barra é familiaridade conquistada. A ferramenta deve desaparecer na tarefa.
 
-## Typography
+## Tipografia
 
-- **System fonts are legitimate.** `-apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif` gives you native feel on every platform. Inter is the common cross-platform default for a reason.
-- **One family is often right.** Product UIs don't need display/body pairing. A well-tuned sans carries headings, buttons, labels, body, data.
-- **Fixed rem scale, not fluid.** Clamp-sized headings don't serve product UI. Users view at consistent DPI, and a fluid h1 that shrinks in a sidebar looks worse, not better.
-- **Tighter scale ratio.** 1.125–1.2 between steps is typical. More type elements here than on brand surfaces; exaggerated contrast creates noise.
-- **Line length still applies for prose** (65–75ch). Data and compact UI can run denser; tables at 120ch+ are fine.
+- **Fontes do sistema são legítimas.** `-apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif` oferece sensação nativa em cada plataforma. Inter é o padrão multiplataforma comum por uma razão.
+- **Uma família frequentemente é a certa.** UIs de produto não precisam de combinação display/corpo. Uma sans bem ajustada carrega títulos, botões, rótulos, corpo, dados.
+- **Escala fixa em rem, não fluida.** Títulos com clamp não servem à UI de produto. Usuários visualizam em DPI consistente, e um h1 fluido que encolhe em uma sidebar fica pior, não melhor.
+- **Razão de escala mais justa.** 1.125–1.2 entre degraus é típico. Mais elementos tipográficos aqui do que em superfícies de marca; contraste exagerado cria ruído.
+- **Comprimento de linha ainda se aplica para prosa** (65–75ch). Dados e UI compacta podem ser mais densos; tabelas a 120ch+ são aceitáveis.
 
-## Color
+## Cor
 
-Product defaults to Restrained. A single surface can earn Committed (a dashboard where one category color carries a report, an onboarding flow with a drenched welcome screen), but Restrained is the floor.
+Produto padroniza para Contida. Uma única superfície pode conquistar Comprometida (um painel onde uma cor de categoria carrega um relatório, um fluxo de onboarding com uma tela de boas-vindas encharcada), mas Contida é o piso.
 
-- State-rich semantic vocabulary: hover, focus, active, disabled, selected, loading, error, warning, success, info. Standardize these.
-- Accent color used for primary actions, current selection, and state indicators only, not decoration.
-- A second neutral layer for sidebars, toolbars, and panels (slightly cooler or warmer than the content surface).
+- Vocabulário semântico rico em estados: hover, focus, active, disabled, selected, loading, error, warning, success, info. Padronize estes.
+- Cor de destaque usada apenas para ações primárias, seleção atual e indicadores de estado, não decoração.
+- Uma segunda camada neutra para sidebars, barras de ferramentas e painéis (levemente mais fria ou mais quente que a superfície de conteúdo).
 
 ## Layout
 
-- Predictable grids. Consistency IS an affordance; users navigate faster when the structure is expected.
-- Familiar patterns are features. Standard navigation (top bar, side nav), breadcrumbs, tabs, and form layouts have established user expectations. Don't reinvent for flavor.
-- Responsive behavior is structural (collapse sidebar, responsive table, breakpoint-driven columns), not fluid typography.
+- Grids previsíveis. Consistência É uma affordance; usuários navegam mais rápido quando a estrutura é esperada.
+- Padrões familiares são funcionalidades. Navegação padrão (barra superior, nav lateral), breadcrumbs, tabs e layouts de formulário têm expectativas estabelecidas pelo usuário. Não reinvente por sabor.
+- Comportamento responsivo é estrutural (colapsar sidebar, tabela responsiva, colunas orientadas por breakpoint), não tipografia fluida.
 
-## Components
+## Componentes
 
-Every interactive component has: default, hover, focus, active, disabled, loading, error. Don't ship with half of these.
+Todo componente interativo tem: default, hover, focus, active, disabled, loading, error. Não entregue com apenas a metade destes.
 
-- Skeleton states for loading, not spinners in the middle of content.
-- Empty states that teach the interface, not "nothing here."
-- Consistent affordances across the surface. Same button shape. Same form-control vocabulary. Same icon style.
+- Estados skeleton para carregamento, não spinners no meio do conteúdo.
+- Estados vazios que ensinam a interface, não "nada aqui."
+- Affordances consistentes pela superfície. Mesmo formato de botão. Mesmo vocabulário de controles de formulário. Mesmo estilo de ícones.
 
-## Motion
+## Movimento
 
-- 150–250 ms on most transitions. Users are in flow; don't make them wait for choreography.
-- Motion conveys state, not decoration. State change, feedback, loading, reveal: nothing else.
-- No orchestrated page-load sequences. Product loads into a task; users don't want to watch it load.
+- 150–250 ms na maioria das transições. Usuários estão em fluxo; não os faça esperar por coreografia.
+- Movimento transmite estado, não decoração. Mudança de estado, feedback, carregamento, revelação: nada mais.
+- Sem sequências orquestradas de carregamento de página. Produto carrega em uma tarefa; usuários não querem assistir ao carregamento.
 
-## Product bans (on top of the shared absolute bans)
+## Banimentos de produto (além dos banimentos absolutos compartilhados)
 
-- Decorative motion that doesn't convey state.
-- Inconsistent component vocabulary across screens. If the "save" button looks different in two places, one is wrong.
-- Display fonts in UI labels, buttons, data.
-- Reinventing standard affordances for flavor (custom scrollbars, weird form controls, non-standard modals).
-- Heavy color or full-saturation accents on inactive states.
+- Movimento decorativo que não transmite estado.
+- Vocabulário de componente inconsistente entre telas. Se o botão "salvar" parece diferente em dois lugares, um está errado.
+- Fontes de display em rótulos de UI, botões, dados.
+- Reinventar affordances padrão por sabor (scrollbars personalizadas, controles de formulário estranhos, modais não-padão).
+- Cor pesada ou acentos de saturação total em estados inativos.
 
-## Product permissions
+## Permissões de produto
 
-Product can afford things brand surfaces can't.
+Produto pode custear coisas que superfícies de marca não podem.
 
-- System fonts and familiar sans defaults (Inter, SF Pro, system-ui stacks).
-- Standard navigation patterns: top bar + side nav, breadcrumbs, tabs, command palettes.
-- Density. Tables with many rows, panels with many labels, dense information when users need it.
-- Consistency over surprise. The same visual vocabulary screen to screen is a virtue; delight is saved for moments, not pages.
+- Fontes do sistema e padrões sans familiares (Inter, SF Pro, stacks system-ui).
+- Padrões de navegação padrão: barra superior + nav lateral, breadcrumbs, tabs, paletas de comandos.
+- Densidade. Tabelas com muitas linhas, painéis com muitos rótulos, informação densa quando os usuários precisam.
+- Consistência sobre surpresa. O mesmo vocabulário visual de tela para tela é uma virtude; deleite é reservado para momentos, não páginas.

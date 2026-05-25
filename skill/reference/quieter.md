@@ -1,99 +1,99 @@
-Quiet design is harder than bold design. Subtlety needs precision. Reduce visual intensity in designs that are too loud, aggressive, or overstimulating without losing personality or making the result generic.
+Design silencioso é mais difícil que design ousado. Sutileza precisa de precisão. Reduza a intensidade visual em designs que estão muito barulhentos, agressivos, ou superestimulantes sem perder personalidade ou tornar o resultado genérico.
 
 ---
 
-## Register
+## Registro
 
-Brand: "quieter" means more restrained palette, more whitespace, more typographic air. Drama is reduced, not eliminated; the POV stays intact.
+Brand: "mais silencioso" significa palette mais contida, mais whitespace, mais respiro tipográfico. O drama é reduzido, não eliminado; o POV permanece intacto.
 
-Product: "quieter" means reducing visual noise. Fewer background accents, flatter cards, less color, less motion. The tool should disappear more completely into the task.
+Product: "mais silencioso" significa reduzir ruído visual. Menos acentos de fundo, cards mais planos, menos cor, menos movimento. A ferramenta deve desaparecer mais completamente na tarefa.
 
 ---
 
-## Assess Current State
+## Avalie o Estado Atual
 
-Analyze what makes the design feel too intense:
+Analise o que faz o design parecer intenso demais:
 
-1. **Identify intensity sources**:
-   - **Color saturation**: Overly bright or saturated colors
-   - **Contrast extremes**: Too much high-contrast juxtaposition
-   - **Visual weight**: Too many bold, heavy elements competing
-   - **Animation excess**: Too much motion or overly dramatic effects
-   - **Complexity**: Too many visual elements, patterns, or decorations
-   - **Scale**: Everything is large and loud with no hierarchy
+1. **Identifique fontes de intensidade**:
+   - **Saturação de cor**: Cores excessivamente brilhantes ou saturadas
+   - **Extremos de contraste**: Muita justaposição de alto contraste
+   - **Peso visual**: Muitos elementos ousados e pesados competindo
+   - **Excesso de animação**: Movimento demais ou efeitos excessivamente dramáticos
+   - **Complexidade**: Elementos visuais demais, padrões, ou decorações
+   - **Escala**: Tudo está grande e barulhento sem hierarquia
 
-2. **Understand the context**:
-   - What's the purpose? (Marketing vs tool vs reading experience)
-   - Who's the audience? (Some contexts need energy)
-   - What's working? (Don't throw away good ideas)
-   - What's the core message? (Preserve what matters)
+2. **Entenda o contexto**:
+   - Qual é o propósito? (Marketing vs ferramenta vs experiência de leitura)
+   - Quem é o público? (Alguns contextos precisam de energia)
+   - O que está funcionando? (Não jogue fora boas ideias)
+   - Qual é a mensagem central? (Preserve o que importa)
 
-If any of these are unclear from the codebase, {{ask_instruction}}
+Se qualquer destes estiver pouco claro a partir do codebase, {{ask_instruction}}
 
-**CRITICAL**: "Quieter" doesn't mean boring or generic. It means refined and easier on the eyes. Think luxury, not laziness.
+**CRÍTICO**: "Mais silencioso" não significa chato ou genérico. Significa refinado e mais suave para os olhos. Pense luxo, não preguiça.
 
-## Plan Refinement
+## Planeje o Refinamento
 
-Create a strategy to reduce intensity while maintaining impact:
+Crie uma estratégia para reduzir intensidade mantendo impacto:
 
-- **Color approach**: Desaturate or shift to more restrained tones?
-- **Hierarchy approach**: Which elements should stay bold (very few), which should recede?
-- **Simplification approach**: What can be removed entirely?
-- **Sophistication approach**: How can we signal quality through restraint?
+- **Abordagem de cor**: Dessaturar ou mudar para tons mais contidos?
+- **Abordagem de hierarquia**: Quais elementos devem permanecer ousados (muito poucos), quais devem recuar?
+- **Abordagem de simplificação**: O que pode ser removido inteiramente?
+- **Abordagem de sofisticação**: Como podemos sinalizar qualidade através de contenção?
 
-**IMPORTANT**: Subtlety requires precision. Quiet without intent collapses to generic.
+**IMPORTANTE**: Sutileza requer precisão. Silencioso sem intenção colapsa em genérico.
 
-## Refine the Design
+## Refine o Design
 
-Systematically reduce intensity across these dimensions:
+Reduza sistematicamente a intensidade por estas dimensões:
 
-### Color Refinement
-- **Reduce saturation**: Shift from fully saturated to 70-85% saturation
-- **Soften palette**: Replace bright colors with muted tones
-- **Reduce color variety**: Use fewer colors more thoughtfully
-- **Neutral dominance**: Let neutrals do more work, use color as accent (10% rule)
-- **Gentler contrasts**: High contrast only where it matters most
-- **Tinted grays**: Use warm or cool tinted grays instead of pure gray. Adds depth without loudness
-- **Never gray on color**: If you have gray text on a colored background, use a darker shade of that color or transparency instead
+### Refinamento de Cor
+- **Reduza saturação**: Mude de totalmente saturado para 70-85% de saturação
+- **Suavize a palette**: Substitua cores brilhantes por tons suaves
+- **Reduza variedade de cor**: Use menos cores com mais intenção
+- **Dominância neutra**: Deixe neutros trabalharem mais, use cor como acento (regra dos 10%)
+- **Contrastes mais suaves**: Alto contraste apenas onde mais importa
+- **Cinza tingido**: Use cinza com tingimento quente ou frio em vez de cinza puro. Adiciona profundidade sem barulho
+- **Nunca cinza sobre cor**: Se você tem texto cinza em um fundo colorido, use um tom mais escuro daquela cor ou transparência em vez disso
 
-### Visual Weight Reduction
-- **Typography**: Reduce font weights (900 → 600, 700 → 500), decrease sizes where appropriate
-- **Hierarchy through subtlety**: Use weight, size, and space instead of color and boldness
-- **White space**: Increase breathing room, reduce density
-- **Borders & lines**: Reduce thickness, decrease opacity, or remove entirely
+### Redução de Peso Visual
+- **Tipografia**: Reduza pesos de fonte (900 → 600, 700 → 500), diminua tamanhos onde apropriado
+- **Hierarquia através de sutileza**: Use peso, tamanho, e espaço em vez de cor e ousadia
+- **White space**: Aumente espaço para respirar, reduza densidade
+- **Bordas e linhas**: Reduza espessura, diminua opacidade, ou remova inteiramente
 
-### Simplification
-- **Remove decorative elements**: Gradients, shadows, patterns, textures that don't serve purpose
-- **Simplify shapes**: Reduce border radius extremes, simplify custom shapes
-- **Reduce layering**: Flatten visual hierarchy where possible
-- **Clean up effects**: Reduce or remove blur effects, glows, multiple shadows
+### Simplificação
+- **Remova elementos decorativos**: Gradientes, sombras, padrões, texturas que não servem propósito
+- **Simplifique formas**: Reduza extremos de border radius, simplifique formas customizadas
+- **Reduza camadas**: Achate a hierarquia visual onde possível
+- **Limpe efeitos**: Reduza ou remova efeitos de blur, glows, múltiplas sombras
 
-### Motion Reduction
-- **Reduce animation intensity**: Shorter distances (10-20px instead of 40px), gentler easing
-- **Remove decorative animations**: Keep functional motion, remove flourishes
-- **Subtle micro-interactions**: Replace dramatic effects with gentle feedback
-- **Refined easing**: Use ease-out-quart for smooth, understated motion. Never bounce or elastic
-- **Remove animations entirely** if they're not serving a clear purpose
+### Redução de Movimento
+- **Reduza intensidade de animação**: Distâncias menores (10-20px em vez de 40px), easing mais suave
+- **Remova animações decorativas**: Mantenha movimento funcional, remova floreios
+- **Micro-interações sutis**: Substitua efeitos dramáticos por feedback gentil
+- **Easing refinado**: Use ease-out-quart para movimento suave e discreto. Nunca bounce ou elastic
+- **Remova animações inteiramente** se não estiverem servindo um propósito claro
 
-### Composition Refinement
-- **Reduce scale jumps**: Smaller contrast between sizes creates calmer feeling
-- **Align to grid**: Bring rogue elements back into systematic alignment
-- **Even out spacing**: Replace extreme spacing variations with consistent rhythm
+### Refinamento de Composição
+- **Reduza saltos de escala**: Contraste menor entre tamanhos cria sensação mais calma
+- **Alinhe ao grid**: Traga elementos rebeldes de volta ao alinhamento sistemático
+- **Nivele o espaçamento**: Substitua variações extremas de espaçamento por ritmo consistente
 
-**NEVER**:
-- Make everything the same size/weight (hierarchy still matters)
-- Remove all color (quiet ≠ grayscale)
-- Eliminate all personality (maintain character through refinement)
-- Sacrifice usability for aesthetics (functional elements still need clear affordances)
-- Make everything small and light (some anchors needed)
+**NUNCA**:
+- Faça tudo do mesmo tamanho/peso (hierarquia ainda importa)
+- Remova toda a cor (silencioso ≠ escala de cinza)
+- Elimine toda personalidade (mantenha caráter através do refinamento)
+- Sacrifique usabilidade por estética (elementos funcionais ainda precisam de affordances claras)
+- Faça tudo pequeno e leve (algumas âncoras são necessárias)
 
-## Verify Quality
+## Verifique a Qualidade
 
-Ensure refinement maintains quality:
+Garanta que o refinamento mantém qualidade:
 
-- **Still functional**: Can users still accomplish tasks easily?
-- **Still distinctive**: Does it have character, or is it generic now?
-- **Better reading**: Is text easier to read for extended periods?
-- **Restrained, not absent**: Does the POV survive the cuts?
+- **Ainda funcional**: Os usuários ainda conseguem realizar tarefas facilmente?
+- **Ainda distinto**: Tem personalidade, ou ficou genérico?
+- **Melhor leitura**: O texto é mais fácil de ler por períodos prolongados?
+- **Contido, não ausente**: O POV sobrevive aos cortes?
 
-When the result feels right, hand off to `{{command_prefix}}impeccable polish` for the final pass.
+Quando o resultado parecer certo, passe para `{{command_prefix}}impeccable polish` para a passagem final.

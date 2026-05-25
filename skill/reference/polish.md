@@ -1,242 +1,242 @@
-> **Additional context needed**: quality bar (MVP vs flagship).
+> **Contexto adicional necessário**: nível de qualidade (MVP vs flagship).
 
-Perform a meticulous final pass to catch all the small details that separate good work from great work. The difference between shipped and polished.
+Realize uma passagem final meticulosa para capturar todos os pequenos detalhes que separam trabalho bom de trabalho ótimo. A diferença entre entregue e polido.
 
-Detector and automated QA output are defect evidence only. A clean script result is never proof that the design is strong; gather browser evidence and inspect the real interaction path.
+A saída do detector e do QA automatizado é apenas evidência de defeitos. Um resultado de script limpo nunca é prova de que o design é forte; colete evidência do navegador e inspecione o caminho real de interação.
 
-## Design System Discovery
+## Descoberta do Design System
 
-Aligning the feature to the design system is **not optional**. Polish without alignment is decoration on top of drift, and it makes the next person's job harder. Discovery comes before any other polish work.
+Alinhar a funcionalidade ao design system **não é opcional**. Polimento sem alinhamento é decoração sobre deriva, e torna o trabalho da próxima pessoa mais difícil. A descoberta vem antes de qualquer outro trabalho de polimento.
 
-1. **Find the design system**: Search for design system documentation, component libraries, style guides, or token definitions. Study the core patterns: design principles, target audience, color tokens, spacing scale, typography styles, component API, motion conventions.
-2. **Note the conventions**: How are shared components imported? What spacing scale is used? Which colors come from tokens vs hard-coded values? What motion and interaction patterns are established? What flow shapes are used for comparable actions (modal vs full-page, inline vs route, save-on-blur vs explicit submit)?
-3. **Identify drift, then name the root cause**: For every deviation, classify it as a **missing token** (the value should exist in the system but doesn't), a **one-off implementation** (a shared component already exists but wasn't used), or a **conceptual misalignment** (the feature's flow, IA, or hierarchy doesn't match neighboring features). The fix differs by category: patch the value, swap to the shared component, or rework the flow. Fixing the symptom without naming the cause is how drift compounds.
+1. **Encontre o design system**: Busque por documentação de design system, bibliotecas de componentes, guias de estilo, ou definições de tokens. Estude os padrões centrais: princípios de design, público-alvo, tokens de cor, escala de espaçamento, estilos de tipografia, API de componentes, convenções de movimento.
+2. **Anote as convenções**: Como componentes compartilhados são importados? Que escala de espaçamento é usada? Quais cores vêm de tokens vs valores fixos? Que padrões de movimento e interação estão estabelecidos? Que formatos de fluxo são usados para ações comparáveis (modal vs página inteira, inline vs rota, save-on-blur vs submit explícito)?
+3. **Identifique a deriva, depois nomeie a causa raiz**: Para cada desvio, classifique-o como um **token faltante** (o valor deveria existir no sistema mas não existe), uma **implementação ad-hoc** (um componente compartilhado já existe mas não foi usado), ou um **desalinhamento conceitual** (o fluxo, IA, ou hierarquia da funcionalidade não corresponde às funcionalidades vizinhas). A correção difere por categoria:补 o valor, troque pelo componente compartilhado, ou retrabalhe o fluxo. Corrigir o sintoma sem nomear a causa é como a deriva se acumula.
 
-If a design system exists, polish **must** align the feature with it. If none exists, polish against the conventions visible in the codebase. **If anything about the system is ambiguous, ask. Never guess at design system principles.**
+Se um design system existe, o polimento **deve** alinhar a funcionalidade a ele. Se nenhum existe, polimento contra as convenções visíveis no codebase. **Se qualquer aspecto do sistema é ambíguo, pergunte. Nunca adivinhe princípios de design system.**
 
-## Pre-Polish Assessment
+## Avaliação Pré-Polimento
 
-Understand the current state and goals before touching anything:
+Entenda o estado atual e os objetivos antes de tocar em qualquer coisa:
 
-1. **Review completeness**:
-   - Is it functionally complete?
-   - Are there known issues to preserve (mark with TODOs)?
-   - What's the quality bar? (MVP vs flagship feature?)
-   - When does it ship? (How much time for polish?)
+1. **Revise a completude**:
+   - Está funcionalmente completo?
+   - Existem problemas conhecidos a preservar (marque com TODOs)?
+   - Qual é o nível de qualidade? (Funcionalidade MVP vs flagship?)
+   - Quando vai ser lançado? (Quanto tempo para polimento?)
 
-2. **Think experience-first**: Who actually uses this, and what's the best possible experience for them? Effective design beats decorative polish; a feature that looks beautiful but fights the user's flow is not polished. Walk the path from their perspective before opening DevTools.
+2. **Pense experiência primeiro**: Quem realmente usa isto, e qual é a melhor experiência possível para eles? Design eficaz vence polimento decorativo; uma funcionalidade que parece bonita mas combate o fluxo do usuário não está polida. Caminhe pelo caminho da perspectiva deles antes de abrir DevTools.
 
-3. **Identify polish areas**:
-   - Visual inconsistencies
-   - Spacing and alignment issues
-   - Interaction state gaps
-   - Copy inconsistencies
-   - Edge cases and error states
-   - Loading and transition smoothness
-   - Information architecture and flow drift (does this feature reveal complexity the way neighboring features do?)
+3. **Identifique áreas de polimento**:
+   - Inconsistências visuais
+   - Problemas de espaçamento e alinhamento
+   - Lacunas em estados de interação
+   - Inconsistências de copy
+   - Casos extremos e estados de erro
+   - Suavidade de carregamento e transição
+   - Arquitetura de informação e deriva de fluxo (esta funcionalidade revela complexidade da mesma forma que funcionalidades vizinhas?)
 
-4. **Pull in any prior critique** (optional signal): If `{{command_prefix}}impeccable critique` has been run on the same target, its priority issues are a useful prior for what to address first. Resolve the target to a file path or URL, then:
+4. **Incorpore qualquer crítica prévia** (sinal opcional): Se `{{command_prefix}}impeccable critique` foi executado no mesmo alvo, seus problemas prioritários são um prévio útil para o que abordar primeiro. Resolva o alvo para um caminho de arquivo ou URL, então:
    ```bash
    slug=$(node {{scripts_path}}/critique-storage.mjs slug "<resolved>")
    node {{scripts_path}}/critique-storage.mjs latest "$slug"
    ```
-   Exit 0 with body = found; fold the P0/P1 items into your polish list and mention the snapshot path so the user sees what you read. Exit 2 = no snapshot, continue without it. The critique is one input among many. Do your own pass either way.
+   Exit 0 com body = encontrado; incorpore os itens P0/P1 à sua lista de polimento e mencione o caminho do snapshot para que o usuário veja o que você leu. Exit 2 = sem snapshot, continue sem isso. A crítica é uma entrada entre muitas. Faça sua própria passagem de qualquer forma.
 
-5. **Triage cosmetic vs functional**: Classify each issue as **cosmetic** (looks off, doesn't impede the user) or **functional** (breaks, blocks, or confuses the experience). When polish time is tight, functional issues ship first; cosmetic ones can land in a follow-up. Quality should be consistent; never perfect one corner while leaving another rough.
+5. **Triagem cosmético vs funcional**: Classifique cada problema como **cosmético** (parece estranho, não impede o usuário) ou **funcional** (quebra, bloqueia, ou confunde a experiência). Quando o tempo de polimento é curto, problemas funcionais são entregues primeiro; cosméticos podem vir em um follow-up. A qualidade deve ser consistente; nunca aperfeiçoe um canto enquanto deixa outro áspero.
 
-**CRITICAL**: Polish is the last step, not the first. Don't polish work that's not functionally complete.
+**CRÍTICO**: Polimento é o último passo, não o primeiro. Não pola trabalho que não está funcionalmente completo.
 
-## Polish Systematically
+## Pola Sistematicamente
 
-Work through these dimensions methodically:
+Trabalhe por estas dimensões metodicamente:
 
-### Visual Alignment & Spacing
+### Alinhamento Visual e Espaçamento
 
-- **Pixel-perfect alignment**: Everything lines up to grid
-- **Consistent spacing**: All gaps use spacing scale (no random 13px gaps)
-- **Optical alignment**: Adjust for visual weight (icons may need offset for optical centering)
-- **Responsive consistency**: Spacing and alignment work at all breakpoints
-- **Grid adherence**: Elements snap to baseline grid
+- **Alinhamento pixel-perfect**: Tudo se alinha ao grid
+- **Espaçamento consistente**: Todos os gaps usam a escala de espaçamento (sem gaps aleatórios de 13px)
+- **Alinhamento óptico**: Ajuste para peso visual (ícones podem precisar de offset para centralização óptica)
+- **Consistência responsiva**: Espaçamento e alinhamento funcionam em todos os breakpoints
+- **Adesão ao grid**: Elementos se encaixam ao grid de baseline
 
-**Check**:
-- Enable grid overlay and verify alignment
-- Check spacing with browser inspector
-- Test at multiple viewport sizes
-- Look for elements that "feel" off
+**Verifique**:
+- Ative overlay de grid e verifique alinhamento
+- Verifique espaçamento com o inspetor do navegador
+- Teste em múltiplos tamanhos de viewport
+- Procure elementos que "parecem" desalinhados
 
-### Information Architecture & Flow
+### Arquitetura de Informação e Fluxo
 
-Visual polish on a misshapen flow is wasted work. Match the *shape* of the experience to the system, not just the surface.
+Polimento visual em um fluxo malformado é trabalho desperdiçado. Corresponda a *forma* da experiência ao sistema, não apenas a superfície.
 
-- **Progressive disclosure**: Match how much is revealed when, compared to neighboring features. A settings page exposing 40 fields when the rest of the app reveals 5 at a time is drift, even if every field is perfectly styled.
-- **Established user flows**: Multi-step actions follow the same shape as comparable flows elsewhere: modal vs full-page, inline edit vs separate route, save-on-blur vs explicit submit, optimistic vs pessimistic updates.
-- **Hierarchy & complexity**: The same conceptual weight gets the same visual weight throughout. Primary actions don't become tertiary in one corner of the product, and tertiary actions don't shout.
-- **Empty, loading, and arrival transitions**: How content arrives, updates, and leaves matches how it does in adjacent features.
-- **Naming and mental model**: The feature uses the same nouns and verbs as the rest of the system. A "Workspace" here shouldn't be a "Project" three screens away.
+- **Disclosure progressivo**: Corresponda quanto é revelado e quando, comparado a funcionalidades vizinhas. Uma página de configurações expondo 40 campos quando o resto do app revela 5 de cada vez é deriva, mesmo que cada campo esteja perfeitamente estilizado.
+- **Fluxos de usuário estabelecidos**: Ações de múltiplas etapas seguem o mesmo formato que fluxos comparáveis em outro lugar: modal vs página inteira, edição inline vs rota separada, save-on-blur vs submit explícito, atualizações otimistas vs pessimistas.
+- **Hierarquia e complexidade**: O mesmo peso conceitual recebe o mesmo peso visual por toda a interface. Ações primárias não se tornam terciárias em um canto do produto, e ações terciárias não gritam.
+- **Transições de chegada, carregamento e partida vazias**: Como conteúdo chega, atualiza, e parte corresponde a como faz em funcionalidades adjacentes.
+- **Nomeação e modelo mental**: A funcionalidade usa os mesmos substantivos e verbos que o resto do sistema. Um "Workspace" aqui não deveria ser um "Project" três telas adiante.
 
-### Typography Refinement
+### Refinamento de Tipografia
 
-- **Hierarchy consistency**: Same elements use same sizes/weights throughout
-- **Line length**: 45-75 characters for body text
-- **Line height**: Appropriate for font size and context
-- **Widows & orphans**: No single words on last line
-- **Hyphenation**: Appropriate for language and column width
-- **Kerning**: Adjust letter spacing where needed (especially headlines)
-- **Font loading**: No FOUT/FOIT flashes
+- **Consistência de hierarquia**: Mesmos elementos usam mesmos tamanhos/pesos por toda a interface
+- **Comprimento de linha**: 45-75 caracteres para texto de corpo
+- **Altura de linha**: Apropriada para tamanho de fonte e contexto
+- **Viúvas e órfãs**: Sem palavras isoladas na última linha
+- **Hifenação**: Apropriada para idioma e largura de coluna
+- **Kerning**: Ajuste de letter-spacing onde necessário (especialmente manchetes)
+- **Carregamento de fontes**: Sem flashes FOUT/FOIT
 
-### Color & Contrast
+### Cor e Contraste
 
-- **Contrast ratios**: All text meets WCAG standards
-- **Consistent token usage**: No hard-coded colors, all use design tokens
-- **Theme consistency**: Works in all theme variants
-- **Color meaning**: Same colors mean same things throughout
-- **Accessible focus**: Focus indicators visible with sufficient contrast
-- **Tinted neutrals**: No pure gray or pure black; add subtle color tint (0.01 chroma)
-- **Gray on color**: Never put gray text on colored backgrounds; use a shade of that color or transparency
+- **Razões de contraste**: Todo texto atende aos padrões WCAG
+- **Uso consistente de tokens**: Sem cores fixas, todas usam design tokens
+- **Consistência de tema**: Funciona em todas as variantes de tema
+- **Significado de cor**: Mesmas cores significam mesmas coisas por toda a interface
+- **Foco acessível**: Indicadores de foco visíveis com contraste suficiente
+- **Neutros tingidos**: Sem cinza puro ou preto puro; adicione tingimento de cor sutil (0.01 chroma)
+- **Cinza sobre cor**: Nunca coloque texto cinza em fundos coloridos; use um tom daquela cor ou transparência
 
-### Interaction States
+### Estados de Interação
 
-Every interactive element needs all states:
+Todo elemento interativo precisa de todos os estados:
 
-- **Default**: Resting state
-- **Hover**: Subtle feedback (color, scale, shadow)
-- **Focus**: Keyboard focus indicator (never remove without replacement)
-- **Active**: Click/tap feedback
-- **Disabled**: Clearly non-interactive
-- **Loading**: Async action feedback
-- **Error**: Validation or error state
-- **Success**: Successful completion
+- **Default**: Estado de repouso
+- **Hover**: Feedback sutil (cor, escala, sombra)
+- **Focus**: Indicador de foco por teclado (nunca remova sem substituição)
+- **Active**: Feedback de clique/toque
+- **Disabled**: Claramente não interativo
+- **Loading**: Feedback de ação assíncrona
+- **Error**: Estado de validação ou erro
+- **Success**: Conclusão bem-sucedida
 
-**Missing states create confusion and broken experiences**.
+**Estados faltantes criam confusão e experiências quebradas**.
 
-### Micro-interactions & Transitions
+### Micro-interações e Transições
 
-- **Smooth transitions**: All state changes animated appropriately (150-300ms)
-- **Consistent easing**: Use ease-out-quart/quint/expo for natural deceleration. Never bounce or elastic; they feel dated.
-- **No jank**: Smooth animations; use atmospheric blur/filter/mask/shadow effects when they add polish, but bound expensive paint areas and avoid casual layout-property animation
-- **Appropriate motion**: Motion serves purpose, not decoration
-- **Reduced motion**: Respects `prefers-reduced-motion`
+- **Transições suaves**: Todas as mudanças de estado animadas apropriadamente (150-300ms)
+- **Easing consistente**: Use ease-out-quart/quint/expo para desaceleração natural. Nunca bounce ou elastic; parecem datados.
+- **Sem jank**: Animações suaves; use efeitos atmosféricos de blur/filtro/máscara/sombra quando adicionam polimento, mas limite áreas de paint pesadas e evite animação casual de propriedades de layout
+- **Movimento apropriado**: Movimento serve propósito, não decoração
+- **Movimento reduzido**: Respeita `prefers-reduced-motion`
 
-### Content & Copy
+### Conteúdo e Copy
 
-- **Consistent terminology**: Same things called same names throughout
-- **Consistent capitalization**: Title Case vs Sentence case applied consistently
-- **Grammar & spelling**: No typos
-- **Appropriate length**: Not too wordy, not too terse
-- **Punctuation consistency**: Periods on sentences, not on labels (unless all labels have them)
+- **Terminologia consistente**: Mesmas coisas chamadas pelos mesmos nomes por toda a interface
+- **Capitalização consistente**: Title Case vs Sentence case aplicada consistentemente
+- **Gramática e ortografia**: Sem erros de digitação
+- **Comprimento apropriado**: Nem prolixo, nem lacônico
+- **Consistência de pontuação**: Pontos em frases, não em rótulos (a menos que todos os rótulos tenham)
 
-### Icons & Images
+### Ícones e Imagens
 
-- **Consistent style**: All icons from same family or matching style
-- **Appropriate sizing**: Icons sized consistently for context
-- **Proper alignment**: Icons align with adjacent text optically
-- **Alt text**: All images have descriptive alt text
-- **Loading states**: Images don't cause layout shift, proper aspect ratios
-- **Retina support**: 2x assets for high-DPI screens
+- **Estilo consistente**: Todos os ícones da mesma família ou estilo compatível
+- **Dimensionamento adequado**: Ícones dimensionados consistentemente para o contexto
+- **Alinhamento adequado**: Ícones se alinham com texto adjacente opticamnte
+- **Texto alt**: Todas as imagens têm texto alt descritivo
+- **Estados de carregamento**: Imagens não causam layout shift, aspect ratios adequados
+- **Suporte Retina**: Assets 2x para telas de alto DPI
 
-### Forms & Inputs
+### Formulários e Inputs
 
-- **Label consistency**: All inputs properly labeled
-- **Required indicators**: Clear and consistent
-- **Error messages**: Helpful and consistent
-- **Tab order**: Logical keyboard navigation
-- **Auto-focus**: Appropriate (don't overuse)
-- **Validation timing**: Consistent (on blur vs on submit)
+- **Consistência de rótulos**: Todos os inputs propriamente rotulados
+- **Indicadores de obrigatório**: Claros e consistentes
+- **Mensagens de erro**: Úteis e consistentes
+- **Ordem de tabulação**: Navegação por teclado lógica
+- **Auto-foco**: Apropriado (não exagere)
+- **Timing de validação**: Consistente (on blur vs on submit)
 
-### Edge Cases & Error States
+### Casos Extremos e Estados de Erro
 
-- **Loading states**: All async actions have loading feedback
-- **Empty states**: Helpful empty states, not just blank space
-- **Error states**: Clear error messages with recovery paths
-- **Success states**: Confirmation of successful actions
-- **Long content**: Handles very long names, descriptions, etc.
-- **No content**: Handles missing data gracefully
-- **Offline**: Appropriate offline handling (if applicable)
+- **Estados de carregamento**: Todas as ações assíncronas têm feedback de carregamento
+- **Estados vazios**: Estados vazios úteis, não apenas espaço em branco
+- **Estados de erro**: Mensagens de erro claras com caminhos de recuperação
+- **Estados de sucesso**: Confirmação de ações bem-sucedidas
+- **Conteúdo longo**: Lida com nomes, descrições, etc. muito longos
+- **Sem conteúdo**: Lida com dados ausentes graciosamente
+- **Offline**: Tratamento offline apropriado (se aplicável)
 
-### Responsiveness
+### Responsividade
 
-- **All breakpoints**: Test mobile, tablet, desktop
-- **Touch targets**: 44x44px minimum on touch devices
-- **Readable text**: No text smaller than 14px on mobile
-- **No horizontal scroll**: Content fits viewport
-- **Appropriate reflow**: Content adapts logically
+- **Todos os breakpoints**: Teste mobile, tablet, desktop
+- **Alvos de toque**: 44x44px mínimo em dispositivos touch
+- **Texto legível**: Nenhum texto menor que 14px em mobile
+- **Sem scroll horizontal**: Conteúdo cabe no viewport
+- **Refluxo apropriado**: Conteúdo se adapta logicamente
 
 ### Performance
 
-- **Fast initial load**: Optimize critical path
-- **No layout shift**: Elements don't jump after load (CLS)
-- **Smooth interactions**: No lag or jank
-- **Optimized images**: Appropriate formats and sizes
-- **Lazy loading**: Off-screen content loads lazily
+- **Carregamento inicial rápido**: Otimize caminho crítico
+- **Sem layout shift**: Elementos não pulam após carregar (CLS)
+- **Interações suaves**: Sem lag ou jank
+- **Imagens otimizadas**: Formatos e tamanhos apropriados
+- **Lazy loading**: Conteúdo fora da tela carrega sob demanda
 
-### Code Quality
+### Qualidade do Código
 
-- **Remove console logs**: No debug logging in production
-- **Remove commented code**: Clean up dead code
-- **Remove unused imports**: Clean up unused dependencies
-- **Consistent naming**: Variables and functions follow conventions
-- **Type safety**: No TypeScript `any` or ignored errors
-- **Accessibility**: Proper ARIA labels and semantic HTML
+- **Remova console logs**: Sem log de debug em produção
+- **Remova código comentado**: Limpe código morto
+- **Remova imports não utilizados**: Limpe dependências não usadas
+- **Nomenclatura consistente**: Variáveis e funções seguem convenções
+- **Segurança de tipos**: Sem `any` do TypeScript ou erros ignorados
+- **Acessibilidade**: Rótulos ARIA adequados e HTML semântico
 
-## Polish Checklist
+## Checklist de Polimento
 
-Go through systematically:
+Passe sistematicamente:
 
-- [ ] Aligned to the design system (drift named and resolved by root cause)
-- [ ] Information architecture and flow shape match neighboring features
-- [ ] Visual alignment perfect at all breakpoints
-- [ ] Spacing uses design tokens consistently
-- [ ] Typography hierarchy consistent
-- [ ] All interactive states implemented
-- [ ] All transitions smooth (60fps)
-- [ ] Copy is consistent and polished
-- [ ] Icons are consistent and properly sized
-- [ ] All forms properly labeled and validated
-- [ ] Error states are helpful
-- [ ] Loading states are clear
-- [ ] Empty states are welcoming
-- [ ] Touch targets are 44x44px minimum
-- [ ] Contrast ratios meet WCAG AA
-- [ ] Keyboard navigation works
-- [ ] Focus indicators visible
-- [ ] No console errors or warnings
-- [ ] No layout shift on load
-- [ ] Works in all supported browsers
-- [ ] Respects reduced motion preference
-- [ ] Code is clean (no TODOs, console.logs, commented code)
+- [ ] Alinhado ao design system (deriva nomeada e resolvida por causa raiz)
+- [ ] Arquitetura de informação e formato de fluxo correspondem a funcionalidades vizinhas
+- [ ] Alinhamento visual perfeito em todos os breakpoints
+- [ ] Espaçamento usa design tokens consistentemente
+- [ ] Hierarquia tipográfica consistente
+- [ ] Todos os estados interativos implementados
+- [ ] Todas as transições suaves (60fps)
+- [ ] Copy é consistente e polido
+- [ ] Ícones são consistentes e propriamente dimensionados
+- [ ] Todos os formulários propriamente rotulados e validados
+- [ ] Estados de erro são úteis
+- [ ] Estados de carregamento são claros
+- [ ] Estados vazios são acolhedores
+- [ ] Alvos de toque são 44x44px mínimo
+- [ ] Razões de contraste atendem WCAG AA
+- [ ] Navegação por teclado funciona
+- [ ] Indicadores de foco visíveis
+- [ ] Sem erros ou avisos no console
+- [ ] Sem layout shift ao carregar
+- [ ] Funciona em todos os navegadores suportados
+- [ ] Respeita preferência de movimento reduzido
+- [ ] Código está limpo (sem TODOs, console.logs, código comentado)
 
-**IMPORTANT**: Polish is about details. Zoom in. Squint at it. Use it yourself. The little things add up.
+**IMPORTANTE**: Polimento é sobre detalhes. Amplie. Cerre os olhos. Use você mesmo. As pequenas coisas se somam.
 
-Sweat the details. Zoom in until the alignment is right and the spacing reads as deliberate. Then ship.
+Transpire os detalhes. Amplie até o alinhamento estar certo e o espaçamento ler como deliberado. Então entregue.
 
-**NEVER**:
-- Polish before it's functionally complete
-- Polish without aligning to the design system; that's decoration on drift
-- Guess at design system principles instead of asking when something is ambiguous
-- Spend hours on polish if it ships in 30 minutes (triage)
-- Introduce bugs while polishing (test thoroughly)
-- Ignore systematic issues (if spacing is off everywhere, fix the system, not just one screen)
-- Perfect one thing while leaving others rough (consistent quality level)
-- Create new one-off components when design system equivalents exist
-- Hard-code values that should use design tokens
-- Introduce new patterns or flows that diverge from established ones
+**NUNCA**:
+- Pola antes de estar funcionalmente completo
+- Pola sem alinhar ao design system; isso é decoração sobre deriva
+- Adivinhe princípios de design system em vez de perguntar quando algo é ambíguo
+- Gaste horas em polimento se lança em 30 minutos (faça triagem)
+- Introduza bugs enquanto pola (teste minuciosamente)
+- Ignore problemas sistemáticos (se espaçamento está errado em todo lugar, corrija o sistema, não apenas uma tela)
+- Aperfeiçoe uma coisa enquanto deixa outras ásperas (nível de qualidade consistente)
+- Crie novos componentes ad-hoc quando equivalentes do design system existem
+- Fixe valores que deveriam usar design tokens
+- Introduza novos padrões ou fluxos que divergem dos estabelecidos
 
-## Final Verification
+## Verificação Final
 
-Before marking as done:
+Antes de marcar como concluído:
 
-- **Use it yourself**: Actually interact with the feature.
-- **Test on real devices**: Not just browser DevTools.
-- **Ask someone else to review**: Fresh eyes catch things.
-- **Compare to design**: Match intended design.
-- **Check all states**: Don't just test happy path.
-- **Treat automation carefully**: Run detector or QA commands when they are available and relevant, fix their defects, but never cite a clean result as proof that the work is polished.
+- **Use você mesmo**: Interaja realmente com a funcionalidade.
+- **Teste em dispositivos reais**: Não apenas DevTools do navegador.
+- **Peça para alguém mais revisar**: Olhos frescos capturam coisas.
+- **Compare com o design**: Corresponda ao design pretendido.
+- **Verifique todos os estados**: Não teste apenas o caminho feliz.
+- **Trate automação com cuidado**: Execute comandos de detector ou QA quando estiverem disponíveis e relevantes, corrija seus defeitos, mas nunca cite um resultado limpo como prova de que o trabalho está polido.
 
-## Clean Up
+## Limpeza
 
-After polishing, ensure code quality:
+Após polir, garanta qualidade de código:
 
-- **Replace custom implementations**: If the design system provides a component you reimplemented, switch to the shared version.
-- **Remove orphaned code**: Delete unused styles, components, or files made obsolete by polish.
-- **Consolidate tokens**: If you introduced new values, check whether they should be tokens.
-- **Verify DRYness**: Look for duplication introduced during polishing and consolidate.
+- **Substitua implementações customizadas**: Se o design system fornece um componente que você reimplementou, troque para a versão compartilhada.
+- **Remova código órfão**: Delete estilos, componentes, ou arquivos obsoletos pelo polimento.
+- **Consolide tokens**: Se introduziu novos valores, verifique se deveriam ser tokens.
+- **Verifique DRYness**: Procure duplicação introduzida durante o polimento e consolide.

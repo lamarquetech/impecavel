@@ -1,83 +1,83 @@
 ---
-title: Getting started
-tagline: "From zero to your first polish pass in five minutes."
+title: Primeiros passos
+tagline: "Do zero à sua primeira passada de polish em cinco minutos."
 order: 1
-description: "Install Impeccable, run /impeccable teach once to establish project context, and run /impeccable polish on something that already exists. The fastest path to seeing what Impeccable changes about AI-generated design."
+description: "Instale o Impeccable, execute /impeccable teach uma vez para estabelecer o contexto do projeto, e execute /impeccable polish em algo que já existe. O caminho mais rápido para ver o que o Impeccable muda sobre design gerado por IA."
 ---
 
-## What you'll build
+## O que você vai construir
 
-You will end this tutorial with Impeccable installed in your project, a `PRODUCT.md` plus `DESIGN.md` pair that captures your brand, audience, and visual system, and one hand-polished page that went through a polish pass. Total time: about ten minutes.
+Você vai terminar este tutorial com o Impeccable instalado no seu projeto, um par `PRODUCT.md` + `DESIGN.md` que captura sua marca, público e sistema visual, e uma página polida manualmente que passou por uma passada de polish. Tempo total: cerca de dez minutos.
 
-## Prerequisites
+## Pré-requisitos
 
-- An AI coding harness: Claude Code, Cursor, Gemini CLI, Codex CLI, or any of the other supported tools.
-- A project with at least one HTML or component file you want to improve. A fresh scaffolded landing page works fine.
+- Um harness de codificação por IA: Claude Code, Cursor, Gemini CLI, Codex CLI, ou qualquer outra ferramenta suportada.
+- Um projeto com pelo menos um arquivo HTML ou componente que você quer melhorar. Uma landing page recém-criada via scaffold funciona bem.
 
-## How Impeccable works
+## Como o Impeccable funciona
 
-Impeccable installs as a single agent skill called `impeccable`. You access all 23 sub-commands through it:
+O Impeccable instala como uma única agent skill chamada `impeccable`. Você acessa todos os 23 sub-comandos através dela:
 
 ```
 /impeccable <command> <target>
 ```
 
-For example: `/impeccable polish the pricing page`, or `/impeccable audit the checkout`. Type `/impeccable` alone to see the full list.
+Por exemplo: `/impeccable polish the pricing page`, ou `/impeccable audit the checkout`. Digite `/impeccable` sozinho para ver a lista completa.
 
-If you use a command often, pin it with `/impeccable pin <command>` to create a standalone shortcut (for example, `/impeccable pin audit` gives you `/audit` directly).
+Se você usa um comando com frequência, fixe-o com `/impeccable pin <command>` para criar um atalho standalone (por exemplo, `/impeccable pin audit` dá a você `/audit` diretamente).
 
-## Step 1. Install
+## Passo 1. Instale
 
-From the root of your project, run:
+A partir da raiz do seu projeto, execute:
 
 ```
 npx skills add pbakaus/impeccable
 ```
 
-This auto-detects your harness and writes the skill files to the right location (e.g., `.claude/skills/`, `.cursor/skills/`). Reload your harness and type `/`. You should see `/impeccable` in the autocomplete. Type it and the skill's argument hint will show all available commands.
+Isso auto-detecta seu harness e escreve os arquivos da skill no local correto (ex.: `.claude/skills/`, `.cursor/skills/`). Recarregue seu harness e digite `/`. Você deverá ver `/impeccable` no autocomplete. Digite-o e a dica de argumentos da skill vai mostrar todos os comandos disponíveis.
 
-## Step 2. Teach Impeccable about your project
+## Passo 2. Ensine o Impeccable sobre seu projeto
 
-This is the most important step. Design without context produces generic output. The `/impeccable teach` command runs a short discovery interview and writes a `PRODUCT.md` file at the root of your project.
+Este é o passo mais importante. Design sem contexto produz saída genérica. O comando `/impeccable teach` executa uma breve entrevista de discovery e escreve um arquivo `PRODUCT.md` na raiz do seu projeto.
 
-Run:
+Execute:
 
 ```
 /impeccable teach
 ```
 
-The first question is about **register**: is this a brand surface (marketing site, landing page, portfolio, where design IS the product) or a product surface (app UI, dashboard, tools, where design SERVES the product)? Register shapes every downstream default, from type lanes to motion energy. See [brand vs product](/tutorials/brand-vs-product) for how the two diverge. Teach will form a hypothesis from your codebase and ask you to confirm, rather than starting cold.
+A primeira pergunta é sobre **register**: esta é uma superfície de brand (site de marketing, landing page, portfólio, onde o design É o produto) ou uma superfície de product (app UI, dashboard, ferramentas, onde o design SERVE ao produto)? Register molda cada default subsequente, de pistas tipográficas a energia de motion. Veja [brand vs product](/tutorials/brand-vs-product) para como os dois divergem. Teach vai formar uma hipótese a partir do seu codebase e pedir confirmação, em vez de começar do zero.
 
-Then a handful of shorter questions:
+Depois um punhado de perguntas mais curtas:
 
-- **Who is this product for?** Be specific. Not "users" but "solo founders evaluating a new tool on their phone between meetings".
-- **What is the brand voice in three words?** Pick real words. "Warm and mechanical and opinionated" is better than "modern and clean".
-- **Any visual references?** Named brands, products, or printed objects, not adjectives. "Klim Type Foundry specimen pages", not "technical and clean".
-- **Anti-references?** Things the product should explicitly not look like, equally named.
+- **Para quem é este produto?** Seja específico. Não "usuários" mas "founders solo avaliando uma nova ferramenta no celular entre reuniões".
+- **Qual é a voz da marca em três palavras?** Escolha palavras reais. "Acolhedor e mecânico e opinativo" é melhor que "moderno e limpo".
+- **Algumas referências visuais?** Marcas nomeadas, produtos ou objetos impressos, não adjetivos. "Páginas de espécime do Klim Type Foundry", não "técnico e limpo".
+- **Anti-referências?** Coisas que o produto explicitamente não deve parecer, igualmente nomeadas.
 
-Answer in your own words. The skill writes `PRODUCT.md` with the answers. Every future command run reads it automatically.
+Responda com suas próprias palavras. A skill escreve `PRODUCT.md` com as respostas. Cada execução futura de comando o lê automaticamente.
 
-Open `PRODUCT.md` and read what it wrote. Edit anything that does not feel right. The file is yours.
+Abra `PRODUCT.md` e leia o que foi escrito. Edite qualquer coisa que não pareça certa. O arquivo é seu.
 
-## Step 2.5. Capture the visual system
+## Passo 2.5. Capture o sistema visual
 
-At the end of `/impeccable teach`, the skill offers to run `/impeccable document` for you. Say yes. It scans your tokens (CSS custom properties, Tailwind config, CSS-in-JS themes), extracts colors and typography, asks one grouped question for the parts that need creative input (a Creative North Star, descriptive color names), and writes a `DESIGN.md` that follows the [Google Stitch DESIGN.md format](https://stitch.withgoogle.com/docs/design-md/format/).
+No final de `/impeccable teach`, a skill oferece executar `/impeccable document` para você. Diga sim. Ele escaneia seus tokens (CSS custom properties, configuração Tailwind, temas CSS-in-JS), extrai cores e tipografia, faz uma pergunta agrupada para as partes que precisam de input criativo (uma Creative North Star, nomes descritivos de cores), e escreve um `DESIGN.md` que segue o [formato Google Stitch DESIGN.md](https://stitch.withgoogle.com/docs/design-md/format/).
 
-On a fresh project with no tokens yet, document runs in seed mode: five quick questions about color strategy, type direction, and motion energy, and writes a scaffold you can refresh once there is code.
+Em um projeto novo sem tokens ainda, document roda em modo seed: cinco perguntas rápidas sobre estratégia de cor, direção de tipo e energia de motion, e escreve um scaffold que você pode atualizar assim que houver código.
 
-`PRODUCT.md` carries strategy (who, what, why). `DESIGN.md` carries visuals (colors, typography, components). Every command reads both before generating.
+`PRODUCT.md` carrega estratégia (quem, o quê, por quê). `DESIGN.md` carrega visuais (cores, tipografia, componentes). Cada comando lê ambos antes de gerar.
 
-## Step 3. Polish something
+## Passo 3. Polir algo
 
-Pick a page that already exists. An about page, a settings screen, a pricing table, anything. Run:
+Escolha uma página que já existe. Uma página sobre, uma tela de configurações, uma tabela de preços, qualquer coisa. Execute:
 
 ```
 /impeccable polish the pricing page
 ```
 
-The skill will walk through alignment, spacing, typography, color, interaction states, transitions, and copy. It makes targeted fixes, not a rewrite. Expect a handful of small diffs that together lift the page from "done" to "done well".
+A skill vai percorrer alinhamento, espaçamento, tipografia, cor, estados de interação, transições e copy. Ela faz correções direcionadas, não uma reescrita. Espere um punhado de diffs pequenos que juntos elevam a página de "pronta" para "bem feita".
 
-A typical polish pass looks like:
+Uma passada de polish típica se parece com:
 
 ```
 Visual alignment: fixed 3 off-grid elements
@@ -88,19 +88,19 @@ Motion: softened modal entrance to 220ms ease-out-quart
 Copy: removed stray 'Lorem' placeholder
 ```
 
-Review the diff. If something does not feel right, ask the model to explain the change. If it still does not feel right, revert it. Impeccable is opinionated but not infallible.
+Revise o diff. Se algo não parece certo, peça ao modelo para explicar a mudança. Se ainda não parece certo, reverta. O Impeccable é opinativo mas não infalível.
 
-## What to try next
+## O que tentar a seguir
 
-- [Iterate visually with Live Mode](/tutorials/iterate-live) opens a browser picker on your dev server, generates three production-quality variants per element, and writes the accepted one back to source.
-- `/impeccable critique the landing page` runs a full design review with scoring, persona tests, and automated detection. It is the best way to find what to fix next.
-- `/impeccable audit the checkout` runs accessibility, performance, theming, responsive, and anti-pattern checks against the implementation. Useful before shipping.
-- `/impeccable craft a pricing page for enterprise customers` runs the full shape-then-build flow on a brand new feature.
-- **Pin your favorites.** If you reach for one command constantly, `/impeccable pin audit` makes `/audit` work as a standalone shortcut without reversing the consolidation.
-- `/impeccable redo this hero section` works too. Any description after `/impeccable` applies the design principles to the task.
+- [Itere visualmente com Live Mode](/tutorials/iterate-live) abre um picker no navegador no seu dev server, gera três variantes de qualidade de produção por elemento, e escreve a aceita de volta no código-fonte.
+- `/impeccable critique the landing page` executa uma review de design completa com pontuação, testes de persona e detecção automatizada. É a melhor forma de encontrar o que corrigir a seguir.
+- `/impeccable audit the checkout` executa verificações de acessibilidade, performance, theming, responsivo e anti-patterns contra a implementação. Útil antes de fazer deploy.
+- `/impeccable craft a pricing page for enterprise customers` executa o fluxo completo de shape-then-build em uma funcionalidade nova.
+- **Fixe seus favoritos.** Se você recorre constantemente a um comando, `/impeccable pin audit` faz `/audit` funcionar como atalho standalone sem reverter a consolidação.
+- `/impeccable redo this hero section` também funciona. Qualquer descrição após `/impeccable` aplica os princípios de design à tarefa.
 
-## Common issues
+## Problemas comuns
 
-- **The skill says "no design context found"**. You skipped step 2. Run `/impeccable teach` first.
-- **Commands do not appear in the harness**. Reload the harness after installing. If they still do not appear, check that the installer wrote files into the expected location (`.claude/skills/`, `.cursor/skills/`, etc.) and that your harness is picking up that directory.
-- **The polish pass rewrote something you liked**. Say so. Revert the change, tell the model which specific edit to undo, and continue from there.
+- **A skill diz "no design context found"**. Você pulou o passo 2. Execute `/impeccable teach` primeiro.
+- **Comandos não aparecem no harness**. Recarregue o harness após instalar. Se ainda não aparecem, verifique se o instalador escreveu arquivos no local esperado (`.claude/skills/`, `.cursor/skills/`, etc.) e se seu harness está lendo aquele diretório.
+- **A passada de polish reescreveu algo que você gostava**. Diga isso. Reverta a mudança, diga ao modelo qual edição específica desfazer, e continue a partir daí.

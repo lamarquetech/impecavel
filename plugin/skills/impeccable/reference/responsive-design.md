@@ -1,44 +1,44 @@
-# Responsive Design
+# Design Responsivo
 
-## Mobile-First: Write It Right
+## Mobile-First: Escreva Certo
 
-Start with base styles for mobile, use `min-width` queries to layer complexity. Desktop-first (`max-width`) means mobile loads unnecessary styles first.
+Comece com estilos base para mobile, use queries `min-width` para adicionar complexidade em camadas. Desktop-first (`max-width`) significa que mobile carrega estilos desnecessários primeiro.
 
-## Breakpoints: Content-Driven
+## Breakpoints: Orientados pelo Conteúdo
 
-Don't chase device sizes; let content tell you where to break. Start narrow, stretch until design breaks, add breakpoint there. Three breakpoints usually suffice (640, 768, 1024px). Use `clamp()` for fluid values without breakpoints.
+Não persiga tamanhos de dispositivos; deixe o conteúdo dizer onde quebrar. Comece estreito, estique até o design quebrar, adicione breakpoint ali. Três breakpoints geralmente bastam (640, 768, 1024px). Use `clamp()` para valores fluidos sem breakpoints.
 
-## Detect Input Method, Not Just Screen Size
+## Detecte o Método de Entrada, Não Apenas o Tamanho da Tela
 
-**Screen size doesn't tell you input method.** A laptop with touchscreen, a tablet with keyboard. Use pointer and hover queries:
+**Tamanho de tela não diz o método de entrada.** Um laptop com touchscreen, um tablet com teclado. Use queries de pointer e hover:
 
 ```css
-/* Fine pointer (mouse, trackpad) */
+/* Ponteiro fino (mouse, trackpad) */
 @media (pointer: fine) {
   .button { padding: 8px 16px; }
 }
 
-/* Coarse pointer (touch, stylus) */
+/* Ponteiro grosso (toque, caneta) */
 @media (pointer: coarse) {
-  .button { padding: 12px 20px; }  /* Larger touch target */
+  .button { padding: 12px 20px; }  /* Alvo de toque maior */
 }
 
-/* Device supports hover */
+/* Dispositivo suporta hover */
 @media (hover: hover) {
   .card:hover { transform: translateY(-2px); }
 }
 
-/* Device doesn't support hover (touch) */
+/* Dispositivo não suporta hover (toque) */
 @media (hover: none) {
-  .card { /* No hover state - use active instead */ }
+  .card { /* Sem estado de hover - use active em vez disso */ }
 }
 ```
 
-**Critical**: Don't rely on hover for functionality. Touch users can't hover.
+**Crítico**: Não dependa de hover para funcionalidade. Usuários de toque não podem fazer hover.
 
-## Safe Areas: Handle the Notch
+## Áreas Seguras: Lide com o Notch
 
-Modern phones have notches, rounded corners, and home indicators. Use `env()`:
+Telefones modernos têm notches, cantos arredondados e indicadores de home. Use `env()`:
 
 ```css
 body {
@@ -48,20 +48,20 @@ body {
   padding-right: env(safe-area-inset-right);
 }
 
-/* With fallback */
+/* Com fallback */
 .footer {
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 ```
 
-**Enable viewport-fit** in your meta tag:
+**Ative viewport-fit** na sua meta tag:
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 ```
 
-## Responsive Images: Get It Right
+## Imagens Responsivas: Faça Certo
 
-### srcset with Width Descriptors
+### srcset com Descritores de Largura
 
 ```html
 <img
@@ -72,18 +72,18 @@ body {
     hero-1200.jpg 1200w
   "
   sizes="(max-width: 768px) 100vw, 50vw"
-  alt="Hero image"
+  alt="Imagem hero"
 >
 ```
 
-**How it works**:
-- `srcset` lists available images with their actual widths (`w` descriptors)
-- `sizes` tells the browser how wide the image will display
-- Browser picks the best file based on viewport width AND device pixel ratio
+**Como funciona**:
+- `srcset` lista imagens disponíveis com suas larguras reais (descritores `w`)
+- `sizes` diz ao navegador quão larga a imagem será exibida
+- O navegador escolhe o melhor arquivo com base na largura do viewport E na proporção de pixels do dispositivo
 
-### Picture Element for Art Direction
+### Elemento Picture para Direção de Arte
 
-When you need different crops/compositions (not just resolutions):
+Quando você precisa de recortes/composições diferentes (não apenas resoluções):
 
 ```html
 <picture>
@@ -93,22 +93,22 @@ When you need different crops/compositions (not just resolutions):
 </picture>
 ```
 
-## Layout Adaptation Patterns
+## Padrões de Adaptação de Layout
 
-**Navigation**: Three stages: hamburger + drawer on mobile, horizontal compact on tablet, full with labels on desktop. **Tables**: Transform to cards on mobile using `display: block` and `data-label` attributes. **Progressive disclosure**: Use `<details>/<summary>` for content that can collapse on mobile.
+**Navegação**: Três estágios: hamburger + drawer no mobile, horizontal compacto no tablet, completa com rótulos no desktop. **Tabelas**: Transforme em cards no mobile usando `display: block` e atributos `data-label`. **Divulgação progressiva**: Use `<details>/<summary>` para conteúdo que pode colapsar no mobile.
 
-## Testing: Don't Trust DevTools Alone
+## Testes: Não Confie Apenas no DevTools
 
-DevTools device emulation is useful for layout but misses:
+A emulação de dispositivos do DevTools é útil para layout mas perde:
 
-- Actual touch interactions
-- Real CPU/memory constraints
-- Network latency patterns
-- Font rendering differences
-- Browser chrome/keyboard appearances
+- Interações de toque reais
+- Restrições reais de CPU/memória
+- Padrões de latência de rede
+- Diferenças de renderização de fontes
+- Aparências de chrome do navegador/teclado
 
-**Test on at least**: One real iPhone, one real Android, a tablet if relevant. Cheap Android phones reveal performance issues you'll never see on simulators.
+**Teste pelo menos em**: Um iPhone real, um Android real, um tablet se relevante. Androids baratos revelam problemas de desempenho que você nunca verá em simuladores.
 
 ---
 
-**Avoid**: Desktop-first design. Device detection instead of feature detection. Separate mobile/desktop codebases. Ignoring tablet and landscape. Assuming all mobile devices are powerful.
+**Evite**: Design desktop-first. Detecção de dispositivo em vez de detecção de funcionalidade. Codebases separados para mobile/desktop. Ignorar tablet e landscape. Assumir que todos os dispositivos mobile são potentes.

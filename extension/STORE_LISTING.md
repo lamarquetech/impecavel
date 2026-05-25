@@ -1,63 +1,63 @@
-# Chrome Web Store Listing
+# Listagem na Chrome Web Store
 
-## Name
+## Nome
 Impeccable
 
-## Short description (132 chars max)
-Detect AI slop and design anti-patterns in any web page. Open DevTools and see what needs fixing.
+## Descrição curta (máx. 132 caracteres)
+Detecte sinais de IA e antipadrões de design em qualquer página web. Abra o DevTools e veja o que precisa ser corrigido.
 
-## Detailed description
+## Descrição detalhada
 
-Impeccable detects 24 common UI anti-patterns directly in your browser. Open DevTools on any page and overlays instantly highlight issues, from AI-generated design tells to accessibility and quality problems.
+Impeccable detecta 24 antipadrões comuns de UI diretamente no seu navegador. Abra o DevTools em qualquer página e sobreposições destacam instantaneamente os problemas, desde marcas de design geradas por IA até problemas de acessibilidade e qualidade.
 
-WHAT IT DETECTS
+O QUE ELE DETECTA
 
-AI slop (design tells that scream "AI made this"):
-- Side-tab accent borders
-- Gradient text on headings
-- Purple/violet AI color palettes
-- Nested cards, monotonous spacing
-- Bounce/elastic easing
-- Dark mode with glowing accents
-- Overused fonts, flat type hierarchy
+Sinais de IA (marcas de design que gritam "IA fez isso"):
+- Bordas de destaque em abas laterais
+- Texto com gradiente em títulos
+- Paletas de cores IA em roxo/violeta
+- Cards aninhados, espaçamento monótono
+- Easing bounce/elástico
+- Modo escuro com destaques brilhantes
+- Fontes superutilizadas, hierarquia tipográfica plana
 
-Quality issues (general design and accessibility):
-- Low contrast text (WCAG AA)
-- Cramped padding, tight line height
-- Skipped heading levels
-- Line length too long
-- Tiny body text, justified text
-- Layout property animations
+Problemas de qualidade (design geral e acessibilidade):
+- Texto com baixo contraste (WCAG AA)
+- Padding reduzido, altura de linha apertada
+- Níveis de headings pulados
+- Comprimento de linha excessivo
+- Texto do corpo minúsculo, texto justificado
+- Animações de propriedades de layout
 
-HOW IT WORKS
+COMO FUNCIONA
 
-1. Install the extension
-2. Open DevTools on any page (Cmd+Opt+I / F12)
-3. Overlays appear automatically, highlighting issues
-4. Click the "Impeccable" panel tab for a structured list of all findings
-5. Click any finding to jump to the element in the Elements panel
+1. Instale a extensão
+2. Abra o DevTools em qualquer página (Cmd+Opt+I / F12)
+3. Sobreposições aparecem automaticamente, destacando os problemas
+4. Clique na aba do painel "Impeccable" para uma lista estruturada de todos os resultados
+5. Clique em qualquer resultado para ir ao elemento no painel Elements
 
-FEATURES
+FUNCIONALIDADES
 
-- Auto-scans when DevTools opens, no manual step needed
-- Grouped findings: AI tells vs. quality issues
-- Click-to-inspect: jump from a finding to the element
-- Toggle overlays on/off from the panel or toolbar popup
-- Per-rule settings: disable detections you don't care about
-- Re-scans on navigation, including SPA route changes
-- Works on any website
-- Runs 100% locally, no data sent anywhere
+- Escaneamento automático ao abrir o DevTools, sem passo manual necessário
+- Resultados agrupados: sinais de IA vs. problemas de qualidade
+- Clique para inspecionar: vá de um resultado ao elemento
+- Alternar sobreposições ligado/desligado pelo painel ou popup da barra de ferramentas
+- Configurações por regra: desative detecções que não te interessam
+- Reescaneamento na navegação, incluindo mudanças de rota em SPAs
+- Funciona em qualquer site
+- Executa 100% localmente, nenhum dado é enviado
 
-Open source at https://github.com/pbakaus/impeccable
+Código aberto em https://github.com/pbakaus/impeccable
 
-## Category
-Developer Tools
+## Categoria
+Ferramentas de Desenvolvimento
 
-## Language
-English
+## Idioma
+Português (Brasil)
 
-## Privacy policy URL
+## URL da política de privacidade
 https://impeccable.style/privacy
 
-## Single purpose description
-Detects and highlights UI anti-patterns (AI-generated design tells and general quality issues) on any web page.
+## Descrição de propósito único
+Detecta e destaca antipadrões de UI (marcas de design geradas por IA e problemas gerais de qualidade) em qualquer página web.

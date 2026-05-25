@@ -1,124 +1,124 @@
-Typography carries most of the information on the page. Replace generic defaults (Inter, Roboto, system fallback at flat scale) with type that reflects the brand and scales with intentional contrast.
+Tipografia carrega a maior parte da informação na página. Substitua padrões genéricos (Inter, Roboto, fallback de sistema em escala plana) por tipo que reflete a marca e escala com contraste intencional.
 
 ---
 
-## Register
+## Registro
 
-Brand: run the font selection procedure in [brand.md](brand.md). Pairing follows the brand's lane (display serif + sans body for editorial/luxury, one committed sans for tech, etc.). Fluid `clamp()` scale, ≥1.25 ratio between steps.
+Brand: execute o procedimento de seleção de fontes em [brand.md](brand.md). O pairing segue a faixa da marca (serif display + sans body para editorial/luxo, uma sans comprometida para tech, etc.). Escala fluida com `clamp()`, razão ≥1.25 entre degraus.
 
-Product: system fonts and familiar sans stacks are legitimate here. One well-tuned family typically carries the whole UI. Fixed `rem` scale, 1.125–1.2 ratio between more closely-spaced steps.
+Product: fontes de sistema e stacks sans familiares são legítimas aqui. Uma família bem ajustada tipicamente carrega toda a UI. Escala `rem` fixa, razão 1.125–1.2 entre degraus mais próximos.
 
 ---
 
-## Assess Current Typography
+## Avalie a Tipografia Atual
 
-Analyze what's weak or generic about the current type:
+Analise o que está fraco ou genérico no tipo atual:
 
-1. **Font choices**:
-   - Are we using invisible defaults? (Inter, Roboto, Arial, Open Sans, system defaults)
-   - Does the font match the brand personality? (A playful brand shouldn't use a corporate typeface)
-   - Are there too many font families? (More than 2-3 is almost always a mess)
+1. **Escolhas de fontes**:
+   - Estamos usando padrões invisíveis? (Inter, Roboto, Arial, Open Sans, padrões do sistema)
+   - A fonte corresponde à personalidade da marca? (Uma marca lúdica não deveria usar uma tipografia corporativa)
+   - Há muitas famílias de fontes? (Mais que 2-3 é quase sempre uma bagunça)
 
-2. **Hierarchy**:
-   - Can you tell headings from body from captions at a glance?
-   - Are font sizes too close together? (14px, 15px, 16px = muddy hierarchy)
-   - Are weight contrasts strong enough? (Medium vs Regular is barely visible)
+2. **Hierarquia**:
+   - Você consegue distinguir headings de body de captions de relance?
+   - Os tamanhos de fonte estão muito próximos? (14px, 15px, 16px = hierarquia turva)
+   - Os contrastes de peso são suficientemente fortes? (Medium vs Regular é quase imperceptível)
 
-3. **Sizing & scale**:
-   - Is there a consistent type scale, or are sizes arbitrary?
-   - Does body text meet minimum readability? (16px+)
-   - Is the sizing strategy appropriate for the context? (Fixed `rem` scales for app UIs; fluid `clamp()` for marketing/content page headings)
+3. **Dimensionamento e escala**:
+   - Existe uma escala de tipo consistente, ou os tamanhos são arbitrários?
+   - O texto de corpo atende o mínimo de legibilidade? (16px+)
+   - A estratégia de dimensionamento é apropriada para o contexto? (Escalas `rem` fixas para UIs de app; `clamp()` fluido para headings de páginas de marketing/conteúdo)
 
-4. **Readability**:
-   - Are line lengths comfortable? (45-75 characters ideal)
-   - Is line-height appropriate for the font and context?
-   - Is there enough contrast between text and background?
+4. **Legibilidade**:
+   - Os comprimentos de linha estão confortáveis? (45-75 caracteres ideal)
+   - A line-height é apropriada para a fonte e contexto?
+   - Há contraste suficiente entre texto e fundo?
 
-5. **Consistency**:
-   - Are the same elements styled the same way throughout?
-   - Are font weights used consistently? (Not bold in one section, semibold in another for the same role)
-   - Is letter-spacing intentional or default everywhere?
+5. **Consistência**:
+   - Os mesmos elementos estão estilizados da mesma forma por toda a interface?
+   - Os pesos de fonte são usados consistentemente? (Não bold em uma seção, semibold em outra para o mesmo papel)
+   - O letter-spacing é intencional ou padrão em todo lugar?
 
-**CRITICAL**: The goal isn't to make text "fancier." It's to make it clearer, more readable, and more intentional. Good typography is invisible; bad typography is distracting.
+**CRÍTICO**: O objetivo não é tornar o texto "mais chique." É torná-lo mais claro, mais legível, e mais intencional. Boa tipografia é invisível; tipografia ruim é distrativa.
 
-## Plan Typography Improvements
+## Planeje Melhorias de Tipografia
 
-Consult the [typography reference](typography.md) for detailed guidance on scales, pairing, and loading strategies.
+Consulte a [referência de tipografia](typography.md) para orientação detalhada sobre escalas, pairing, e estratégias de carregamento.
 
-Create a systematic plan:
+Crie um plano sistemático:
 
-- **Font selection**: Do fonts need replacing? What fits the brand/context?
-- **Type scale**: Establish a modular scale (e.g., 1.25 ratio) with clear hierarchy
-- **Weight strategy**: Which weights serve which roles? (Regular for body, Semibold for labels, Bold for headings, or whatever fits)
-- **Spacing**: Line-heights, letter-spacing, and margins between typographic elements
+- **Seleção de fontes**: As fontes precisam ser substituídas? O que se adapta à marca/contexto?
+- **Escala de tipo**: Estabeleça uma escala modular (ex.: razão 1.25) com hierarquia clara
+- **Estratégia de peso**: Quais pesos servem a quais papéis? (Regular para corpo, Semibold para rótulos, Bold para headings, ou o que for adequado)
+- **Espaçamento**: Line-heights, letter-spacing, e margens entre elementos tipográficos
 
-## Improve Typography Systematically
+## Melhore a Tipografia Sistematicamente
 
-### Font Selection
+### Seleção de Fontes
 
-If fonts need replacing:
-- Choose fonts that reflect the brand personality
-- Pair with genuine contrast (serif + sans, geometric + humanist), or use a single family in multiple weights
-- Ensure web font loading doesn't cause layout shift (`font-display: swap`, metric-matched fallbacks)
+Se as fontes precisam ser substituídas:
+- Escolha fontes que reflitam a personalidade da marca
+- Faça pairing com contraste genuíno (serif + sans, geométrica + humanista), ou use uma única família em múltiplos pesos
+- Garanta que o carregamento de web fonts não cause layout shift (`font-display: swap`, fallbacks com métricas compatíveis)
 
-### Establish Hierarchy
+### Estabeleça Hierarquia
 
-Build a clear type scale:
-- **5 sizes cover most needs**: caption, secondary, body, subheading, heading
-- **Use a consistent ratio** between levels (1.25, 1.333, or 1.5)
-- **Combine dimensions**: Size + weight + color + space for strong hierarchy. Don't rely on size alone
-- **App UIs**: Use a fixed `rem`-based type scale, optionally adjusted at 1-2 breakpoints. Fluid sizing undermines the spatial predictability that dense, container-based layouts need
-- **Marketing / content pages**: Use fluid sizing via `clamp(min, preferred, max)` for headings and display text. Keep body text fixed
+Construa uma escala de tipo clara:
+- **5 tamanhos cobrem a maioria das necessidades**: caption, secondary, body, subheading, heading
+- **Use uma razão consistente** entre níveis (1.25, 1.333, ou 1.5)
+- **Combine dimensões**: Tamanho + peso + cor + espaço para hierarquia forte. Não dependa apenas do tamanho
+- **UIs de App**: Use uma escala de tipo fixa baseada em `rem`, opcionalmente ajustada em 1-2 breakpoints. Dimensionamento fluido mina a previsibilidade espacial que layouts densos baseados em container precisam
+- **Páginas de marketing / conteúdo**: Use dimensionamento fluido via `clamp(min, preferred, max)` para headings e texto display. Mantenha texto de corpo fixo
 
-### Fix Readability
+### Corrija a Legibilidade
 
-- Set `max-width` on text containers using `ch` units (`max-width: 65ch`)
-- Adjust line-height per context: tighter for headings (1.1-1.2), looser for body (1.5-1.7)
-- Increase line-height slightly for light-on-dark text
-- Ensure body text is at least 16px / 1rem
+- Defina `max-width` em containers de texto usando unidades `ch` (`max-width: 65ch`)
+- Ajuste line-height por contexto: mais justa para headings (1.1-1.2), mais frouxa para corpo (1.5-1.7)
+- Aumente line-height ligeiramente para texto claro-sobre-escuro
+- Garanta que o texto de corpo tenha pelo menos 16px / 1rem
 
-### Refine Details
+### Refine Detalhes
 
-- Use `tabular-nums` for data tables and numbers that should align
-- Apply proper `letter-spacing`: slightly open for small caps and uppercase, default or tight for large display text
-- Use semantic token names (`--text-body`, `--text-heading`), not value names (`--font-16`)
-- Set `font-kerning: normal` and consider OpenType features where appropriate
+- Use `tabular-nums` para tabelas de dados e números que devem se alinhar
+- Aplique `letter-spacing` adequado: ligeiramente aberto para small caps e uppercase, padrão ou justo para texto display grande
+- Use nomes de tokens semânticos (`--text-body`, `--text-heading`), não nomes de valor (`--font-16`)
+- Defina `font-kerning: normal` e considere recursos OpenType quando apropriado
 
-### Weight Consistency
+### Consistência de Peso
 
-- Define clear roles for each weight and stick to them
-- Don't use more than 3-4 weights (Regular, Medium, Semibold, Bold is plenty)
-- Load only the weights you actually use (each weight adds to page load)
+- Defina papéis claros para cada peso e siga-os
+- Não use mais que 3-4 pesos (Regular, Medium, Semibold, Bold é suficiente)
+- Carregue apenas os pesos que você realmente usa (cada peso adiciona ao carregamento da página)
 
-**NEVER**:
-- Use more than 2-3 font families
-- Pick sizes arbitrarily; commit to a scale
-- Set body text below 16px
-- Use decorative/display fonts for body text
-- Disable browser zoom (`user-scalable=no`)
-- Use `px` for font sizes; use `rem` to respect user settings
-- Default to Inter/Roboto/Open Sans when personality matters
-- Pair fonts that are similar but not identical (two geometric sans-serifs)
+**NUNCA**:
+- Use mais que 2-3 famílias de fontes
+- Escolha tamanhos arbitrariamente; comprometa-se com uma escala
+- Defina texto de corpo abaixo de 16px
+- Use fontes decorativas/display para texto de corpo
+- Desabilite zoom do navegador (`user-scalable=no`)
+- Use `px` para tamanhos de fonte; use `rem` para respeitar configurações do usuário
+- Padronize para Inter/Roboto/Open Sans quando personalidade importa
+- Faça pairing de fontes que são parecidas mas não idênticas (duas sans-serifs geométricas)
 
-## Verify Typography Improvements
+## Verifique Melhorias de Tipografia
 
-- **Hierarchy**: Can you identify heading vs body vs caption instantly?
-- **Readability**: Is body text comfortable to read in long passages?
-- **Consistency**: Are same-role elements styled identically throughout?
-- **Personality**: Does the typography reflect the brand?
-- **Performance**: Are web fonts loading efficiently without layout shift?
-- **Accessibility**: Does text meet WCAG contrast ratios? Is it zoomable to 200%?
+- **Hierarquia**: Você consegue identificar heading vs body vs caption instantaneamente?
+- **Legibilidade**: O texto de corpo é confortável de ler em passagens longas?
+- **Consistência**: Elementos com o mesmo papel estão estilizados identicamente por toda a interface?
+- **Personalidade**: A tipografia reflete a marca?
+- **Performance**: As web fonts estão carregando eficientemente sem layout shift?
+- **Acessibilidade**: O texto atende às razões de contraste WCAG? É zoomável até 200%?
 
-When the type carries the hierarchy on its own, hand off to `/impeccable polish` for the final pass.
+Quando o tipo carrega a hierarquia por conta própria, passe para `{{command_prefix}}impeccable polish` para a passagem final.
 
-## Live-mode signature params
+## Parâmetros de assinatura do modo live
 
-Each variant MUST declare a `scale` param controlling the hierarchy ratio. Express all font sizes in the variant's scoped CSS through `calc(var(--p-scale, 1) * <base>)` or, better, scale the type ramp via `clamp(min, calc(var(--p-scale, 1) * Npx), max)`. Users slide from subdued to commanding.
+Cada variante DEVE declarar um parâmetro `scale` controlando a razão de hierarquia. Expresse todos os tamanhos de fonte no CSS escopo da variante através de `calc(var(--p-scale, 1) * <base>)` ou, melhor, escale a rampa de tipo via `clamp(min, calc(var(--p-scale, 1) * Npx), max)`. Os usuários deslizam de contido a imponente.
 
 ```json
 {"id":"scale","kind":"range","min":0.85,"max":1.3,"step":0.05,"default":1,"label":"Scale"}
 ```
 
-Where the variant riffs on a specific pairing, expose the pairing choice as a `steps` param (e.g. "serif display + sans body" vs. "mono display + sans body" vs. "all-sans"). Each branch routes through `:scope[data-p-pairing="X"]` selectors in scoped CSS.
+Onde a variante varia um pairing específico, exponha a escolha de pairing como um parâmetro `steps` (ex.: "serif display + sans body" vs. "mono display + sans body" vs. "all-sans"). Cada ramo roteia por seletores `:scope[data-p-pairing="X"]` no CSS escopo.
 
-See `reference/live.md` for the full params contract.
+Consulte `reference/live.md` para o contrato completo de parâmetros.

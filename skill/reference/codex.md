@@ -1,105 +1,105 @@
-# Codex: Visual Direction & Asset Production
+# Codex: Direção Visual e Produção de Assets
 
-This file is loaded by `{{command_prefix}}impeccable craft` when the harness has native image generation (currently Codex via `image_gen`). Other harnesses skip it. It covers the two craft steps that depend on real image generation: landing the visual direction, and producing the raster assets the implementation will compose.
+Este arquivo é carregado por `{{command_prefix}}impeccable craft` quando o harness possui geração nativa de imagens (atualmente Codex via `image_gen`). Outros harnesses o ignoram. Ele cobre as duas etapas de craft que dependem de geração real de imagens: definir a direção visual e produzir os assets raster que a implementação vai compor.
 
-Read this *before* generating any images. The order matters, and the per-step user pauses are what keep generated imagery from drifting away from the brief.
+Leia isto *antes* de gerar qualquer imagem. A ordem importa, e as pausas para o usuário em cada etapa são o que impedem as imagens geradas de se afastarem do brief.
 
-### Four stop points before code
+### Quatro pontos de parada antes do código
 
-Steps A through D each end with the user. Do not advance past any of them on your own read of the situation.
+As etapas de A a D cada uma termina com o usuário. Não avance além de nenhuma delas por sua própria avaliação da situação.
 
-1. **STOP after Step A questions.** Wait for answers.
-2. **STOP after Step B palette generation.** Wait for "confirm palette."
-3. **STOP after Step C mocks.** Wait for direction approval or delegation.
-4. **Only after Step D approves a direction** do you return to craft.md Step 4 and write code.
+1. **PARE após as perguntas da Etapa A.** Espere pelas respostas.
+2. **PARE após a geração da paleta na Etapa B.** Espere por "confirmar paleta."
+3. **PARE após os mocks da Etapa C.** Espere pela aprovação da direção ou delegação.
+4. **Apenas após a Etapa D aprovar uma direção** você retorna ao craft.md Etapa 4 e escreve código.
 
-Prior shape approval does **not** satisfy any of these. Shape's "confirm or override" advances you into Step A; it is not a substitute for it.
+A aprovação prévia do shape **não** satisfaz nenhum destes. O "confirmar ou sobrescrever" do shape avança você para a Etapa A; não é substituto para ela.
 
-## Step A: Explore Directions with the User
+## Etapa A: Explore Direções com o Usuário
 
-Before generating anything, run a brief direction conversation grounded in the shape brief.
+Antes de gerar qualquer coisa, conduza uma breve conversa sobre direção fundamentada no brief do shape.
 
-**Step A is required even when shape just produced a confirmed brief.** The shape questions and Step A questions cover different ground: shape pins purpose, content, scope; Step A pins palette, atmosphere, and named visual references for the comps you're about to generate. The only time you can skip Step A is when the user has already answered these exact palette/atmosphere/reference questions in the same session.
+**A Etapa A é obrigatória mesmo quando o shape acabou de produzir um brief confirmado.** As perguntas do shape e as perguntas da Etapa A cobrem terrenos diferentes: o shape fixa propósito, conteúdo e escopo; a Etapa A fixa paleta, atmosfera e referências visuais nomeadas para os comps que você vai gerar. A única vez que você pode pular a Etapa A é quando o usuário já respondeu a estas mesmas perguntas de paleta/atmosfera/referência na mesma sessão.
 
-Ask **2-3 targeted questions** about visual lane, color strategy, atmosphere, and named anchor references. Don't enumerate generic menus; tie each question to the shape brief's answers. Example shape-grounded questions:
+Faça **2-3 perguntas direcionadas** sobre faixa visual, estratégia de cor, atmosfera e referências âncora nomeadas. Não enumere menus genéricos; vincule cada pergunta às respostas do brief do shape. Exemplos de perguntas fundamentadas no shape:
 
-- "Brief says 'editorial restraint, Klim-adjacent.' Are we closer to a quiet specimen page or a magazine-spread feel with hero imagery?"
-- "Palette strategy from shape was 'Committed.' Want it warm-grounded (deep oxblood + cream) or cool-grounded (slate + paper white)?"
+- "O brief diz 'contenção editorial, adjacente a Klim.' Estamos mais próximos de uma página de espécime sóbria ou de uma sensação de spread de revista com imagem hero?"
+- "A estratégia de paleta do shape era 'Comprometida.' Quer com base quente (oxblood profundo + creme) ou base fria (ardósia + branco papel)?"
 
-**STOP and wait for answers.** These pin the palette before any pixel gets generated. Do not proceed to Step B until the user has responded.
+**PARE e espere pelas respostas.** Estas fixam a paleta antes que qualquer pixel seja gerado. Não prossiga para a Etapa B até que o usuário tenha respondido.
 
-## Step B: Generate the Brand Palette First
+## Etapa B: Gere a Paleta da Marca Primeiro
 
-Generate **one** palette artifact before any mocks. This is a small, focused image: typography pairing on the chosen background, primary + accent color swatches, one signature ornament or motif. Single image, single pass.
+Gere **um** artefato de paleta antes de qualquer mock. Esta é uma imagem pequena e focada: pareamento tipográfico no fundo escolhido, amostras de cor primária + acento, um ornamento ou motivo signature. Imagem única, passagem única.
 
-Why palette first: mocks generated against a vague color sense produce noise that drowns out the structural decisions. A confirmed palette is the first concrete contract for everything downstream.
+Por que paleta primeiro: mocks gerados contra uma sensação de cor vaga produzem ruído que afoga as decisões estruturais. Uma paleta confirmada é o primeiro contrato concreto para tudo que vem a seguir.
 
-Show the palette to the user. Ask one question: "This is the palette I'm locking in for the mocks. Confirm, or call out what to shift?"
+Mostre a paleta ao usuário. Faça uma pergunta: "Esta é a paleta que estou travando para os mocks. Confirme, ou aponte o que deve mudar?"
 
-**STOP and wait for confirmation.** Do not generate mocks against an unconfirmed palette. "Probably good enough" is the wrong call here; the palette is the contract for everything downstream.
+**PARE e espere pela confirmação.** Não gere mocks contra uma paleta não confirmada. "Provavelmente bom o suficiente" é a decisão errada aqui; a paleta é o contrato para tudo que vem a seguir.
 
-## Step C: Generate 1-3 Visual Mocks Against the Palette
+## Etapa C: Gere 1-3 Mocks Visuais Contra a Paleta
 
-Once the palette is confirmed, generate **1 to 3** high-fidelity north-star comps. Each mock must use the confirmed palette and typography. Mocks differ in *structural* direction (hierarchy, topology, density, composition), not in color or motif.
+Uma vez que a paleta esteja confirmada, gere **1 a 3** comps north-star de alta fidelidade. Cada mock deve usar a paleta e tipografia confirmadas. Os mocks diferem na direção *estrutural* (hierarquia, topologia, densidade, composição), não em cor ou motivo.
 
-- Brand work: push visual identity, composition, mood, and signature motifs.
-- Product work: push hierarchy, topology, density, tone, grounded in realistic product structure.
-- Landing pages and long-form brand surfaces: show enough of the second fold to establish the system beyond the hero.
+- Trabalho de brand: empurre identidade visual, composição, clima e motivos signature.
+- Trabalho de produto: empurre hierarquia, topologia, densidade, tom, fundamentado em estrutura de produto realista.
+- Landing pages e superfícies de marca de formato longo: mostre o suficiente da segunda dobra para estabelecer o sistema além do hero.
 
-Use the `image_gen` tool directly (or via the imagegen skill when available). Don't ask the user to install anything.
+Use a ferramenta `image_gen` diretamente (ou via a skill imagegen quando disponível). Não peça ao usuário para instalar nada.
 
-## Step D: Approval Loop
+## Etapa D: Loop de Aprovação
 
-Show the comps. Ask what carries forward. Iterate until **one direction is approved** or the user explicitly delegates.
+Mostre os comps. Pergunte o que segue adiante. Itere até que **uma direção seja aprovada** ou o usuário delegue explicitamente.
 
-**STOP and wait for the approval or the delegation.** Do not begin Step E or return to craft.md Step 4 until a single direction is named. If the user delegates, pick the strongest direction and explain it from the brief, not personal taste.
+**PARE e espere pela aprovação ou pela delegação.** Não comece a Etapa E nem retorne ao craft.md Etapa 4 até que uma única direção seja nomeada. Se o usuário delegar, escolha a direção mais forte e explique-a a partir do brief, não do gosto pessoal.
 
-Before moving to assets, summarize what to carry into code and what *not* to literalize from the mock. This is the handoff between visual exploration and semantic implementation.
+Antes de passar para assets, resuma o que levar para o código e o que *não* deve ser literalizado a partir do mock. Esta é a transição entre exploração visual e implementação semântica.
 
-## Step E: Mock Fidelity Inventory
+## Etapa E: Inventário de Fidelidade do Mock
 
-Inventory the approved mock's major visible ingredients. For each, decide implementation: semantic HTML/CSS/SVG, generated raster, sourced raster, icon library, canvas/WebGL, or accepted omission.
+Faça o inventário dos principais ingredientes visíveis do mock aprovado. Para cada um, decida a implementação: HTML/CSS/SVG semântico, raster gerado, raster de fonte externa, biblioteca de ícones, canvas/WebGL, ou omissão aceita.
 
-Common ingredients to inventory:
+Ingredientes comuns para inventariar:
 
-- Hero silhouette and dominant composition
-- Signature motifs (planets, devices, portraits, charts, route lines, insets, badges, etc.)
-- Nav and primary CTA treatment
-- Section sequence, especially the second fold
-- Image-native content the concept depends on
-- Typography, density, color/material treatment, motion cues
+- Silhueta hero e composição dominante
+- Motivos signature (planetas, dispositivos, retratos, gráficos, linhas de rota, insets, badges, etc.)
+- Tratamento da navegação e CTA primário
+- Sequência de seções, especialmente a segunda dobra
+- Conteúdo nativo de imagem do qual o conceito depende
+- Tipografia, densidade, tratamento de cor/material, indicações de movimento
 
-Treat the mock as a north star, not a screenshot to trace. Don't rasterize core UI text. But if the live result lacks the mock's major ingredients, the implementation is wrong.
+Trate o mock como uma estrela-guia, não como um screenshot para rastrear. Não rasterize texto de UI principal. Mas se o resultado ao vivo carecer dos principais ingredientes do mock, a implementação está errada.
 
-If a photographic, architectural, product, or place-led mock becomes generic CSS scenery, decorative diagrams, bullets, or copy, stop and fix it. That's a broken implementation, not a harmless interpretation.
+Se um mock fotográfico, arquitetônico, de produto ou baseado em lugar se torna cenário genérico de CSS, diagramas decorativos, bullets ou copy, pare e corrija. Isso é uma implementação quebrada, não uma interpretação inofensiva.
 
-Don't substitute a different hero composition or visual driver post-approval without user sign-off.
+Não substitua uma composição hero ou driver visual diferente após a aprovação sem o aval do usuário.
 
-## Step F: Asset Slicing via the Asset Producer
+## Etapa F: Corte de Assets via o Asset Producer
 
-Raster ingredients identified in Step E need clean production assets. Use the bundled `impeccable_asset_producer` subagent rather than producing inline.
+Ingredientes raster identificados na Etapa E precisam de assets de produção limpos. Use o subagente `impeccable_asset_producer` incluído em vez de produzir inline.
 
-Spawn it as a scoped subagent. If you do not have explicit permission to use agents, stop and ask:
+Invoque-o como um subagente com escopo. Se você não tem permissão explícita para usar agents, pare e pergunte:
 
 ```text
-Asset production will work better as a scoped subagent job. Should I spawn the Impeccable asset producer subagent for this step?
+A produção de assets funcionará melhor como um job de subagente com escopo. Devo invocar o subagente Impeccable asset producer para esta etapa?
 ```
 
-Pass to the agent:
+Passe ao agente:
 
-- Approved mock path or screenshot reference
-- Crop paths or a contact sheet with crop ids
-- Output directory
-- Required dimensions, format, transparency needs
-- Avoid list
-- Notes on what should remain semantic HTML/CSS/SVG instead of raster
+- Caminho do mock aprovado ou referência de screenshot
+- Caminhos de corte ou uma contact sheet com IDs de corte
+- Diretório de saída
+- Dimensões necessárias, formato, necessidades de transparência
+- Lista de exclusão
+- Notas sobre o que deve permanecer como HTML/CSS/SVG semântico em vez de raster
 
-Attach image generation capability to the spawned agent when the harness supports it. Do **not** load image-generation reference material into the parent thread.
+Anexe a capacidade de geração de imagem ao agente invocado quando o harness suportar. **Não** carregue material de referência de geração de imagem na thread pai.
 
-Inline asset production is allowed only if the user declines subagents, the harness cannot spawn the authorized agent, or the user explicitly asks for single-thread mode.
+Produção de assets inline é permitida apenas se o usuário recusar subagentes, o harness não puder invocar o agente autorizado, ou o usuário pedir explicitamente pelo modo single-thread.
 
-Prefer HTML/CSS/SVG/canvas when they can credibly reproduce an ingredient; reach for real, generated, or stock imagery when the mock or subject matter calls for actual visual content.
+Prefira HTML/CSS/SVG/canvas quando puderem reproduzir crivelmente um ingrediente; recorra a imagens reais, geradas ou de stock quando o mock ou o assunto exigir conteúdo visual de verdade.
 
-## After This File
+## Após Este Arquivo
 
-Once Steps A through F are complete, return to `craft.md` Step 5 (Build to Production Quality). The implementation builds against the confirmed palette, approved mock, and the assets the producer wrote.
+Uma vez que as Etapas A a F estejam completas, retorne ao `craft.md` Etapa 5 (Construa com Qualidade de Produção). A implementação é construída contra a paleta confirmada, o mock aprovado e os assets que o producer escreveu.

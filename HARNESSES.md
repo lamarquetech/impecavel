@@ -1,14 +1,14 @@
-# Harness Skills Capabilities Reference
+# Referência de Capacidades de Skills dos Harnesses
 
-Source of truth for what each AI coding harness supports in terms of agent skills.
-Used to inform provider configs in `scripts/lib/transformers/providers.js`.
+Fonte de verdade sobre o que cada harness de codificação com IA suporta em termos de agent skills.
+Usado para informar as configurações de provedor em `scripts/lib/transformers/providers.js`.
 
-Last verified: 2026-04-28
+Última verificação: 2026-04-28
 
-## Official Documentation
+## Documentação Oficial
 
-| Harness | Docs URL |
-|---------|----------|
+| Harness | URL da Documentação |
+|---------|---------------------|
 | Claude Code | https://code.claude.com/docs/en/skills |
 | Cursor | https://cursor.com/docs/context/skills |
 | Gemini CLI | https://geminicli.com/docs/cli/skills/ |
@@ -18,80 +18,80 @@ Last verified: 2026-04-28
 | OpenCode | https://opencode.ai/docs/skills/ |
 | Pi | https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/skills.md |
 | Qoder | https://docs.qoder.com/extensions/skills |
-| Trae | TBD (no official skills docs found yet) |
+| Trae | A definir (nenhuma documentação oficial de skills encontrada ainda) |
 | Rovo Dev | https://support.atlassian.com/rovo/docs/extend-rovo-dev-cli-with-agent-skills |
 
-## Spec Compliance
+## Conformidade com a Especificação
 
-All harnesses follow the [Agent Skills specification](https://agentskills.io/specification) to varying degrees. The spec defines these frontmatter fields: `name`, `description`, `license`, `compatibility`, `metadata`, `allowed-tools`.
+Todos os harnesses seguem a [especificação Agent Skills](https://agentskills.io/specification) em graus variados. A especificação define estes campos de frontmatter: `name`, `description`, `license`, `compatibility`, `metadata`, `allowed-tools`.
 
-Provider-specific extensions beyond the spec: `user-invocable`, `argument-hint`, `disable-model-invocation`, `allowed-tools` (extended syntax), `model`, `effort`, `context`, `agent`, `hooks`, `subtask`, `mcp`.
+Extensões específicas de provedor além da especificação: `user-invocable`, `argument-hint`, `disable-model-invocation`, `allowed-tools` (sintaxe estendida), `model`, `effort`, `context`, `agent`, `hooks`, `subtask`, `mcp`.
 
-## Frontmatter Support
+## Suporte de Frontmatter
 
-Fields marked with * are spec-standard. Others are provider extensions.
+Campos marcados com * são padrão da especificação. Os demais são extensões de provedor.
 
-| Field | Claude Code | Cursor | Gemini | Codex | Copilot | Kiro | OpenCode | Pi | Qoder | Rovo Dev |
+| Campo | Claude Code | Cursor | Gemini | Codex | Copilot | Kiro | OpenCode | Pi | Qoder | Rovo Dev |
 |-------|:-----------:|:------:|:------:|:-----:|:-------:|:----:|:--------:|:--:|:-----:|:--------:|
-| `name`* | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| `description`* | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
-| `license`* | Yes | Yes | Ignored | No | Yes | Yes | Yes | Yes | Yes | Yes |
-| `compatibility`* | Yes | Yes | Ignored | No | Yes | Yes | Yes | Yes | Yes | Yes |
-| `metadata`* | Yes | Yes | Ignored | No | Yes | Yes | Yes | Yes | Yes | Yes |
-| `allowed-tools`* | Yes | No | Ignored | No | No | No | Yes | Yes | Yes | Yes |
-| `user-invocable` | Yes | No | No | No | Yes | No | Yes | No | Yes | Yes |
-| `argument-hint` | Yes | No | No | No | Yes | No | Yes | No | Yes | Yes |
-| `disable-model-invocation` | Yes | Yes | No | No | Yes | No | Yes | Yes | TBD | TBD |
-| `model` | Yes | No | No | No | No | No | Yes | No | No | No |
-| `effort` | Yes | No | No | No | No | No | No | No | No | No |
-| `context` | Yes | No | No | No | No | No | No | No | No | No |
-| `agent` | Yes | No | No | No | No | No | Yes | No | No | No |
-| `hooks` | Yes | No | No | No | No | No | No | No | No | No |
+| `name`* | Sim | Sim | Sim | Sim | Sim | Sim | Sim | Sim | Sim | Sim |
+| `description`* | Sim | Sim | Sim | Sim | Sim | Sim | Sim | Sim | Sim | Sim |
+| `license`* | Sim | Sim | Ignorado | Não | Sim | Sim | Sim | Sim | Sim | Sim |
+| `compatibility`* | Sim | Sim | Ignorado | Não | Sim | Sim | Sim | Sim | Sim | Sim |
+| `metadata`* | Sim | Sim | Ignorado | Não | Sim | Sim | Sim | Sim | Sim | Sim |
+| `allowed-tools`* | Sim | Não | Ignorado | Não | Não | Não | Sim | Sim | Sim | Sim |
+| `user-invocable` | Sim | Não | Não | Não | Sim | Não | Sim | Não | Sim | Sim |
+| `argument-hint` | Sim | Não | Não | Não | Sim | Não | Sim | Não | Sim | Sim |
+| `disable-model-invocation` | Sim | Sim | Não | Não | Sim | Não | Sim | Sim | A definir | A definir |
+| `model` | Sim | Não | Não | Não | Não | Não | Sim | Não | Não | Não |
+| `effort` | Sim | Não | Não | Não | Não | Não | Não | Não | Não | Não |
+| `context` | Sim | Não | Não | Não | Não | Não | Não | Não | Não | Não |
+| `agent` | Sim | Não | Não | Não | Não | Não | Sim | Não | Não | Não |
+| `hooks` | Sim | Não | Não | Não | Não | Não | Não | Não | Não | Não |
 
-Notes:
-- Gemini CLI validates only `name` and `description`; other spec fields are parsed but ignored.
-- Codex CLI uses a separate `agents/openai.yaml` sidecar for skill metadata (icons, branding, MCP tools, invocation control). Native Codex custom agents are separate TOML files under `.codex/agents/` or `~/.codex/agents/`.
-- Kiro recognizes `user-invocable` and `disable-model-invocation` per community reports but does not formally document them.
-- Unknown fields are silently ignored by all harnesses.
+Notas:
+- O Gemini CLI valida apenas `name` e `description`; outros campos da especificação são parseados mas ignorados.
+- O Codex CLI usa um sidecar `agents/openai.yaml` separado para metadados de skill (ícones, branding, ferramentas MCP, controle de invocação). Agentes customizados nativos do Codex são arquivos TOML separados em `.codex/agents/` ou `~/.codex/agents/`.
+- O Kiro reconhece `user-invocable` e `disable-model-invocation` conforme relatos da comunidade, mas não os documenta formalmente.
+- Campos desconhecidos são silenciosamente ignorados por todos os harnesses.
 
-## Skill Directory Structure
+## Estrutura de Diretório de Skills
 
-| Harness | Native directory | Also reads |
-|---------|-----------------|------------|
+| Harness | Diretório nativo | Também lê de |
+|---------|-----------------|-------------|
 | Claude Code | `.claude/skills/` | - |
 | Cursor | `.cursor/skills/` | `.agents/skills/`, `.claude/skills/` |
 | Gemini CLI | `.gemini/skills/` | `.agents/skills/` |
-| Codex CLI | `.agents/skills/` (primary) | - |
+| Codex CLI | `.agents/skills/` (primário) | - |
 | GitHub Copilot | `.github/skills/` | `.agents/skills/`, `.claude/skills/` |
 | Kiro | `.kiro/skills/` | - |
 | OpenCode | `.opencode/skills/` | `.agents/skills/`, `.claude/skills/` |
 | Pi | `.pi/skills/` | `.agents/skills/` |
-| Qoder | `.qoder/skills/` | `~/.qoder/skills/` (user-level) |
-| Trae China | `.trae-cn/skills/` | TBD |
-| Trae International | `.trae/skills/` | TBD |
-| Rovo Dev | `.rovodev/skills/` | `~/.rovodev/skills/` (user-level) |
+| Qoder | `.qoder/skills/` | `~/.qoder/skills/` (nível de usuário) |
+| Trae China | `.trae-cn/skills/` | A definir |
+| Trae International | `.trae/skills/` | A definir |
+| Rovo Dev | `.rovodev/skills/` | `~/.rovodev/skills/` (nível de usuário) |
 
-All harnesses support the `{skill-name}/SKILL.md` directory structure with optional `reference/`, `scripts/`, and `assets/` subdirectories.
+Todos os harnesses suportam a estrutura de diretório `{skill-name}/SKILL.md` com subdiretórios opcionais `reference/`, `scripts/` e `assets/`.
 
-## Native Subagent Directory Structure
+## Estrutura de Diretório de Subagentes Nativos
 
-| Harness | Native directory | File format |
-|---------|------------------|-------------|
-| Claude Code | `.claude/agents/` | Markdown with YAML frontmatter |
+| Harness | Diretório nativo | Formato de arquivo |
+|---------|------------------|--------------------|
+| Claude Code | `.claude/agents/` | Markdown com frontmatter YAML |
 | Codex CLI | `.codex/agents/` | TOML |
 
-Impeccable keeps canonical agent prompts under `skill/agents/` and emits provider-native files only for harnesses with documented subagent formats.
+Impeccable mantém prompts canônicos de agentes em `skill/agents/` e emite arquivos nativos do provedor apenas para harnesses com formatos de subagente documentados.
 
-## Placeholder / Variable Substitution
+## Substituição de Placeholders / Variáveis
 
-Claude Code supports runtime variable substitution directly in SKILL.md bodies: `$ARGUMENTS`, `$0`-`$N`, `${CLAUDE_SKILL_DIR}`, `${CLAUDE_SESSION_ID}`. No other harness supports substitution in skills.
+O Claude Code suporta substituição de variáveis em tempo de execução diretamente nos corpos dos SKILL.md: `$ARGUMENTS`, `$0`-`$N`, `${CLAUDE_SKILL_DIR}`, `${CLAUDE_SESSION_ID}`. Nenhum outro harness suporta substituição em skills.
 
-Some harnesses have separate "custom commands" systems (distinct from skills) with their own substitution:
+Alguns harnesses possuem sistemas separados de "comandos customizados" (distintos de skills) com suas próprias substituições:
 
-| Harness | Command system | Substitution syntax |
-|---------|---------------|-------------------|
+| Harness | Sistema de comandos | Sintaxe de substituição |
+|---------|---------------------|------------------------|
 | Gemini CLI | `.gemini/commands/` (TOML) | `{{args}}`, `!{shell}`, `@{file}` |
 | Codex CLI | `.codex/prompts/` | `$ARGNAME` |
 | OpenCode | `.opencode/commands/` | `$ARGUMENTS`, `$1`-`$N`, `` !`shell` `` |
 
-Our build system handles cross-provider placeholders at compile time via `replacePlaceholders()` for `{{model}}`, `{{config_file}}`, `{{ask_instruction}}`, and `{{available_commands}}`.
+Nosso sistema de build gerencia placeholders entre provedores em tempo de compilação via `replacePlaceholders()` para `{{model}}`, `{{config_file}}`, `{{ask_instruction}}` e `{{available_commands}}`.

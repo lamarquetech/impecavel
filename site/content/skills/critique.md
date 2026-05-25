@@ -1,5 +1,5 @@
 ---
-tagline: "A design review with scoring, persona tests, and automated detection."
+tagline: "Uma review de design com pontuação, testes de persona e detecção automatizada."
 ---
 
 <div class="docs-viz-hero">
@@ -13,7 +13,7 @@ tagline: "A design review with scoring, persona tests, and automated detection."
     </div>
     <div class="docs-viz-critique-cols">
       <div>
-        <div class="docs-viz-critique-col-title">Heuristics (Nielsen)</div>
+        <div class="docs-viz-critique-col-title">Heurísticas (Nielsen)</div>
         <div class="docs-viz-critique-heuristics">
           <div class="docs-viz-critique-heur">
             <span>Visibility of status</span>
@@ -42,22 +42,22 @@ tagline: "A design review with scoring, persona tests, and automated detection."
         <div class="docs-viz-critique-personas">
           <div class="docs-viz-critique-persona">
             <div>
-              <span class="docs-viz-critique-persona-name">The evaluator</span>
-              <span class="docs-viz-critique-persona-note">Comparing us to two alternatives on a Tuesday evening.</span>
+              <span class="docs-viz-critique-persona-name">O avaliador</span>
+              <span class="docs-viz-critique-persona-note">Comparando-nos com duas alternativas numa terça à noite.</span>
             </div>
             <span class="docs-viz-critique-persona-score">2 / 4</span>
           </div>
           <div class="docs-viz-critique-persona">
             <div>
-              <span class="docs-viz-critique-persona-name">The returning user</span>
-              <span class="docs-viz-critique-persona-note">Knows the product, on mobile, in a hurry.</span>
+              <span class="docs-viz-critique-persona-name">O usuário recorrente</span>
+              <span class="docs-viz-critique-persona-note">Conhece o produto, no mobile, com pressa.</span>
             </div>
             <span class="docs-viz-critique-persona-score">3 / 4</span>
           </div>
           <div class="docs-viz-critique-persona">
             <div>
-              <span class="docs-viz-critique-persona-name">The skeptic</span>
-              <span class="docs-viz-critique-persona-note">Has seen every SaaS landing and is bored.</span>
+              <span class="docs-viz-critique-persona-name">O cético</span>
+              <span class="docs-viz-critique-persona-note">Já viu todo SaaS landing e está entediado.</span>
             </div>
             <span class="docs-viz-critique-persona-score">1 / 4</span>
           </div>
@@ -65,45 +65,45 @@ tagline: "A design review with scoring, persona tests, and automated detection."
       </div>
     </div>
   </div>
-  <p class="docs-viz-caption">The two passes (LLM design review plus the deterministic detector) merge into one prioritized list. What's working, what to fix, and the provocative questions worth answering before shipping.</p>
+  <p class="docs-viz-caption">As duas passadas (review de design por LLM mais o detector determinístico) se fundem em uma lista priorizada. O que está funcionando, o que consertar, e as perguntas provocativas que valem a pena responder antes de fazer deploy.</p>
 </div>
 
-## When to use it
+## Quando usar
 
-Reach for `/impeccable critique` when you want an honest second opinion on something you already built. Not "does it work" but "is it any good". The skill scores your interface against Nielsen's 10 heuristics, runs cognitive load checks, tests through persona lenses, and cross-references an automated detector for 25 concrete anti-patterns.
+Use `/impeccable critique` quando quiser uma segunda opinião honesta sobre algo que já construiu. Não "funciona" mas "é bom de verdade". A skill pontua sua interface contra as 10 heurísticas de Nielsen, executa verificações de carga cognitiva, testa através de lentes de persona, e referência-cruzada um detector automatizado para 25 anti-patterns concretos.
 
-Use it when a page is functionally done and you want to know if it reads as intentional or as AI slop.
+Use quando uma página está funcionalmente pronta e você quer saber se ela parece intencional ou AI slop.
 
-## How it works
+## Como funciona
 
-`/impeccable critique` runs two independent assessments in parallel so they do not bias each other.
+`/impeccable critique` executa duas avaliações independentes em paralelo para que uma não viése a outra.
 
-The first is an **LLM design review**: the model reads your source, visually inspects the live page if browser automation is available, and walks the impeccable skill's full DO/DON'T catalog. It scores Nielsen's heuristics, counts cognitive load failures, traces the emotional journey through the flow, and flags AI slop.
+A primeira é uma **review de design por LLM**: o modelo lê seu código-fonte, inspeciona visualmente a página ao vivo se automação de navegador está disponível, e percorre o catálogo completo de DO/DON'T da skill impeccable. Pontua as heurísticas de Nielsen, conta falhas de carga cognitiva, traça a jornada emocional através do fluxo, e sinaliza AI slop.
 
-The second is an **automated detector** (`npx impeccable detect`) that deterministically finds gradient text, purple palettes, side-tab borders, nested cards, line length problems, and the other visible fingerprints of generic AI output.
+A segunda é um **detector automatizado** (`npx impeccable detect`) que deterministicamente encontra texto com gradiente, paletas roxas, bordas side-tab, cards aninhados, problemas de comprimento de linha e as outras impressões digitais visíveis de output genérico de IA.
 
-The two reports merge into one prioritized list: what is working, the three to five things that need fixing, and the provocative questions worth answering before shipping.
+Os dois relatórios se fundem em uma lista priorizada: o que está funcionando, as três a cinco coisas que precisam de correção, e as perguntas provocativas que valem a pena responder antes de fazer deploy.
 
-## Try it
+## Experimente
 
-Point it at a page:
+Aponte para uma página:
 
 ```
 /impeccable critique the homepage hero
 ```
 
-You get back a scored report. Typical shape:
+Você recebe um relatório pontuado. Formato típico:
 
-- **AI slop verdict**: pass / fail with the specific tells
-- **Heuristic scores**: 10 numbers, 0 to 4
-- **Cognitive load**: failure count out of 8
-- **Priority issues**: three to five items, each with what, why, and fix
-- **Questions to answer**: the ones the interface itself cannot decide for you
+- **AI slop verdict**: pass / fail com as marcas específicas
+- **Pontuações heurísticas**: 10 números, 0 a 4
+- **Carga cognitiva**: contagem de falhas de 8
+- **Problemas prioritários**: três a cinco itens, cada um com o quê, por quê e correção
+- **Perguntas a responder**: as que a interface por si só não pode decidir por você
 
-From there, pair with `/impeccable polish` or `/impeccable distill` to act on the fixes.
+A partir daí, combine com `/impeccable polish` ou `/impeccable distill` para agir nas correções.
 
-## Pitfalls
+## Armadilhas
 
-- **Running it on incomplete work.** Critique is for finished pages. An empty state with three TODOs will score badly because it is not done, not because it is bad.
-- **Ignoring the questions at the end.** They are usually the fixes that change the design most.
-- **Treating the heuristic scores as a grade.** They are diagnostic, not evaluative. A 3/4 on a heuristic that matters less for your context is fine.
+- **Executar em trabalho incompleto.** Critique é para páginas finalizadas. Um empty state com três TODOs vai pontuar mal porque não está pronto, não porque é ruim.
+- **Ignorar as perguntas no final.** Elas geralmente são as correções que mais mudam o design.
+- **Tratar as pontuações heurísticas como nota.** São diagnósticas, não avaliativas. Um 3/4 numa heurística que importa menos para seu contexto está bem.

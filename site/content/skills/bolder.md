@@ -1,40 +1,40 @@
 ---
-tagline: "Push safe designs toward impact without sliding into chaos."
+tagline: "Empurre designs seguros em direção ao impacto sem escorregar para o caos."
 ---
 
-## When to use it
+## Quando usar
 
-Reach for `/impeccable bolder` when the interface looks like every other interface. Generic sans, medium weights, soft shadows, modest accent color, reasonable spacing, forgettable. The design is not wrong, it is just safe. Use bolder when a project can handle presence and the current state is not bringing any.
+Use `/impeccable bolder` quando a interface parece com qualquer outra interface. Sans genérica, pesos médios, sombras suaves, cor de destaque modesta, espaçamento razoável, esquecível. O design não está errado, está apenas seguro. Use bolder quando um projeto pode ter presença e o estado atual não traz nenhuma.
 
-Do not use it on dashboards people stare at for hours. Boldness earns its place on marketing pages, hero moments, and content features. Not in operator tools.
+Não use em dashboards que as pessoas ficam olhando por horas. Ousadia ganha seu lugar em páginas de marketing, momentos hero e features de conteúdo. Não em ferramentas de operação.
 
-## How it works
+## Como funciona
 
-The skill amplifies four axes without breaking usability:
+A skill amplifica quatro eixos sem quebrar a usabilidade:
 
-1. **Scale**: display type gets pushed to clamp(3rem, 6vw, 6rem) or beyond. Headlines that fill the viewport, not hedge it.
-2. **Weight contrast**: light 300 against heavy 800 instead of medium against regular. Real tension, not a shrug.
-3. **Color commitment**: the accent color shows up at full strength, not diluted. Backgrounds can take a stance (ink, accent, cream) instead of all-paper.
-4. **Compositional confidence**: asymmetry, off-grid, pullquotes, hanging punctuation, scale jumps. The layout has a voice.
+1. **Escala**: tipo display é empurrado para clamp(3rem, 6vw, 6rem) ou além. Manchetes que preenchem o viewport, não que o evitam.
+2. **Contraste de peso**: light 300 contra heavy 800 em vez de medium contra regular. Tensão real, não um encolher de ombros.
+3. **Comprometimento com cor**: a cor de destaque aparece em força total, não diluída. Fundos podem tomar uma posição (tinta, destaque, creme) em vez de tudo-papel.
+4. **Confiança composicional**: assimetria, off-grid, pullquotes, pontuação pendente, saltos de escala. O layout tem voz.
 
-The skill does not add more. It amplifies what is already there. If the design has three colors, bolder does not add a fourth, it commits harder to the three.
+A skill não adiciona mais. Ela amplifica o que já está lá. Se o design tem três cores, bolder não adiciona uma quarta, ela se compromete mais com as três.
 
-## Try it
+## Experimente
 
 ```
 /impeccable bolder the landing page hero
 ```
 
-Expected changes:
+Mudanças esperadas:
 
-- Hero heading from 3rem to clamp(3.5rem, 7vw, 6.5rem), display font, weight 700
-- Subhead from regular to italic at 1.5rem, pulled 8px left of the heading for optical alignment
-- Background switches from paper to a cream-to-paper gradient, creating a warmer container
-- CTA button fills, drops shadow removed, border radius reduced, hover state inverts colors
-- Supporting image pushed slightly off-grid with a negative top margin, creating asymmetry
+- Heading do hero de 3rem para clamp(3.5rem, 7vw, 6.5rem), font display, peso 700
+- Subhead de regular para italic em 1.5rem, puxado 8px à esquerda do heading para alinhamento óptico
+- Fundo muda de papel para um gradiente creme-para-papel, criando um container mais quente
+- Botão CTA preenche, sombra removida, border radius reduzido, estado hover inverte as cores
+- Imagem de suporte empurrada ligeiramente off-grid com uma margem superior negativa, criando assimetria
 
-## Pitfalls
+## Armadilhas
 
-- **Running it on the wrong page.** Product dashboards, settings, and forms should not be bold. They should be legible. Use `/impeccable layout` or `/impeccable polish` instead.
-- **Confusing bold with loud.** Bold means committed and confident. Loud means shouting. Bolder is the former. If the result feels aggressive, follow up with `/impeccable quieter`.
-- **Pairing it with `/impeccable delight` in the same pass.** Delight works best against a stable visual baseline. Bold first, stabilize, then delight.
+- **Executar na página errada.** Dashboards de produto, configurações e formulários não devem ser ousados. Devem ser legíveis. Use `/impeccable layout` ou `/impeccable polish` em vez disso.
+- **Confundir bold com loud.** Bold significa comprometido e confiante. Loud significa gritar. Bolder é o primeiro. Se o resultado parece agressivo, siga com `/impeccable quieter`.
+- **Combinar com `/impeccable delight` na mesma passada.** Delight funciona melhor contra uma baseline visual estável. Bold primeiro, estabilize, depois delight.

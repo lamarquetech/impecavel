@@ -1,133 +1,132 @@
-Run systematic **technical** quality checks and generate a comprehensive report. Don't fix issues; document them for other commands to address.
+Execute verificações de qualidade **técnicas** sistemáticas e gere um relatório abrangente. Não corrija problemas; documente-os para que outros comandos os resolvam.
 
-This is a code-level audit, not a design critique. Check what's measurable and verifiable in the implementation.
+Esta é uma auditoria de nível de código, não uma crítica de design. Verifique o que é mensurável e verificável na implementação.
 
-## Diagnostic Scan
+## Scan Diagnóstico
 
-Run comprehensive checks across 5 dimensions. Score each dimension 0-4 using the criteria below.
+Execute verificações abrangentes em 5 dimensões. Pontue cada dimensão 0-4 usando os critérios abaixo.
 
-### 1. Accessibility (A11y)
+### 1. Acessibilidade (A11y)
 
-**Check for**:
-- **Contrast issues**: Text contrast ratios < 4.5:1 (or 7:1 for AAA)
-- **Missing ARIA**: Interactive elements without proper roles, labels, or states
-- **Keyboard navigation**: Missing focus indicators, illogical tab order, keyboard traps
-- **Semantic HTML**: Improper heading hierarchy, missing landmarks, divs instead of buttons
-- **Alt text**: Missing or poor image descriptions
-- **Form issues**: Inputs without labels, poor error messaging, missing required indicators
+**Verifique**:
+- **Problemas de contraste**: Taxas de contraste de texto < 4.5:1 (ou 7:1 para AAA)
+- **ARIA ausente**: Elementos interativos sem roles, labels ou states adequados
+- **Navegação por teclado**: Indicadores de foco ausentes, ordem de tab ilógica, armadilhas de teclado
+- **HTML semântico**: Hierarquia de headings imprópria, landmarks ausentes, divs em vez de buttons
+- **Alt text**: Descrições de imagem ausentes ou ruins
+- **Problemas de formulário**: Inputs sem labels, mensagens de erro ruins, indicadores de obrigatório ausentes
 
-**Score 0-4**: 0=Inaccessible (fails WCAG A), 1=Major gaps (few ARIA labels, no keyboard nav), 2=Partial (some a11y effort, significant gaps), 3=Good (WCAG AA mostly met, minor gaps), 4=Excellent (WCAG AA fully met, approaches AAA)
+**Pontuação 0-4**: 0=Inacessível (falha WCAG A), 1=Lacunas maiores (poucos labels ARIA, sem navegação por teclado), 2=Parcial (algum esforço a11y, lacunas significativas), 3=Bom (WCAG AA majoritariamente atendido, lacunas menores), 4=Excelente (WCAG AA totalmente atendido, aproxima-se de AAA)
 
 ### 2. Performance
 
-**Check for**:
-- **Layout thrashing**: Reading/writing layout properties in loops
-- **Expensive animations**: Casual layout-property animation, unbounded blur/filter/shadow effects, or effects that visibly drop frames
-- **Missing optimization**: Images without lazy loading, unoptimized assets, missing will-change
-- **Bundle size**: Unnecessary imports, unused dependencies
-- **Render performance**: Unnecessary re-renders, missing memoization
+**Verifique**:
+- **Layout thrashing**: Leitura/escrita de propriedades de layout em loops
+- **Animações custosas**: Animação casual de propriedades de layout, efeitos de blur/filter/shadow não limitados, ou efeitos que visivelmente perdem frames
+- **Otimização ausente**: Imagens sem lazy loading, assets não otimizados, will-change ausente
+- **Tamanho do bundle**: Imports desnecessários, dependências não utilizadas
+- **Performance de renderização**: Re-renders desnecessários, memoização ausente
 
-**Score 0-4**: 0=Severe issues (layout thrash, unoptimized everything), 1=Major problems (no lazy loading, expensive animations), 2=Partial (some optimization, gaps remain), 3=Good (mostly optimized, minor improvements possible), 4=Excellent (fast, lean, well-optimized)
+**Pontuação 0-4**: 0=Problemas severos (layout thrash, tudo não otimizado), 1=Problemas maiores (sem lazy loading, animações custosas), 2=Parcial (alguma otimização, lacunas permanecem), 3=Bom (majoritariamente otimizado, melhorias menores possíveis), 4=Excelente (rápido, enxuto, bem otimizado)
 
 ### 3. Theming
 
-**Check for**:
-- **Hard-coded colors**: Colors not using design tokens
-- **Broken dark mode**: Missing dark mode variants, poor contrast in dark theme
-- **Inconsistent tokens**: Using wrong tokens, mixing token types
-- **Theme switching issues**: Values that don't update on theme change
+**Verifique**:
+- **Cores hard-coded**: Cores não usando design tokens
+- **Dark mode quebrado**: Variantes de dark mode ausentes, contraste ruim no tema escuro
+- **Tokens inconsistentes**: Usando tokens errados, misturando tipos de tokens
+- **Problemas de troca de tema**: Valores que não atualizam na mudança de tema
 
-**Score 0-4**: 0=No theming (hard-coded everything), 1=Minimal tokens (mostly hard-coded), 2=Partial (tokens exist but inconsistently used), 3=Good (tokens used, minor hard-coded values), 4=Excellent (full token system, dark mode works perfectly)
+**Pontuação 0-4**: 0=Sem theming (tudo hard-coded), 1=Tokens mínimos (majoritariamente hard-coded), 2=Parcial (tokens existem mas usados inconsistentemente), 3=Bom (tokens usados, valores hard-coded menores), 4=Excelente (sistema completo de tokens, dark mode funciona perfeitamente)
 
-### 4. Responsive Design
+### 4. Design Responsivo
 
-**Check for**:
-- **Fixed widths**: Hard-coded widths that break on mobile
-- **Touch targets**: Interactive elements < 44x44px
-- **Horizontal scroll**: Content overflow on narrow viewports
-- **Text scaling**: Layouts that break when text size increases
-- **Missing breakpoints**: No mobile/tablet variants
+**Verifique**:
+- **Larguras fixas**: Larguras hard-coded que quebram no mobile
+- **Touch targets**: Elementos interativos < 44x44px
+- **Scroll horizontal**: Overflow de conteúdo em viewports estreitos
+- **Escalonamento de texto**: Layouts que quebram quando o tamanho do texto aumenta
+- **Breakpoints ausentes**: Sem variantes mobile/tablet
 
-**Score 0-4**: 0=Desktop-only (breaks on mobile), 1=Major issues (some breakpoints, many failures), 2=Partial (works on mobile, rough edges), 3=Good (responsive, minor touch target or overflow issues), 4=Excellent (fluid, all viewports, proper touch targets)
+**Pontuação 0-4**: 0=Apenas desktop (quebra no mobile), 1=Problemas maiores (alguns breakpoints, muitas falhas), 2=Parcial (funciona no mobile, arestas grosseiras), 3=Bom (responsivo, problemas menores de touch target ou overflow), 4=Excelente (fluído, todos os viewports, touch targets adequados)
 
-### 5. Anti-Patterns (CRITICAL)
+### 5. Anti-Padrões (CRÍTICO)
 
-Check against ALL the **DON'T** guidelines from the parent impeccable skill (already loaded in this context). Look for AI slop tells (AI color palette, gradient text, glassmorphism, hero metrics, card grids, generic fonts) and general design anti-patterns (gray on color, nested cards, bounce easing, redundant copy).
+Verifique contra TODAS as diretrizes **DON'T** da skill pai impecable (já carregada neste contexto). Procure por sinais de AI slop (paleta de cores AI, texto com gradiente, glassmorphism, hero metrics, grids de cards, fontes genéricas) e anti-padrões gerais de design (cinza sobre cor, cards aninhados, easing bounce, copy redundante).
 
-**Score 0-4**: 0=AI slop gallery (5+ tells), 1=Heavy AI aesthetic (3-4 tells), 2=Some tells (1-2 noticeable), 3=Mostly clean (subtle issues only), 4=No AI tells (distinctive, intentional design)
+**Pontuação 0-4**: 0=Galeria de AI slop (5+ sinais), 1=Estética AI pesada (3-4 sinais), 2=Alguns sinais (1-2 perceptíveis), 3=Majoritariamente limpo (apenas problemas sutis), 4=Nenhum sinal de AI (design distintivo e intencional)
 
-## Generate Report
+## Gerar Relatório
 
 ### Audit Health Score
 
-| # | Dimension | Score | Key Finding |
-|---|-----------|-------|-------------|
-| 1 | Accessibility | ? | [most critical a11y issue or "--"] |
+| # | Dimensão | Pontuação | Achado-Chave |
+|---|----------|-----------|-------------|
+| 1 | Acessibilidade | ? | [problema a11y mais crítico ou "--"] |
 | 2 | Performance | ? | |
-| 3 | Responsive Design | ? | |
+| 3 | Design Responsivo | ? | |
 | 4 | Theming | ? | |
-| 5 | Anti-Patterns | ? | |
-| **Total** | | **??/20** | **[Rating band]** |
+| 5 | Anti-Padrões | ? | |
+| **Total** | | **??/20** | **[Faixa de classificação]** |
 
-**Rating bands**: 18-20 Excellent (minor polish), 14-17 Good (address weak dimensions), 10-13 Acceptable (significant work needed), 6-9 Poor (major overhaul), 0-5 Critical (fundamental issues)
+**Faixas de classificação**: 18-20 Excelente (polimento menor), 14-17 Bom (abordar dimensões fracas), 10-13 Aceitável (trabalho significativo necessário), 6-9 Ruim (overhaul maior), 0-5 Crítico (problemas fundamentais)
 
-### Anti-Patterns Verdict
-**Start here.** Pass/fail: Does this look AI-generated? List specific tells. Be brutally honest.
+### Veredito de Anti-Padrões
+**Comece aqui.** Aprovação/reprovação: Isso parece gerado por IA? Liste sinais específicos. Seja brutalmente honesto.
 
-### Executive Summary
-- Audit Health Score: **??/20** ([rating band])
-- Total issues found (count by severity: P0/P1/P2/P3)
-- Top 3-5 critical issues
-- Recommended next steps
+### Resumo Executivo
+- Audit Health Score: **??/20** ([faixa de classificação])
+- Total de problemas encontrados (contagem por severidade: P0/P1/P2/P3)
+- 3-5 problemas críticos principais
+- Próximos passos recomendados
 
-### Detailed Findings by Severity
+### Achados Detalhados por Severidade
 
-Tag every issue with **P0-P3 severity**:
-- **P0 Blocking**: Prevents task completion. Fix immediately
-- **P1 Major**: Significant difficulty or WCAG AA violation. Fix before release
-- **P2 Minor**: Annoyance, workaround exists. Fix in next pass
-- **P3 Polish**: Nice-to-fix, no real user impact. Fix if time permits
+Tagueie cada problema com **severidade P0-P3**:
+- **P0 Bloqueante**: Impede conclusão da tarefa. Corrija imediatamente
+- **P1 Maior**: Dificuldade significativa ou violação WCAG AA. Corrija antes do release
+- **P2 Menor**: Incômodo, alternativa existe. Corrija na próxima passagem
+- **P3 Polimento**: Bom de corrigir, sem impacto real no usuário. Corrija se houver tempo
 
-For each issue, document:
-- **[P?] Issue name**
-- **Location**: Component, file, line
-- **Category**: Accessibility / Performance / Theming / Responsive / Anti-Pattern
-- **Impact**: How it affects users
-- **WCAG/Standard**: Which standard it violates (if applicable)
-- **Recommendation**: How to fix it
-- **Suggested command**: Which command to use (prefer: /impeccable adapt, /impeccable animate, /impeccable audit, /impeccable bolder, /impeccable clarify, /impeccable colorize, /impeccable critique, /impeccable delight, /impeccable distill, /impeccable document, /impeccable harden, /impeccable layout, /impeccable onboard, /impeccable optimize, /impeccable overdrive, /impeccable polish, /impeccable quieter, /impeccable shape, /impeccable typeset)
+Para cada problema, documente:
+- **[P?] Nome do problema**
+- **Localização**: Componente, arquivo, linha
+- **Categoria**: Acessibilidade / Performance / Theming / Responsivo / Anti-Padrão
+- **Impacto**: Como afeta os usuários
+- **WCAG/Padrão**: Qual padrão viola (se aplicável)
+- **Recomendação**: Como corrigir
+- **Comando sugerido**: Qual comando usar (prefira: {{available_commands}})
 
-### Patterns & Systemic Issues
+### Padrões e Problemas Sistêmicos
 
-Identify recurring problems that indicate systemic gaps rather than one-off mistakes:
-- "Hard-coded colors appear in 15+ components, should use design tokens"
-- "Touch targets consistently too small (<44px) throughout mobile experience"
+Identifique problemas recorrentes que indicam lacunas sistêmicas em vez de erros pontuais:
+- "Cores hard-coded aparecem em 15+ componentes, deveriam usar design tokens"
+- "Touch targets consistentemente pequenos demais (<44px) por toda a experiência mobile"
 
-### Positive Findings
+### Achados Positivos
 
-Note what's working well: good practices to maintain and replicate.
+Anote o que está funcionando bem: boas práticas para manter e replicar.
 
-## Recommended Actions
+## Ações Recomendadas
 
-List recommended commands in priority order (P0 first, then P1, then P2):
+Liste comandos recomendados em ordem de prioridade (P0 primeiro, depois P1, depois P2):
 
-1. **[P?] `/command-name`**: Brief description (specific context from audit findings)
-2. **[P?] `/command-name`**: Brief description (specific context)
+1. **[P?] `{{command_prefix}}command-name`**: Breve descrição (contexto específico dos achados da auditoria)
+2. **[P?] `{{command_prefix}}command-name`**: Breve descrição (contexto específico)
 
-**Rules**: Only recommend commands from: /impeccable adapt, /impeccable animate, /impeccable audit, /impeccable bolder, /impeccable clarify, /impeccable colorize, /impeccable critique, /impeccable delight, /impeccable distill, /impeccable document, /impeccable harden, /impeccable layout, /impeccable onboard, /impeccable optimize, /impeccable overdrive, /impeccable polish, /impeccable quieter, /impeccable shape, /impeccable typeset. Map findings to the most appropriate command. End with `/impeccable polish` as the final step if any fixes were recommended.
+**Regras**: Apenas recomende comandos de: {{available_commands}}. Mapeie achados para o comando mais apropriado. Termine com `{{command_prefix}}impeccable polish` como passo final se alguma correção foi recomendada.
 
-After presenting the summary, tell the user:
+Após apresentar o resumo, diga ao usuário:
 
-> You can ask me to run these one at a time, all at once, or in any order you prefer.
+> Você pode me pedir para executar estes um de cada vez, todos de uma vez, ou em qualquer ordem que preferir.
 >
-> Re-run `/impeccable audit` after fixes to see your score improve.
+> Re-execute `{{command_prefix}}impeccable audit` após as correções para ver sua pontuação melhorar.
 
-**IMPORTANT**: Be thorough but actionable. Too many P3 issues creates noise. Focus on what actually matters.
+**IMPORTANTE**: Seja minucioso mas acionável. Muitos problemas P3 criam ruído. Foque no que realmente importa.
 
-**NEVER**:
-- Report issues without explaining impact (why does this matter?)
-- Provide generic recommendations (be specific and actionable)
-- Skip positive findings (celebrate what works)
-- Forget to prioritize (everything can't be P0)
-- Report false positives without verification
-
+**NUNCA**:
+- Reporte problemas sem explicar o impacto (por que isso importa?)
+- Forneça recomendações genéricas (seja específico e acionável)
+- Pule achados positivos (celebre o que funciona)
+- Esqueça de priorizar (tudo não pode ser P0)
+- Reporte falsos positivos sem verificação

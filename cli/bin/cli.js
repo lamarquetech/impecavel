@@ -18,20 +18,20 @@ const args = process.argv.slice(2);
 const command = args[0];
 
 if (!command || command === '--help' || command === '-h') {
-  console.log(`Usage: impeccable <command> [options]
+  console.log(`Uso: impeccable <comando> [opções]
 
-Commands:
-  detect [file-or-dir-or-url...]   Scan for UI anti-patterns and design quality issues
-  skills help                      List all available skills and commands
-  skills install                   Install impeccable skills into your project
-  skills update                    Update skills to the latest version
-  skills check                     Check if skill updates are available
+Comandos:
+  detect [arquivo-ou-diretório-ou-url...]   Escanear anti-patterns de UI e problemas de qualidade de design
+  skills help                               Listar todas as skills e comandos disponíveis
+  skills install                            Instalar skills do impeccable no seu projeto
+  skills update                             Atualizar skills para a versão mais recente
+  skills check                              Verificar se há atualizações disponíveis para as skills
 
-Options:
-  --help       Show this help message
-  --version    Show version number
+Opções:
+  --help       Exibir esta mensagem de ajuda
+  --version    Exibir número da versão
 
-Run 'impeccable <command> --help' for command-specific options.`);
+Execute 'impeccable <comando> --help' para opções específicas de cada comando.`);
   process.exit(0);
 }
 
@@ -49,7 +49,7 @@ if (command === 'detect') {
   const { run } = await import('./commands/skills.mjs');
   await run(args.slice(1));
 } else {
-  // Default: treat as detect arguments (allow `npx impeccable src/` shorthand)
+  // Padrão: tratar como argumentos de detect (permite o atalho `npx impeccable src/`)
   process.argv = [process.argv[0], process.argv[1], ...args];
   const { detectCli } = await import('../engine/detect-antipatterns.mjs');
   await detectCli();

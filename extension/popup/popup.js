@@ -21,9 +21,9 @@ function updateFromState(state) {
   const count = state.findings?.reduce((sum, f) => sum + f.findings.length, 0) || 0;
   countNumber.textContent = String(count);
   countNumber.classList.toggle('has-findings', count > 0);
-  countLabel.textContent = count === 1 ? 'anti-pattern' : 'anti-patterns';
+  countLabel.textContent = count === 1 ? 'antipadrão' : 'antipadrões';
   overlaysVisible = state.overlaysVisible !== false;
-  btnToggle.textContent = overlaysVisible ? 'Hide overlays' : 'Show overlays';
+  btnToggle.textContent = overlaysVisible ? 'Ocultar sobreposições' : 'Mostrar sobreposições';
 }
 
 async function loadState() {
@@ -38,20 +38,20 @@ chrome.runtime.onMessage.addListener((msg) => {
     const count = msg.findings?.reduce((sum, f) => sum + f.findings.length, 0) || 0;
     countNumber.textContent = String(count);
     countNumber.classList.toggle('has-findings', count > 0);
-    countLabel.textContent = count === 1 ? 'anti-pattern' : 'anti-patterns';
-    btnScan.textContent = 'Scan page';
+    countLabel.textContent = count === 1 ? 'antipadrão' : 'antipadrões';
+    btnScan.textContent = 'Escanear página';
     btnScan.disabled = false;
   }
   if (msg.action === 'overlays-toggled-broadcast') {
     overlaysVisible = msg.visible;
-    btnToggle.textContent = overlaysVisible ? 'Hide overlays' : 'Show overlays';
+    btnToggle.textContent = overlaysVisible ? 'Ocultar sobreposições' : 'Mostrar sobreposições';
   }
 });
 
 btnScan.addEventListener('click', async () => {
   const tabId = await getActiveTabId();
   if (!tabId) return;
-  btnScan.textContent = 'Scanning...';
+  btnScan.textContent = 'Escaneando...';
   btnScan.disabled = true;
   chrome.runtime.sendMessage({ action: 'scan', tabId });
 });
@@ -61,7 +61,7 @@ btnToggle.addEventListener('click', async () => {
   if (!tabId) return;
   chrome.runtime.sendMessage({ action: 'toggle-overlays', tabId });
   overlaysVisible = !overlaysVisible;
-  btnToggle.textContent = overlaysVisible ? 'Hide overlays' : 'Show overlays';
+  btnToggle.textContent = overlaysVisible ? 'Ocultar sobreposições' : 'Mostrar sobreposições';
 });
 
 loadState();

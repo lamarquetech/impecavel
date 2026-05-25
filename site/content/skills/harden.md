@@ -1,44 +1,44 @@
 ---
-tagline: "Make interfaces production-ready. Edge cases, i18n, error states, overflow."
+tagline: "Torne interfaces prontas para produção. Edge cases, i18n, estados de erro, overflow."
 ---
 
-## When to use it
+## Quando usar
 
-`/impeccable harden` is for the day your interface meets reality. Real user data is messy: names that are 60 characters long, product titles in German, prices in the billions, 500 errors, offline modes, right-to-left text. Designs that only work with perfect data are not production-ready.
+`/impeccable harden` é para o dia em que sua interface encontra a realidade. Dados reais de usuários são bagunçados: nomes com 60 caracteres, títulos de produtos em alemão, preços na casa dos bilhões, erros 500, modos offline, texto right-to-left. Designs que só funcionam com dados perfeitos não estão prontos para produção.
 
-Reach for it before launch, before opening to a new market, or any time a bug report starts with "our user had a really long name and". For first-run flows, empty-state activation, and onboarding design, reach for `/impeccable onboard` instead.
+Use antes do lançamento, antes de abrir para um novo mercado, ou qualquer hora que um bug report comece com "nosso usuário tinha um nome muito longo e". Para fluxos de first-run, ativação de empty-state e design de onboarding, use `/impeccable onboard`.
 
-## How it works
+## Como funciona
 
-The skill works through four dimensions of real-world resilience:
+A skill trabalha em quatro dimensões de resiliência no mundo real:
 
-1. **Text and data extremes**. Long text, short text, special characters, emoji, RTL, numbers in the billions, 1000-item lists.
-2. **Error scenarios**. Network failures, API 4xx/5xx, validation errors, permission errors, rate limits, concurrent operations.
-3. **Internationalization**. Long translations (German is often 30% longer than English), RTL languages, date and number formats, currency symbols, character sets.
-4. **Device and context**. Touch targets, offline behavior, slow connections, low-power mode.
+1. **Extremos de texto e dados**. Texto longo, texto curto, caracteres especiais, emoji, RTL, números na casa dos bilhões, listas com 1000 itens.
+2. **Cenários de erro**. Falhas de rede, API 4xx/5xx, erros de validação, erros de permissão, rate limits, operações concorrentes.
+3. **Internacionalização**. Traduções longas (alemão é frequentemente 30% mais longo que inglês), idiomas RTL, formatos de data e número, símbolos de moeda, conjuntos de caracteres.
+4. **Dispositivo e contexto**. Touch targets, comportamento offline, conexões lentas, modo de baixo consumo.
 
-For each dimension it identifies the failure mode, then applies the concrete fix: overflow handling, informative error UI, i18n-safe layouts, pluralization, sensible fallbacks.
+Para cada dimensão, ela identifica o modo de falha e então aplica a correção concreta: tratamento de overflow, UI de erro informativa, layouts seguros para i18n, pluralização, fallbacks sensatos.
 
-## Try it
+## Experimente
 
-Start with one page and one dimension:
+Comece com uma página e uma dimensão:
 
 ```
 /impeccable harden the user profile page for long names
 ```
 
-Expected output:
+Saída esperada:
 
-- `.user-name` now has `text-overflow: ellipsis` with a tooltip for the full value
-- `.bio` switched from fixed height to `max-height` with a "show more" disclosure
-- Added an empty state for users with no bio
-- Added a skeleton loader for the async avatar fetch
-- Tested at name lengths 1, 20, 60, 200 characters
+- `.user-name` agora tem `text-overflow: ellipsis` com um tooltip para o valor completo
+- `.bio` trocou de altura fixa para `max-height` com disclosure "mostrar mais"
+- Adicionado empty state para usuários sem bio
+- Adicionado skeleton loader para o fetch assíncrono do avatar
+- Testado em comprimentos de nome de 1, 20, 60, 200 caracteres
 
-Run it per-page, not all at once. The first run is the biggest; subsequent runs find fewer issues as patterns solidify.
+Execute por página, não tudo de uma vez. A primeira execução é a maior; execuções subsequentes encontram menos problemas à medida que padrões se solidificam.
 
-## Pitfalls
+## Armadilhas
 
-- **Waiting for a bug report.** Harden is preventative. If you find yourself fixing the same class of bug twice, run `/impeccable harden` across the feature.
-- **Treating error and empty states as an afterthought.** Most hardening work is error and empty state UI. Budget time for it, not just a `catch` block.
-- **Skipping i18n because "we are English-only for now".** i18n-safe layouts are still better layouts. Flexible containers, proper text wrapping, generous line-height. None of that hurts English.
+- **Esperar por um bug report.** Harden é preventivo. Se você se pegar corrigindo a mesma classe de bug duas vezes, execute `/impeccable harden` na funcionalidade.
+- **Tratar estados de erro e empty states como afterthought.** A maioria do trabalho de hardening é UI de erro e empty state. Reserve tempo para isso, não apenas um bloco `catch`.
+- **Pular i18n porque "somos apenas em inglês por enquanto".** Layouts seguros para i18n ainda são layouts melhores. Containers flexíveis, quebra de texto adequada, line-height generoso. Nada disso prejudica o inglês.

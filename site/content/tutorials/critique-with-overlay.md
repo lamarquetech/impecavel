@@ -1,47 +1,47 @@
 ---
-title: Critique with the visual overlay
-tagline: "Use /impeccable critique plus the browser overlay to review a live page with ground truth."
+title: Crítica com o overlay visual
+tagline: "Use /impeccable critique mais o overlay do navegador para revisar uma página ao vivo com ground truth."
 order: 4
-description: "Run a full design critique that combines LLM assessment, the automated detector, and a live browser overlay so you can see exactly which elements trigger which anti-patterns on the page you're looking at."
+description: "Execute uma crítica de design completa que combina avaliação por LLM, o detector automatizado e um overlay de navegador ao vivo para que você possa ver exatamente quais elementos disparam quais anti-patterns na página que está olhando."
 ---
 
-## What you'll build
+## O que você vai construir
 
-You will run a complete design critique against a live page in your browser, with every flagged anti-pattern highlighted directly on the element that caused it. No screenshots, no guesswork, no paragraph of findings you have to map back to the code.
+Você vai executar uma crítica de design completa contra uma página ao vivo no seu navegador, com cada anti-pattern sinalizado destacado diretamente no elemento que o causou. Sem screenshots, sem adivinhação, sem parágrafo de achados que você precisa mapear de volta ao código.
 
-Total time: about ten minutes.
+Tempo total: cerca de dez minutos.
 
-## Prerequisites
+## Pré-requisitos
 
-- Impeccable installed in your project (see [getting started](/tutorials/getting-started) if you have not).
-- A harness with browser automation available (Claude Code with the Chrome extension, or similar).
-- A page you want to critique, either local (`localhost:3000/pricing`) or deployed.
+- Impeccable instalado no seu projeto (veja [primeiros passos](/tutorials/getting-started) se ainda não instalou).
+- Um harness com automação de navegador disponível (Claude Code com a extensão Chrome, ou similar).
+- Uma página que você quer criticar, seja local (`localhost:3000/pricing`) ou publicada.
 
-## Step 1. Run /impeccable critique
+## Passo 1. Execute /impeccable critique
 
-From your harness, run:
+A partir do seu harness, execute:
 
 ```
 /impeccable critique the pricing page at localhost:3000/pricing
 ```
 
-The skill kicks off two independent assessments in parallel. They run in separate sub-agents so one does not bias the other.
+A skill inicia duas avaliações independentes em paralelo. Elas rodam em sub-agentes separados para que uma não viése a outra.
 
-### What the LLM assessment does
+### O que a avaliação por LLM faz
 
-The first assessment reads your source code and, if browser automation is available, opens the live page in a new tab. It walks the full impeccable skill DO/DON'T catalog and scores the page against Nielsen's 10 heuristics, the 8-item cognitive load checklist, and the brand fit from your `PRODUCT.md`.
+A primeira avaliação lê seu código-fonte e, se automação de navegador está disponível, abre a página ao vivo em uma nova aba. Ela percorre o catálogo completo de DO/DON'T da skill impeccable e pontua a página contra as 10 heurísticas de Nielsen, o checklist de carga cognitiva de 8 itens e a adequação à marca do seu `PRODUCT.md`.
 
-It labels the tab it opens with `[LLM]` in the title so you can tell which one is which.
+Ela rotula a aba que abre com `[LLM]` no título para que você possa distinguir qual é qual.
 
-### What the automated detector does
+### O que o detector automatizado faz
 
-The second assessment runs `npx impeccable detect` against the page. This is deterministic: around thirty specific pattern checks that fire or do not fire. Gradient text, purple palettes, side-tab borders, nested cards, line length problems, low contrast, tiny body text, and the rest. The [full catalog](/anti-patterns) lists every rule and which layer (CLI, browser, or LLM-only) catches it.
+A segunda avaliação executa `npx impeccable detect` contra a página. Isso é determinístico: cerca de trinta verificações de padrão específico que disparam ou não disparam. Texto com gradiente, paletas roxas, bordas side-tab, cards aninhados, problemas de comprimento de linha, contraste baixo, body text minúsculo e o resto. O [catálogo completo](/anti-patterns) lista cada regra e qual camada (CLI, navegador ou apenas LLM) a captura.
 
-You get back a JSON list of every finding with its element selector, the rule that fired, and a short description.
+Você recebe de volta uma lista JSON de cada achado com seu seletor de elemento, a regra que disparou e uma breve descrição.
 
-## Step 2. Open the visual overlay
+## Passo 2. Abra o overlay visual
 
-Impeccable ships with a visual mode that highlights every detected anti-pattern directly on the page. Here is what it looks like running on a deliberately-bad synthwave landing page:
+O Impeccable vem com um modo visual que destaca cada anti-pattern detectado diretamente na página. Aqui está como fica rodando em uma landing page synthwave deliberadamente ruim:
 
 <div class="tutorial-embed">
   <div class="tutorial-embed-header">
@@ -50,21 +50,21 @@ Impeccable ships with a visual mode that highlights every detected anti-pattern 
     <span class="tutorial-embed-dot green"></span>
     <span class="tutorial-embed-title">Live detection overlay</span>
   </div>
-  <iframe src="/antipattern-examples/visual-mode-demo.html" class="tutorial-embed-iframe" loading="lazy" title="Impeccable visual overlay running on a demo page"></iframe>
+  <iframe src="/antipattern-examples/visual-mode-demo.html" class="tutorial-embed-iframe" loading="lazy" title="Impeccable visual overlay rodando em uma página de demo"></iframe>
 </div>
 
-Every outlined element has a floating label naming the rule that fired. Hover an outline to see the full finding. This is exactly what you will see on your own page.
+Cada elemento delineado tem um label flutuante nomeando a regra que disparou. Passe o mouse sobre um delineamento para ver o achado completo. Isso é exatamente o que você verá na sua própria página.
 
-You have two ways to open it:
+Você tem duas formas de abrir:
 
-1. **[Chrome extension](https://chromewebstore.google.com/detail/impeccable/bdkgmiklpdmaojlpflclinlofgjfpabf)**: one-click activation on any page. Click the Impeccable icon in the toolbar and every anti-pattern gets highlighted instantly.
-2. **Inside `/impeccable critique`**: the skill opens a browser tab labeled `[Human]` with the detector active during the browser portion of the assessment. You do not need to do anything extra.
+1. **[Extensão Chrome](https://chromewebstore.google.com/detail/impeccable/bdkgmiklpdmaojlpflclinlofgjfpabf)**: ativação com um clique em qualquer página. Clique no ícone do Impeccable na toolbar e cada anti-pattern é destacado instantaneamente.
+2. **Dentro de `/impeccable critique`**: a skill abre uma aba de navegador rotulada `[Human]` com o detector ativo durante a parte de navegador da avaliação. Você não precisa fazer nada extra.
 
-For this tutorial, the easiest option is the Chrome extension. Install it, navigate to your pricing page, and click the Impeccable icon. You will see the overlay appear immediately on the live page.
+Para este tutorial, a opção mais fácil é a extensão Chrome. Instale, navegue até sua página de preços e clique no ícone do Impeccable. Você verá o overlay aparecer imediatamente na página ao vivo.
 
-## Step 3. Merge the two assessments
+## Passo 3. Mescle as duas avaliações
 
-Back in your harness, `/impeccable critique` has finished and produced a combined report. It looks something like:
+De volta ao seu harness, `/impeccable critique` terminou e produziu um relatório combinado. Ele se parece com algo assim:
 
 ```
 AI slop verdict: FAIL
@@ -99,31 +99,31 @@ Questions to answer:
   - What does a user feel when they land here from an ad vs from search?
 ```
 
-## Step 4. Fix the findings
+## Passo 4. Corrija os achados
 
-The report gives you a priority list. You can work through them one at a time, ask the model to fix them all at once, or anything in between. What matters is using the overlay to verify:
+O relatório dá a você uma lista de prioridades. Você pode trabalhar nelas uma de cada vez, pedir ao modelo para corrigir tudo de uma vez, ou qualquer coisa entre os dois. O que importa é usar o overlay para verificar:
 
-1. Keep the overlay open in one tab.
-2. Make fixes in code (or ask the model to fix everything).
-3. Reload. The overlay re-scans and resolved findings disappear.
+1. Mantenha o overlay aberto em uma aba.
+2. Faça correções no código (ou peça ao modelo para corrigir tudo).
+3. Recarregue. O overlay re-escaneia e achados resolvidos desaparecem.
 
-This feedback loop is the reason the overlay matters. You see fixes land in real time, and you never ship a "fix" that did not actually satisfy the rule.
+Este loop de feedback é a razão pela qual o overlay importa. Você vê correções acontecerem em tempo real, e nunca faz deploy de uma "correção" que não satisfez a regra de verdade.
 
-## Step 5. Re-run when you are done
+## Passo 5. Re-execute quando terminar
 
-After you have worked through the priority list, run `/impeccable critique` again. The goal is a clean AI slop verdict and at least a 3.5 average on the heuristics. Cognitive load should be below 2 failures.
+Depois de trabalhar pela lista de prioridades, execute `/impeccable critique` novamente. O objetivo é um AI slop verdict limpo e pelo menos uma média de 3.5 nas heurísticas. Carga cognitiva deve estar abaixo de 2 falhas.
 
-If something still fires, fix it or write a suppression comment explaining why the rule does not apply in your context (the detector respects a small set of opt-out pragmas, but use them sparingly).
+Se algo ainda dispara, corrija ou escreva um comentário de supressão explicando por que a regra não se aplica ao seu contexto (o detector respeita um pequeno conjunto de pragmas de opt-out, mas use-os com moderação).
 
-## What to try next
+## O que tentar a seguir
 
-- [Iterate on the critique findings with Live Mode](/tutorials/iterate-live). Pick the element critique flagged, drop a comment, get three redirections hot-swapped in place, and write the accepted one back to source.
-- `/impeccable audit the same page` to catch the implementation issues critique does not cover (accessibility, performance, theming).
-- `/impeccable polish` if the critique report is clean and you want the last-mile refinement pass.
-- `/impeccable distill` if critique flagged "too busy" or "cognitive load". Distill removes what should not be there.
+- [Itere nos achados da crítica com Live Mode](/tutorials/iterate-live). Selecione o elemento que critique sinalizou, deixe um comentário, receba três redireções trocadas em tempo real, e escreva a aceita de volta no código-fonte.
+- `/impeccable audit the same page` para capturar os problemas de implementação que critique não cobre (acessibilidade, performance, theming).
+- `/impeccable polish` se o relatório de critique está limpo e você quer a passada de refinamento final.
+- `/impeccable distill` se critique sinalizou "muito ocupado" ou "carga cognitiva". Distill remove o que não deveria estar lá.
 
-## Common issues
+## Problemas comuns
 
-- **The overlay shows no findings but critique says there are problems**. The detector catches deterministic patterns. Critique catches judgment calls. They are complementary, not redundant.
-- **The LLM assessment and the detector disagree**. That is normal. The LLM is subjective. The detector is deterministic. When they disagree, look at both and make a call.
-- **The overlay breaks the page layout**. Rare, but some CSS can interact with the injected overlay styles. Use the [Chrome extension](https://chromewebstore.google.com/detail/impeccable/bdkgmiklpdmaojlpflclinlofgjfpabf) for the most reliable experience, or run `npx impeccable detect` from the CLI and apply findings manually.
+- **O overlay mostra nenhum achado mas critique diz que há problemas**. O detector captura padrões determinísticos. Critique captura julgamentos. São complementares, não redundantes.
+- **A avaliação por LLM e o detector discordam**. Isso é normal. O LLM é subjetivo. O detector é determinístico. Quando discordam, olhe ambos e tome uma decisão.
+- **O overlay quebra o layout da página**. Raro, mas algum CSS pode interagir com os estilos do overlay injetado. Use a [extensão Chrome](https://chromewebstore.google.com/detail/impeccable/bdkgmiklpdmaojlpflclinlofgjfpabf) para a experiência mais confiável, ou execute `npx impeccable detect` via CLI e aplique os achados manualmente.

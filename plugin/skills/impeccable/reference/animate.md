@@ -1,147 +1,147 @@
-> **Additional context needed**: performance constraints.
+> **Contexto adicional necessário**: restrições de performance.
 
-Add motion that conveys state, gives feedback, and clarifies hierarchy. Cut motion that exists only for decoration. Animation fatigue is a real cost; spend the budget on the moments that need it.
-
----
-
-## Register
-
-Brand: orchestrated page-load sequences, staggered reveals, scroll-driven animation. Motion is part of the voice; one well-rehearsed entrance beats scattered micro-interactions.
-
-Product: 150–250 ms on most transitions. Motion conveys state: feedback, reveal, loading, transitions between views. No page-load choreography; users are in a task and won't wait for it.
+Adicione movimento que transmita estado, dê feedback e esclareça hierarquia. Corte movimento que exista apenas para decoração. Fadiga de animação é um custo real; gaste o orçamento nos momentos que precisam dele.
 
 ---
 
-## Assess Animation Opportunities
+## Registro
 
-Analyze where motion would improve the experience:
+Brand: sequências orquestradas de carregamento de página, revelações escalonadas, animação orientada por scroll. O movimento é parte da voz; uma entrada bem ensaiada supera micro-interações espalhadas.
 
-1. **Identify static areas**:
-   - **Missing feedback**: Actions without visual acknowledgment (button clicks, form submission, etc.)
-   - **Jarring transitions**: Instant state changes that feel abrupt (show/hide, page loads, route changes)
-   - **Unclear relationships**: Spatial or hierarchical relationships that aren't obvious
-   - **Lack of delight**: Functional but joyless interactions
-   - **Missed guidance**: Opportunities to direct attention or explain behavior
+Product: 150–250 ms na maioria das transições. O movimento transmite estado: feedback, revelação, carregamento, transições entre views. Sem coreografia de carregamento de página; os usuários estão em uma tarefa e não vão esperar por ela.
 
-2. **Understand the context**:
-   - What's the personality? (Playful vs serious, energetic vs calm)
-   - What's the performance budget? (Mobile-first? Complex page?)
-   - Who's the audience? (Motion-sensitive users? Power users who want speed?)
-   - What matters most? (One hero animation vs many micro-interactions?)
+---
 
-If any of these are unclear from the codebase, STOP and call the AskUserQuestion tool to clarify.
+## Avalie as Oportunidades de Animação
 
-**CRITICAL**: Respect `prefers-reduced-motion`. Always provide non-animated alternatives for users who need them.
+Analise onde o movimento melhoraria a experiência:
 
-## Plan Animation Strategy
+1. **Identifique áreas estáticas**:
+   - **Feedback ausente**: Ações sem confirmação visual (cliques em botões, envio de formulário, etc.)
+   - **Transições abruptas**: Mudanças de estado instantâneas que parecem bruscas (show/hide, carregamentos de página, mudanças de rota)
+   - **Relacionamentos obscuros**: Relacionamentos espaciais ou hierárquicos que não são óbvios
+   - **Falta de encanto**: Interações funcionais, mas sem alegria
+   - **Orientação perdida**: Oportunidades de direcionar a atenção ou explicar um comportamento
 
-Create a purposeful animation plan:
+2. **Entenda o contexto**:
+   - Qual é a personalidade? (Lúdica vs séria, enérgica vs calma)
+   - Qual é o orçamento de performance? (Mobile-first? Página complexa?)
+   - Quem é o público? (Usuários sensíveis a movimento? Power users que querem velocidade?)
+   - O que mais importa? (Uma animação hero vs muitas micro-interações?)
 
-- **Hero moment**: What's the ONE signature animation? (Page load? Hero section? Key interaction?)
-- **Feedback layer**: Which interactions need acknowledgment?
-- **Transition layer**: Which state changes need smoothing?
-- **Delight layer**: Where can we surprise and delight?
+Se algum desses itens não estiver claro no codebase, {{ask_instruction}}
 
-**IMPORTANT**: One well-orchestrated experience beats scattered animations everywhere. Focus on high-impact moments.
+**CRÍTICO**: Respeite `prefers-reduced-motion`. Sempre forneça alternativas não animadas para os usuários que precisam delas.
 
-## Implement Animations
+## Planeje a Estratégia de Animação
 
-Add motion systematically across these categories:
+Crie um plano de animação com propósito:
 
-### Entrance Animations
-- **Page load choreography**: Stagger element reveals (100-150ms delays), fade + slide combinations
-- **Hero section**: Dramatic entrance for primary content (scale, parallax, or creative effects)
-- **Content reveals**: Scroll-triggered animations using intersection observer
-- **Modal/drawer entry**: Smooth slide + fade, backdrop fade, focus management
+- **Momento hero**: Qual é a ÚNICA animação signature? (Carregamento da página? Seção hero? Interação principal?)
+- **Camada de feedback**: Quais interações precisam de confirmação?
+- **Camada de transição**: Quais mudanças de estado precisam de suavização?
+- **Camada de encanto**: Onde podemos surpreender e deleitar?
 
-### Micro-interactions
-- **Button feedback**:
-  - Hover: Subtle scale (1.02-1.05), color shift, shadow increase
-  - Click: Quick scale down then up (0.95 → 1), ripple effect
-  - Loading: Spinner or pulse state
-- **Form interactions**:
-  - Input focus: Border color transition, slight scale or glow
-  - Validation: Shake on error, check mark on success, smooth color transitions
-- **Toggle switches**: Smooth slide + color transition (200-300ms)
-- **Checkboxes/radio**: Check mark animation, ripple effect
-- **Like/favorite**: Scale + rotation, particle effects, color transition
+**IMPORTANTE**: Uma experiência bem orquestrada supera animações espalhadas por toda parte. Foque nos momentos de alto impacto.
 
-### State Transitions
-- **Show/hide**: Fade + slide (not instant), appropriate timing (200-300ms)
-- **Expand/collapse**: Height transition with overflow handling, icon rotation
-- **Loading states**: Skeleton screen fades, spinner animations, progress bars
-- **Success/error**: Color transitions, icon animations, gentle scale pulse
-- **Enable/disable**: Opacity transitions, cursor changes
+## Implemente as Animações
 
-### Navigation & Flow
-- **Page transitions**: Crossfade between routes, shared element transitions
-- **Tab switching**: Slide indicator, content fade/slide
-- **Carousel/slider**: Smooth transforms, snap points, momentum
-- **Scroll effects**: Parallax layers, sticky headers with state changes, scroll progress indicators
+Adicione movimento sistematicamente nestas categorias:
 
-### Feedback & Guidance
-- **Hover hints**: Tooltip fade-ins, cursor changes, element highlights
-- **Drag & drop**: Lift effect (shadow + scale), drop zone highlights, smooth repositioning
-- **Copy/paste**: Brief highlight flash on paste, "copied" confirmation
-- **Focus flow**: Highlight path through form or workflow
+### Animações de Entrada
+- **Coreografia de carregamento da página**: Revelações escalonadas de elementos (atrasos de 100-150ms), combinações de fade + slide
+- **Seção hero**: Entrada dramática para conteúdo primário (scale, parallax ou efeitos criativos)
+- **Revelações de conteúdo**: Animações acionadas por scroll usando intersection observer
+- **Entrada de modal/drawer**: Slide + fade suave, fade do backdrop, gerenciamento de foco
 
-### Delight Moments
-- **Empty states**: Subtle floating animations on illustrations
-- **Completed actions**: Confetti, check mark flourish, success celebrations
-- **Easter eggs**: Hidden interactions for discovery
-- **Contextual animation**: Weather effects, time-of-day themes, seasonal touches
+### Micro-interações
+- **Feedback de botões**:
+  - Hover: Scale sutil (1.02-1.05), mudança de cor, aumento de sombra
+  - Click: Scale rápido para baixo e depois para cima (0.95 → 1), efeito ripple
+  - Loading: Spinner ou estado de pulse
+- **Interações de formulário**:
+  - Foco no input: Transição de cor da borda, scale ou glow sutil
+  - Validação: Shake no erro, check mark no sucesso, transições de cor suaves
+- **Toggle switches**: Slide suave + transição de cor (200-300ms)
+- **Checkboxes/radio**: Animação do check mark, efeito ripple
+- **Like/favorite**: Scale + rotação, efeitos de partículas, transição de cor
 
-## Technical Implementation
+### Transições de Estado
+- **Show/hide**: Fade + slide (não instantâneo), timing apropriado (200-300ms)
+- **Expand/collapse**: Transição de altura com tratamento de overflow, rotação de ícone
+- **Estados de carregamento**: Fade de skeleton screen, animações de spinner, barras de progresso
+- **Sucesso/erro**: Transições de cor, animações de ícone, pulse de scale suave
+- **Habilitar/desabilitar**: Transições de opacidade, mudanças de cursor
 
-Use appropriate techniques for each animation:
+### Navegação e Fluxo
+- **Transições de página**: Crossfade entre rotas, transições de elementos compartilhados
+- **Troca de tabs**: Indicator deslizante, fade/slide do conteúdo
+- **Carrossel/slider**: Transforms suaves, snap points, momentum
+- **Efeitos de scroll**: Camadas de parallax, headers fixos com mudanças de estado, indicadores de progresso de scroll
 
-### Timing & Easing
+### Feedback e Orientação
+- **Dicas de hover**: Fade-in de tooltips, mudanças de cursor, highlights de elementos
+- **Drag & drop**: Efeito de elevação (sombra + scale), highlights de drop zone, reposicionamento suave
+- **Copiar/colar**: Flash breve de highlight ao colar, confirmação de "copiado"
+- **Fluxo de foco**: Destaque do caminho pelo formulário ou workflow
 
-**Durations by purpose:**
-- **100-150ms**: Instant feedback (button press, toggle)
-- **200-300ms**: State changes (hover, menu open)
-- **300-500ms**: Layout changes (accordion, modal)
-- **500-800ms**: Entrance animations (page load)
+### Momentos de Encanto
+- **Estados vazios**: Animações flutuantes sutis em ilustrações
+- **Ações concluídas**: Confetti, flourish de check mark, celebrações de sucesso
+- **Easter eggs**: Interações ocultas para descoberta
+- **Animação contextual**: Efeitos climáticos, temas por horário, toques sazonais
 
-**Easing curves (use these, not CSS defaults):**
+## Implementação Técnica
+
+Use técnicas apropriadas para cada animação:
+
+### Timing e Easing
+
+**Durações por propósito:**
+- **100-150ms**: Feedback instantâneo (pressionar botão, toggle)
+- **200-300ms**: Mudanças de estado (hover, abrir menu)
+- **300-500ms**: Mudanças de layout (acordeão, modal)
+- **500-800ms**: Animações de entrada (carregamento da página)
+
+**Curvas de easing (use estas, não os padrões CSS):**
 ```css
-/* Recommended: natural deceleration */
---ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);    /* Smooth */
---ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);   /* Slightly snappier */
---ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);     /* Confident, decisive */
+/* Recomendado: desaceleração natural */
+--ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);    /* Suave */
+--ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);   /* Ligeiramente mais rápido */
+--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);     /* Confiante, decisivo */
 
-/* AVOID: feel dated and tacky */
+/* EVITE: parecem datadas e bregas */
 /* bounce: cubic-bezier(0.34, 1.56, 0.64, 1); */
 /* elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6); */
 ```
 
-**Exit animations are faster than entrances.** Use ~75% of enter duration.
+**Animações de saída são mais rápidas que as de entrada.** Use ~75% da duração de entrada.
 
-### CSS Animations
+### Animações CSS
 ```css
-/* Prefer for simple, declarative animations */
-- transitions for state changes
-- @keyframes for complex sequences
-- transform and opacity for reliable movement
-- blur, filters, masks, clip paths, shadows, and color shifts for premium atmospheric effects when verified smooth
+/* Prefira para animações simples e declarativas */
+- transitions para mudanças de estado
+- @keyframes para sequências complexas
+- transform e opacity para movimento confiável
+- blur, filters, masks, clip paths, shadows e mudanças de cor para efeitos atmosféricos premium quando verificado que são suaves
 ```
 
-### JavaScript Animation
+### Animações com JavaScript
 ```javascript
-/* Use for complex, interactive animations */
-- Web Animations API for programmatic control
-- Framer Motion for React
-- GSAP for complex sequences
+/* Use para animações complexas e interativas */
+- Web Animations API para controle programático
+- Framer Motion para React
+- GSAP para sequências complexas
 ```
 
 ### Performance
-- **Motion materials**: Use transform/opacity for reliable movement, but use blur, filters, masks, shadows, and color shifts when they materially improve the effect
-- **Layout safety**: Avoid casual animation of layout-driving properties (`width`, `height`, `top`, `left`, margins)
-- **will-change**: Add sparingly for known expensive animations
-- **Bound expensive effects**: Keep blur/filter/shadow areas small or isolated, use `contain` where appropriate
-- **Monitor FPS**: Ensure 60fps on target devices
+- **Materiais de movimento**: Use transform/opacity para movimento confiável, mas use blur, filters, masks, shadows e mudanças de cor quando melhorarem materialmente o efeito
+- **Segurança de layout**: Evite animar casualmente propriedades que afetam o layout (`width`, `height`, `top`, `left`, margens)
+- **will-change**: Adicione com moderação para animações conhecidas como custosas
+- **Limite efeitos custosos**: Mantenha áreas de blur/filter/shadow pequenas ou isoladas, use `contain` quando apropriado
+- **Monitore o FPS**: Garanta 60fps nos dispositivos-alvo
 
-### Accessibility
+### Acessibilidade
 ```css
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -152,24 +152,24 @@ Use appropriate techniques for each animation:
 }
 ```
 
-**NEVER**:
-- Use bounce or elastic easing curves; they feel dated and draw attention to the animation itself
-- Animate layout properties casually (`width`, `height`, `top`, `left`, margins) when transform, FLIP, or grid-based techniques would work
-- Use durations over 500ms for feedback (it feels laggy)
-- Animate without purpose (every animation needs a reason)
-- Ignore `prefers-reduced-motion` (this is an accessibility violation)
-- Animate everything (animation fatigue makes interfaces feel exhausting)
-- Block interaction during animations unless intentional
+**NUNCA**:
+- Use curvas de easing bounce ou elastic; elas parecem datadas e chamam atenção para a animação em si
+- Anime propriedades de layout casualmente (`width`, `height`, `top`, `left`, margens) quando técnicas com transform, FLIP ou baseadas em grid funcionariam
+- Use durações acima de 500ms para feedback (parece lento)
+- Anime sem propósito (toda animação precisa de um motivo)
+- Ignore `prefers-reduced-motion` (isto é uma violação de acessibilidade)
+- Anime tudo (fadiga de animação torna as interfaces exaustivas)
+- Bloqueie interação durante animações, a menos que seja intencional
 
-## Verify Quality
+## Verifique a Qualidade
 
-Test animations thoroughly:
+Teste as animações minuciosamente:
 
-- **Smooth at 60fps**: No jank on target devices
-- **Feels natural**: Easing curves feel organic, not robotic
-- **Appropriate timing**: Not too fast (jarring) or too slow (laggy)
-- **Reduced motion works**: Animations disabled or simplified appropriately
-- **Doesn't block**: Users can interact during/after animations
-- **Adds value**: Makes interface clearer or more delightful
+- **Suave a 60fps**: Sem engasgos nos dispositivos-alvo
+- **Parece natural**: Curvas de easing parecem orgânicas, não robóticas
+- **Timing apropriado**: Nem muito rápido (brusco) nem muito lento (lerdo)
+- **Movimento reduzido funciona**: Animações desabilitadas ou simplificadas apropriadamente
+- **Não bloqueia**: Usuários podem interagir durante/após animações
+- **Adiciona valor**: Torna a interface mais clara ou mais encantadora
 
-When the motion clarifies state instead of decorating it, hand off to `/impeccable polish` for the final pass.
+Quando o movimento esclarece o estado em vez de apenas decorá-lo, passe para `{{command_prefix}}impeccable polish` para a revisão final.

@@ -1,118 +1,118 @@
-# Brand register
+# Registro de marca
 
-When design IS the product: brand sites, landing pages, marketing surfaces, campaign pages, portfolios, long-form content, about pages. The deliverable is the design itself; a visitor's impression is the thing being made.
+Quando o design É o produto: sites de marca, landing pages, superfícies de marketing, páginas de campanha, portfólios, conteúdo de formato longo, páginas sobre. A entrega é o design em si; a impressão do visitante é o que está sendo criado.
 
-The register spans every genre. A tech brand (Stripe, Linear, Vercel). A luxury brand (a hotel, a fashion house). A consumer product (a restaurant, a travel site, a CPG packaging page). A creative studio, an agency portfolio, a band's album page. They all share the stance (*communicate, not transact*) and diverge wildly in aesthetic. Don't collapse them into a single look.
+O registro abrange todos os gêneros. Uma marca de tecnologia (Stripe, Linear, Vercel). Uma marca de luxo (um hotel, uma grife). Um produto de consumo (um restaurante, um site de viagens, uma página de embalagem de CPG). Um estúdio criativo, um portfólio de agência, a página de um álbum de uma banda. Todos compartilham a postura (*comunicar, não transacionar*) e divergem radicalmente na estética. Não os colapse em uma única aparência.
 
-## The brand slop test
+## O teste de brand slop
 
-If someone could look at this and say "AI made that" without hesitation, it's failed. The bar is distinctiveness; a visitor should ask "how was this made?", not "which AI made this?"
+Se alguém pudesse olhar para isso e dizer "IA fez isso" sem hesitação, falhou. A barra é a distintividade; um visitante deveria perguntar "como isso foi feito?", não "qual IA fez isso?"
 
-Brand isn't a neutral register. AI-generated landing pages have flooded the internet, and average is no longer findable. Restraint without intent now reads as mediocre, not refined. Brand surfaces need a POV, a specific audience, a willingness to risk strangeness. Go big or go home.
+Marca não é um registro neutro. Landing pages geradas por IA inundaram a internet, e a média já não é encontrável. Restrição sem intenção agora soa como medíocre, não refinado. Superfícies de marca precisam de um ponto de vista, um público específico, uma disposição para arriscar o estranhamento. Vá fundo ou vá embora.
 
-**The second slop test: aesthetic lane.** Before committing to moves, name the reference. A Klim-style specimen page is one lane; Stripe-minimal is another; Liquid-Death-acid-maximalism is another. Don't drift into editorial-magazine aesthetics on a brief that isn't editorial. A hiking brand with Cormorant italic drop caps has the wrong register within the register.
+**O segundo teste de slop: faixa estética.** Antes de se comprometer com movimentos, nomeie a referência. Uma página de espécime estilo Klim é uma faixa; Stripe-minimalista é outra; acid-maximalismo da Liquid Death é outra. Não derive para estéticas de revista editorial em um brief que não é editorial. Uma marca de trilhas com drop caps em Cormorant italic tem o registro errado dentro do registro.
 
-Then the inverse test: in one sentence, describe what you're about to build the way a competitor would describe theirs. If that sentence fits the modal landing page in the category, restart.
+Depois o teste inverso: em uma frase, descreva o que você está prestes a construir da forma como um concorrente descreveria o dele. Se essa frase serve para a landing page modal da categoria, recomece.
 
-## Typography
+## Tipografia
 
-### Font selection procedure
+### Procedimento de seleção de fontes
 
-Every project. Never skip.
+Todo projeto. Nunca pule.
 
-1. Read the brief. Write three concrete brand-voice words. Not "modern" or "elegant," but "warm and mechanical and opinionated" or "calm and clinical and careful." Physical-object words.
-2. List the three fonts you'd reach for by reflex. If any appear in the reflex-reject list below, reject them; they are training-data defaults and they create monoculture.
-3. Browse a real catalog (Google Fonts, Pangram Pangram, Future Fonts, Adobe Fonts, ABC Dinamo, Klim, Velvetyne) with the three words in mind. Find the font for the brand as a *physical object*: a museum caption, a 1970s terminal manual, a fabric label, a cheap-newsprint children's book, a concert poster, a receipt from a mid-century diner. Reject the first thing that "looks designy."
-4. Cross-check. "Elegant" is not necessarily serif. "Technical" is not necessarily sans. "Warm" is not Fraunces. If the final pick lines up with the original reflex, start over.
+1. Leia o brief. Escreva três palavras concretas de voz da marca. Não "moderno" ou "elegante," mas "quente e mecânico e opinativo" ou "calmo e clínico e cuidadoso." Palavras de objetos físicos.
+2. Liste as três fontes que você alcançaria por reflexo. Se alguma aparecer na lista de reflexo-rejeição abaixo, rejeite-a; elas são padrões de dados de treinamento e criam monocultura.
+3. Navegue em um catálogo real (Google Fonts, Pangram Pangram, Future Fonts, Adobe Fonts, ABC Dinamo, Klim, Velvetyne) com as três palavras em mente. Encontre a fonte para a marca como um *objeto físico*: uma legenda de museu, um manual de terminal dos anos 1970, uma etiqueta de tecido, um livro infantil em papel jornal barato, um pôster de concerto, um recibo de um diner do meado do século. Rejeite a primeira coisa que "parece designy."
+4. Verificação cruzada. "Elegante" não é necessariamente serif. "Técnico" não é necessariamente sans. "Quente" não é Fraunces. Se a escolha final se alinha com o reflexo original, comece de novo.
 
-### Reflex-reject list
+### Lista de reflexo-rejeição
 
-Training-data defaults. Ban list. Look further:
+Padrões de dados de treinamento. Lista de banimento. Olhe além:
 
 Fraunces · Newsreader · Lora · Crimson · Crimson Pro · Crimson Text · Playfair Display · Cormorant · Cormorant Garamond · Syne · IBM Plex Mono · IBM Plex Sans · IBM Plex Serif · Space Mono · Space Grotesk · Inter · DM Sans · DM Serif Display · DM Serif Text · Outfit · Plus Jakarta Sans · Instrument Sans · Instrument Serif
 
-### Reflex-reject aesthetic lanes
+### Faixas estéticas de reflexo-rejeição
 
-Parallel to the font list. Currently saturated aesthetic families that have flooded brand surfaces. If a brief lands in one of these lanes without a register reason that *requires* it (a literal magazine, a literal terminal, a literal industrial signage system), it's the second-order training reflex: the trap one tier deeper than picking a Fraunces font. Look further.
+Paralela à lista de fontes. Famílias estéticas atualmente saturadas que inundaram superfícies de marca. Se um brief pousa em uma dessas faixas sem uma razão de registro que *exija* isso (uma revista literal, um terminal literal, um sistema de sinalização industrial literal), é o reflexo de treinamento de segunda ordem: a armadilha um nível mais profundo do que escolher uma fonte Fraunces. Olhe além.
 
-- **Editorial-typographic.** Display serif (often italic) + small mono labels + ruled separators + monochromatic restraint. Klim-influenced, magazine-cover affectation. By 2026, every Stripe-adjacent and Notion-adjacent brand has landed here. The fingerprint: three rule-separated columns, an italic Fraunces / Recoleta / Newsreader headline, lowercase track-spaced metadata, no imagery.
+- **Editorial-tipográfico.** Serif de display (frequentemente italic) + rótulos mono pequenos + separadores com linhas + restrição monocromática. Influência Klim, afetação de capa de revista. Em 2026, toda marca adjacente à Stripe e à Notion pousou aqui. A impressão digital: três colunas separadas por linhas, um título em Fraunces / Recoleta / Newsreader italic, metadados em minúsculas com tracking espaçado, sem imagens.
 
-(More entries land here on the same cadence the font list updates. Brutalist-utility and acid-maximalism may join when they saturate. Removing entries when they fall back below saturation is also fine.)
+(Mais entradas pousam aqui no mesmo ritmo em que a lista de fontes é atualizada. Brutalista-utilitário e acid-maximalismo podem se juntar quando saturarem. Remover entradas quando caírem abaixo da saturação também é aceitável.)
 
-The reflex-reject lists apply to **new design choices**. When the existing brand has already committed to a font or a lane as part of its identity, identity-preservation wins; variants on an existing surface don't second-guess what's already shipping. The reflex-reject lists are for greenfield decisions and for departure-mode variants in [live.md](live.md).
+As listas de reflexo-rejeição se aplicam a **novas escolhas de design**. Quando a marca existente já se comprometeu com uma fonte ou faixa como parte de sua identidade, a preservação da identidade vence; variantes em uma superfície existente não questionam o que já está em produção. As listas de reflexo-rejeição são para decisões de greenfield e para variantes em modo de partida em [live.md](live.md).
 
-### Pairing and voice
+### Combinacao e voz
 
-Distinctive + refined is the goal. The specific shape depends on the brand:
+Distintivo + refinado é o objetivo. A forma específica depende da marca:
 
-- **Editorial / long-form / luxury**: display serif + sans body (a magazine shape).
-- **Tech / dev tools / fintech**: one committed sans, usually; custom-tight tracking, strong weight contrast inside a single family.
-- **Consumer / food / travel**: warmer pairings, often a humanist sans plus a script or display serif.
-- **Creative studios / agencies**: rule-breaking welcome. Mono-only, or display-only, or custom-drawn type as voice.
+- **Editorial / formato longo / luxo**: serif de display + corpo sans (um formato de revista).
+- **Tech / ferramentas de dev / fintech**: uma sans comprometida, geralmente; tracking personalizado e justo, forte contraste de peso dentro de uma única família.
+- **Consumo / comida / viagens**: combinações mais quentes, frequentemente uma sans humanista mais uma script ou serif de display.
+- **Estúdios criativos / agências**: quebra de regras bem-vinda. Apenas mono, ou apenas display, ou tipo desenhado sob medida como voz.
 
-Two families minimum is the rule *only* when the voice needs it. A single well-chosen family with committed weight/size contrast is stronger than a timid display+body pair.
+Duas famílias no mínimo é a regra *apenas* quando a voz precisa. Uma única família bem escolhida com contraste comprometido de peso/tamanho é mais forte que um par tímido de display+corpo.
 
-Vary across projects. If the last brief was a serif-display landing page, this one isn't.
+Varie entre projetos. Se o último brief era uma landing page com serif de display, este não é.
 
-### Scale
+### Escala
 
-Modular scale, fluid `clamp()` for headings, ≥1.25 ratio between steps. Flat scales (1.1× apart) read as uncommitted.
+Escala modular, `clamp()` fluido para títulos, razão ≥1.25 entre degraus. Escalas planas (1.1× de diferença) soam como sem compromisso.
 
-Light text on dark backgrounds: add 0.05–0.1 to line-height. Light type reads as lighter weight and needs more breathing room.
+Texto claro em fundos escuros: adicione 0.05–0.1 ao line-height. Tipo claro parece ter peso menor e precisa de mais espaço para respirar.
 
-## Color
+## Cor
 
-Brand surfaces have permission for Committed, Full palette, and Drenched strategies. Use them. A single saturated color spread across a hero is not excess; it's voice. A beige-and-muted-slate landing page ignores the register.
+Superfícies de marca têm permissão para estratégias Comprometida, Paleta completa e Encharcada. Use-as. Uma única cor saturada espalhada por um hero não é excesso; é voz. Uma landing page em bege e ardósia suave ignora o registro.
 
-- Name a real reference before picking a strategy. "Klim Type Foundry #ff4500 orange drench", "Stripe purple-on-white restraint", "Liquid Death acid-green full palette", "Mailchimp yellow full palette", "Condé Nast Traveler muted navy restraint", "Vercel pure black monochrome". Unnamed ambition becomes beige.
-- Palette IS voice. A calm brand and a restless brand should not share palette mechanics.
-- When the strategy is Committed or Drenched, color carries the brand. Don't hedge with neutrals around the edges. Commit.
-- Don't converge across projects. If the last brand surface was restrained-on-cream, this one is not.
-- When a cultural-symbol palette is the obvious pull, reach past it. Let the cultural reading come from typography, imagery, and copy, not the palette.
+- Nomeie uma referência real antes de escolher uma estratégia. "Klim Type Foundry laranja #ff4500 encharcada", "Stripe roxo-sobre-branco restrição", "Liquid Death verde-ácido paleta completa", "Mailchimp amarelo paleta completa", "Condé Nast Traveler azul-marinho suave restrição", "Vercel preto puro monocromático". Ambição sem nome vira bege.
+- Paleta É voz. Uma marca calma e uma marca inquieta não devem compartilhar mecânicas de paleta.
+- Quando a estratégia é Comprometida ou Encharcada, a cor carrega a marca. Não se proteja com neutros nas bordas. Comprometa-se.
+- Não convirja entre projetos. Se a última superfície de marca era contida-em-creme, esta não é.
+- Quando uma paleta de símbolo cultural é o atrativo óbvio, vá além. Deixe a leitura cultural vir da tipografia, imagens e copy, não da paleta.
 
 ## Layout
 
-- Asymmetric compositions are one option. Break the grid intentionally for emphasis.
-- Fluid spacing with `clamp()` that breathes on larger viewports. Vary for rhythm: generous separations, tight groupings.
-- Alternative: a strict, visible grid as the voice (brutalist / Swiss / tech-spec aesthetics). Either asymmetric or rigorously-gridded can be "designed"; the failure mode is splitting the difference into a generic centered stack.
-- Don't default to centering everything. Left-aligned with asymmetric layouts feels more designed; a strict grid reads as confident structure. A centered-stack hero with icon-title-subtitle cards reads as template.
-- When cards ARE the right affordance, use `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))` for breakpoint-free responsiveness.
+- Composições assimétricas são uma opção. Quebre o grid intencionalmente para ênfase.
+- Espaçamento fluido com `clamp()` que respira em viewports maiores. Varie para ritmo: separações generosas, agrupamentos justos.
+- Alternativa: um grid estrito e visível como voz (estéticas brutalistas / suíças / tech-spec). Tanto assimétrico quanto rigorosamente gradeado pode ser "desenhado"; o modo de falha é dividir a diferença em uma pilha centrada genérica.
+- Não padronize o centralização de tudo. Alinhado à esquerda com layouts assimétricos parece mais desenhado; um grid estrito soa como estrutura confiante. Um hero em pilha centralizada com cartões de ícone-título-subtítulo soa como template.
+- Quando cartões SÃO a affordance certa, use `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))` para responsividade sem breakpoint.
 
-## Imagery
+## Imagens
 
-Brand surfaces lean on imagery. A restaurant, hotel, magazine, or product landing page without any imagery reads as incomplete, not as restrained. A solid-color rectangle where a hero image should go is worse than a representative stock photo.
+Superfícies de marca dependem de imagens. Um restaurante, hotel, revista ou landing page de produto sem nenhuma imagem soa como incompleto, não como contido. Um retângulo de cor sólida onde uma imagem hero deveria estar é pior que uma foto stock representativa.
 
-**When the brief implies imagery (restaurants, hotels, magazines, photography, hobbyist communities, food, travel, fashion, product), you must ship imagery.** Zero images is a bug, not a design choice. "Restraint" is not an excuse. If the approved comp or brief is image-led, ship real project assets, generated raster assets, or a credible canvas/SVG/WebGL scene. Do not replace photographic, architectural, product, or place imagery with generic CSS panels, decorative diagrams, cards, bullets, or copy.
+**Quando o brief implica imagens (restaurantes, hotéis, revistas, fotografia, comunidades de hobby, comida, viagens, moda, produto), você deve entregar imagens.** Zero imagens é um bug, não uma escolha de design. "Restrição" não é desculpa. Se o comp aprovado ou brief é liderado por imagens, entregue assets reais do projeto, assets raster gerados, ou uma cena canvas/SVG/WebGL crível. Não substitua imagens fotográficas, arquitetônicas, de produto ou de lugar por painéis CSS genéricos, diagramas decorativos, cartões, bullets ou copy.
 
-- **For greenfield work without local assets, use stock imagery.** Unsplash is the default. The URL shape is `https://images.unsplash.com/photo-{id}?auto=format&fit=crop&w=1600&q=80`. **Verify the URLs before referencing them.** If you have an image-search MCP, web-fetch tool, or browser access, use it to find real photo IDs and confirm they resolve. Guessed IDs (even ones that look real) often 404 and ship as broken-image placeholders. Without a verification path, pick fewer photos you're confident exist over more that you guessed; never substitute colored `<div>` placeholders.
-- **Search for the brand's physical object**, not the generic category: "handmade pasta on a scratched wooden table" beats "Italian food"; "cypress trees above a limestone hotel facade at dusk" beats "luxury hotel".
-- **One decisive photo beats five mediocre ones.** Hero imagery should commit to a mood; padding with more stock doesn't rescue an indecisive one.
-- **Alt text is part of the voice.** "Coastal fettuccine, hand-cut, served on the terrace" beats "pasta dish".
+- **Para trabalhos de greenfield sem assets locais, use imagens stock.** Unsplash é o padrão. O formato da URL é `https://images.unsplash.com/photo-{id}?auto=format&fit=crop&w=1600&q=80`. **Verifique as URLs antes de referenciá-las.** Se você tem um MCP de busca de imagens, ferramenta de web-fetch ou acesso a navegador, use-o para encontrar IDs de fotos reais e confirmar que elas resolvem. IDs adivinhados (mesmo os que parecem reais) frequentemente dão 404 e são entregues como placeholders de imagem quebrada. Sem um caminho de verificação, escolha menos fotos das quais você tem confiança de que existem em vez de mais que você adivinhou; nunca substitua por placeholders de `<div>` coloridos.
+- **Busque pelo objeto físico da marca**, não pela categoria genérica: "massa caseira em uma mesa de madeira arranhada" é melhor que "comida italiana"; "ciprestes acima de uma fachada de hotel em calcário ao anoitecer" é melhor que "hotel de luxo".
+- **Uma foto decisiva é melhor que cinco medíocres.** Imagens hero devem se comprometer com um clima; preencher com mais stock não salva uma hero indecisa.
+- **Alt text é parte da voz.** "Fettuccine costeiro, cortado à mão, servido no terraço" é melhor que "prato de massa".
 
-"Imagery" here is broader than stock photography: product screenshots, custom data visualizations, generated SVG, and canvas/WebGL scenes are all imagery. Text-only pages where typography alone carries the entire visual weight are the failure mode.
+"Imagens" aqui é mais amplo que fotografia stock: capturas de tela de produto, visualizações de dados personalizadas, SVG gerado, e cenas canvas/WebGL são todas imagens. Páginas apenas com texto onde a tipografia sozinha carrega todo o peso visual são o modo de falha.
 
-## Motion
+## Movimento
 
-- One well-orchestrated page-load with staggered reveals beats scattered micro-interactions, when the brand invites it. Tech-minimal brands often skip entrance motion entirely; the restraint is the voice.
-- For collapsing/expanding sections, transition `grid-template-rows` rather than `height`.
+- Uma carga de página bem orquestrada com revelações escalonadas é melhor que micro-interações espalhadas, quando a marca convida. Marcas tech-minimalistas frequentemente pulam animação de entrada inteiramente; a restrição é a voz.
+- Para seções que colapsam/expandem, transitione `grid-template-rows` em vez de `height`.
 
-## Brand bans (on top of the shared absolute bans)
+## Banimentos de marca (além dos banimentos absolutos compartilhados)
 
-- Monospace as lazy shorthand for "technical / developer." If the brand isn't technical, mono reads as costume.
-- Large rounded-corner icons above every heading. Screams template.
-- Single-family pages that picked the family by reflex, not voice. (A single family chosen deliberately is fine.)
-- All-caps body copy. Reserve caps for short labels and headings.
-- Timid palettes and average layouts. Safe = invisible.
-- Zero imagery on a brief that implies imagery (restaurant, hotel, food, travel, fashion, photography, hobbyist). Colored blocks where a hero photo belongs.
-- Defaulting to editorial-magazine aesthetics (display serif + italic + drop caps + broadsheet grid) on briefs that aren't magazine-shaped. Editorial is ONE aesthetic lane, not the default brand aesthetic.
-- Repeated tiny uppercase tracked labels above every section heading. A single strong kicker can be voice; repeating it as section grammar is AI scaffolding unless it's a deliberate, named brand system.
+- Monospace como atalho preguiçoso para "técnico / desenvolvedor." Se a marca não é técnica, mono soa como fantasia.
+- Ícones grandes com cantos arredondados acima de cada título. Grita template.
+- Páginas de família única que escolheram a família por reflexo, não por voz. (Uma família única escolhida deliberadamente é aceitável.)
+- Copy de corpo em caixa alta. Reserve caixa alta para rótulos curtos e títulos.
+- Paletas tímidas e layouts medianos. Seguro = invisível.
+- Zero imagens em um brief que implica imagens (restaurante, hotel, comida, viagens, moda, fotografia, hobby). Blocos coloridos onde uma foto hero pertence.
+- Padronizar estéticas de revista editorial (serif de display + italic + drop caps + grid de jornal) em briefs que não têm formato de revista. Editorial é UMA faixa estética, não a estética de marca padrão.
+- Rótulos tiny uppercase com tracking repetidos acima de cada título de seção. Um kicker forte e único pode ser voz; repeti-lo como gramática de seção é scaffolding de IA a menos que seja um sistema de marca deliberado e nomeado.
 
-## Brand permissions
+## Permissões de marca
 
-Brand can afford things product can't. Take them.
+Marca pode custear coisas que produto não pode. Aproveite-as.
 
-- Ambitious first-load motion. Reveals, scroll-triggered transitions, typographic choreography.
-- Single-purpose viewports. One dominant idea per fold, long scroll, deliberate pacing.
-- Typographic risk. Enormous display type, unexpected italic cuts, mixed cases, hand-drawn headlines, a single oversize word as a hero.
-- Unexpected color strategies. Palette IS voice; a calm brand and a restless brand should not share palette mechanics.
-- Art direction per section. Different sections can have different visual worlds if the narrative demands it. Consistency of voice beats consistency of treatment.
+- Movimento ambicioso na primeira carga. Revelações, transições acionadas por scroll, coreografia tipográfica.
+- Viewports de propósito único. Uma ideia dominante por dobra, scroll longo, ritmo deliberado.
+- Risco tipográfico. Tipo de display enorme, cortes italic inesperados, casos mistos, manchetes desenhadas à mão, uma única palavra oversized como hero.
+- Estratégias de cor inesperadas. Paleta É voz; uma marca calma e uma marca inquieta não devem compartilhar mecânicas de paleta.
+- Direção de arte por seção. Seções diferentes podem ter mundos visuais diferentes se a narrativa exigir. Consistência de voz vence consistência de tratamento.

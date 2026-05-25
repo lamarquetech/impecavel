@@ -1,73 +1,73 @@
 ---
-tagline: "Think before you build. Produce a design brief through discovery, not guesswork."
+tagline: "Pense antes de construir. Produza um brief de design através de discovery, não adivinhação."
 ---
 
 <div class="docs-viz-hero">
   <div class="docs-viz-file">
     <div class="docs-viz-file-header">
       <span class="docs-viz-file-name">brief.md</span>
-      <span class="docs-viz-file-status">Output of /impeccable shape</span>
+      <span class="docs-viz-file-status">Saída de /impeccable shape</span>
     </div>
     <div class="docs-viz-file-body">
       <div class="docs-viz-file-row">
         <span class="docs-viz-file-k">Purpose</span>
-        <span class="docs-viz-file-v">Let committed subscribers change what they get without losing them to unsubscribe.</span>
+        <span class="docs-viz-file-v">Permitir que assinantes comprometidos mudem o que recebem sem perdê-los para o unsubscribe.</span>
       </div>
       <div class="docs-viz-file-row">
         <span class="docs-viz-file-k">User</span>
-        <span class="docs-viz-file-v">Rushed, on mobile, mid-meeting. Reading fast, low patience.</span>
+        <span class="docs-viz-file-v">Apressado, no mobile, no meio de uma reunião. Lendo rápido, pouca paciência.</span>
       </div>
       <div class="docs-viz-file-row">
         <span class="docs-viz-file-k">Content</span>
-        <span class="docs-viz-file-v">4 digest types, 2 cadences, one opt-out-all at the bottom.</span>
+        <span class="docs-viz-file-v">4 tipos de digest, 2 cadências, um opt-out-total no final.</span>
       </div>
       <div class="docs-viz-file-row">
         <span class="docs-viz-file-k">Feeling</span>
-        <span class="docs-viz-file-v">Calm, trustworthy, no dark patterns.</span>
+        <span class="docs-viz-file-v">Calmo, confiável, sem dark patterns.</span>
       </div>
       <div class="docs-viz-file-row">
         <span class="docs-viz-file-k">Constraints</span>
-        <span class="docs-viz-file-v">Mobile-first. WCAG AA contrast. One column, no modals.</span>
+        <span class="docs-viz-file-v">Mobile-first. Contraste WCAG AA. Uma coluna, sem modals.</span>
       </div>
     </div>
-    <div class="docs-viz-file-footer">Hand it to <code>/impeccable</code>, <code>/impeccable craft</code>, or any implementation flow.</div>
+    <div class="docs-viz-file-footer">Entregue para <code>/impeccable</code>, <code>/impeccable craft</code>, ou qualquer fluxo de implementação.</div>
   </div>
-  <p class="docs-viz-caption">A shape brief is a compass, not a spec. It captures intent, not UI. Implementation skills read it before writing a line of code.</p>
+  <p class="docs-viz-caption">Um brief do shape é uma bússola, não uma especificação. Ele captura intenção, não UI. Skills de implementação o leem antes de escrever uma linha de código.</p>
 </div>
 
-## When to use it
+## Quando usar
 
-`/impeccable shape` is where a feature starts. Before anyone writes code, before anyone argues about the hero treatment, before anyone picks a font. Use it to force a discovery conversation about purpose, users, content, and constraints, then capture the answers as a design brief the implementation skills can lean on.
+`/impeccable shape` é onde uma funcionalidade começa. Antes de alguém escrever código, antes de alguém discutir o tratamento do hero, antes de alguém escolher uma fonte. Use para forçar uma conversa de discovery sobre propósito, usuários, conteúdo e restrições, e então capturar as respostas como um brief de design que as skills de implementação podem usar.
 
-Reach for it whenever a feature is about to start, a ticket is vague, or you catch yourself writing JSX to figure out what the product should be.
+Use sempre que uma funcionalidade está prestes a começar, um ticket é vago, ou você se pegar escrevendo JSX para descobrir o que o produto deveria ser.
 
-## How it works
+## Como funciona
 
-Most AI-generated UIs fail not because of bad code, but because of skipped thinking. The model jumps to "here is a card grid" without asking "what is the user trying to accomplish". `/impeccable shape` inverts that order.
+A maioria das UIs geradas por IA falha não por código ruim, mas por pensamento pulado. O modelo pula para "aqui está um grid de cards" sem perguntar "o que o usuário está tentando realizar". `/impeccable shape` inverte essa ordem.
 
-The skill runs a structured discovery interview in conversation. It will not write code during this phase. The questions cover:
+A skill executa uma entrevista de discovery estruturada em conversa. Ela não vai escrever código durante esta fase. As perguntas cobrem:
 
-- **Purpose and context**: what the feature is for, who uses it, what state of mind they are in
-- **Content and data**: what is displayed, realistic ranges, edge cases, what is dynamic
-- **Design goals**: the single most important thing, the intended feeling, reference examples
-- **Constraints**: technical, content, accessibility, localization
+- **Propósito e contexto**: para que é a funcionalidade, quem usa, em que estado mental estão
+- **Conteúdo e dados**: o que é exibido, faixas realistas, edge cases, o que é dinâmico
+- **Objetivos de design**: a coisa mais importante, o sentimento pretendido, exemplos de referência
+- **Restrições**: técnicas, de conteúdo, de acessibilidade, de localização
 
-You answer naturally. The skill asks follow-ups, not a form. At the end it produces a design brief: a structured artifact you can hand to `/impeccable` or any other implementation skill.
+Você responde naturalmente. A skill faz follow-ups, não é um formulário. No final ela produz um brief de design: um artefato estruturado que você pode entregar a `/impeccable` ou qualquer outra skill de implementação.
 
-Note: if you want the full flow (discovery interview, then straight into building), use `/impeccable craft` instead. It runs `/impeccable shape` internally, then continues into implementation with visual iteration. `/impeccable shape` standalone is for when you want just the brief, so you can take it to whatever implementation approach you prefer.
+Nota: se você quer o fluxo completo (entrevista de discovery, e depois direto para a construção), use `/impeccable craft`. Ele executa `/impeccable shape` internamente, e depois continua para implementação com iteração visual. `/impeccable shape` standalone é para quando você quer apenas o brief, para levá-lo à abordagem de implementação que preferir.
 
-## Try it
+## Experimente
 
 ```
 /impeccable shape a daily digest email preferences page
 ```
 
-Expect a 5 to 10 question conversation. The skill asks things like "who is the person opening this, and are they already committed or still curious" and "what happens when the user has unsubscribed from everything, do we hide the feature or show something". You answer, and a brief materializes.
+Espere uma conversa de 5 a 10 perguntas. A skill pergunta coisas como "quem é a pessoa abrindo isso, e ela já está comprometida ou ainda curiosa" e "o que acontece quando o usuário desinscreveu de tudo, escondemos a funcionalidade ou mostramos algo". Você responde, e um brief se materializa.
 
-From there you can hand the brief to `/impeccable`, `/impeccable polish`, or any other skill. Or just use it as a reference while you build by hand.
+De lá você pode entregar o brief a `/impeccable`, `/impeccable polish`, ou qualquer outra skill. Ou apenas usá-lo como referência enquanto constrói manualmente.
 
-## Pitfalls
+## Armadilhas
 
-- **Skipping it because it feels slow.** The interview is maybe 5 minutes. The rewrites you avoid are measured in hours.
-- **Treating the brief as a spec.** It is a compass, not a checklist. It captures intent, not UI.
-- **Answering with "standard" or "normal".** Specificity is the whole point. If a user is "rushed, on mobile, between meetings", say so. That changes everything downstream.
+- **Pular porque parece lento.** A entrevista são talvez 5 minutos. As reescritas que você evita são medidas em horas.
+- **Tratar o brief como especificação.** É uma bússola, não um checklist. Captura intenção, não UI.
+- **Responder com "padrão" ou "normal".** Especificidade é o ponto inteiro. Se um usuário está "apressado, no mobile, entre reuniões", diga isso. Isso muda tudo downstream.

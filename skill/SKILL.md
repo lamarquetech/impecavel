@@ -8,161 +8,161 @@ allowed-tools:
 license: Apache 2.0. Based on Anthropic's frontend-design skill. See NOTICE.md for attribution.
 ---
 
-Designs and iterates production-grade frontend interfaces. Real working code, committed design choices, exceptional craft.
+Projeta e itera interfaces frontend de nível produtivo. Código funcional real, decisões de design firmes, craft excepcional.
 
-## Setup
+## Configuração
 
-Before any design work or file edits:
+Antes de qualquer trabalho de design ou edição de arquivos:
 
-1. Load context (PRODUCT.md / DESIGN.md) via the loader script.
-2. Identify the register and load the matching register reference (brand.md or product.md).
-3. **If the user invoked a sub-command (e.g. `craft`, `shape`, `audit`), load its reference file too.** This is non-negotiable: `craft` without `craft.md` loaded means you'll skip the shape-and-confirm step the user expects.
+1. Carregue o contexto (PRODUCT.md / DESIGN.md) via o script de carregamento.
+2. Identifique o registro e carregue a referência correspondente (brand.md ou product.md).
+3. **Se o usuário invocou um sub-comando (ex.: `craft`, `shape`, `audit`), carregue também seu arquivo de referência.** Isso é inegociável: `craft` sem `craft.md` carregado significa que você vai pular a etapa de shape-and-confirm que o usuário espera.
 
-Skipping these produces generic output that ignores the project.
+Pular essas etapas produz resultados genéricos que ignoram o projeto.
 
-### 1. Context gathering
+### 1. Coleta de contexto
 
-Two files, case-insensitive. The loader looks at the project root by default and falls back to `.agents/context/` and `docs/` if the root is clean. Override with `IMPECCABLE_CONTEXT_DIR=path/to/dir` (absolute or relative to cwd).
+Dois arquivos, sem distinção de maiúsculas/minúsculas. O loader busca na raiz do projeto por padrão e recorre a `.agents/context/` e `docs/` se a raiz estiver limpa. Sobrescreva com `IMPECCABLE_CONTEXT_DIR=path/to/dir` (absoluto ou relativo ao cwd).
 
-- **PRODUCT.md**: required. Users, brand, tone, anti-references, strategic principles.
-- **DESIGN.md**: optional, strongly recommended. Colors, typography, elevation, components.
+- **PRODUCT.md**: obrigatório. Usuários, marca, tom, anti-referências, princípios estratégicos.
+- **DESIGN.md**: opcional, fortemente recomendado. Cores, tipografia, elevação, componentes.
 
-Load both in one call:
+Carregue ambos em uma única chamada:
 
 ```bash
 node {{scripts_path}}/load-context.mjs
 ```
 
-Consume the full JSON output. Never pipe through `head`, `tail`, `grep`, or `jq`. The output's `contextDir` field tells you where the files were resolved from.
+Consuma a saída JSON completa. Nunca faça pipe por `head`, `tail`, `grep` ou `jq`. O campo `contextDir` da saída indica de onde os arquivos foram resolvidos.
 
-If the output is already in this session's conversation history, don't re-run. Exceptions requiring a fresh load: you just ran `{{command_prefix}}impeccable teach` or `{{command_prefix}}impeccable document` (they rewrite the files), or the user manually edited one.
+Se a saída já estiver no histórico da conversa desta sessão, não execute novamente. Exceções que exigem um carregamento novo: você acabou de executar `{{command_prefix}}impeccable teach` ou `{{command_prefix}}impeccable document` (eles reescrevem os arquivos), ou o usuário editou manualmente um deles.
 
-`{{command_prefix}}impeccable live` already warms context via `live.mjs`. If you've run `live.mjs`, don't also run `load-context.mjs` this session.
+`{{command_prefix}}impeccable live` já aquece o contexto via `live.mjs`. Se você executou `live.mjs`, não execute também `load-context.mjs` nesta sessão.
 
-If PRODUCT.md is missing, empty, or placeholder (`[TODO]` markers, <200 chars): run `{{command_prefix}}impeccable teach`, then resume the user's original task with the fresh context. If the original task was `{{command_prefix}}impeccable craft`, resume into `{{command_prefix}}impeccable shape` before any implementation work.
+Se PRODUCT.md estiver ausente, vazio ou placeholder (marcadores `[TODO]`, <200 caracteres): execute `{{command_prefix}}impeccable teach`, depois retome a tarefa original do usuário com o contexto atualizado. Se a tarefa original era `{{command_prefix}}impeccable craft`, retome em `{{command_prefix}}impeccable shape` antes de qualquer trabalho de implementação.
 
-If DESIGN.md is missing: nudge once per session (*"Run `{{command_prefix}}impeccable document` for more on-brand output"*), then proceed.
+Se DESIGN.md estiver ausente: sugira uma vez por sessão (*"Execute `{{command_prefix}}impeccable document` para resultados mais alinhados à marca"*), e então prossiga.
 
-### 2. Register
+### 2. Registro
 
-Every design task is **brand** (marketing, landing, campaign, long-form content, portfolio: design IS the product) or **product** (app UI, admin, dashboard, tool: design SERVES the product).
+Toda tarefa de design é **brand** (marketing, landing page, campanha, conteúdo de formato longo, portfólio: o design É o produto) ou **product** (UI de app, admin, dashboard, ferramenta: o design SERVE ao produto).
 
-Identify before designing. Priority: (1) cue in the task itself ("landing page" vs "dashboard"); (2) the surface in focus (the page, file, or route being worked on); (3) `register` field in PRODUCT.md. First match wins.
+Identifique antes de projetar. Prioridade: (1) pista na própria tarefa ("landing page" vs "dashboard"); (2) a superfície em foco (a página, arquivo ou rota sendo trabalhada); (3) campo `register` em PRODUCT.md. Primeira correspondência vence.
 
-If PRODUCT.md lacks the `register` field (legacy), infer it once from its "Users" and "Product Purpose" sections, then cache the inferred value for the session. Suggest the user run `{{command_prefix}}impeccable teach` to add the field explicitly.
+Se PRODUCT.md não possui o campo `register` (legado), infira-o uma vez a partir das seções "Users" e "Product Purpose", e então armazene o valor inferido em cache para a sessão. Sugira ao usuário executar `{{command_prefix}}impeccable teach` para adicionar o campo explicitamente.
 
-Load the matching reference: [reference/brand.md](reference/brand.md) or [reference/product.md](reference/product.md). The shared design laws below apply to both.
+Carregue a referência correspondente: [reference/brand.md](reference/brand.md) ou [reference/product.md](reference/product.md). As leis de design compartilhadas abaixo se aplicam a ambos.
 
-## Shared design laws
+## Leis de design compartilhadas
 
-Apply to every design, both registers. Match implementation complexity to the aesthetic vision: maximalism needs elaborate code, minimalism needs precision. Interpret creatively. Vary across projects; never converge on the same choices. {{model}} is capable of extraordinary work. Don't hold back.
+Aplique a todo design, em ambos os registros. Adeque a complexidade da implementação à visão estética: maximalismo exige código elaborado, minimalismo exige precisão. Interprete com criatividade. Varie entre projetos; nunca convirja para as mesmas escolhas. {{model}} é capaz de um trabalho extraordinário. Não segure.
 
-### Color
+### Cor
 
-- Use OKLCH. Reduce chroma as lightness approaches 0 or 100; high chroma at extremes looks garish.
-- Never use `#000` or `#fff`. Tint every neutral toward the brand hue (chroma 0.005–0.01 is enough).
-- Pick a **color strategy** before picking colors. Four steps on the commitment axis:
-  - **Restrained**: tinted neutrals + one accent ≤10%. Product default; brand minimalism.
-  - **Committed**: one saturated color carries 30–60% of the surface. Brand default for identity-driven pages.
-  - **Full palette**: 3–4 named roles, each used deliberately. Brand campaigns; product data viz.
-  - **Drenched**: the surface IS the color. Brand heroes, campaign pages.
-- The "one accent ≤10%" rule is Restrained only. Committed / Full palette / Drenched exceed it on purpose. Don't collapse every design to Restrained by reflex.
+- Use OKLCH. Reduza a chroma conforme a lightness se aproxima de 0 ou 100; chroma alta nos extremos fica berrante.
+- Nunca use `#000` ou `#fff`. Dê um tom (tint) a cada neutro em direção ao matiz da marca (chroma 0.005–0.01 é suficiente).
+- Escolha uma **estratégia de cor** antes de escolher as cores. Quatro posições no eixo de comprometimento:
+  - **Restrained**: neutros com tom + um accent ≤10%. Padrão para product; minimalismo de brand.
+  - **Committed**: uma cor saturada carrega 30–60% da superfície. Padrão de brand para páginas orientadas por identidade.
+  - **Full palette**: 3–4 papéis nomeados, cada um usado deliberadamente. Campanhas de brand; data viz em product.
+  - **Drenched**: a superfície É a cor. Heroes de brand, páginas de campanha.
+- A regra de "um accent ≤10%" aplica-se apenas a Restrained. Committed / Full palette / Drenched a ultrapassam de propósito. Não reduza todo design a Restrained por reflexo.
 
-### Theme
+### Tema
 
-Dark vs. light is never a default. Not dark "because tools look cool dark." Not light "to be safe."
+Escuro vs. claro nunca é um padrão. Não escuro "porque ferramentas ficam legais no escuro." Não claro "para estar seguro."
 
-Before choosing, write one sentence of physical scene: who uses this, where, under what ambient light, in what mood. If the sentence doesn't force the answer, it's not concrete enough. Add detail until it does.
+Antes de escolher, escreva uma frase de cena física: quem usa isso, onde, sob qual luz ambiente, em que humor. Se a frase não forçar a resposta, ela não é concreta o suficiente. Adicione detalhes até que force.
 
-"Observability dashboard" does not force an answer. "SRE glancing at incident severity on a 27-inch monitor at 2am in a dim room" does. Run the sentence, not the category.
+"Dashboard de observabilidade" não força uma resposta. "SRE conferindo severidade de incidente num monitor de 27 polegadas às 2h da manhã numa sala pouco iluminada" força. Execute a frase, não a categoria.
 
-### Typography
+### Tipografia
 
-- Cap body line length at 65–75ch.
-- Hierarchy through scale + weight contrast (≥1.25 ratio between steps). Avoid flat scales.
+- Limite o comprimento de linha do corpo a 65–75ch.
+- Hierarquia por meio de escala + contraste de peso (razão ≥1.25 entre os degraus). Evite escalas planas.
 
 ### Layout
 
-- Vary spacing for rhythm. Same padding everywhere is monotony.
-- Cards are the lazy answer. Use them only when they're truly the best affordance. Nested cards are always wrong.
-- Don't wrap everything in a container. Most things don't need one.
+- Varie o espaçamento para ritmo. Mesmo padding em todo lugar é monotonia.
+- Cards são a resposta preguiçosa. Use-os apenas quando forem verdadeiramente a melhor affordance. Cards aninhados estão sempre errados.
+- Não envolva tudo em um container. A maioria das coisas não precisa de um.
 
-### Motion
+### Movimento
 
-- Don't animate CSS layout properties.
-- Ease out with exponential curves (ease-out-quart / quint / expo). No bounce, no elastic.
+- Não anime propriedades de layout CSS.
+- Use ease out com curvas exponenciais (ease-out-quart / quint / expo). Sem bounce, sem elastic.
 
-### Absolute bans
+### Proibições absolutas
 
-Match-and-refuse. If you're about to write any of these, rewrite the element with different structure.
+Corresponda e recuse. Se você estiver prestes a escrever qualquer um destes, reescreva o elemento com estrutura diferente.
 
-- **Side-stripe borders.** `border-left` or `border-right` greater than 1px as a colored accent on cards, list items, callouts, or alerts. Never intentional. Rewrite with full borders, background tints, leading numbers/icons, or nothing.
-- **Gradient text.** `background-clip: text` combined with a gradient background. Decorative, never meaningful. Use a single solid color. Emphasis via weight or size.
-- **Glassmorphism as default.** Blurs and glass cards used decoratively. Rare and purposeful, or nothing.
-- **The hero-metric template.** Big number, small label, supporting stats, gradient accent. SaaS cliché.
-- **Identical card grids.** Same-sized cards with icon + heading + text, repeated endlessly.
-- **Modal as first thought.** Modals are usually laziness. Exhaust inline / progressive alternatives first.
+- **Bordas laterais (side-stripe).** `border-left` ou `border-right` maior que 1px como accent colorido em cards, itens de lista, callouts ou alertas. Nunca intencional. Reescreva com bordas completas, tintas de fundo, números/ícones à frente, ou nada.
+- **Texto com gradiente.** `background-clip: text` combinado com um background em gradiente. Decorativo, nunca significativo. Use uma única cor sólida. Ênfase via peso ou tamanho.
+- **Glassmorphism como padrão.** Blurs e cards de vidro usados decorativamente. Raro e com propósito, ou nada.
+- **O template hero-metric.** Número grande, rótulo pequeno, estatísticas de apoio, accent em gradiente. Clichê SaaS.
+- **Grids de cards idênticos.** Cards do mesmo tamanho com ícone + título + texto, repetidos infinitamente.
+- **Modal como primeiro pensamento.** Modals são geralmente preguiça. Esgote alternativas inline / progressivas primeiro.
 
-### Copy
+### Texto (Copy)
 
-- Every word earns its place. No restated headings, no intros that repeat the title.
-- **No em dashes.** Use commas, colons, semicolons, periods, or parentheses. Also not `--`.
+- Cada palavra justifica seu lugar. Sem títulos redundantes, sem introduções que repitam o título.
+- **Sem em dashes.** Use vírgulas, dois-pontos, ponto e vírgula, pontos ou parênteses. Também não `--`.
 
-### The AI slop test
+### O teste de slop da IA
 
-If someone could look at this interface and say "AI made that" without doubt, it's failed. Cross-register failures are the absolute bans above. Register-specific failures live in each reference.
+Se alguém puder olhar para esta interface e dizer "A IA fez isso" sem dúvida, ela falhou. Falhas entre registros são as proibições absolutas acima. Falhas específicas de registro estão em cada referência.
 
-**Category-reflex check.** Run at two altitudes; the second one catches what the first one misses.
+**Verificação de reflexo por categoria.** Execute em duas altitudes; a segunda captura o que a primeira deixa passar.
 
-- **First-order:** if someone could guess the theme + palette from the category alone ("observability → dark blue", "healthcare → white + teal", "finance → navy + gold", "crypto → neon on black"), it's the first training-data reflex. Rework the scene sentence and color strategy until the answer isn't obvious from the domain.
-- **Second-order:** if someone could guess the aesthetic family from category-plus-anti-references ("AI workflow tool that's not SaaS-cream → editorial-typographic", "fintech that's not navy-and-gold → terminal-native dark mode"), it's the trap one tier deeper. The first reflex was avoided; the second wasn't. Rework until both answers are not obvious. The brand register's [reflex-reject aesthetic lanes](reference/brand.md) list catches the currently-saturated families.
+- **Primeira ordem:** se alguém puder adivinhar o tema + paleta apenas pela categoria ("observabilidade → azul escuro", "saúde → branco + teal", "finanças → navy + dourado", "crypto → neon sobre preto"), é o primeiro reflexo dos dados de treinamento. Reformule a frase de cena e a estratégia de cor até que a resposta não seja óbvia pelo domínio.
+- **Segunda ordem:** se alguém puder adivinhar a família estética a partir da categoria mais as anti-referências ("ferramenta de workflow de IA que não é SaaS-cream → tipográfico-editorial", "fintech que não é navy-and-gold → dark mode estilo terminal"), é a armadilha um nível mais fundo. O primeiro reflexo foi evitado; o segundo não. Reformule até que ambas as respostas não sejam óbvias. A lista de [reflex-reject aesthetic lanes](reference/brand.md) do registro brand captura as famílias atualmente saturadas.
 
-## Commands
+## Comandos
 
-| Command | Category | Description | Reference |
+| Comando | Categoria | Descrição | Referência |
 |---|---|---|---|
-| `craft [feature]` | Build | Shape, then build a feature end-to-end | [reference/craft.md](reference/craft.md) |
-| `shape [feature]` | Build | Plan UX/UI before writing code | [reference/shape.md](reference/shape.md) |
-| `teach` | Build | Set up PRODUCT.md and DESIGN.md context | [reference/teach.md](reference/teach.md) |
-| `document` | Build | Generate DESIGN.md from existing project code | [reference/document.md](reference/document.md) |
-| `extract [target]` | Build | Pull reusable tokens and components into design system | [reference/extract.md](reference/extract.md) |
-| `critique [target]` | Evaluate | UX design review with heuristic scoring | [reference/critique.md](reference/critique.md) |
-| `audit [target]` | Evaluate | Technical quality checks (a11y, perf, responsive) | [reference/audit.md](reference/audit.md) |
-| `polish [target]` | Refine | Final quality pass before shipping | [reference/polish.md](reference/polish.md) |
-| `bolder [target]` | Refine | Amplify safe or bland designs | [reference/bolder.md](reference/bolder.md) |
-| `quieter [target]` | Refine | Tone down aggressive or overstimulating designs | [reference/quieter.md](reference/quieter.md) |
-| `distill [target]` | Refine | Strip to essence, remove complexity | [reference/distill.md](reference/distill.md) |
-| `harden [target]` | Refine | Production-ready: errors, i18n, edge cases | [reference/harden.md](reference/harden.md) |
-| `onboard [target]` | Refine | Design first-run flows, empty states, activation | [reference/onboard.md](reference/onboard.md) |
-| `animate [target]` | Enhance | Add purposeful animations and motion | [reference/animate.md](reference/animate.md) |
-| `colorize [target]` | Enhance | Add strategic color to monochromatic UIs | [reference/colorize.md](reference/colorize.md) |
-| `typeset [target]` | Enhance | Improve typography hierarchy and fonts | [reference/typeset.md](reference/typeset.md) |
-| `layout [target]` | Enhance | Fix spacing, rhythm, and visual hierarchy | [reference/layout.md](reference/layout.md) |
-| `delight [target]` | Enhance | Add personality and memorable touches | [reference/delight.md](reference/delight.md) |
-| `overdrive [target]` | Enhance | Push past conventional limits | [reference/overdrive.md](reference/overdrive.md) |
-| `clarify [target]` | Fix | Improve UX copy, labels, and error messages | [reference/clarify.md](reference/clarify.md) |
-| `adapt [target]` | Fix | Adapt for different devices and screen sizes | [reference/adapt.md](reference/adapt.md) |
-| `optimize [target]` | Fix | Diagnose and fix UI performance | [reference/optimize.md](reference/optimize.md) |
-| `live` | Iterate | Visual variant mode: pick elements in the browser, generate alternatives | [reference/live.md](reference/live.md) |
+| `craft [feature]` | Build | Shape e, em seguida, construa uma feature de ponta a ponta | [reference/craft.md](reference/craft.md) |
+| `shape [feature]` | Build | Planeje o UX/UI antes de escrever código | [reference/shape.md](reference/shape.md) |
+| `teach` | Build | Configure o contexto em PRODUCT.md e DESIGN.md | [reference/teach.md](reference/teach.md) |
+| `document` | Build | Gere DESIGN.md a partir do código existente do projeto | [reference/document.md](reference/document.md) |
+| `extract [target]` | Build | Extraia tokens e componentes reutilizáveis para o design system | [reference/extract.md](reference/extract.md) |
+| `critique [target]` | Avaliar | Revisão de design UX com pontuação heurística | [reference/critique.md](reference/critique.md) |
+| `audit [target]` | Avaliar | Verificações de qualidade técnica (a11y, perf, responsivo) | [reference/audit.md](reference/audit.md) |
+| `polish [target]` | Refinar | Passada final de qualidade antes de entregar | [reference/polish.md](reference/polish.md) |
+| `bolder [target]` | Refinar | Amplifique designs mornos ou sem graça | [reference/bolder.md](reference/bolder.md) |
+| `quieter [target]` | Refinar | Reduza o tom de designs agressivos ou superestimulantes | [reference/quieter.md](reference/quieter.md) |
+| `distill [target]` | Refinar | Reduza à essência, remova complexidade | [reference/distill.md](reference/distill.md) |
+| `harden [target]` | Refinar | Pronto para produção: erros, i18n, edge cases | [reference/harden.md](reference/harden.md) |
+| `onboard [target]` | Refinar | Projete fluxos de primeira execução, empty states, ativação | [reference/onboard.md](reference/onboard.md) |
+| `animate [target]` | Aprimorar | Adicione animações e movimentos com propósito | [reference/animate.md](reference/animate.md) |
+| `colorize [target]` | Aprimorar | Adicione cor estratégica a UIs monocromáticas | [reference/colorize.md](reference/colorize.md) |
+| `typeset [target]` | Aprimorar | Melhore hierarquia tipográfica e fontes | [reference/typeset.md](reference/typeset.md) |
+| `layout [target]` | Aprimorar | Corrija espaçamento, ritmo e hierarquia visual | [reference/layout.md](reference/layout.md) |
+| `delight [target]` | Aprimorar | Adicione personalidade e toques memoráveis | [reference/delight.md](reference/delight.md) |
+| `overdrive [target]` | Aprimorar | Vá além dos limites convencionais | [reference/overdrive.md](reference/overdrive.md) |
+| `clarify [target]` | Corrigir | Melhore UX copy, rótulos e mensagens de erro | [reference/clarify.md](reference/clarify.md) |
+| `adapt [target]` | Corrigir | Adapte para diferentes dispositivos e tamanhos de tela | [reference/adapt.md](reference/adapt.md) |
+| `optimize [target]` | Corrigir | Diagnostique e corrija performance de UI | [reference/optimize.md](reference/optimize.md) |
+| `live` | Iterar | Modo de variantes visuais: selecione elementos no navegador, gere alternativas | [reference/live.md](reference/live.md) |
 
-Plus two management commands: `pin <command>` and `unpin <command>`, detailed below.
+Além de dois comandos de gerenciamento: `pin <command>` e `unpin <command>`, detalhados abaixo.
 
-### Routing rules
+### Regras de roteamento
 
-1. **No argument**: render the table above as the user-facing command menu, grouped by category. Ask what they'd like to do.
-2. **First word matches a command**: load its reference file and follow its instructions. Everything after the command name is the target.
-3. **First word doesn't match**: general design invocation. Apply the setup steps, shared design laws, and the loaded register reference, using the full argument as context.
+1. **Sem argumento**: renderize a tabela acima como o menu de comandos voltado ao usuário, agrupado por categoria. Pergunte o que ele gostaria de fazer.
+2. **Primeira palavra corresponde a um comando**: carregue seu arquivo de referência e siga suas instruções. Todo o conteúdo após o nome do comando é o target.
+3. **Primeira palavra não corresponde**: invocação geral de design. Aplique as etapas de configuração, as leis de design compartilhadas e a referência de registro carregada, usando o argumento completo como contexto.
 
-Setup (context gathering, register) is already loaded by then; sub-commands don't re-invoke `{{command_prefix}}impeccable`.
+A configuração (coleta de contexto, registro) já estará carregada nesse ponto; sub-comandos não re-invocam `{{command_prefix}}impeccable`.
 
-If the first word is `craft`, setup still runs first, but [reference/craft.md](reference/craft.md) owns the rest of the flow. If setup invokes `teach` as a blocker, finish teach, refresh context, then resume the original command and target.
+Se a primeira palavra for `craft`, a configuração ainda executa primeiro, mas [reference/craft.md](reference/craft.md) detém o restante do fluxo. Se a configuração invocar `teach` como bloqueador, conclua o teach, atualize o contexto e então retome o comando e target originais.
 
 ## Pin / Unpin
 
-**Pin** creates a standalone shortcut so `{{command_prefix}}<command>` invokes `{{command_prefix}}impeccable <command>` directly. **Unpin** removes it. The script writes to every harness directory present in the project.
+**Pin** cria um atalho autônomo para que `{{command_prefix}}<command>` invoque `{{command_prefix}}impeccable <command>` diretamente. **Unpin** o remove. O script escreve em todo diretório harness presente no projeto.
 
 ```bash
 node {{scripts_path}}/pin.mjs <pin|unpin> <command>
 ```
 
-Valid `<command>` is any command from the table above. Report the script's result concisely. Confirm the new shortcut on success, relay stderr verbatim on error.
+O `<command>` válido é qualquer comando da tabela acima. Relate o resultado do script de forma concisa. Confirme o novo atalho em caso de sucesso, repasse stderr literalmente em caso de erro.

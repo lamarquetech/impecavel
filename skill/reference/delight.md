@@ -1,83 +1,83 @@
-> **Additional context needed**: what's appropriate for the domain (playful vs professional vs quirky vs elegant).
+> **Contexto adicional necessário**: o que é apropriado para o domínio (lúdico vs profissional vs peculiar vs elegante).
 
-Find the moments where personality and unexpected polish would turn a functional interface into one users remember and tell other people about. Add only where the moment earns it; delight everywhere reads as noise.
-
----
-
-## Register
-
-Brand: delight can be distributed across copy voice, section transitions, discovery rewards, seasonal touches, personality across the whole surface.
-
-Product: delight at specific moments, not pages. Completion, first-time actions, error recovery, milestone crossings. Reliability and consistency carry the rest of the experience; delight pushed everywhere reads as noise.
+Encontre os momentos onde personalidade e polimento inesperado transformariam uma interface funcional em uma que os usuários lembram e contam para outras pessoas. Adicione apenas onde o momento merece; encanto em todo lugar soa como ruído.
 
 ---
 
-## Assess Delight Opportunities
+## Registro
 
-Identify where delight would enhance (not distract from) the experience:
+Brand: encanto pode ser distribuído pela voz do copy, transições de seção, recompensas de descoberta, toques sazonais, personalidade por toda a superfície.
 
-1. **Find natural delight moments**:
-   - **Success states**: Completed actions (save, send, publish)
-   - **Empty states**: First-time experiences, onboarding
-   - **Loading states**: Waiting periods that could be entertaining
-   - **Achievements**: Milestones, streaks, completions
-   - **Interactions**: Hover states, clicks, drags
-   - **Errors**: Softening frustrating moments
-   - **Easter eggs**: Hidden discoveries for curious users
+Product: encanto em momentos específicos, não em páginas. Conclusão, ações pela primeira vez, recuperação de erro, marcos alcançados. Confiabilidade e consistência carregam o resto da experiência; encanto empurrado em todo lugar soa como ruído.
 
-2. **Understand the context**:
-   - What's the brand personality? (Playful? Professional? Quirky? Elegant?)
-   - Who's the audience? (Tech-savvy? Creative? Corporate?)
-   - What's the emotional context? (Accomplishment? Exploration? Frustration?)
-   - What's appropriate? (Banking app ≠ gaming app)
+---
 
-3. **Define delight strategy**:
-   - **Subtle sophistication**: Refined micro-interactions (luxury brands)
-   - **Playful personality**: Whimsical illustrations and copy (consumer apps)
-   - **Helpful surprises**: Anticipating needs before users ask (productivity tools)
-   - **Sensory richness**: Satisfying sounds, smooth animations (creative tools)
+## Avalie as Oportunidades de Encanto
 
-If any of these are unclear from the codebase, {{ask_instruction}}
+Identifique onde o encanto melhoraria (não distrairia da) experiência:
 
-**CRITICAL**: Delight should enhance usability, never obscure it. If users notice the delight more than accomplishing their goal, you've gone too far.
+1. **Encontre momentos naturais de encanto**:
+   - **Estados de sucesso**: Ações concluídas (salvar, enviar, publicar)
+   - **Estados vazios**: Experiências pela primeira vez, onboarding
+   - **Estados de carregamento**: Períodos de espera que poderiam ser entretenedores
+   - **Conquistas**: Marcos, streaks, conclusões
+   - **Interações**: Estados de hover, cliques, arrastar
+   - **Erros**: Suavizando momentos frustrantes
+   - **Easter eggs**: Descobertas ocultas para usuários curiosos
 
-## Delight Principles
+2. **Entenda o contexto**:
+   - Qual é a personalidade da marca? (Lúdica? Profissional? Peculiar? Elegante?)
+   - Quem é o público? (Fãs de tecnologia? Criativos? Corporativo?)
+   - Qual é o contexto emocional? (Conquista? Exploração? Frustração?)
+   - O que é apropriado? (App bancário ≠ app de games)
 
-Follow these guidelines:
+3. **Defina a estratégia de encanto**:
+   - **Sofisticação sutil**: Micro-interações refinadas (marcas de luxo)
+   - **Personalidade lúdica**: Ilustrações e copy divertidos (apps de consumo)
+   - **Surpresas úteis**: Antecipando necessidades antes dos usuários pedirem (ferramentas de produtividade)
+   - **Riqueza sensorial**: Sons satisfatórios, animações suaves (ferramentas criativas)
 
-### Delight Amplifies, Never Blocks
-- Delight moments should be quick (< 1 second)
-- Never delay core functionality for delight
-- Make delight skippable or subtle
-- Respect user's time and task focus
+Se algum desses itens não estiver claro no codebase, {{ask_instruction}}
 
-### Surprise and Discovery
-- Hide delightful details for users to discover
-- Reward exploration and curiosity
-- Don't announce every delight moment
-- Let users share discoveries with others
+**CRÍTICO**: O encanto deve melhorar a usabilidade, nunca obscurecê-la. Se os usuários notam o encanto mais do que a realização do seu objetivo, você foi longe demais.
 
-### Appropriate to Context
-- Match delight to emotional moment (celebrate success, empathize with errors)
-- Respect the user's state (don't be playful during critical errors)
-- Match brand personality and audience expectations
-- Cultural sensitivity (what's delightful varies by culture)
+## Princípios de Encanto
 
-### Compound Over Time
-- Delight should remain fresh with repeated use
-- Vary responses (not same animation every time)
-- Reveal deeper layers with continued use
-- Build anticipation through patterns
+Siga estas diretrizes:
 
-## Delight Techniques
+### O Encanto Amplifica, Nunca Bloqueia
+- Momentos de encanto devem ser rápidos (< 1 segundo)
+- Nunca atrase funcionalidade principal por encanto
+- Torne o encanto sutil ou ignorável
+- Respeite o tempo e o foco na tarefa do usuário
 
-Add personality and joy through these methods:
+### Surpresa e Descoberta
+- Esconda detalhes encantadores para os usuários descobrirem
+- Recompense exploração e curiosidade
+- Não anuncie cada momento de encanto
+- Deixe os usuários compartilhar descobertas com outros
 
-### Micro-interactions & Animation
+### Apropriado ao Contexto
+- Correspond o encanto ao momento emocional (celebre o sucesso, empatize com erros)
+- Respeite o estado do usuário (não seja lúdico durante erros críticos)
+- Correspond à personalidade da marca e expectativas do público
+- Sensibilidade cultural (o que é encantador varia por cultura)
 
-**Button delight**:
+### Composto ao Longo do Tempo
+- O encanto deve permanecer fresco com uso repetido
+- Varie as respostas (não a mesma animação toda vez)
+- Revele camadas mais profundas com uso continuado
+- Construa antecipação através de padrões
+
+## Técnicas de Encanto
+
+Adicione personalidade e alegria através destes métodos:
+
+### Micro-interações e Animação
+
+**Encanto em botões**:
 ```css
-/* Satisfying button press */
+/* Pressionar de botão satisfatório */
 .button {
   transition: transform 0.1s, box-shadow 0.1s;
 }
@@ -86,217 +86,217 @@ Add personality and joy through these methods:
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-/* Ripple effect on click */
-/* Smooth lift on hover */
+/* Efeito ripple ao clicar */
+/* Elevação suave ao passar o mouse */
 .button:hover {
   transform: translateY(-2px);
   transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1); /* ease-out-quart */
 }
 ```
 
-**Loading delight**:
-- Playful loading animations (not just spinners)
-- Personality in loading messages (write product-specific ones, not generic AI filler)
-- Progress indication with encouraging messages
-- Skeleton screens with subtle animations
+**Encanto no carregamento**:
+- Animações de carregamento lúdicas (não apenas spinners)
+- Personalidade nas mensagens de carregamento (escreva mensagens específicas do produto, não genéricas de IA)
+- Indicação de progresso com mensagens encorajadoras
+- Skeleton screens com animações sutis
 
-**Success animations**:
-- Checkmark draw animation
-- Confetti burst for major achievements
-- Gentle scale + fade for confirmation
-- Satisfying sound effects (subtle)
+**Animações de sucesso**:
+- Animação de desenho de checkmark
+- Explosão de confetti para conquistas importantes
+- Scale + fade suave para confirmação
+- Efeitos sonoros satisfatórios (sutis)
 
-**Hover surprises**:
-- Icons that animate on hover
-- Color shifts or glow effects
-- Tooltip reveals with personality
-- Cursor changes (custom cursors for branded experiences)
+**Surpresas no hover**:
+- Ícones que animam ao passar o mouse
+- Mudanças de cor ou efeitos de glow
+- Revelações de tooltip com personalidade
+- Mudanças de cursor (cursores personalizados para experiências de marca)
 
-### Personality in Copy
+### Personalidade no Copy
 
-**Playful error messages**:
+**Mensagens de erro divertidas**:
 ```
-"Error 404"
-"This page is playing hide and seek. (And winning)"
+"Erro 404"
+"Esta página está brincando de esconde-esconde. (E ganhando)"
 
-"Connection failed"
-"Looks like the internet took a coffee break. Want to retry?"
-```
-
-**Encouraging empty states**:
-```
-"No projects"
-"Your canvas awaits. Create something amazing."
-
-"No messages"
-"Inbox zero! You're crushing it today."
+"Conexão falhou"
+"Parece que a internet foi tomar um café. Quer tentar de novo?"
 ```
 
-**Playful labels & tooltips**:
+**Estados vazios encorajadores**:
 ```
-"Delete"
-"Send to void" (for playful brand)
+"Nenhum projeto"
+"Sua tela aguarda. Crie algo incrível."
 
-"Help"
-"Rescue me" (tooltip)
+"Nenhuma mensagem"
+"Inbox zero! Você está arrasando hoje."
 ```
 
-**IMPORTANT**: Match copy personality to brand. Banks shouldn't be wacky, but they can be warm.
+**Rótulos e tooltips divertidos**:
+```
+"Excluir"
+"Enviar para o vazio" (para marca lúdica)
 
-### Illustrations & Visual Personality
+"Ajuda"
+"Me salva" (tooltip)
+```
 
-**Custom illustrations**:
-- Empty state illustrations (not stock icons)
-- Error state illustrations (friendly monsters, quirky characters)
-- Loading state illustrations (animated characters)
-- Success state illustrations (celebrations)
+**IMPORTANTE**: Correspond a personalidade do copy à marca. Bancos não devem ser malucos, mas podem ser acolhedores.
 
-**Icon personality**:
-- Custom icon set matching brand personality
-- Animated icons (subtle motion on hover/click)
-- Illustrative icons (more detailed than generic)
-- Consistent style across all icons
+### Ilustrações e Personalidade Visual
 
-**Background effects**:
-- Subtle particle effects
-- Gradient mesh backgrounds
-- Geometric patterns
-- Parallax depth
-- Time-of-day themes (morning vs night)
+**Ilustrações customizadas**:
+- Ilustrações de estado vazio (não ícones de stock)
+- Ilustrações de estado de erro (monstros amigáveis, personagens peculiares)
+- Ilustrações de estado de carregamento (personagens animados)
+- Ilustrações de estado de sucesso (celebrações)
 
-### Satisfying Interactions
+**Personalidade dos ícones**:
+- Conjunto de ícones customizado correspondendo à personalidade da marca
+- Ícones animados (movimento sutil em hover/clique)
+- Ícones ilustrativos (mais detalhados que os genéricos)
+- Estilo consistente em todos os ícones
 
-**Drag and drop delight**:
-- Lift effect on drag (shadow, scale)
-- Snap animation when dropped
-- Satisfying placement sound
-- Undo toast ("Dropped in wrong place? [Undo]")
+**Efeitos de fundo**:
+- Efeitos de partículas sutis
+- Fundos com gradiente mesh
+- Padrões geométricos
+- Profundidade parallax
+- Temas por horário (manhã vs noite)
+
+### Interações Satisfatórias
+
+**Encanto no drag and drop**:
+- Efeito de elevação ao arrastar (sombra, scale)
+- Animação de snap ao soltar
+- Som de posicionamento satisfatório
+- Toast de desfazer ("Soltou no lugar errado? [Desfazer]")
 
 **Toggle switches**:
-- Smooth slide with spring physics
-- Color transition
-- Haptic feedback on mobile
-- Optional sound effect
+- Slide suave com física de mola
+- Transição de cor
+- Feedback háptico no mobile
+- Efeito sonoro opcional
 
-**Progress & achievements**:
-- Streak counters with celebratory milestones
-- Progress bars that "celebrate" at 100%
-- Badge unlocks with animation
-- Playful stats ("You're on fire! 5 days in a row")
+**Progresso e conquistas**:
+- Contadores de streak com marcos celebrativos
+- Barras de progresso que "celebram" aos 100%
+- Desbloqueio de badges com animação
+- Stats divertidas ("Você está on fire! 5 dias seguidos")
 
-**Form interactions**:
-- Input fields that animate on focus
-- Checkboxes with a satisfying scale pulse when checked
-- Success state that celebrates valid input
-- Auto-grow textareas
+**Interações de formulário**:
+- Campos de input que animam ao receber foco
+- Checkboxes com um pulse de scale satisfatório ao marcar
+- Estado de sucesso que celebra input válido
+- Textareas com auto-grow
 
-### Sound Design
+### Design de Som
 
-**Subtle audio cues** (when appropriate):
-- Notification sounds (distinctive but not annoying)
-- Success sounds (satisfying "ding")
-- Error sounds (empathetic, not harsh)
-- Typing sounds for chat/messaging
-- Ambient background audio (very subtle)
+**Pistas sonoras sutis** (quando apropriado):
+- Sons de notificação (distintos, mas não irritantes)
+- Sons de sucesso (um "ding" satisfatório)
+- Sons de erro (empáticos, não ásperos)
+- Sons de digitação para chat/mensagens
+- Áudio ambiente de fundo (muito sutil)
 
-**IMPORTANT**:
-- Respect system sound settings
-- Provide mute option
-- Keep volumes quiet (subtle cues, not alarms)
-- Don't play on every interaction (sound fatigue is real)
+**IMPORTANTE**:
+- Respeite as configurações de som do sistema
+- Forneça opção de mudo
+- Mantenha volumes baixos (pistas sutis, não alarmes)
+- Não reproduza em toda interação (fadiga sonora é real)
 
-### Easter Eggs & Hidden Delights
+### Easter Eggs e Encantos Ocultos
 
-**Discovery rewards**:
-- Konami code unlocks special theme
-- Hidden keyboard shortcuts (Cmd+K for special features)
-- Hover reveals on logos or illustrations
-- Alt text jokes on images (for screen reader users too!)
-- Console messages for developers ("Like what you see? We're hiring!")
+**Recompensas de descoberta**:
+- Konami code desbloqueia tema especial
+- Atalhos de teclado ocultos (Cmd+K para funcionalidades especiais)
+- Revelações de hover em logos ou ilustrações
+- Piadas no alt text de imagens (para usuários de screen reader também!)
+- Mensagens no console para desenvolvedores ("Gostou do que viu? Estamos contratando!")
 
-**Seasonal touches**:
-- Holiday themes (subtle, tasteful)
-- Seasonal color shifts
-- Weather-based variations
-- Time-based changes (dark at night, light during day)
+**Toques sazonais**:
+- Temas de feriados (sutis, de bom gosto)
+- Mudanças de cor sazonais
+- Variações baseadas no clima
+- Mudanças baseadas no horário (escuro à noite, claro durante o dia)
 
-**Contextual personality**:
-- Different messages based on time of day
-- Responses to specific user actions
-- Randomized variations (not same every time)
-- Progressive reveals with continued use
+**Personalidade contextual**:
+- Mensagens diferentes baseadas no horário do dia
+- Respostas a ações específicas do usuário
+- Variações aleatórias (não a mesma toda vez)
+- Revelações progressivas com uso continuado
 
-### Loading & Waiting States
+### Estados de Carregamento e Espera
 
-**Make waiting engaging**:
-- Interesting loading messages that rotate
-- Progress bars with personality
-- Mini-games during long loads
-- Fun facts or tips while waiting
-- Countdown with encouraging messages
+**Torne a espera envolvente**:
+- Mensagens de carregamento interessantes que rotacionam
+- Barras de progresso com personalidade
+- Mini-games durante carregamentos longos
+- Curiosidades ou dicas enquanto espera
+- Contagem regressiva com mensagens encorajadoras
 
 ```
-Loading messages: write ones specific to your product, not generic AI filler:
-- "Crunching your latest numbers..."
-- "Syncing with your team's changes..."
-- "Preparing your dashboard..."
-- "Checking for updates since yesterday..."
+Mensagens de carregamento: escreva mensagens específicas do seu produto, não genéricas de IA:
+- "Processando seus números mais recentes..."
+- "Sincronizando com as alterações da sua equipe..."
+- "Preparando seu dashboard..."
+- "Verificando atualizações desde ontem..."
 ```
 
-**WARNING**: Avoid cliched loading messages like "Herding pixels", "Teaching robots to dance", "Consulting the magic 8-ball", "Counting backwards from infinity". These are AI-slop copy, instantly recognizable as machine-generated. Write messages that are specific to what your product actually does.
+**AVISO**: Evite mensagens de carregamento clichês como "Reunindo pixels", "Ensinando robôs a dançar", "Consultando a bola de cristal", "Contando de trás para frente até o infinito". Essas são copy de AI slop, instantaneamente reconhecíveis como geradas por máquina. Escreva mensagens que são específicas ao que seu produto realmente faz.
 
-### Celebration Moments
+### Momentos de Celebração
 
-**Success celebrations**:
-- Confetti for major milestones
-- Animated checkmarks for completions
-- Progress bar celebrations at 100%
-- "Achievement unlocked" style notifications
-- Personalized messages ("You published your 10th article!")
+**Celebrações de sucesso**:
+- Confetti para marcos importantes
+- Checkmarks animados para conclusões
+- Celebrações da barra de progresso aos 100%
+- Notificações no estilo "Conquista desbloqueada"
+- Mensagens personalizadas ("Você publicou seu 10º artigo!")
 
-**Milestone recognition**:
-- First-time actions get special treatment
-- Streak tracking and celebration
-- Progress toward goals
-- Anniversary celebrations
+**Reconhecimento de marcos**:
+- Ações pela primeira vez recebem tratamento especial
+- Tracking e celebração de streaks
+- Progresso em direção a metas
+- Celebrações de aniversário
 
-## Implementation Patterns
+## Padrões de Implementação
 
-**Animation libraries**:
+**Bibliotecas de animação**:
 - Framer Motion (React)
 - GSAP (universal)
-- Lottie (After Effects animations)
-- Canvas confetti (party effects)
+- Lottie (animações do After Effects)
+- Canvas confetti (efeitos de festa)
 
-**Sound libraries**:
-- Howler.js (audio management)
+**Bibliotecas de som**:
+- Howler.js (gerenciamento de áudio)
 - Use-sound (React hook)
 
-**Physics libraries**:
-- React Spring (spring physics)
-- Popmotion (animation primitives)
+**Bibliotecas de física**:
+- React Spring (física de mola)
+- Popmotion (primitivos de animação)
 
-**IMPORTANT**: File size matters. Compress images, optimize animations, lazy load delight features.
+**IMPORTANTE**: Tamanho de arquivo importa. Comprima imagens, otimize animações, faça lazy load de funcionalidades de encanto.
 
-**NEVER**:
-- Delay core functionality for delight
-- Force users through delightful moments (make skippable)
-- Use delight to hide poor UX
-- Overdo it (less is more)
-- Ignore accessibility (animate responsibly, provide alternatives)
-- Make every interaction delightful (special moments should be special)
-- Sacrifice performance for delight
-- Be inappropriate for context (read the room)
+**NUNCA**:
+- Atrase funcionalidade principal por encanto
+- Force os usuários por momentos encantadores (torne ignoráveis)
+- Use encanto para esconder UX ruim
+- Exagere (menos é mais)
+- Ignore acessibilidade (anime com responsabilidade, forneça alternativas)
+- Faça toda interação encantadora (momentos especiais devem ser especiais)
+- Sacrifique performance por encanto
+- Seja inapropriado para o contexto (leia a situação)
 
-## Verify Delight Quality
+## Verifique a Qualidade do Encanto
 
-Test that delight actually delights:
+Teste se o encanto realmente encanta:
 
-- **User reactions**: Do users smile? Share screenshots?
-- **Doesn't annoy**: Still pleasant after 100th time?
-- **Doesn't block**: Can users opt out or skip?
-- **Performant**: No jank, no slowdown
-- **Appropriate**: Matches brand and context
-- **Accessible**: Works with reduced motion, screen readers
+- **Reações dos usuários**: Os usuários sorriem? Compartilham screenshots?
+- **Não irrita**: Ainda é agradável na 100ª vez?
+- **Não bloqueia**: Os usuários podem optar por pular?
+- **Performático**: Sem engasgos, sem lentidão
+- **Apropriado**: Correspond à marca e ao contexto
+- **Acessível**: Funciona com movimento reduzido, screen readers
 
-When the moments feel earned, hand off to `{{command_prefix}}impeccable polish` for the final pass.
+Quando os momentos parecerem merecidos, passe para `{{command_prefix}}impeccable polish` para a revisão final.

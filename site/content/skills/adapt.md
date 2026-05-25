@@ -1,40 +1,40 @@
 ---
-tagline: "Make designs work across screens, devices, and contexts without amputating features."
+tagline: "Faça designs funcionarem em diferentes telas, dispositivos e contextos sem amputar funcionalidades."
 ---
 
-## When to use it
+## Quando usar
 
-`/impeccable adapt` is for taking a design built for one context and making it work in another. Mobile from desktop, tablet from mobile, print from web, embedded from standalone, email from dashboard. Reach for it when the source design is solid but falls apart at other breakpoints, on touch, or in a different container.
+`/impeccable adapt` é para pegar um design construído para um contexto e fazê-lo funcionar em outro. Mobile a partir do desktop, tablet a partir do mobile, impressão a partir da web, embutido a partir de autônomo, email a partir de dashboard. Use quando o design original é sólido, mas se desmancha em outros breakpoints, em touch, ou em um container diferente.
 
-Not for building responsive from scratch. For that, start with `/impeccable` and shape the layout responsive-first. Adapt is for the "we never thought about mobile" backfill.
+Não é para construir responsivo do zero. Para isso, comece com `/impeccable` e molde o layout com abordagem responsiva primeiro. Adapt é para o "nunca pensamos em mobile" que precisa ser resolvido depois.
 
-## How it works
+## Como funciona
 
-The skill works through four dimensions of contextual fit:
+A skill trabalha em quatro dimensões de adequação contextual:
 
-1. **Breakpoints and fluid layout**: collapse multi-column to single, adjust clamp ranges, introduce new breakpoints where the design genuinely breaks.
-2. **Touch targets**: minimum 44px hit areas, sufficient spacing between adjacent targets, larger tap zones than visual bounds where needed.
-3. **Navigation patterns**: desktop sidebars become mobile bottom nav or slide-outs, dense toolbars collapse into menus, hover states get touch equivalents.
-4. **Content priority**: decide what must be visible, what can collapse into disclosures, what can be removed entirely for that context.
+1. **Breakpoints e layout fluido**: colapsar multi-coluna para coluna única, ajustar faixas de clamp, introduzir novos breakpoints onde o design genuinamente quebra.
+2. **Touch targets**: áreas de toque mínimas de 44px, espaçamento suficiente entre targets adjacentes, zonas de toque maiores que os limites visuais quando necessário.
+3. **Padrões de navegação**: sidebars de desktop viram navegação inferior ou slide-outs no mobile, toolbars densas colapsam em menus, estados de hover ganham equivalentes touch.
+4. **Prioridade de conteúdo**: decidir o que deve ser visível, o que pode colapsar em disclosures, o que pode ser removido inteiramente para aquele contexto.
 
-The non-negotiable rule: adapt, do not amputate. Critical functionality cannot disappear on mobile just because it is inconvenient. Find a way to fit it, redesign the interaction, or reconsider whether it was really critical on desktop.
+A regra inegociável: adapte, não ampute. Funcionalidade crítica não pode desaparecer no mobile só porque é inconveniente. Encontre uma forma de encaixá-la, redesenhe a interação, ou repense se ela era realmente crítica no desktop.
 
-## Try it
+## Experimente
 
 ```
 /impeccable adapt the settings page for mobile
 ```
 
-Expected changes:
+Mudanças esperadas:
 
-- Three-column grid becomes single column with section headers acting as sticky dividers
-- Sidebar nav moves to a horizontal scroller above the content
-- Toggles gain 8px vertical padding so they meet 44px touch targets
-- Inline help text moves to tap-to-reveal, not hover
-- The "Danger zone" section expands fully on mobile instead of collapsing, because it contains irreversible actions and we want users to see them clearly
+- Grid de três colunas vira coluna única com cabeçalhos de seção como divisores sticky
+- Navegação da sidebar muda para um scroller horizontal acima do conteúdo
+- Toggles ganham 8px de padding vertical para atingir touch targets de 44px
+- Texto de ajuda inline muda para toque-para-revelar, em vez de hover
+- A seção "Danger zone" expande completamente no mobile em vez de colapsar, porque contém ações irreversíveis e queremos que os usuários as vejam claramente
 
-## Pitfalls
+## Armadilhas
 
-- **Amputating features.** If the mobile version hides things the desktop version can do, that is a regression, not an adaptation. Fight for the feature.
-- **Treating mobile as "smaller desktop".** Mobile is a different context: thumbs, interruption, short sessions. Adapt to the context, not to the viewport width.
-- **Skipping `/impeccable harden` afterward.** Responsive layouts reveal edge cases. Run hardening after adapt to catch the ones that only show up at 320px.
+- **Amputar funcionalidades.** Se a versão mobile esconde coisas que a versão desktop pode fazer, isso é uma regressão, não uma adaptação. Lute pela funcionalidade.
+- **Tratar mobile como "desktop menor".** Mobile é um contexto diferente: polegares, interrupções, sessões curtas. Adapte ao contexto, não à largura do viewport.
+- **Pular `/impeccable harden` depois.** Layouts responsivos revelam edge cases. Execute hardening após adapt para pegar os que só aparecem a 320px.

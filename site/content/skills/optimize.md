@@ -1,32 +1,32 @@
 ---
-tagline: "Diagnose and fix UI performance from LCP to bundle size."
+tagline: "Diagnostique e corrija performance de UI do LCP ao bundle size."
 ---
 
-## When to use it
+## Quando usar
 
-`/impeccable optimize` is for interfaces that feel slow. First paint takes forever, scrolling janks, images pop in late, interactions feel laggy, the bundle ships 800KB of JavaScript. Use it when the Web Vitals are bad or when users are complaining that things are sluggish.
+`/impeccable optimize` é para interfaces que parecem lentas. First paint demora para sempre, scrolling engasga, imagens aparecem tarde, interações parecem laggy, o bundle envia 800KB de JavaScript. Use quando os Web Vitals estão ruins ou quando usuários estão reclamando que as coisas estão lentas.
 
-Do not use it as premature optimization. If LCP is 1.1s and INP is 80ms, stop. The design work matters more.
+Não use como otimização prematura. Se LCP é 1.1s e INP é 80ms, pare. O trabalho de design importa mais.
 
-## How it works
+## Como funciona
 
-The skill works through five perf dimensions:
+A skill trabalha em cinco dimensões de performance:
 
-1. **Loading and Web Vitals**: LCP, INP, CLS. Identify what is blocking the first paint, what is delaying interaction, what is shifting layout.
-2. **Rendering**: unnecessary re-renders, missing memoization, expensive reconciliation, layout thrash in loops.
-3. **Animations**: is anything animating layout properties, are transforms and opacity the only thing touched, does `will-change` help or hurt here.
-4. **Images and assets**: lazy loading, responsive images (`srcset`, `sizes`), modern formats (WebP, AVIF), dimensions set to prevent CLS.
-5. **Bundle size**: unused imports, oversized dependencies, missing code-splitting, dead code.
+1. **Carregamento e Web Vitals**: LCP, INP, CLS. Identificar o que está bloqueando o first paint, o que está atrasando a interação, o que está causando shift de layout.
+2. **Renderização**: re-renders desnecessários, memoization ausente, reconciliation custosa, layout thrash em loops.
+3. **Animações**: algo está animando propriedades de layout, transforms e opacity são as únicas coisas tocadas, `will-change` ajuda ou prejudica aqui.
+4. **Imagens e assets**: lazy loading, imagens responsivas (`srcset`, `sizes`), formatos modernos (WebP, AVIF), dimensões definidas para prevenir CLS.
+5. **Bundle size**: imports não utilizados, dependências superdimensionadas, code-splitting ausente, dead code.
 
-The skill measures before and after. Every fix gets quantified. If a change does not move a metric, it gets rolled back.
+A skill mede antes e depois. Cada correção é quantificada. Se uma mudança não move uma métrica, ela é revertida.
 
-## Try it
+## Experimente
 
 ```
 /impeccable optimize the homepage
 ```
 
-Expected shape:
+Formato esperado:
 
 ```
 LCP: 3.2s → 1.4s
@@ -49,8 +49,8 @@ Bundle: 340KB → 180KB
   - Dropped deprecated icon set (30KB)
 ```
 
-## Pitfalls
+## Armadilhas
 
-- **Optimizing before measuring.** Without baseline metrics, you cannot tell what helped. Run `/impeccable optimize` with specific Web Vitals numbers, not vibes.
-- **Chasing tiny wins.** A 20ms improvement in INP that takes a week is rarely worth it. Optimize has diminishing returns; know when to stop.
-- **Forgetting to re-measure after every change.** The build could have made things worse in a way the skill did not predict. Verify.
+- **Otimizar antes de medir.** Sem métricas baselines, você não pode dizer o que ajudou. Execute `/impeccable optimize` com números específicos de Web Vitals, não impressões.
+- **Perseguir ganhos minúsculos.** Uma melhoria de 20ms no INP que toma uma semana raramente vale a pena. Optimize tem retornos decrescentes; saiba quando parar.
+- **Esquecer de remedir após cada mudança.** O build pode ter piorado as coisas de uma forma que a skill não previu. Verifique.

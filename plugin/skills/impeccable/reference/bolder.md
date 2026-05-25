@@ -1,113 +1,113 @@
-When asked for "bolder," AI defaults to the same tired tricks: cyan/purple gradients, glassmorphism, neon accents on dark backgrounds, gradient text on metrics. These are the opposite of bold. Reject them first, then increase visual impact and personality through stronger hierarchy, committed scale, and decisive type.
+Quando pedem "bolder", a IA recorre aos mesmos truques cansados: gradientes ciano/roxo, glassmorphism, acentos neon em fundos escuros, texto com gradiente em métricas. Esses são o oposto de ousado. Rejeite-os primeiro, depois aumente o impacto visual e a personalidade através de hierarquia mais forte, escala comprometida e tipografia decisiva.
 
 ---
 
-## Register
+## Registro
 
-Brand: "bolder" means distinctive. Extreme scale, unexpected color, typographic risk, committed POV.
+Brand: "bolder" significa distinto. Escala extrema, cor inesperada, risco tipográfico, ponto de vista comprometido.
 
-Product: "bolder" rarely means theatrics; those undermine trust. It means stronger hierarchy, clearer weight contrast, one sharper accent, more committed density. The amplification is in clarity, not drama.
+Product: "bolder" raramente significa teatralidade; isso mina a confiança. Significa hierarquia mais forte, contraste de peso mais claro, um acento mais afiado, densidade mais comprometida. A amplificação está na clareza, não no drama.
 
 ---
 
-## Assess Current State
+## Avalie o Estado Atual
 
-Analyze what makes the design feel too safe or boring:
+Analise o que torna o design seguro demais ou sem graça:
 
-1. **Identify weakness sources**:
-   - **Generic choices**: System fonts, basic colors, standard layouts
-   - **Timid scale**: Everything is medium-sized with no drama
-   - **Low contrast**: Everything has similar visual weight
-   - **Static**: No motion, no energy, no life
-   - **Predictable**: Standard patterns with no surprises
-   - **Flat hierarchy**: Nothing stands out or commands attention
+1. **Identifique as fontes de fraqueza**:
+   - **Escolhas genéricas**: Fontes do sistema, cores básicas, layouts padrão
+   - **Escala tímida**: Tudo é de tamanho médio sem nenhum drama
+   - **Baixo contraste**: Tudo tem peso visual similar
+   - **Estático**: Sem movimento, sem energia, sem vida
+   - **Previsível**: Padrões convencionais sem surpresas
+   - **Hierarquia plana**: Nada se destaca ou comando a atenção
 
-2. **Understand the context**:
-   - What's the brand personality? (How far can we push?)
-   - What's the purpose? (Marketing can be bolder than financial dashboards)
-   - Who's the audience? (What will resonate?)
-   - What are the constraints? (Brand guidelines, accessibility, performance)
+2. **Entenda o contexto**:
+   - Qual é a personalidade da marca? (Até onde podemos ir?)
+   - Qual é o propósito? (Marketing pode ser mais ousado que dashboards financeiros)
+   - Quem é o público? (O que vai ressoar?)
+   - Quais são as restrições? (Diretrizes de marca, acessibilidade, performance)
 
-If any of these are unclear from the codebase, STOP and call the AskUserQuestion tool to clarify.
+Se algum desses itens não estiver claro no codebase, {{ask_instruction}}
 
-**CRITICAL**: "Bolder" doesn't mean chaotic or garish. It means distinctive, memorable, and confident. Think intentional drama, not random chaos.
+**CRÍTICO**: "Bolder" não significa caótico ou brega. Significa distinto, memorável e confiante. Pense em drama intencional, não caos aleatório.
 
-**WARNING - AI SLOP TRAP**: Review ALL the DON'T guidelines from the parent impeccable skill (already loaded in this context) before proceeding. Bold means distinctive, not "more effects."
+**AVISO - ARMADILHA DE IA SLOP**: Revise TODAS as diretrizes de NÃO do skill pai impeccable (já carregadas neste contexto) antes de prosseguir. Ousado significa distinto, não "mais efeitos."
 
-## Plan Amplification
+## Planeje a Amplificação
 
-Create a strategy to increase impact while maintaining coherence:
+Crie uma estratégia para aumentar o impacto mantendo a coerência:
 
-- **Focal point**: What should be the hero moment? (Pick ONE, make it amazing)
-- **Personality direction**: Maximalist chaos? Elegant drama? Playful energy? Dark moody? Choose a lane.
-- **Risk budget**: How experimental can we be? Push boundaries within constraints.
-- **Hierarchy amplification**: Make big things BIGGER, small things smaller (increase contrast)
+- **Ponto focal**: Qual deve ser o momento hero? (Escolha UM, faça ser incrível)
+- **Direção de personalidade**: Caos maximalista? Drama elegante? Energia lúdica? Sombrio e mood? Escolha um caminho.
+- **Orçamento de risco**: Quão experimental podemos ser? Empurre limites dentro das restrições.
+- **Amplificação de hierarquia**: Faça coisas grandes MAIORES, coisas menores menores (aumente o contraste)
 
-**IMPORTANT**: Bold design must still be usable. Impact without function is just decoration.
+**IMPORTANTE**: Design ousado ainda precisa ser utilizável. Impacto sem função é apenas decoração.
 
-## Amplify the Design
+## Amplifique o Design
 
-Systematically increase impact across these dimensions:
+Aumente o impacto sistematicamente nestas dimensões:
 
-### Typography Amplification
-- **Replace generic fonts**: Swap system fonts for distinctive choices (see the parent skill's typography guidelines and [typography.md](typography.md) for inspiration)
-- **Extreme scale**: Create dramatic size jumps (3x-5x differences, not 1.5x)
-- **Weight contrast**: Pair 900 weights with 200 weights, not 600 with 400
-- **Unexpected choices**: Variable fonts, display fonts for headlines, condensed/extended widths, monospace as intentional accent (not as lazy "dev tool" default)
+### Amplificação Tipográfica
+- **Substitua fontes genéricas**: Troque fontes do sistema por escolhas distintas (veja as diretrizes de tipografia do skill pai e [typography.md](typography.md) para inspiração)
+- **Escala extrema**: Crie saltos dramáticos de tamanho (diferenças de 3x-5x, não 1.5x)
+- **Contraste de peso**: Combine pesos 900 com pesos 200, não 600 com 400
+- **Escolhas inesperadas**: Variable fonts, display fonts para manchetes, larguras condensed/extended, monospace como acento intencional (não como padrão preguiçoso de "dev tool")
 
-### Color Intensification
-- **Increase saturation**: Shift to more vibrant, energetic colors (but not neon)
-- **Bold palette**: Introduce unexpected color combinations. Avoid the purple-blue gradient AI slop
-- **Dominant color strategy**: Let one bold color own 60% of the design
-- **Sharp accents**: High-contrast accent colors that pop
-- **Tinted neutrals**: Replace pure grays with tinted grays that harmonize with your palette
-- **Rich gradients**: Intentional multi-stop gradients (not generic purple-to-blue)
+### Intensificação de Cor
+- **Aumente a saturação**: Mude para cores mais vibrantes e enérgicas (mas não neon)
+- **Paleta ousada**: Introduza combinações de cores inesperadas. Evite o gradiente roxo-azul de AI slop
+- **Estratégia de cor dominante**: Deixe uma cor ousada dominar 60% do design
+- **Acentos marcantes**: Cores de acento com alto contraste que saltam
+- **Neutros com tinta**: Substitua cinzas puros por cinzas tingidos que harmonizam com sua paleta
+- **Gradientes ricos**: Gradientes intencionais com múltiplos stops (não o genérico roxo-para-azul)
 
-### Spatial Drama
-- **Extreme scale jumps**: Make important elements 3-5x larger than surroundings
-- **Break the grid**: Let hero elements escape containers and cross boundaries
-- **Asymmetric layouts**: Replace centered, balanced layouts with tension-filled asymmetry
-- **Generous space**: Use white space dramatically (100-200px gaps, not 20-40px)
-- **Overlap**: Layer elements intentionally for depth
+### Drama Espacial
+- **Saltos de escala extrema**: Faça elementos importantes 3-5x maiores que o entorno
+- **Quebre o grid**: Deixe elementos hero escaparem de containers e ultrapassarem limites
+- **Layouts assimétricos**: Substitua layouts centralizados e equilibrados por assimetria carregada de tensão
+- **Espaço generoso**: Use white space de forma dramática (gaps de 100-200px, não 20-40px)
+- **Sobreposição**: Sobreponha elementos intencionalmente para profundidade
 
-### Visual Effects
-- **Dramatic shadows**: Large, soft shadows for elevation (but not generic drop shadows on rounded rectangles)
-- **Background treatments**: Mesh patterns, noise textures, geometric patterns, intentional gradients (not purple-to-blue)
-- **Texture & depth**: Grain, halftone, duotone, layered elements. NOT glassmorphism (it's overused AI slop)
-- **Borders & frames**: Thick borders, decorative frames, custom shapes (not rounded rectangles with colored border on one side)
-- **Custom elements**: Illustrative elements, custom icons, decorative details that reinforce brand
+### Efeitos Visuais
+- **Sombras dramáticas**: Sombras grandes e suaves para elevação (mas não drop shadows genéricas em retângulos arredondados)
+- **Tratamentos de fundo**: Padrões mesh, texturas de ruído, padrões geométricos, gradientes intencionais (não roxo-para-azul)
+- **Textura e profundidade**: Grain, halftone, duotone, elementos em camadas. NÃO glassmorphism (é AI slop superusado)
+- **Bordas e molduras**: Bordas grossas, molduras decorativas, formas customizadas (não retângulos arredondados com borda colorida de um lado)
+- **Elementos customizados**: Elementos ilustrativos, ícones customizados, detalhes decorativos que reforçam a marca
 
-### Motion & Animation
-- **Entrance choreography**: Staggered, dramatic page load animations with 50-100ms delays
-- **Scroll effects**: Parallax, reveal animations, scroll-triggered sequences
-- **Micro-interactions**: Satisfying hover effects, click feedback, state changes
-- **Transitions**: Smooth, noticeable transitions using ease-out-quart/quint/expo (not bounce or elastic, which cheapen the effect)
+### Movimento e Animação
+- **Coreografia de entrada**: Animações de carregamento de página escalonadas e dramáticas com atrasos de 50-100ms
+- **Efeitos de scroll**: Parallax, animações de revelação, sequências acionadas por scroll
+- **Micro-interações**: Efeitos de hover satisfatórios, feedback de clique, mudanças de estado
+- **Transições**: Transições suaves e perceptíveis usando ease-out-quart/quint/expo (não bounce ou elastic, que barateiam o efeito)
 
-### Composition Boldness
-- **Hero moments**: Create clear focal points with dramatic treatment
-- **Diagonal flows**: Escape horizontal/vertical rigidity with diagonal arrangements
-- **Full-bleed elements**: Use full viewport width/height for impact
-- **Unexpected proportions**: Golden ratio? Throw it out. Try 70/30, 80/20 splits
+### Ousadia na Composição
+- **Momentos hero**: Crie pontos focais claros com tratamento dramático
+- **Fluxos diagonais**: Escape da rigidez horizontal/vertical com arranjos diagonais
+- **Elementos full-bleed**: Use largura/altura total do viewport para impacto
+- **Proporções inesperadas**: Proporção áurea? Esqueça. Tente divisões 70/30, 80/20
 
-**NEVER**:
-- Add effects randomly without purpose (chaos ≠ bold)
-- Sacrifice readability for aesthetics (body text must be readable)
-- Make everything bold (then nothing is bold; you need contrast)
-- Ignore accessibility (bold design must still meet WCAG standards)
-- Overwhelm with motion (animation fatigue is real)
-- Copy trendy aesthetics blindly (bold means distinctive, not derivative)
+**NUNCA**:
+- Adicione efeitos aleatoriamente sem propósito (caos ≠ ousado)
+- Sacrifique a legibilidade pela estética (texto de corpo deve ser legível)
+- Faça tudo ousado (então nada é ousado; você precisa de contraste)
+- Ignore acessibilidade (design ousado ainda deve atender aos padrões WCAG)
+- Sobrecarregue com movimento (fadiga de animação é real)
+- Copie estéticas da moda cegamente (ousado significa distinto, não derivativo)
 
-## Verify Quality
+## Verifique a Qualidade
 
-Ensure amplification maintains usability and coherence:
+Garanta que a amplificação mantém usabilidade e coerência:
 
-- **NOT AI slop**: Does this look like every other AI-generated "bold" design? If yes, start over.
-- **Still functional**: Can users accomplish tasks without distraction?
-- **Coherent**: Does everything feel intentional and unified?
-- **Memorable**: Will users remember this experience?
-- **Performant**: Do all these effects run smoothly?
-- **Accessible**: Does it still meet accessibility standards?
+- **NÃO é AI slop**: Isso parece com todo outro design "ousado" gerado por IA? Se sim, comece de novo.
+- **Ainda funcional**: Os usuários conseguem realizar tarefas sem distração?
+- **Coerente**: Tudo parece intencional e unificado?
+- **Memorável**: Os usuários vão lembrar desta experiência?
+- **Performático**: Todos esses efeitos rodam suavemente?
+- **Acessível**: Ainda atende aos padrões de acessibilidade?
 
-**The test**: If you showed this to someone and said "AI made this bolder," would they believe you immediately? If yes, you've failed. Bold means distinctive, not "more AI effects."
+**O teste**: Se você mostrasse isso a alguém e dissesse "A IA deixou isso mais ousado", a pessoa acreditaria imediatamente? Se sim, você falhou. Ousado significa distinto, não "mais efeitos de IA."
 
-When the result feels right, hand off to `/impeccable polish` for the final pass.
+Quando o resultado parecer certo, passe para `{{command_prefix}}impeccable polish` para a revisão final.

@@ -32,7 +32,7 @@ chrome.devtools.panels.elements.onSelectionChanged.addListener(refreshForCurrent
 
 function refreshForCurrentSelection() {
   if (!currentFindings.length) {
-    renderEmpty('No findings on this page yet.');
+    renderEmpty('Nenhum resultado nesta página ainda.');
     return;
   }
 
@@ -43,7 +43,7 @@ function refreshForCurrentSelection() {
     selectors.push(item.selector);
   }
   if (!selectors.length) {
-    renderEmpty('No element-level findings on this page.');
+    renderEmpty('Nenhum resultado de elemento nesta página.');
     return;
   }
 
@@ -71,7 +71,7 @@ function renderEmpty(text) {
 }
 
 function renderNoFindings() {
-  content.innerHTML = `<div class="state"><strong>Clean.</strong> No anti-patterns on this element.</div>`;
+  content.innerHTML = `<div class="state"><strong>Limpo.</strong> Nenhum antipadrão neste elemento.</div>`;
 }
 
 function render(items) {
@@ -80,7 +80,7 @@ function render(items) {
     for (const f of item.findings) {
       const isSlop = f.category === 'slop';
       const marker = isSlop ? '<span class="marker">\u2726</span>' : '';
-      const kind = isSlop ? 'AI tell' : 'Quality';
+      const kind = isSlop ? 'Sinal de IA' : 'Qualidade';
       html.push(`
         <div class="finding">
           <div class="finding-header">

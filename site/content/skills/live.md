@@ -1,15 +1,15 @@
 ---
-tagline: "Iterate on UI in the browser. Pick an element, drop a comment, get three variants. Accept one and it writes to source."
+tagline: "Itere na UI no navegador. Selecione um elemento, deixe um comentário, receba três variantes. Aceite uma e ela é escrita no código-fonte."
 ---
 
 <div class="docs-live-callout">
   <span class="docs-live-callout-icon" aria-hidden="true">▸</span>
-  <span class="docs-live-callout-text">See it in action, with the animated demo, at <a href="/live-mode">/live-mode</a>. This page is the reference for what your AI harness reads when the command runs.</span>
+  <span class="docs-live-callout-text">Veja em ação, com a demonstração animada, em <a href="/live-mode">/live-mode</a>. Esta página é a referência do que o seu AI harness lê quando o comando é executado.</span>
 </div>
 
 <div class="docs-live-callout">
   <span class="docs-live-callout-icon" aria-hidden="true">▸</span>
-  <span class="docs-live-callout-text"><strong>Status: alpha.</strong> Live Mode works end-to-end and is ready to try, but it still needs more testing against real-world repos and framework configs. Expect rough edges on uncommon setups, and please report what breaks.</span>
+  <span class="docs-live-callout-text"><strong>Status: alpha.</strong> O Live Mode funciona de ponta a ponta e está pronto para testar, mas ainda precisa de mais testes com repositórios reais e configurações de frameworks. Espere arestas ásperas em configurações incomuns, e por favor relate o que quebrar.</span>
 </div>
 
 <div class="docs-viz-hero docs-viz-hero--plain">
@@ -43,44 +43,44 @@ tagline: "Iterate on UI in the browser. Pick an element, drop a comment, get thr
       </div>
     </div>
   </div>
-  <p class="docs-viz-caption">Live Mode mid-cycle: the picker outlines the element you chose, the context bar shows which variant you're on, and the global bar stays pinned to the bottom. Accept on this one writes Variant 2 back to source.</p>
+  <p class="docs-viz-caption">Live Mode no meio de um ciclo: o picker destaca o elemento escolhido, a barra de contexto mostra em qual variante você está, e a barra global fica fixada na parte inferior. Aceitar esta escreve a Variante 2 de volta no código-fonte.</p>
 </div>
 
-## When to use it
+## Quando usar
 
-Reach for `/impeccable live` when you want to iterate on something visually the way you would in a design tool, but keep production code as the output. The canvas-like flow of Figma without the round trip to an implementation step.
+Use `/impeccable live` quando quiser iterar em algo visualmente da mesma forma que faria em uma ferramenta de design, mas mantendo o código de produção como saída. O fluxo tipo canvas do Figma sem o vaivém até uma etapa de implementação.
 
-Use it for:
+Use para:
 
-- **Exploring directions on a real element.** A hero section, a newsletter card, a pricing tier. Three genuinely different takes, side by side, on the actual page with the actual context.
-- **Polishing a piece of UI that is almost right.** You know what feels off but cannot quite say it. Pick the element, scribble "more playful" or draw a stroke through the bit that bugs you, hit Go.
-- **A quick A/B between two directions your team is debating.** Generate variants, accept nothing, walk away. The point was the comparison.
+- **Explorar direções em um elemento real.** Uma seção hero, um card de newsletter, um tier de preços. Três propostas genuinamente diferentes, lado a lado, na página real com o contexto real.
+- **Polir uma peça de UI que está quase certa.** Você sabe o que parece errado, mas não consegue explicar exatamente. Selecione o elemento, escreva "mais lúdico" ou risque a parte que incomoda, e clique em Go.
+- **Um teste A/B rápido entre duas direções que sua equipe está debatendo.** Gere variantes, não aceite nenhuma, e siga em frente. O ponto era a comparação.
 
-It is NOT for new greenfield features (reach for `/impeccable craft`) or whole-page redesigns (reach for `/impeccable` or a specialized refine command).
+NÃO é para novos recursos greenfield (use `/impeccable craft`) ou redesejos de página inteira (use `/impeccable` ou um comando de refinamento especializado).
 
-## How it works
+## Como funciona
 
-One command brings up a picker overlay on top of your running dev server. You pick any element. A small context bar appears next to it. Type a freeform description or pick one of the action chips (`bolder`, `quieter`, `distill`, `polish`, `typeset`, `colorize`, `layout`, `animate`, `delight`, `overdrive`). Optionally drop comment pins or draw strokes directly on the element first, and the skill reads those as intent.
+Um comando abre um overlay de seleção sobre o seu dev server em execução. Você seleciona qualquer elemento. Uma pequena barra de contexto aparece ao lado dele. Digite uma descrição livre ou selecione um dos chips de ação (`bolder`, `quieter`, `distill`, `polish`, `typeset`, `colorize`, `layout`, `animate`, `delight`, `overdrive`). Opcionalmente, fixe comentários ou desenhe traços diretamente no elemento primeiro, e a skill interpreta isso como intenção.
 
-Hit Go. Three **production-quality variants** get generated, each anchored to a genuinely different design archetype (not three riffs on color) and hot-swapped into the page via your framework's HMR. Cycle through them with arrow keys. Accept one and the variant is written back to source. Discard all three and the original stays.
+Clique em Go. Três **variantes de qualidade de produção** são geradas, cada uma ancorada em um arquétipo de design genuinamente diferente (não três variações de cor) e trocadas em tempo real na página via HMR do seu framework. Navegue entre elas com as teclas de seta. Aceite uma e a variante é escrita de volta no código-fonte. Descarte as três e o original permanece.
 
-It supports Vite, Next.js (including monorepos), SvelteKit, Astro, Nuxt, and plain static HTML. If your dev server has a strict Content Security Policy, the first-run setup detects it and offers a one-time, dev-only patch so the picker can load. `DESIGN.md` wins on visual decisions, `PRODUCT.md` wins on voice: if you have both, variants stay on-brand without being told.
+Suporta Vite, Next.js (incluindo monorepos), SvelteKit, Astro, Nuxt e HTML estático simples. Se o seu dev server tem uma Content Security Policy restrita, a configuração inicial detecta e oferece um patch único, apenas para desenvolvimento, para que o picker possa carregar. `DESIGN.md` prevalece em decisões visuais, `PRODUCT.md` prevalece em tom de voz: se você tem ambos, as variantes permanecem on-brand sem precisar ser instruídas.
 
-## Try it
+## Experimente
 
 ```
 /impeccable live
 ```
 
-Open your dev server URL, pick the newsletter signup card, click the `delight` chip, hit Go. You will get three variants that vary across personality dimensions (a stamp-and-postcard feel, a typographic-surprise version, an illustrated-accent one), not three riffs on the same treatment.
+Abra a URL do seu dev server, selecione o card de inscrição da newsletter, clique no chip `delight`, e aperte Go. Você receberá três variantes que variam em dimensões de personalidade (uma sensação de carimbo e cartão-postal, uma versão de surpresa tipográfica, uma com acento ilustrado), não três variações do mesmo tratamento.
 
-Or pick a hero, type "more editorial, less SaaS", hit Go. The three variants anchor to different editorial archetypes (broadsheet masthead, catalog-style spec rows, oversized-glyph poster) rather than three shades of the same idea.
+Ou selecione um hero, digite "mais editorial, menos SaaS", e aperte Go. As três variantes se ancoram em diferentes arquétipos editoriais (cabeçalho de jornal broadsheet, linhas de especificação estilo catálogo, pôster com glifos oversized) em vez de três tons da mesma ideia.
 
-Stop live mode when you are done: say "stop live mode", close the tab, or hit the exit button on the picker bar.
+Pare o live mode quando terminar: diga "stop live mode", feche a aba, ou clique no botão de sair na barra do picker.
 
-## Pitfalls
+## Armadilhas
 
-- **Running it on a page that is still half-written.** Live variant generation needs context. If the element has placeholder copy, generic Lorem ipsum, or pre-stylesheet default formatting, variants will reflect that. Fill the content first.
-- **Expecting it to make macro decisions.** Live mode iterates on a single picked element. For "redo the entire pricing page", reach for `/impeccable` or `/impeccable craft` instead.
-- **Ignoring the fallback messages.** If the element lives in a generated file (a compiled template, a build output), the picker says so explicitly and offers to route the accept into true source. Do not force the accept into the generated file: the next build will wipe it.
-- **Running it without PRODUCT.md or DESIGN.md when you care about brand fit.** Live will still generate, but the variants will lean toward generic defaults. Run `/impeccable teach` and `/impeccable document` first if the result needs to sound like your product.
+- **Executar em uma página que ainda está pela metade.** A geração de variantes do live precisa de contexto. Se o elemento tem texto placeholder, Lorem ipsum genérico, ou formatação padrão sem stylesheet, as variantes refletirão isso. Preencha o conteúdo primeiro.
+- **Esperar que ele tome decisões macro.** O live mode itera em um único elemento selecionado. Para "refazer a página de preços inteira", use `/impeccable` ou `/impeccable craft`.
+- **Ignorar as mensagens de fallback.** Se o elemento está em um arquivo gerado (um template compilado, um output de build), o picker diz isso explicitamente e oferece rotear o accept para o código-fonte real. Não force o accept no arquivo gerado: o próximo build vai apagá-lo.
+- **Executar sem PRODUCT.md ou DESIGN.md quando a adequação à marca importa.** O live ainda vai gerar, mas as variantes tenderão para defaults genéricos. Execute `/impeccable teach` e `/impeccable document` primeiro se o resultado precisa soar como o seu produto.

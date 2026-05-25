@@ -1,174 +1,174 @@
-> **Additional context needed**: audience technical level and users' mental state in context.
+> **Contexto adicional necessário**: nível técnico do público e estado mental dos usuários no contexto.
 
-Find the unclear, confusing, or poorly written interface text and rewrite it. Vague copy creates support tickets and abandonment; specific copy gets users through the task.
+Encontre o texto de interface confuso, ambíguo ou mal escrito e reescreva-o. Texto vago gera tickets de suporte e abandono; texto específico conduz os usuários pela tarefa.
 
 
 ---
 
-## Assess Current Copy
+## Avalie o Texto Atual
 
-Identify what makes the text unclear or ineffective:
+Identifique o que torna o texto confuso ou ineficaz:
 
-1. **Find clarity problems**:
-   - **Jargon**: Technical terms users won't understand
-   - **Ambiguity**: Multiple interpretations possible
-   - **Passive voice**: "Your file has been uploaded" vs "We uploaded your file"
-   - **Length**: Too wordy or too terse
-   - **Assumptions**: Assuming user knowledge they don't have
-   - **Missing context**: Users don't know what to do or why
-   - **Tone mismatch**: Too formal, too casual, or inappropriate for situation
+1. **Encontre problemas de clareza**:
+   - **Jargão**: Termos técnicos que os usuários não vão entender
+   - **Ambiguidade**: Múltiplas interpretações possíveis
+   - **Voz passiva**: "Seu arquivo foi enviado" vs "Enviamos seu arquivo"
+   - **Extensão**: Texto longo demais ou curto demais
+   - **Presunções**: Assumir conhecimento que o usuário não tem
+   - **Contexto ausente**: Usuários não sabem o que fazer ou por quê
+   - **Descasamento de tom**: Formal demais, casual demais ou inapropriado para a situação
 
-2. **Understand the context**:
-   - Who's the audience? (Technical? General? First-time users?)
-   - What's the user's mental state? (Stressed during error? Confident during success?)
-   - What's the action? (What do we want users to do?)
-   - What's the constraint? (Character limits? Space limitations?)
+2. **Entenda o contexto**:
+   - Quem é o público? (Técnico? Geral? Usuários iniciantes?)
+   - Qual é o estado mental do usuário? (Estressado durante um erro? Confiante durante um sucesso?)
+   - Qual é a ação? (O que queremos que os usuários façam?)
+   - Qual é a restrição? (Limites de caracteres? Limitações de espaço?)
 
-**CRITICAL**: Clear copy helps users succeed. Unclear copy creates frustration, errors, and support tickets.
+**CRÍTICO**: Texto claro ajuda os usuários a ter sucesso. Texto confuso cria frustração, erros e tickets de suporte.
 
-## Plan Copy Improvements
+## Planeje as Melhorias de Texto
 
-Create a strategy for clearer communication:
+Crie uma estratégia para comunicação mais clara:
 
-- **Primary message**: What's the ONE thing users need to know?
-- **Action needed**: What should users do next (if anything)?
-- **Tone**: How should this feel? (Helpful? Apologetic? Encouraging?)
-- **Constraints**: Length limits, brand voice, localization considerations
+- **Mensagem principal**: Qual é a ÚNICA coisa que os usuários precisam saber?
+- **Ação necessária**: O que os usuários devem fazer a seguir (se houver algo)?
+- **Tom**: Como isso deve parecer? (Prestativo? ComDesculpas? Encorajador?)
+- **Restrições**: Limites de extensão, voz da marca, considerações de localização
 
-**IMPORTANT**: Good UX writing is invisible. Users should understand immediately without noticing the words.
+**IMPORTANTE**: Bom UX writing é invisível. Os usuários devem entender imediatamente sem notar as palavras.
 
-## Improve Copy Systematically
+## Melhore o Texto Sistematicamente
 
-Refine text across these common areas:
+Refine o texto nestas áreas comuns:
 
-### Error Messages
-**Bad**: "Error 403: Forbidden"
-**Good**: "You don't have permission to view this page. Contact your admin for access."
+### Mensagens de Erro
+**Ruim**: "Erro 403: Proibido"
+**Bom**: "Você não tem permissão para ver esta página. Contate seu administrador para obter acesso."
 
-**Bad**: "Invalid input"
-**Good**: "Email addresses need an @ symbol. Try: name@example.com"
+**Ruim**: "Entrada inválida"
+**Bom**: "Endereços de email precisam de um símbolo @. Tente: nome@exemplo.com"
 
-**Principles**:
-- Explain what went wrong in plain language
-- Suggest how to fix it
-- Don't blame the user
-- Include examples when helpful
-- Link to help/support if applicable
+**Princípios**:
+- Explique o que deu errado em linguagem simples
+- Sugira como corrigir
+- Não culpe o usuário
+- Inclua exemplos quando útil
+- Link para ajuda/suporte se aplicável
 
-### Form Labels & Instructions
-**Bad**: "DOB (MM/DD/YYYY)"
-**Good**: "Date of birth" (with placeholder showing format)
+### Rótulos e Instruções de Formulário
+**Ruim**: "Data de nasc. (DD/MM/AAAA)"
+**Bom**: "Data de nascimento" (com placeholder mostrando o formato)
 
-**Bad**: "Enter value here"
-**Good**: "Your email address" or "Company name"
+**Ruim**: "Digite o valor aqui"
+**Bom**: "Seu endereço de email" ou "Nome da empresa"
 
-**Principles**:
-- Use clear, specific labels (not generic placeholders)
-- Show format expectations with examples
-- Explain why you're asking (when not obvious)
-- Put instructions before the field, not after
-- Keep required field indicators clear
+**Princípios**:
+- Use rótulos claros e específicos (não placeholders genéricos)
+- Mostre expectativas de formato com exemplos
+- Explique por que está perguntando (quando não for óbvio)
+- Coloque instruções antes do campo, não depois
+- Mantenha indicadores de campo obrigatório claros
 
-### Button & CTA Text
-**Bad**: "Click here" | "Submit" | "OK"
-**Good**: "Create account" | "Save changes" | "Got it, thanks"
+### Texto de Botões e CTAs
+**Ruim**: "Clique aqui" | "Enviar" | "OK"
+**Bom**: "Criar conta" | "Salvar alterações" | "Entendi, obrigado"
 
-**Principles**:
-- Describe the action specifically
-- Use active voice (verb + noun)
-- Match user's mental model
-- Be specific ("Save" is better than "OK")
+**Princípios**:
+- Descreva a ação especificamente
+- Use voz ativa (verbo + substantivo)
+- Correspond ao modelo mental do usuário
+- Seja específico ("Salvar" é melhor que "OK")
 
-### Help Text & Tooltips
-**Bad**: "This is the username field"
-**Good**: "Choose a username. You can change this later in Settings."
+### Texto de Ajuda e Tooltips
+**Ruim**: "Este é o campo de nome de usuário"
+**Bom**: "Escolha um nome de usuário. Você pode alterar isso depois em Configurações."
 
-**Principles**:
-- Add value (don't just repeat the label)
-- Answer the implicit question ("What is this?" or "Why do you need this?")
-- Keep it brief but complete
-- Link to detailed docs if needed
+**Princípios**:
+- Adicione valor (não apenas repita o rótulo)
+- Responda à pergunta implícita ("O que é isso?" ou "Por que você precisa disso?")
+- Mantenha breve, mas completo
+- Link para documentação detalhada se necessário
 
-### Empty States
-**Bad**: "No items"
-**Good**: "No projects yet. Create your first project to get started."
+### Estados Vazios
+**Ruim**: "Nenhum item"
+**Bom**: "Nenhum projeto ainda. Crie seu primeiro projeto para começar."
 
-**Principles**:
-- Explain why it's empty (if not obvious)
-- Show next action clearly
-- Make it welcoming, not dead-end
+**Princípios**:
+- Explique por que está vazio (se não for óbvio)
+- Mostre claramente a próxima ação
+- Torne acolhedor, não um beco sem saída
 
-### Success Messages
-**Bad**: "Success"
-**Good**: "Settings saved! Your changes will take effect immediately."
+### Mensagens de Sucesso
+**Ruim**: "Sucesso"
+**Bom**: "Configurações salvas! Suas alterações entrarão em vigor imediatamente."
 
-**Principles**:
-- Confirm what happened
-- Explain what happens next (if relevant)
-- Be brief but complete
-- Match the user's emotional moment (celebrate big wins)
+**Princípios**:
+- Confirme o que aconteceu
+- Explique o que acontece a seguir (se relevante)
+- Seja breve, mas completo
+- Correspond ao momento emocional do usuário (celebre grandes conquistas)
 
-### Loading States
-**Bad**: "Loading..." (for 30+ seconds)
-**Good**: "Analyzing your data... this usually takes 30-60 seconds"
+### Estados de Carregamento
+**Ruim**: "Carregando..." (por 30+ segundos)
+**Bom**: "Analisando seus dados... isso geralmente leva de 30 a 60 segundos"
 
-**Principles**:
-- Set expectations (how long?)
-- Explain what's happening (when it's not obvious)
-- Show progress when possible
-- Offer escape hatch if appropriate ("Cancel")
+**Princípios**:
+- Defina expectativas (quanto tempo?)
+- Explique o que está acontecendo (quando não for óbvio)
+- Mostre progresso quando possível
+- Ofereça saída se apropriado ("Cancelar")
 
-### Confirmation Dialogs
-**Bad**: "Are you sure?"
-**Good**: "Delete 'Project Alpha'? This can't be undone."
+### Diálogos de Confirmação
+**Ruim**: "Tem certeza?"
+**Bom**: "Excluir 'Projeto Alpha'? Isso não pode ser desfeito."
 
-**Principles**:
-- State the specific action
-- Explain consequences (especially for destructive actions)
-- Use clear button labels ("Delete project" not "Yes")
-- Don't overuse confirmations (only for risky actions)
+**Princípios**:
+- Declare a ação específica
+- Explique as consequências (especialmente para ações destrutivas)
+- Use rótulos de botão claros ("Excluir projeto" não "Sim")
+- Não exagere nas confirmações (apenas para ações arriscadas)
 
-### Navigation & Wayfinding
-**Bad**: Generic labels like "Items" | "Things" | "Stuff"
-**Good**: Specific labels like "Your projects" | "Team members" | "Settings"
+### Navegação e Orientação
+**Ruim**: Rótulos genéricos como "Itens" | "Coisas" | "Treco"
+**Bom**: Rótulos específicos como "Seus projetos" | "Membros da equipe" | "Configurações"
 
-**Principles**:
-- Be specific and descriptive
-- Use language users understand (not internal jargon)
-- Make hierarchy clear
-- Consider information scent (breadcrumbs, current location)
+**Princípios**:
+- Seja específico e descritivo
+- Use linguagem que os usuários entendem (não jargão interno)
+- Torne a hierarquia clara
+- Considere a trilha de informação (breadcrumbs, localização atual)
 
-## Apply Clarity Principles
+## Aplique os Princípios de Clareza
 
-Every piece of copy should follow these rules:
+Cada trecho de texto deve seguir estas regras:
 
-1. **Be specific**: "Enter email" not "Enter value"
-2. **Be concise**: Cut unnecessary words (but don't sacrifice clarity)
-3. **Be active**: "Save changes" not "Changes will be saved"
-4. **Be human**: "Oops, something went wrong" not "System error encountered"
-5. **Tell users what to do**, not just what happened
-6. **Be consistent**: Use same terms throughout (don't vary for variety)
+1. **Seja específico**: "Digite o email" não "Digite o valor"
+2. **Seja conciso**: Corte palavras desnecessárias (mas não sacrifique a clareza)
+3. **Seja ativo**: "Salvar alterações" não "Alterações serão salvas"
+4. **Seja humano**: "Ops, algo deu errado" não "Erro de sistema encontrado"
+5. **Diga aos usuários o que fazer**, não apenas o que aconteceu
+6. **Seja consistente**: Use os mesmos termos ao longo (não varie por variedade)
 
-**NEVER**:
-- Use jargon without explanation
-- Blame users ("You made an error" → "This field is required")
-- Be vague ("Something went wrong" without explanation)
-- Use passive voice unnecessarily
-- Write overly long explanations (be concise)
-- Use humor for errors (be empathetic instead)
-- Assume technical knowledge
-- Vary terminology (pick one term and stick with it)
-- Repeat information (headers restating intros, redundant explanations)
-- Use placeholders as the only labels (they disappear when users type)
+**NUNCA**:
+- Use jargão sem explicação
+- Culpe os usuários ("Você cometeu um erro" → "Este campo é obrigatório")
+- Seja vago ("Algo deu errado" sem explicação)
+- Use voz passiva desnecessariamente
+- Escreva explicações excessivamente longas (seja conciso)
+- Use humor para erros (seja empático em vez disso)
+- Presuma conhecimento técnico
+- Varie a terminologia (escolha um termo e mantenha-o)
+- Repita informação (headers reafirmando introduções, explicações redundantes)
+- Use placeholders como únicos rótulos (eles desaparecem quando os usuários digitam)
 
-## Verify Improvements
+## Verifique as Melhorias
 
-Test that copy improvements work:
+Teste se as melhorias de texto funcionam:
 
-- **Comprehension**: Can users understand without context?
-- **Actionability**: Do users know what to do next?
-- **Brevity**: Is it as short as possible while remaining clear?
-- **Consistency**: Does it match terminology elsewhere?
-- **Tone**: Is it appropriate for the situation?
+- **Compreensão**: Os usuários conseguem entender sem contexto?
+- **Acionabilidade**: Os usuários sabem o que fazer a seguir?
+- **Concisão**: Está o mais curto possível mantendo a clareza?
+- **Consistência**: Correspond à terminologia usada em outros lugares?
+- **Tom**: É apropriado para a situação?
 
-When the copy reads cleanly, hand off to `/impeccable polish` for the final pass.
+Quando o texto fluir de forma limpa, passe para `{{command_prefix}}impeccable polish` para a revisão final.

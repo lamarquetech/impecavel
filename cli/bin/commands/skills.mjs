@@ -35,17 +35,17 @@ async function showHelp() {
     const res = await fetch(`${API_BASE}/api/commands`);
     commands = await res.json();
   } catch {
-    console.error('Could not fetch command list from impeccable.style. Check your network connection.');
+    console.error('Não foi possível buscar a lista de comandos do impeccable.style. Verifique sua conexão de rede.');
     process.exit(1);
   }
 
   const pad = (s, n) => s + ' '.repeat(Math.max(0, n - s.length));
 
-  console.log('\n  Impeccable Skills & Commands\n');
-  console.log('  Install:  npx impeccable skills install');
-  console.log('  Update:   npx impeccable skills update');
-  console.log('  Docs:     https://impeccable.style/cheatsheet\n');
-  console.log(`  ${pad('Command', 22)} Description`);
+  console.log('\n  Impeccable Skills & Comandos\n');
+  console.log('  Instalar:  npx impeccable skills install');
+  console.log('  Atualizar: npx impeccable skills update');
+  console.log('  Docs:      https://impeccable.style/cheatsheet\n');
+  console.log(`  ${pad('Comando', 22)} Descrição`);
   console.log(`  ${'-'.repeat(22)} ${'-'.repeat(52)}`);
 
   for (const cmd of commands.sort((a, b) => a.id.localeCompare(b.id))) {
@@ -55,7 +55,7 @@ async function showHelp() {
       : cmd.description;
     console.log(`  ${pad('/' + cmd.id, 22)} ${desc}`);
   }
-  console.log(`\n  ${commands.length} commands available. Run /<command> in your AI harness.\n`);
+  console.log(`\n  ${commands.length} comandos disponíveis. Execute /<comando> no seu AI harness.\n`);
 }
 
 // ─── version helpers ─────────────────────────────────────────────────────────
@@ -173,14 +173,14 @@ async function check() {
   const installed = isAlreadyInstalled(root);
 
   if (!installed) {
-    console.log('Impeccable is not installed in this project.');
-    console.log('Run `npx impeccable skills install` to install.');
+    console.log('Impeccable não está instalado neste projeto.');
+    console.log('Execute `npx impeccable skills install` para instalar.');
     process.exit(0);
   }
 
   const providers = findInstalledProviders(root);
 
-  console.log('Checking for updates...\n');
+  console.log('Verificando atualizações...\n');
   try {
     const bundleDir = await downloadAndExtractBundle();
     const upToDate = isUpToDate(root, providers, bundleDir);
@@ -188,13 +188,13 @@ async function check() {
 
     if (upToDate) {
       const v = getSkillsVersion(root);
-      console.log(`Skills are up to date${v ? ` (v${v})` : ''}.`);
+      console.log(`Skills estão atualizadas${v ? ` (v${v})` : ''}.`);
     } else {
-      console.log('Updates available.');
-      console.log('Run `npx impeccable skills update` to update.');
+      console.log('Atualizações disponíveis.');
+      console.log('Execute `npx impeccable skills update` para atualizar.');
     }
   } catch (e) {
-    console.error(`Could not check for updates: ${e.message}`);
+    console.error(`Não foi possível verificar atualizações: ${e.message}`);
     process.exit(1);
   }
 }
@@ -329,12 +329,12 @@ async function install(flags) {
   const existing = isAlreadyInstalled(root);
 
   if (existing && !force) {
-    console.log(`Impeccable skills are already installed (found in ${existing}/).`);
-    console.log('Run with --force to reinstall.\n');
+    console.log(`Skills do impeccable já estão instaladas (encontradas em ${existing}/).`);
+    console.log('Execute com --force para reinstalar.\n');
     process.exit(0);
   }
 
-  console.log('Installing impeccable skills via npx skills...\n');
+  console.log('Instalando skills do impeccable via npx skills...\n');
   try {
     // --copy forces npx skills to install each provider's variant separately
     // instead of symlinking .claude/skills/ to .agents/skills/. The two
@@ -352,9 +352,9 @@ async function install(flags) {
     prefix = prefixFlag.split('=')[1] || 'i-';
   } else if (!yes) {
     console.log();
-    const wantPrefix = await ask('Prefix commands to avoid conflicts? e.g. /i-audit instead of /audit (y/N) ');
+    const wantPrefix = await ask('Adicionar prefixo aos comandos para evitar conflitos? ex: /i-audit em vez de /audit (y/N) ');
     if (wantPrefix === 'y' || wantPrefix === 'yes') {
-      const custom = await ask('Prefix (default: i-): ');
+      const custom = await ask('Prefixo (padrão: i-): ');
       prefix = custom || 'i-';
     }
   }
@@ -362,8 +362,8 @@ async function install(flags) {
   if (prefix) {
     const count = renameSkillsWithPrefix(root, prefix);
     if (count > 0) {
-      console.log(`\nRenamed ${count} skills with "${prefix}" prefix.`);
-      console.log(`Commands are now available as /${prefix}<command> (e.g. /${prefix}audit).`);
+      console.log(`\nRenomeadas ${count} skills com o prefixo "${prefix}".`);
+      console.log(`Comandos agora estão disponíveis como /${prefix}<comando> (ex: /${prefix}audit).`);
     }
   }
 
@@ -373,13 +373,13 @@ async function install(flags) {
     const result = cleanup(root);
     const total = result.deletedPaths.length + result.removedLockEntries.length;
     if (total > 0) {
-      console.log(`Cleaned up ${total} deprecated skill(s) from previous versions.`);
+      console.log(`Removidas ${total} skill(s) obsoletas de versões anteriores.`);
     }
   } catch {
     // Cleanup script not available -- skip
   }
 
-  console.log(`\nDone! Run /${prefix}impeccable teach in your AI harness to set up design context.\n`);
+  console.log(`\nPronto! Execute /${prefix}impeccable teach no seu AI harness para configurar o contexto de design.\n`);
 }
 
 /** Detect prefix by looking for the 'impeccable' skill (or legacy 'teach-impeccable') */
@@ -536,18 +536,18 @@ async function update(flags = []) {
   const providers = findInstalledProviders(root);
 
   if (providers.length === 0) {
-    console.log('No impeccable skill folders found in this project.');
-    console.log('Run `npx impeccable skills install` to install first.');
+    console.log('Nenhuma pasta de skills do impeccable encontrada neste projeto.');
+    console.log('Execute `npx impeccable skills install` para instalar primeiro.');
     process.exit(1);
   }
 
-  console.log('Checking for updates...');
+  console.log('Verificando atualizações...');
 
   let tmpDir;
   try {
     tmpDir = await downloadAndExtractBundle();
   } catch (e) {
-    console.error(`Download failed: ${e.message}`);
+    console.error(`Falha no download: ${e.message}`);
     process.exit(1);
   }
 
@@ -555,17 +555,17 @@ async function update(flags = []) {
   if (isUpToDate(root, providers, tmpDir)) {
     rmSync(tmpDir, { recursive: true, force: true });
     const v = getSkillsVersion(root);
-    console.log(`Skills are up to date${v ? ` (v${v})` : ''}. Nothing to do.`);
+    console.log(`Skills estão atualizadas${v ? ` (v${v})` : ''}. Nada a fazer.`);
     process.exit(0);
   }
 
-  console.log(`Found skills in: ${providers.join(', ')}`);
+  console.log(`Skills encontradas em: ${providers.join(', ')}`);
 
   if (!yes) {
-    const ans = await ask(`Update skills in ${providers.length} provider folder(s)? (Y/n) `);
+    const ans = await ask(`Atualizar skills em ${providers.length} pasta(s) de provedor? (Y/n) `);
     if (ans === 'n' || ans === 'no') {
       rmSync(tmpDir, { recursive: true, force: true });
-      console.log('Aborted.');
+      console.log('Abortado.');
       process.exit(0);
     }
   }
@@ -598,7 +598,7 @@ async function update(flags = []) {
     const prefix = detectPrefix(root);
     if (prefix) {
       const count = renameSkillsWithPrefix(root, prefix);
-      if (count > 0) console.log(`Re-applied "${prefix}" prefix to ${count} skills.`);
+      if (count > 0) console.log(`Prefixo "${prefix}" reaplicado a ${count} skills.`);
     }
 
     // Run cleanup to remove deprecated stubs from the fresh download
@@ -610,10 +610,10 @@ async function update(flags = []) {
     }
 
     const v = getSkillsVersion(root);
-    console.log(`Updated ${updated} skill(s)${v ? ` to v${v}` : ''}.`);
-    console.log('Done!\n');
+    console.log(`${updated} skill(s) atualizada(s)${v ? ` para v${v}` : ''}.`);
+    console.log('Pronto!\n');
   } catch (e) {
-    console.error(`Update failed: ${e.message}`);
+    console.error(`Falha na atualização: ${e.message}`);
     if (tmpDir) rmSync(tmpDir, { recursive: true, force: true });
     process.exit(1);
   }
@@ -646,8 +646,8 @@ export async function run(args) {
   } else if (sub === 'check') {
     await check();
   } else {
-    console.error(`Unknown skills command: ${sub}`);
-    console.error(`Run 'impeccable skills --help' for available commands.`);
+    console.error(`Comando de skills desconhecido: ${sub}`);
+    console.error(`Execute 'impeccable skills --help' para ver os comandos disponíveis.`);
     process.exit(1);
   }
 }

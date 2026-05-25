@@ -23,7 +23,7 @@ interface Props {
 
 const {
   title,
-  description = 'Design fluency for AI-assisted frontend development.',
+  description = 'Fluência em design para desenvolvimento frontend com IA.',
   activeNav,
   canonicalPath,
   bodyClass,
@@ -45,7 +45,7 @@ const canonical = canonicalPath
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,7 +83,7 @@ const canonical = canonicalPath
   <slot name="head" />
 </head>
 <body class={bodyClass}>
-  <a href={`#${mainId}`} class="skip-link">Skip to content</a>
+  <a href={`#${mainId}`} class="skip-link">Pular para o conteúdo</a>
   <slot name="before-header" />
   {!hideHeader && <Header activeNav={activeNav} />}
   <slot name="after-header" />

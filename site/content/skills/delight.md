@@ -1,42 +1,42 @@
 ---
-tagline: "Small moments of personality that turn functional into memorable."
+tagline: "Pequenos momentos de personalidade que transformam funcional em memorável."
 ---
 
-## When to use it
+## Quando usar
 
-`/impeccable delight` is for interfaces that work but do not feel like anything. Use it when the core experience is solid and you want to add the small human touches that make people remember it: a considered empty state, a loading message with a point of view, a success animation that feels earned, a microcopy moment that makes someone smile.
+`/impeccable delight` é para interfaces que funcionam mas não transmitem nenhum sentimento. Use quando a experiência principal é sólida e você quer adicionar os pequenos toques humanos que fazem as pessoas lembrarem: um empty state cuidadoso, uma mensagem de carregamento com ponto de vista, uma animação de sucesso que parece merecida, um momento de microcopy que faz alguém sorrir.
 
-It is a finishing skill. Never the first thing you run on a new build.
+É uma skill de finalização. Nunca é a primeira coisa que você executa em um novo build.
 
-## How it works
+## Como funciona
 
-The skill hunts for delight opportunities in the places most designers skip:
+A skill busca oportunidades de delight nos lugares que a maioria dos designers pula:
 
-1. **Empty states**: instead of "No items yet", something with personality appropriate to the brand.
-2. **Loading and waiting moments**: the best products turn waits into content.
-3. **Success feedback**: a moment of celebration when something worth celebrating happens.
-4. **Microcopy**: button labels, tooltips, error messages, placeholder text. Tiny copy with taste.
-5. **Easter eggs and secondary states**: things users discover that reward paying attention.
+1. **Empty states**: em vez de "Nenhum item ainda", algo com personalidade adequada à marca.
+2. **Momentos de carregamento e espera**: os melhores produtos transformam esperas em conteúdo.
+3. **Feedback de sucesso**: um momento de celebração quando algo digno de celebração acontece.
+4. **Microcopy**: labels de botões, tooltips, mensagens de erro, texto placeholder. Texto minúsculo com bom gosto.
+5. **Easter eggs e estados secundários**: coisas que os usuários descobrem e que recompensam a atenção.
 
-The skill reads the brand tone from `PRODUCT.md`. A serious analytics tool gets serious delight (dry, precise, a little clever). A playful consumer app gets more overt personality. It does not force humor where humor is wrong for the audience.
+A skill lê o tom da marca em `PRODUCT.md`. Uma ferramenta de analytics séria recebe delight sério (seco, preciso, um pouco esperto). Um app consumista lúdico recebe personalidade mais aberta. Ela não força humor onde humor é inadequado para o público.
 
-The rule is: every delight moment must still work perfectly if you delete the delight. Nothing depends on the smile.
+A regra é: todo momento de delight deve continuar funcionando perfeitamente se você deletar o delight. Nada depende do sorriso.
 
-## Try it
+## Experimente
 
 ```
 /impeccable delight the first-run experience
 ```
 
-Expected additions:
+Adições esperadas:
 
-- Empty dashboard replaces "No data yet" with "Your dashboard is quiet. Let's fix that." plus a single-action CTA.
-- Initial sync gets a 3-state loading message that advances: "Finding your accounts... / Pulling the last 30 days... / Making it look good...".
-- First successful action triggers a one-time toast with a tiny celebratory moment. After that, just a quiet checkmark.
-- Help tooltip on the tricky field has a voice that sounds like a person wrote it.
+- Dashboard vazio substitui "No data yet" por "Seu dashboard está quieto. Vamos mudar isso." mais um CTA de ação única.
+- Sincronização inicial recebe uma mensagem de carregamento em 3 estados que avança: "Encontrando suas contas... / Buscando os últimos 30 dias... / Deixando bonito...".
+- Primeira ação bem-sucedida dispara um toast único com um pequeno momento de celebração. Depois disso, apenas um checkmark discreto.
+- Tooltip de ajuda no campo complicado tem uma voz que soa como se uma pessoa tivesse escrito.
 
-## Pitfalls
+## Armadilhas
 
-- **Forcing humor.** Not every brand is playful. If the brand voice in `PRODUCT.md` is "clinical and precise", delight adds clever restraint, not jokes.
-- **Over-decorating.** One moment of delight is memorable. Twenty becomes noise. The skill is conservative on purpose.
-- **Running delight before polish.** Polish fixes what is wrong. Delight adds what is missing. In that order.
+- **Forçar humor.** Nem toda marca é lúdica. Se a voz da marca em `PRODUCT.md` é "clínica e precisa", delight adiciona contenção inteligente, não piadas.
+- **Excesso de decoração.** Um momento de delight é memorável. Vinte viram ruído. A skill é conservadora de propósito.
+- **Executar delight antes de polish.** Polish conserta o que está errado. Delight adiciona o que está faltando. Nessa ordem.

@@ -1,40 +1,40 @@
 ---
-tagline: "Design first-run experiences, empty states, and paths to value."
+tagline: "Desenhe experiências de first-run, empty states e caminhos para o valor."
 ---
 
-## When to use it
+## Quando usar
 
-`/impeccable onboard` is for the moments that decide whether a new user sticks around: the first screen, the empty state, the setup flow, the product tour, the "what do I do now" gap. Reach for it when activation is weak, when new users drop off before reaching value, or when your product has empty states that say "no items yet" and stop there.
+`/impeccable onboard` é para os momentos que decidem se um novo usuário fica ou vai: a primeira tela, o empty state, o fluxo de configuração, o tour do produto, o gap "o que eu faço agora". Use quando a ativação é fraca, quando novos usuários caem antes de alcançar o valor, ou quando seu produto tem empty states que dizem "nenhum item ainda" e param por aí.
 
-## How it works
+## Como funciona
 
-The command starts from one question: what is the aha moment, and how fast can a new user get there. Every design decision points at that moment.
+O comando parte de uma pergunta: qual é o momento aha, e quão rápido um novo usuário pode chegar lá. Toda decisão de design aponta para esse momento.
 
-It works across the surfaces that shape first impressions:
+Ele trabalha nas superfícies que moldam primeiras impressões:
 
-1. **First-run experience**: the moments immediately after sign-up. Should the user see a tour, a blank canvas, a filled example, or nothing at all. Pick the approach that matches the product.
-2. **Empty states**: every zero-data screen gets oriented. Where am I, why is this empty, what do I do next, what will it look like once it is full.
-3. **Setup and installation**: required configuration is minimized, defaults are smart, each step explains why it matters.
-4. **Progressive disclosure**: advanced features stay out of the way until they are earned.
-5. **Activation events**: the moment a user first experiences the core value is instrumented and celebrated, quietly.
+1. **Experiência de first-run**: os momentos imediatamente após o sign-up. O usuário deveria ver um tour, um canvas vazio, um exemplo preenchido, ou nada. Escolha a abordagem que combina com o produto.
+2. **Empty states**: toda tela com zero dados é orientada. Onde estou, por que está vazio, o que faço agora, como vai parecer quando estiver cheio.
+3. **Setup e instalação**: configuração obrigatória é minimizada, defaults são inteligentes, cada passo explica por que importa.
+4. **Progressive disclosure**: funcionalidades avançadas ficam fora do caminho até serem merecidas.
+5. **Eventos de ativação**: o momento em que um usuário experimenta o valor principal pela primeira vez é instrumentado e celebrado, discretamente.
 
-The command resists two common failure modes: over-tutorialized onboarding where users click through a carousel before they can touch anything, and zero-onboarding where users are dropped into an empty app and expected to figure it out.
+O comando resiste a dois modos de falha comuns: onboarding super-tutorializado onde usuários clicam através de um carrossel antes de poder tocar em qualquer coisa, e zero-onboarding onde usuários são jogados em um app vazio e esperados que descubram sozinhos.
 
-## Try it
+## Experimente
 
 ```
 /impeccable onboard the editor
 ```
 
-Typical output:
+Saída típica:
 
-- First-run: replaces empty editor with a filled example document the user can modify. Cancel button discards the example, edit replaces the content with the user's work.
-- Empty state on document list: "No documents yet. Create your first, or import from Notion, Google Docs, or Markdown."
-- Setup: reduced from 6 required fields to 1 (workspace name). Everything else has a smart default and can be edited later in settings.
-- Activation: the first time a user saves a document, a quiet toast says "Saved. Your work is in the cloud now." One-time, not repeated.
+- First-run: substitui editor vazio por um documento de exemplo preenchido que o usuário pode modificar. Botão Cancel descarta o exemplo, editar substitui o conteúdo pelo trabalho do usuário.
+- Empty state na lista de documentos: "Nenhum documento ainda. Crie seu primeiro, ou importe do Notion, Google Docs, ou Markdown."
+- Setup: reduzido de 6 campos obrigatórios para 1 (nome do workspace). Todo o resto tem um default inteligente e pode ser editado depois nas configurações.
+- Ativação: a primeira vez que um usuário salva um documento, um toast discreto diz "Salvo. Seu trabalho está na nuvem agora." Único, não repetido.
 
-## Pitfalls
+## Armadilhas
 
-- **Adding a product tour as the default answer.** Most products do not need a tour. They need a better first screen. Tours are a crutch.
-- **Designing onboarding without defining the aha moment.** If you cannot say in one sentence what the user should feel in the first 60 seconds, go back to `/impeccable shape` first.
-- **Running onboard on a broken flow.** Fix the flow first. Onboarding cannot rescue a product where the core action is broken.
+- **Adicionar um tour do produto como resposta padrão.** A maioria dos produtos não precisa de um tour. Precisam de uma melhor primeira tela. Tours são muletas.
+- **Desenhar onboarding sem definir o momento aha.** Se você não consegue dizer em uma frase o que o usuário deveria sentir nos primeiros 60 segundos, volte para `/impeccable shape` primeiro.
+- **Executar onboard em um fluxo quebrado.** Conserte o fluxo primeiro. Onboarding não pode resgatar um produto onde a ação principal está quebrada.

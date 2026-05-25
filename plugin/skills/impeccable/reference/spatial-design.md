@@ -1,53 +1,53 @@
-# Spatial Design
+# Design Espacial
 
-## Spacing Systems
+## Sistemas de Espaçamento
 
-### Use 4pt Base, Not 8pt
+### Use Base de 4pt, Não 8pt
 
-8pt systems are too coarse; you'll frequently need 12px (between 8 and 16). Use 4pt for granularity: 4, 8, 12, 16, 24, 32, 48, 64, 96px.
+Sistemas de 8pt são grosseiros demais; você frequentemente precisará de 12px (entre 8 e 16). Use 4pt para granularidade: 4, 8, 12, 16, 24, 32, 48, 64, 96px.
 
-### Name Tokens Semantically
+### Nomeie Tokens Semanticamente
 
-Name by relationship (`--space-sm`, `--space-lg`), not value (`--spacing-8`). Use `gap` instead of margins for sibling spacing; it eliminates margin collapse and cleanup hacks.
+Nomeie por relacionamento (`--space-sm`, `--space-lg`), não por valor (`--spacing-8`). Use `gap` em vez de margins para espaçamento entre irmãos; elimina colapso de margem e gambiarras de limpeza.
 
-## Grid Systems
+## Sistemas de Grid
 
-### The Self-Adjusting Grid
+### O Grid Autoajustável
 
-Use `repeat(auto-fit, minmax(280px, 1fr))` for responsive grids without breakpoints. Columns are at least 280px, as many as fit per row, leftovers stretch. For complex layouts, use named grid areas (`grid-template-areas`) and redefine them at breakpoints.
+Use `repeat(auto-fit, minmax(280px, 1fr))` para grids responsivos sem breakpoints. Colunas têm pelo menos 280px, tantas quanto couberem por linha, sobras se esticam. Para layouts complexos, use named grid areas (`grid-template-areas`) e redefina-as em breakpoints.
 
-## Visual Hierarchy
+## Hierarquia Visual
 
-### The Squint Test
+### O Teste do Olho Semifechado
 
-Blur your eyes (or screenshot and blur). Can you still identify:
-- The most important element?
-- The second most important?
-- Clear groupings?
+Borre os olhos (ou capture a tela e desfoque). Você ainda consegue identificar:
+- O elemento mais importante?
+- O segundo mais importante?
+- Agrupamentos claros?
 
-If everything looks the same weight blurred, you have a hierarchy problem.
+Se tudo parece ter o mesmo peso desfocado, você tem um problema de hierarquia.
 
-### Hierarchy Through Multiple Dimensions
+### Hierarquia Através de Múltiplas Dimensões
 
-Don't rely on size alone. Combine:
+Não dependa apenas do tamanho. Combine:
 
-| Tool | Strong Hierarchy | Weak Hierarchy |
-|------|------------------|----------------|
-| **Size** | 3:1 ratio or more | <2:1 ratio |
-| **Weight** | Bold vs Regular | Medium vs Regular |
-| **Color** | High contrast | Similar tones |
-| **Position** | Top/left (primary) | Bottom/right |
-| **Space** | Surrounded by white space | Crowded |
+| Ferramenta | Hierarquia Forte | Hierarquia Fraca |
+|------------|------------------|------------------|
+| **Tamanho** | Razão 3:1 ou mais | Razão <2:1 |
+| **Peso** | Bold vs Regular | Medium vs Regular |
+| **Cor** | Alto contraste | Tons similares |
+| **Posição** | Topo/esquerda (primário) | Embaixo/direita |
+| **Espaço** | Cercado por espaço em branco | Lotado |
 
-**The best hierarchy uses 2-3 dimensions at once**: A heading that's larger, bolder, AND has more space above it.
+**A melhor hierarquia usa 2-3 dimensões de uma vez**: Um título que é maior, mais pesado E tem mais espaço acima dele.
 
-### Cards Are Not Required
+### Cards Não São Obrigatórios
 
-Cards are overused. Spacing and alignment create visual grouping naturally. Use cards only when content is truly distinct and actionable, items need visual comparison in a grid, or content needs clear interaction boundaries. **Never nest cards inside cards.** Use spacing, typography, and subtle dividers for hierarchy within a card.
+Cards são usados em excesso. Espaçamento e alinhamento criam agrupamento visual naturalmente. Use cards apenas quando o conteúdo é verdadeiramente distinto e acionável, itens precisam de comparação visual em um grid, ou o conteúdo precisa de limites claros de interação. **Nunca aninhe cards dentro de cards.** Use espaçamento, tipografia e divisores sutis para hierarquia dentro de um card.
 
 ## Container Queries
 
-Viewport queries are for page layouts. **Container queries are for components**:
+Queries de viewport são para layouts de página. **Container queries são para componentes**:
 
 ```css
 .card-container {
@@ -59,7 +59,7 @@ Viewport queries are for page layouts. **Container queries are for components**:
   gap: var(--space-md);
 }
 
-/* Card layout changes based on its container, not viewport */
+/* Layout do card muda com base em seu contêiner, não no viewport */
 @container (min-width: 400px) {
   .card {
     grid-template-columns: 120px 1fr;
@@ -67,19 +67,19 @@ Viewport queries are for page layouts. **Container queries are for components**:
 }
 ```
 
-**Why this matters**: A card in a narrow sidebar stays compact, while the same card in a main content area expands automatically, without viewport hacks.
+**Por que isso importa**: Um card em uma sidebar estreita permanece compacto, enquanto o mesmo card em uma área de conteúdo principal se expande automaticamente, sem gambiarras de viewport.
 
-## Optical Adjustments
+## Ajustes Óticos
 
-Text at `margin-left: 0` looks indented due to letterform whitespace; use negative margin (`-0.05em`) to optically align. Geometrically centered icons often look off-center; play icons need to shift right, arrows shift toward their direction.
+Texto com `margin-left: 0` parece indentado devido ao espaço em branco das formas das letras; use margem negativa (`-0.05em`) para alinhamento ótico. Ícones geometricamente centralizados frequentemente parecem descentralizados; ícones de play precisam ser deslocados para a direita, setas se deslocam em sua direção.
 
-### Touch Targets vs Visual Size
+### Alvos de Toque vs Tamanho Visual
 
-Buttons can look small but need large touch targets (44px minimum). Use padding or pseudo-elements:
+Botões podem parecer pequenos mas precisam de grandes alvos de toque (44px mínimo). Use padding ou pseudo-elementos:
 
 ```css
 .icon-button {
-  width: 24px;  /* Visual size */
+  width: 24px;  /* Tamanho visual */
   height: 24px;
   position: relative;
 }
@@ -87,14 +87,14 @@ Buttons can look small but need large touch targets (44px minimum). Use padding 
 .icon-button::before {
   content: '';
   position: absolute;
-  inset: -10px;  /* Expand tap target to 44px */
+  inset: -10px;  /* Expande alvo de toque para 44px */
 }
 ```
 
-## Depth & Elevation
+## Profundidade e Elevação
 
-Create semantic z-index scales (dropdown → sticky → modal-backdrop → modal → toast → tooltip) instead of arbitrary numbers. For shadows, create a consistent elevation scale (sm → md → lg → xl). **Key insight**: Shadows should be subtle. If you can clearly see it, it's probably too strong.
+Crie escalas semânticas de z-index (dropdown → sticky → modal-backdrop → modal → toast → tooltip) em vez de números arbitrários. Para sombras, crie uma escala de elevação consistente (sm → md → lg → xl). **Insight-chave**: Sombras devem ser sutis. Se você consegue vê-la claramente, provavelmente está forte demais.
 
 ---
 
-**Avoid**: Arbitrary spacing values outside your scale. Making all spacing equal (variety creates hierarchy). Creating hierarchy through size alone - combine size, weight, color, and space.
+**Evite**: Valores de espaçamento arbitrários fora da sua escala. Tornar todo espaçamento igual (variedade cria hierarquia). Criar hierarquia apenas pelo tamanho - combine tamanho, peso, cor e espaço.
